@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+*{
+  font-family: 'Inter', sans-serif;
+}
+
+.header-icon-container {
+  background-color: #FFFFFF;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  &:hover {
+    filter: brightness(90%);
+  }
+}
+
+.geradorDePrints-icon-container {
+  background: rgb(255, 94, 99);
+  background: linear-gradient(
+    139deg,
+    rgba(255, 94, 99, 1) 0%,
+    rgba(246, 138, 141, 1) 100%
+  );
+  padding: 10px 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+
+  &:hover {
+    filter: brightness(90%);
+  }
+
+  p {
+    font-weight: bold;
+    // font-size: 1.4em;
+    color: #ffffff;
+    text-decoration: none;
+  }
+}
+
+.applaunchpad-icon-container {
+  background: rgb(255, 94, 99);
+  background: linear-gradient(
+    139deg,
+    rgba(255, 94, 99, 1) 0%,
+    rgba(246, 138, 141, 1) 100%
+  );
+  padding: 10px 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+
+  &:hover {
+    filter: brightness(90%);
+  }
+
+  p {
+    font-weight: bold;
+    // font-size: 1.4em;
+    color: #ffffff;
+    text-decoration: none;
+  }
+}
