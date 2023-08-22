@@ -2,10 +2,10 @@ import React from "react";
 import "./styles.scss";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import FundoApp from "./FundoApp";
-import LogoApp from "./LogoApp";
-import LogoCab from "./LogoCab";
-import FundoMenu from "./FundoMenu";
+import FundoApp from "./Tabs/FundoApp";
+import LogoApp from "./Tabs/LogoApp";
+import LogoCab from "./Tabs/LogoCab";
+import FundoMenu from "./Tabs/FundoMenu";
 
 type Props = {
   className: string;
@@ -14,7 +14,7 @@ type Props = {
 const ImageEditor = ({ className }: Props) => {
   return (
     <div className={`${className}`}>
-      <Tabs className="my-5 mx-4">
+      <Tabs className="tw-my-5 tw-mx-4">
         <TabList className="tablist">
           <Tab className="tab" selectedClassName="selected-tab">
             fundo_app
