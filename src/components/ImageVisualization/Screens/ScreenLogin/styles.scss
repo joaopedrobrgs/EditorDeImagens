@@ -11,6 +11,9 @@
   -o-filter: blur(3px);
   -ms-filter: blur(3px);
   filter: blur(3px);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .screen-container {
@@ -18,9 +21,6 @@
   border: 0.5px dashed black;
   height: 666.75px;
   width: 375px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
 
 
   .logo {
@@ -29,7 +29,7 @@
     align-items: center;
 
     width: 75%;
-    margin: 13% auto;
+    margin: 10% auto;
 
     img {
       width: 100%;
@@ -117,9 +117,18 @@
   }
 
   .credits-container{
+    padding-bottom: 7%;
+    padding-top: 5%;
     position: absolute;
-    z-index: 10;
+    bottom: 0;
     width: 100%;
     text-align: center;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    span{
+      color: #030303;
+      opacity: 0.9;
+    }
+
   }
 }

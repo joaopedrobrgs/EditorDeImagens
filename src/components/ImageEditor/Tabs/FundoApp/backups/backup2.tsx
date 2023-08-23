@@ -5,7 +5,7 @@ import React, { createRef, useEffect, useRef, useState } from "react";
 import "./styles.scss";
 
 //Components:
-import Cropper from "react-easy-crop";
+// import Cropper from "react-easy-crop";
 import { Button, Slider } from "@mui/material";
 
 //Utils:
@@ -14,7 +14,7 @@ import { generateDownload } from "../../../../../utils/cropImage";
 
 //Types:
 import { ImageCompressionOptions } from "../../../../../types/ImageCompression";
-import { CropPosition } from "../../../../../types/ImageCrop";
+// import { CropPosition } from "../../../../../types/ImageCrop";
 
 type Props = {};
 
@@ -26,7 +26,7 @@ const FundoApp = ({}: Props) => {
 
   const [image, setImage] = useState<string | undefined | null>(null);
   const [croppedArea, setCroppedArea] = useState<string | null>(null);
-  const [crop, setCrop] = useState<CropPosition>({ x: 0, y: 0 });
+  const [crop, setCrop] = useState<any>({ x: 0, y: 0 });
   const [zoom, setZoom] = useState<number>(1);
   const onCropComplete = (
     croppedAreaPercentage: any,
@@ -83,14 +83,14 @@ const FundoApp = ({}: Props) => {
         {image ? (
           <>
             <div className="cropper">
-              <Cropper
+              {/* <Cropper
                 image={image as any}
                 crop={crop}
                 zoom={zoom}
                 aspect={0.56 / 1}
                 onCropChange={setCrop}
                 onZoomChange={setZoom}
-              />
+              /> */}
             </div>
             <div className="slider">
               <Slider

@@ -1,0 +1,11 @@
+.iphone-bottom-line {
+  width: 35%;
+  height: 0.6em;
+  border-radius: 1em;
+  background-color: #474747;
+  position: absolute;
+  bottom: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}

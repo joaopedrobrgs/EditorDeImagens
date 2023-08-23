@@ -1,0 +1,104 @@
+.screen-container {
+  position: relative;
+  border: 0.5px dashed black;
+  height: 666.75px;
+  width: 375px;
+
+  .menu-container{
+
+    width: 100%;
+    position: relative;
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: 13px 0px 10px 0px #00000020;
+
+
+
+    .menu-header-container{
+      position: relative;
+
+      .menu-header-background-image{
+        left: 0;
+        right: 0;
+        z-Index: 0;
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-filter: blur(3px);
+        -moz-filter: blur(3px);
+        -o-filter: blur(3px);
+        -ms-filter: blur(3px);
+        filter: blur(3px);
+      }
+
+      .menu-header-content{
+        position: relative;
+        padding: 10px;
+        .time{
+          padding: 10px;
+          font-weight: 700;
+          font-size: 15px;
+        }
+        .user-photo-container{
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin: 10px 0px;
+          img{
+            width: 90px;
+            border-radius: 50%;
+            box-shadow: 0px 2px 5px 2px #00000020;
+          }
+        }
+
+        .user-name-container{
+          width: 100%;
+          background-color: rgba($color: #ffffffff, $alpha: 0.9);
+          padding: 8px 0px;
+          text-align: center;
+          margin: 5px 0px;
+          border-radius: 4px;
+          box-shadow: 0px 2px 5px 2px #00000020;
+          span{
+            font-weight: 700;
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+  .menu-items-container{
+    padding: 5px;
+    .selected-item{
+      background-color: #FEF2F2;
+    }
+    .item-container{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      border-radius: 5px;
+      margin: 5px 0px;
+    }
+    .icon-container{
+      .icon{
+        color: #747474;
+      }
+    }
+    span{
+      margin-left: 15px;
+      font-size: 12px;
+    }
+    .selected-item{
+
+    }
+  }
+
+  .outside-container{
+    width: 100%;
+  }
+
+}

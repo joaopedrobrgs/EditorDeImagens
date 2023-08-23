@@ -2,6 +2,7 @@ import React, { MutableRefObject, RefObject, useEffect, useRef } from "react";
 import "./styles.scss";
 import { useAtom } from "jotai/react";
 import { AtomFundoApp, AtomLogoApp } from "../../../../store";
+import IphoneBottomLine from "../../../IphoneBottomLine";
 
 type Props = {
   // className: string
@@ -65,6 +66,7 @@ const TelaInicial = ({}: Props) => {
             Desenvolvido por Quality Systems
           </span>
         </div>
+        <IphoneBottomLine></IphoneBottomLine>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.scss'
-import TelaInicial from './Screens/TelaInicial'
-import MenuAberto from './Screens/MenuAberto'
+import ScreenLogin from './Screens/ScreenLogin'
+import ScreenMenuAberto from './Screens/ScreenMenuAberto'
 
 type Props = {
   className: string
@@ -12,8 +12,8 @@ const ImageVisualization = ({className}: Props) => {
     <div className={`tw-my-5 ${className}`}>
       <p className='tw-font-bold'>Pré-visualização:</p>
       <div className="tw-flex tw-justify-start">
-        <TelaInicial />
-        <MenuAberto />
+        <ScreenLogin />
+        <ScreenMenuAberto />
       </div>
 
     </div>
