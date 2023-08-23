@@ -13,6 +13,14 @@
   }
 }
 
+.btn-visualize {
+  background-color: purple !important;
+  margin-top: 10px !important;
+  &:hover {
+    filter: brightness(90%);
+  }
+}
+
 .tab-container {
   display: flex;
   flex-direction: column;

@@ -6,22 +6,23 @@ import { Button } from "@mui/material";
 import imageCompression from "browser-image-compression";
 // import { ImageCompressionOptions } from "../../../../types/ImageCompression";
 import { saveAs } from "file-saver";
+import { useAtom } from "jotai/react";
+import { AtomFundoApp } from "../../../../store";
 
 type Props = {};
 
 const FundoApp = (props: Props) => {
-  const defaultSrc: string =
-    "https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg";
+  const defaultSrc: string = `${process.env.PUBLIC_URL}foto-exemplo.png`;
 
   const inputRef = useRef<any>();
 
   const [image, setImage] = useState<string>(defaultSrc);
 
-  const [cropData, setCropData] = useState<string | null>(null);
+  const [cropData, setCropData] = useAtom(AtomFundoApp);
 
   const cropperRef = createRef<ReactCropperElement>();
 
-  let files: any;
+  const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false)
 
   const triggerFileSelectPopup = () => {
     if (!!inputRef.current) {
@@ -31,6 +32,7 @@ const FundoApp = (props: Props) => {
 
   const onSelectFile = (e: any) => {
     e.preventDefault();
+    let files: any;
     if (e.dataTransfer) {
       files = e.dataTransfer.files;
     } else if (e.target) {
@@ -46,12 +48,14 @@ const FundoApp = (props: Props) => {
     console.log("Files: ", files);
   };
 
-  //Pegando imagem cortada
-  // const getCropData = () => {
-  // if (typeof cropperRef.current?.cropper !== "undefined") {
-  //   setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
-  // }
-  // };
+  // Pegando imagem cortada
+  const getCropData = () => {
+    if (typeof cropperRef.current?.cropper !== "undefined") {
+      setCropData(
+        cropperRef.current?.cropper.getCroppedCanvas().toDataURL() ?? null
+      );
+    }
+  };
 
   async function handleDownload() {
     cropperRef.current?.cropper?.getCroppedCanvas().toBlob((blob) => {
@@ -61,23 +65,10 @@ const FundoApp = (props: Props) => {
     });
   }
 
-  useEffect(() => {
-    if (!!image) {
-      console.log("Image: ", image);
-    }
-  }, [image]);
 
-  useEffect(() => {
-    if (!!cropData) {
-      console.log("CropData: ", cropData);
-      console.log(
-        "CropData formatted: ",
-        cropperRef.current?.cropper.getCroppedCanvas()
-      );
-      console.log(cropperRef);
-      console.log("Data: ", cropperRef.current?.cropper?.getCroppedCanvas());
-    }
-  }, [cropData]);
+  function handleLoaded(){
+    setImageFullyLoaded(true);
+  }
 
   return (
     <div className="tab-container">
@@ -100,10 +91,10 @@ const FundoApp = (props: Props) => {
         ref={cropperRef}
         style={{ height: 400, width: "100%" }}
         zoomTo={0.5}
-        aspectRatio={0.56 / 1}
+        aspectRatio={500 / 889}
         initialAspectRatio={1}
         preview=".img-preview"
-        src={image ?? defaultSrc}
+        src={image}
         viewMode={1}
         minCropBoxHeight={10}
         minCropBoxWidth={10}
@@ -112,18 +103,29 @@ const FundoApp = (props: Props) => {
         autoCropArea={1}
         checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
         guides={true}
+        //Verificando se imagem já esta carregada, pois isso estava ocasionando um erro
+        onLoad={handleLoaded}
       />
       <h1 className="tw-my-2 tw-font-bold">Prévia:</h1>
       <div className="box">
         <div
           className="img-preview"
-          style={{width: "100%", height: "300px" }}
+          style={{ width: "125px", height: "225.25px" }}
         />
       </div>
       <Button
         variant="contained"
+        className="btn-visualize"
+        onClick={getCropData}
+        disabled={imageFullyLoaded ? false : true}
+      >
+        Visualizar na tela
+      </Button>
+      <Button
+        variant="contained"
         className="btn-download"
         onClick={handleDownload}
+        disabled={imageFullyLoaded ? false : true}
       >
         Baixar fundo_app
       </Button>

@@ -7,7 +7,7 @@ type Props = {
 
 const MenuAberto = ({}: Props) => {
   return (
-    <div className={`tw-my-5 tw-w-full`}>
+    <div className={`tw-my-5 tw-mr-2`}>
       <div
         className='screen-container'
       ></div>

@@ -11,7 +11,7 @@ const ImageVisualization = ({className}: Props) => {
   return (
     <div className={`tw-my-5 ${className}`}>
       <p className='tw-font-bold'>Pré-visualização:</p>
-      <div className="tw-flex tw-justify-between">
+      <div className="tw-flex tw-justify-start">
         <TelaInicial />
         <MenuAberto />
       </div>
