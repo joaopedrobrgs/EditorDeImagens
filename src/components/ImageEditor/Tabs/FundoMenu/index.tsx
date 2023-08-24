@@ -112,7 +112,7 @@ const FundoMenu = (props: Props) => {
         viewMode={1}
         minCropBoxHeight={10}
         minCropBoxWidth={10}
-        background={false}
+        background={true}
         responsive={true}
         // autoCropArea={1}
         checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671

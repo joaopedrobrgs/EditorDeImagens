@@ -2,6 +2,7 @@ import React from 'react'
 import './styles.scss'
 import ScreenLogin from './Screens/ScreenLogin'
 import ScreenMenuAberto from './Screens/ScreenMenuAberto'
+import EditionTool from './EditionTool'
 
 type Props = {
   className: string
@@ -14,6 +15,9 @@ const ImageVisualization = ({className}: Props) => {
       <div className="tw-flex tw-justify-start">
         <ScreenLogin />
         <ScreenMenuAberto />
+      </div>
+      <div>
+        <EditionTool />
       </div>
 
     </div>

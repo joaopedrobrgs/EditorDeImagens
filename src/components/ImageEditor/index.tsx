@@ -23,10 +23,10 @@ const ImageEditor = ({ className }: Props) => {
             logo_app
           </Tab>
           <Tab className="tab" selectedClassName="selected-tab">
-            logo_cab
+            fundo_menu
           </Tab>
           <Tab className="tab" selectedClassName="selected-tab">
-            fundo_menu
+            logo_cab
           </Tab>
         </TabList>
         <TabPanel>
@@ -36,10 +36,10 @@ const ImageEditor = ({ className }: Props) => {
           <LogoApp />
         </TabPanel>
         <TabPanel>
-          <LogoCab />
+          <FundoMenu />
         </TabPanel>
         <TabPanel>
-          <FundoMenu />
+          <LogoCab />
         </TabPanel>
       </Tabs>
     </div>

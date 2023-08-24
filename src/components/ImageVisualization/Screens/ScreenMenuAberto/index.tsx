@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./styles.scss";
 import { useAtom } from "jotai";
 import { AtomFundoMenuCropped, AtomLogoCabCropped } from "../../../../store";
-import { hoursMinutesToString } from "../../../../utils/dateFormatter";
+import { hoursMinutesToString } from "../../../../utils/utils";
 // import { IoWifi, IoBatteryFullOutline } from "react-icons/io5";
 import { IoIosWifi, IoIosBatteryFull } from "react-icons/io";
 import { TbGridDots } from "react-icons/tb";

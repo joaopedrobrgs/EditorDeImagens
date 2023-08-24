@@ -4,8 +4,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-*{
+* {
   font-family: 'Inter', sans-serif;
   padding: 0;
   margin: 0;
+}
+
+:root {
+  --btn-text-color: #FFFFFE;
+  --btn-bg-color: #ed3237;
+  --boxes-opacity: 60%;
+  --fundo-app-opacity: 80%;
+  --fundo-app-blur: 2px;
+  --fundo-menu-opacity: 80%;
+  --fundo-menu-blur: 2px;
 }
