@@ -21,9 +21,9 @@ const FundoApp = (props: Props) => {
 
   const [image, setImage] = useAtom(AtomFundoAppOriginalSize);
 
-  const {refFundoAppCropper} = useAppContext();
+  const {refFundoAppCropper: cropperRef} = useAppContext();
 
-  // const cropperRef = createRef<ReactCropperElement>();
+  const aspectRatio = 500 / 889;
 
   const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
 
@@ -53,15 +53,15 @@ const FundoApp = (props: Props) => {
 
   // Pegando imagem cortada
   const getCropData = () => {
-    if (typeof refFundoAppCropper.current?.cropper !== "undefined") {
+    if (typeof cropperRef.current?.cropper !== "undefined") {
       setCropData(
-        refFundoAppCropper.current?.cropper.getCroppedCanvas().toDataURL() ?? null
+        cropperRef.current?.cropper.getCroppedCanvas().toDataURL() ?? null
       );
     }
   };
 
   async function handleDownload() {
-    refFundoAppCropper.current?.cropper?.getCroppedCanvas().toBlob((blob: any) => {
+    cropperRef.current?.cropper?.getCroppedCanvas().toBlob((blob: any) => {
       if (!!blob) {
         saveAs(blob, "fundo_app.png");
       }
@@ -91,11 +91,11 @@ const FundoApp = (props: Props) => {
       <p className="tw-font-bold tw-mb-2">Recortar fundo_app:</p>
 
       <Cropper
-        ref={refFundoAppCropper}
+        ref={cropperRef}
         style={{ height: 400, width: "100%" }}
-        zoomTo={0.5}
-        aspectRatio={500 / 889}
-        initialAspectRatio={1}
+        // zoomTo={0.5}
+        aspectRatio={aspectRatio}
+        // initialAspectRatio={1}
         preview=".img-preview"
         src={image ?? defaultSrc}
         viewMode={1}
@@ -103,11 +103,14 @@ const FundoApp = (props: Props) => {
         minCropBoxWidth={10}
         background={false}
         responsive={true}
-        autoCropArea={1}
+        // autoCropArea={1}
         checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
         guides={true}
-        //Verificando se imagem já esta carregada, pois isso estava ocasionando um erro
+        //Verificando se imagem já esta carregada, pois isso estava ocasionando um erro:
         onLoad={handleLoaded}
+        autoCrop
+        //Passando o ultimo recorte para a imagem assim que renderizar novamente o componente:
+        data={cropperRef.current?.cropper.getData()}
       />
       <h1 className="tw-my-2 tw-font-bold">Prévia:</h1>
       <div className="box">
