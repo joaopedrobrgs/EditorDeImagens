@@ -7,8 +7,13 @@ import imageCompression from "browser-image-compression";
 // import { ImageCompressionOptions } from "../../../../types/ImageCompression";
 import { saveAs } from "file-saver";
 import { useAtom } from "jotai/react";
-import { AtomFundoMenuOriginalSize, AtomFundoMenuCropped } from "../../../../store";
+import {
+  AtomFundoMenuOriginalSize,
+  AtomFundoMenuCropped,
+} from "../../../../store";
 import { useAppContext } from "../../../../context";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 type Props = {};
 
@@ -21,7 +26,7 @@ const FundoMenu = (props: Props) => {
 
   const [cropData, setCropData] = useAtom(AtomFundoMenuCropped);
 
-  const {refFundoMenuCropper: cropperRef} = useAppContext();
+  const { refFundoMenuCropper: cropperRef } = useAppContext();
 
   const aspectRatio = 400 / 200;
 
@@ -41,6 +46,13 @@ const FundoMenu = (props: Props) => {
     } else if (e.target) {
       files = e.target.files;
     }
+    if (!files[0].type.includes("image")) {
+      toast.error("Deve ser carregado um arquivo de imagem!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: "colored"
+      });
+      return;
+    }
     const reader = new FileReader();
     reader.onload = () => {
       setImage(reader.result as any);
@@ -48,7 +60,6 @@ const FundoMenu = (props: Props) => {
     if (!!files[0]) {
       reader.readAsDataURL(files[0]);
     }
-    console.log("Files: ", files);
   };
 
   // Pegando imagem cortada
@@ -135,6 +146,7 @@ const FundoMenu = (props: Props) => {
       >
         Baixar fundo_menu
       </Button>
+      <ToastContainer />
     </div>
   );
 };

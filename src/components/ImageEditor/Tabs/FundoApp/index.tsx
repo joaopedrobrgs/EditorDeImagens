@@ -9,6 +9,8 @@ import { saveAs } from "file-saver";
 import { useAtom } from "jotai/react";
 import { AtomFundoAppCropped, AtomFundoAppOriginalSize } from "../../../../store";
 import { useAppContext } from "../../../../context";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 type Props = {};
 
@@ -41,6 +43,13 @@ const FundoApp = (props: Props) => {
     } else if (e.target) {
       files = e.target.files;
     }
+    if (!files[0].type.includes("image")) {
+      toast.error("Deve ser carregado um arquivo de imagem!", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        theme: "colored"
+      });
+      return;
+    }
     const reader = new FileReader();
     reader.onload = () => {
       setImage(reader.result as any);
@@ -48,7 +57,6 @@ const FundoApp = (props: Props) => {
     if (!!files[0]) {
       reader.readAsDataURL(files[0]);
     }
-    console.log("Files: ", files);
   };
 
   // Pegando imagem cortada
@@ -135,6 +143,7 @@ const FundoApp = (props: Props) => {
       >
         Baixar fundo_app
       </Button>
+      <ToastContainer />
     </div>
   );
 };
