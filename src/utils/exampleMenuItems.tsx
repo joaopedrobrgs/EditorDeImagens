@@ -8,7 +8,6 @@ import {
   IoTrophy,
 } from "react-icons/io5";
 import { FaUser, FaDumbbell, FaUserCheck, FaUserFriends } from "react-icons/fa";
-import { JsxElement } from "typescript";
 
 type MenuItemProps = {
   id: number,

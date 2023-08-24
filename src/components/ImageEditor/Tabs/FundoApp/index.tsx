@@ -1,13 +1,14 @@
 import React, { createRef, useEffect, useRef, useState } from "react";
 import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.css";
-import "./styles.scss";
+import "../styles.scss";
 import { Button } from "@mui/material";
 import imageCompression from "browser-image-compression";
 // import { ImageCompressionOptions } from "../../../../types/ImageCompression";
 import { saveAs } from "file-saver";
 import { useAtom } from "jotai/react";
-import { AtomFundoApp } from "../../../../store";
+import { AtomFundoApp, AtomFundoAppNoCut } from "../../../../store";
+import { useAppContext } from "../../../../context";
 
 type Props = {};
 
@@ -16,13 +17,15 @@ const FundoApp = (props: Props) => {
 
   const inputRef = useRef<any>();
 
-  const [image, setImage] = useState<string>(defaultSrc);
-
   const [cropData, setCropData] = useAtom(AtomFundoApp);
 
-  const cropperRef = createRef<ReactCropperElement>();
+  const [image, setImage] = useAtom(AtomFundoAppNoCut);
 
-  const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false)
+  const {refFundoAppCropper} = useAppContext();
+
+  // const cropperRef = createRef<ReactCropperElement>();
+
+  const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
 
   const triggerFileSelectPopup = () => {
     if (!!inputRef.current) {
@@ -50,29 +53,27 @@ const FundoApp = (props: Props) => {
 
   // Pegando imagem cortada
   const getCropData = () => {
-    if (typeof cropperRef.current?.cropper !== "undefined") {
+    if (typeof refFundoAppCropper.current?.cropper !== "undefined") {
       setCropData(
-        cropperRef.current?.cropper.getCroppedCanvas().toDataURL() ?? null
+        refFundoAppCropper.current?.cropper.getCroppedCanvas().toDataURL() ?? null
       );
     }
   };
 
   async function handleDownload() {
-    cropperRef.current?.cropper?.getCroppedCanvas().toBlob((blob) => {
+    refFundoAppCropper.current?.cropper?.getCroppedCanvas().toBlob((blob: any) => {
       if (!!blob) {
         saveAs(blob, "fundo_app.png");
       }
     });
   }
 
-
-  function handleLoaded(){
+  function handleLoaded() {
     setImageFullyLoaded(true);
   }
 
   return (
     <div className="tab-container">
-      <p className="tw-font-bold tw-my-2">Recortar fundo_app:</p>
       <input
         className="tw-hidden"
         type="file"
@@ -87,14 +88,16 @@ const FundoApp = (props: Props) => {
       >
         Carregar fundo_app
       </Button>
+      <p className="tw-font-bold tw-mb-2">Recortar fundo_app:</p>
+
       <Cropper
-        ref={cropperRef}
+        ref={refFundoAppCropper}
         style={{ height: 400, width: "100%" }}
         zoomTo={0.5}
         aspectRatio={500 / 889}
         initialAspectRatio={1}
         preview=".img-preview"
-        src={image}
+        src={image ?? defaultSrc}
         viewMode={1}
         minCropBoxHeight={10}
         minCropBoxWidth={10}

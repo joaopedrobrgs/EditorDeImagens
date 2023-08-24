@@ -4,22 +4,18 @@
   height: 666.75px;
   width: 375px;
 
-  .menu-container{
-
+  .menu-container {
     width: 100%;
     position: relative;
-    /* offset-x | offset-y | blur-radius | spread-radius | color */
-    box-shadow: 13px 0px 10px 0px #00000020;
+    box-shadow: 13px 0px 10px -5px #00000040;
 
-
-
-    .menu-header-container{
+    .menu-header-container {
       position: relative;
 
-      .menu-header-background-image{
+      .menu-header-background-image {
         left: 0;
         right: 0;
-        z-Index: 0;
+        z-index: 0;
         display: block;
         position: absolute;
         width: 100%;
@@ -29,29 +25,32 @@
         -o-filter: blur(3px);
         -ms-filter: blur(3px);
         filter: blur(3px);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
       }
 
-      .menu-header-content{
+      .menu-header-content {
         position: relative;
         padding: 10px;
-        .time{
+        .time {
           padding: 10px;
           font-weight: 700;
-          font-size: 15px;
+          font-size: 14px;
         }
-        .user-photo-container{
+        .user-photo-container {
           width: 100%;
           display: flex;
           justify-content: center;
           margin: 10px 0px;
-          img{
+          img {
             width: 90px;
             border-radius: 50%;
             box-shadow: 0px 2px 5px 2px #00000020;
           }
         }
 
-        .user-name-container{
+        .user-name-container {
           width: 100%;
           background-color: rgba($color: #ffffffff, $alpha: 0.9);
           padding: 8px 0px;
@@ -59,23 +58,20 @@
           margin: 5px 0px;
           border-radius: 4px;
           box-shadow: 0px 2px 5px 2px #00000020;
-          span{
+          span {
             font-weight: 700;
           }
         }
-
       }
-
     }
-
   }
 
-  .menu-items-container{
+  .menu-items-container {
     padding: 5px;
-    .selected-item{
-      background-color: #FEF2F2;
+    .selected-item {
+      background-color: #fef2f2;
     }
-    .item-container{
+    .item-container {
       width: 100%;
       display: flex;
       align-items: center;
@@ -83,22 +79,84 @@
       border-radius: 5px;
       margin: 5px 0px;
     }
-    .icon-container{
-      .icon{
+    .icon-container {
+      .icon {
         color: #747474;
       }
     }
-    span{
+    span {
       margin-left: 15px;
       font-size: 12px;
     }
-    .selected-item{
-
+    .selected-item {
     }
   }
 
-  .outside-container{
+  .outside-container {
     width: 100%;
+    .notification-bar {
+      padding-right: 10px;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      .icon {
+        margin-left: 5px;
+      }
+      span {
+        color: #747474;
+        font-size: 1.1em;
+        opacity: 0.5;
+      }
+    }
+    .app-header {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      padding: 8px 10px;
+      box-shadow: 0px 5px 6px #00000020;
+      .img-container {
+        border: 1px solid rgba($color: #dfdfdf, $alpha: 1);
+        border-radius: 50%;
+        /* offset-x (positive: rigth; negative: left) | offset-y (positive: bootom; negative: top) | blur-radius | spread-radius | color */
+        box-shadow: 0px 5px 7px -2px #00000040;
+        background: #ffffff;
+        background: linear-gradient(
+          139deg,
+          rgba($color: #ffffff, $alpha: 1) 0%,
+          rgba($color: #dfdfdf, $alpha: 1) 100%
+        );
+        img {
+          width: 2.3em;
+          border-radius: 50%;
+        }
+      }
+    }
   }
-
+  .screen-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    // width: 100%;
+    border-top: 2px solid rgba($color: #cdcdcd, $alpha: 0.2);
+    padding: 3px;
+    .footer-top {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      .items-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        span {
+          font-size: 10px;
+          color: #747474;
+          font-weight: 500;
+        }
+      }
+    }
+    .footer-bottom {
+    }
+  }
 }

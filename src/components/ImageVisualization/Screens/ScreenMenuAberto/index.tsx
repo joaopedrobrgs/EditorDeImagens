@@ -3,8 +3,13 @@ import "./styles.scss";
 import { useAtom } from "jotai";
 import { AtomFundoMenu, AtomLogoCab } from "../../../../store";
 import { hoursMinutesToString } from "../../../../utils/dateFormatter";
+// import { IoWifi, IoBatteryFullOutline } from "react-icons/io5";
+import { IoIosWifi, IoIosBatteryFull } from "react-icons/io";
+import { TbGridDots } from "react-icons/tb";
+import QrCodeSvg from "../../../../assets/svgComponents/QrCodeSvg";
 
 import { exampleMenuItems as menuItems } from "../../../../utils/exampleMenuItems";
+import IphoneBottomLine from "../../../IphoneBottomLine";
 
 type Props = {
   // className: string
@@ -21,8 +26,8 @@ const MenuAberto = ({}: Props) => {
   return (
     <div className="tw-my-5 tw-mr-2">
       <div className="screen-container">
-        <div className="tw-grid tw-grid-cols-6 tw-grid-rows-1">
-          <div className="menu-container tw-col-span-4">
+        <div className="tw-grid tw-grid-cols-4 tw-grid-rows-1 tw-h-9/10">
+          <div className="menu-container tw-col-span-3">
             <div className="menu-header-container">
               <div
                 className="menu-header-background-image"
@@ -57,20 +62,37 @@ const MenuAberto = ({}: Props) => {
               ))}
             </div>
           </div>
-          <div className="outside-container tw-col-span-2">
-            <div className="notification-bar"></div>
+          <div className="outside-container tw-col-span-1">
+            <div className="notification-bar">
+              <span>....</span>
+              <IoIosWifi color="black" className="icon" size={15} />
+              <IoIosBatteryFull color="black" size={20} className="icon" />
+            </div>
             <div className="app-header">
-              <img
-                src={
-                  logoCabImg ?? `${process.env.PUBLIC_URL}logo_cab_sample.png`
-                }
-              />
+              <div className="img-container">
+                <img
+                  src={
+                    logoCabImg ?? `${process.env.PUBLIC_URL}logo_cab_sample.png`
+                  }
+                />
+              </div>
             </div>
           </div>
         </div>
-        <div className="screen-footer">
-          <div className="personal-data"></div>
-          <div className="digital-card"></div>
+        <div className="screen-footer tw-h-1/10">
+          <div className="footer-top">
+            <div className="items-container">
+              <TbGridDots size="1.7em" color="#747474" />
+              <span>Meus Dados</span>
+            </div>
+            <div className="items-container">
+              <QrCodeSvg size="1.7em" />
+              <span>Carteirinha Digital</span>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <IphoneBottomLine />
+          </div>
         </div>
       </div>
     </div>

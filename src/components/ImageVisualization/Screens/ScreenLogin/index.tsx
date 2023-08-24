@@ -62,9 +62,9 @@ const TelaInicial = ({}: Props) => {
           </div>
         </div>
         <div className="credits-container">
-          <span>
-            Desenvolvido por Quality Systems
-          </span>
+          <div className="text-container">
+            <span>Desenvolvido por Quality Systems</span>
+          </div>
         </div>
         <IphoneBottomLine></IphoneBottomLine>
       </div>
