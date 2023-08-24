@@ -1,15 +1,21 @@
 import { atom } from "jotai";
 
-const AtomFundoApp = atom<any>(null);
-const AtomFundoAppNoCut = atom<string | null>(null);
-const AtomLogoApp = atom<any>(null);
-const AtomLogoCab = atom<any>(null);
-const AtomFundoMenu = atom<any>(null);
+const AtomFundoAppOriginalSize = atom<string | null>(null);
+const AtomFundoAppCropped = atom<any>(null);
+const AtomLogoAppOriginalSize = atom<string | null>(null);
+const AtomLogoAppCropped = atom<any>(null);
+const AtomLogoCabOriginalSize = atom<string | null>(null);
+const AtomLogoCabCropped = atom<any>(null);
+const AtomFundoMenuOriginalSize = atom<string | null>(null);
+const AtomFundoMenuCropped = atom<any>(null);
 
 export {
-  AtomFundoApp,
-  AtomFundoAppNoCut,
-  AtomLogoApp,
-  AtomLogoCab,
-  AtomFundoMenu
+  AtomFundoAppOriginalSize,
+  AtomFundoAppCropped,
+  AtomLogoAppOriginalSize,
+  AtomLogoAppCropped,
+  AtomLogoCabOriginalSize,
+  AtomLogoCabCropped,
+  AtomFundoMenuOriginalSize,
+  AtomFundoMenuCropped
 }

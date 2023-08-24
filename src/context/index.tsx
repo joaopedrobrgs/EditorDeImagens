@@ -18,9 +18,9 @@ const AppContextProvider: React.FC<{
   children: React.ReactElement;
 }> = ({ children }) => {
   const refFundoAppCropper = createRef<ReactCropperElement>();
-  const refFundoMenuCropper = useRef<any>;
-  const refLogoAppCropper = useRef<any>;
-  const refLogoCabCropper = useRef<any>;
+  const refFundoMenuCropper = createRef<ReactCropperElement>();
+  const refLogoAppCropper = createRef<ReactCropperElement>();
+  const refLogoCabCropper = createRef<ReactCropperElement>();
 
   return (
     <AppContext.Provider

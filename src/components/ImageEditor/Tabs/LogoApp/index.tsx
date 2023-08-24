@@ -7,7 +7,8 @@ import imageCompression from "browser-image-compression";
 // import { ImageCompressionOptions } from "../../../../types/ImageCompression";
 import { saveAs } from "file-saver";
 import { useAtom } from "jotai/react";
-import { AtomLogoApp } from "../../../../store";
+import { AtomLogoAppOriginalSize, AtomLogoAppCropped } from "../../../../store";
+import { useAppContext } from "../../../../context";
 
 type Props = {};
 
@@ -16,11 +17,13 @@ const LogoApp = (props: Props) => {
 
   const inputRef = useRef<any>();
 
-  const [image, setImage] = useState<string>(defaultSrc);
+  const [image, setImage] = useAtom(AtomLogoAppOriginalSize);
 
-  const [cropData, setCropData] = useAtom(AtomLogoApp);
+  const [cropData, setCropData] = useAtom(AtomLogoAppCropped);
 
-  const cropperRef = createRef<ReactCropperElement>();
+  const {refLogoAppCropper} = useAppContext();
+
+  // const cropperRef = createRef<ReactCropperElement>();
 
   const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
 
@@ -50,15 +53,15 @@ const LogoApp = (props: Props) => {
 
   // Pegando imagem cortada
   const getCropData = () => {
-    if (typeof cropperRef.current?.cropper !== "undefined") {
+    if (typeof refLogoAppCropper.current?.cropper !== "undefined") {
       setCropData(
-        cropperRef.current?.cropper.getCroppedCanvas().toDataURL() ?? null
+        refLogoAppCropper.current?.cropper.getCroppedCanvas().toDataURL() ?? null
       );
     }
   };
 
   async function handleDownload() {
-    cropperRef.current?.cropper?.getCroppedCanvas().toBlob((blob) => {
+    refLogoAppCropper.current?.cropper?.getCroppedCanvas().toBlob((blob: any) => {
       if (!!blob) {
         saveAs(blob, "logo_app.png");
       }
@@ -88,13 +91,13 @@ const LogoApp = (props: Props) => {
       <p className="tw-font-bold tw-mb-2">Recortar logo_app:</p>
 
       <Cropper
-        ref={cropperRef}
+        ref={refLogoAppCropper}
         style={{ height: 400, width: "100%" }}
         zoomTo={0.5}
         aspectRatio={450 / 250}
         initialAspectRatio={1}
         preview=".img-preview"
-        src={image}
+        src={image ?? defaultSrc}
         viewMode={1}
         minCropBoxHeight={10}
         minCropBoxWidth={10}

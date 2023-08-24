@@ -1,7 +1,7 @@
 import React, { MutableRefObject, RefObject, useEffect, useRef } from "react";
 import "./styles.scss";
 import { useAtom } from "jotai/react";
-import { AtomFundoApp, AtomLogoApp } from "../../../../store";
+import { AtomFundoAppCropped, AtomLogoAppCropped } from "../../../../store";
 import IphoneBottomLine from "../../../IphoneBottomLine";
 
 type Props = {
@@ -9,8 +9,8 @@ type Props = {
 };
 
 const TelaInicial = ({}: Props) => {
-  const [fundoAppImg] = useAtom(AtomFundoApp);
-  const [logoAppImg] = useAtom(AtomLogoApp);
+  const [fundoAppImg] = useAtom(AtomFundoAppCropped);
+  const [logoAppImg] = useAtom(AtomLogoAppCropped);
 
   // const screenRef = useRef<HTMLDivElement | null>(null);
 

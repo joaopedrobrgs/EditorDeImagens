@@ -7,7 +7,7 @@ import imageCompression from "browser-image-compression";
 // import { ImageCompressionOptions } from "../../../../types/ImageCompression";
 import { saveAs } from "file-saver";
 import { useAtom } from "jotai/react";
-import { AtomFundoApp, AtomFundoAppNoCut } from "../../../../store";
+import { AtomFundoAppCropped, AtomFundoAppOriginalSize } from "../../../../store";
 import { useAppContext } from "../../../../context";
 
 type Props = {};
@@ -17,9 +17,9 @@ const FundoApp = (props: Props) => {
 
   const inputRef = useRef<any>();
 
-  const [cropData, setCropData] = useAtom(AtomFundoApp);
+  const [cropData, setCropData] = useAtom(AtomFundoAppCropped);
 
-  const [image, setImage] = useAtom(AtomFundoAppNoCut);
+  const [image, setImage] = useAtom(AtomFundoAppOriginalSize);
 
   const {refFundoAppCropper} = useAppContext();
 
