@@ -2,7 +2,7 @@ import React from 'react'
 import './styles.scss'
 import ScreenLogin from './Screens/ScreenLogin'
 import ScreenMenuAberto from './Screens/ScreenMenuAberto'
-import EditionTool from './EditionTool'
+import Settings from './Settings'
 
 type Props = {
   className: string
@@ -17,7 +17,7 @@ const ImageVisualization = ({className}: Props) => {
         <ScreenMenuAberto />
       </div>
       <div>
-        <EditionTool />
+        <Settings />
       </div>
 
     </div>

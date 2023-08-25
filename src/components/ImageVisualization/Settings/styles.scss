@@ -1,0 +1,15 @@
+.settings-input-box{
+  padding: 12px;
+ .settings-input-label{
+  font-weight: 600;
+ }
+}
+
+.color-container{
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  input{
+    width: 25%;
+  }
+}
