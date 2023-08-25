@@ -23,7 +23,7 @@ const TelaInicial = ({}: Props) => {
   // }, [fundoAppImg]);
 
   return (
-    <div className={`tw-my-5 tw-mr-2 tw-relative`}>
+    <div className={`screen-login-container`}>
       <div
         className="background-image"
         // ref={screenRef}

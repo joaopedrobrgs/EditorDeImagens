@@ -1,27 +1,24 @@
-import React from 'react'
-import './styles.scss'
-import ScreenLogin from './Screens/ScreenLogin'
-import ScreenMenuAberto from './Screens/ScreenMenuAberto'
-import Settings from './Settings'
+import React from "react";
+import "./styles.scss";
+import ScreenLogin from "./Screens/ScreenLogin";
+import ScreenMenuAberto from "./Screens/ScreenMenuAberto";
+import Settings from "./Settings";
 
 type Props = {
-  className: string
-}
+  className: string;
+};
 
-const ImageVisualization = ({className}: Props) => {
+const ImageVisualization = ({ className }: Props) => {
   return (
-    <div className={`tw-my-5 ${className}`}>
-      <p className='tw-font-bold'>Pré-visualização:</p>
-      <div className="tw-flex tw-justify-start">
+    <div className={`image-visualization-container ${className}`}>
+      <p>Pré-visualização:</p>
+      <div className="screens-container">
         <ScreenLogin />
         <ScreenMenuAberto />
       </div>
-      <div>
-        <Settings />
-      </div>
-
+      <Settings />
     </div>
-  )
-}
+  );
+};
 
 export default ImageVisualization;

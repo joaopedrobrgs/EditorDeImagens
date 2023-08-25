@@ -44,7 +44,7 @@ export default function Settings() {
 
   return (
     <>
-      <Box className="tw-grid tw-grid-cols-2 tw-grid-rows-4">
+      <Box className="tw-grid tw-grid-cols-2 tw-grid-rows-4 settings-container">
         {/* fundo-app-opacity: */}
         <Box className="settings-input-box">
           <Typography
@@ -175,7 +175,7 @@ export default function Settings() {
             aria-labelledby="non-linear-slider"
           />
         </Box>
-        <div className="tw-flex tw-flex-col settings-input-box">
+        <div className="settings-input-box">
           {/* btn-bg-color */}
           <Box className="color-container">
             <label className="settings-input-label">

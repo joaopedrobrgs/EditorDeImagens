@@ -83,7 +83,6 @@ const LogoCab = (props: Props) => {
   return (
     <div className="tab-container">
       <input
-        className="tw-hidden"
         type="file"
         onChange={onSelectFile}
         accept="image/*"
@@ -96,7 +95,7 @@ const LogoCab = (props: Props) => {
       >
         Carregar lobo_cab
       </Button>
-      <p className="tw-font-bold tw-mb-2">Recortar lobo_cab:</p>
+      <p>Recortar lobo_cab:</p>
 
       <Cropper
         ref={cropperRef}
@@ -120,7 +119,7 @@ const LogoCab = (props: Props) => {
         //Passando o ultimo recorte para a imagem assim que renderizar novamente o componente:
         data={cropperRef.current?.cropper.getData()}
       />
-      <h1 className="tw-my-2 tw-font-bold">Prévia:</h1>
+      <h1>Prévia:</h1>
       <div className="box">
         <div
           className="img-preview"

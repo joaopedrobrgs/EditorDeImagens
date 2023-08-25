@@ -1,64 +1,92 @@
-.header-icon-container {
-  background-color: #FFFFFF;
-  padding: 10px;
-  cursor: pointer;
+.header-container {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  border-radius: 100%;
-  &:hover {
-    filter: brightness(90%);
-  }
-}
+  background-color: var(--blue-1);
+  padding: 1.25rem;
+  // position: sticky;
+  // top: 0px;
+  // width: 100%;
 
-.geradorDePrints-icon-container {
-  background: rgb(255, 94, 99);
-  background: linear-gradient(
-    139deg,
-    rgba(255, 94, 99, 1) 0%,
-    rgba(246, 138, 141, 1) 100%
-  );
-  padding: 10px 10px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 100%;
-
-  &:hover {
-    filter: brightness(90%);
+  .header-left-container {
+    background-color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.125rem;
+    p {
+      color: var(--blue-2);
+      font-weight: bold;
+      font-size: 18px;
+    }
   }
 
-  p {
-    font-weight: bold;
-    // font-size: 1.4em;
-    color: #ffffff;
-    text-decoration: none;
-  }
-}
+  .header-right-container {
+    display: flex;
 
-.applaunchpad-icon-container {
-  background: rgb(255, 94, 99);
-  background: linear-gradient(
-    139deg,
-    rgba(255, 94, 99, 1) 0%,
-    rgba(246, 138, 141, 1) 100%
-  );
-  padding: 10px 15px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 100%;
+    .icon-container {
+      background-color: #ffffff;
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      margin-left: 1rem;
+      &:hover {
+        filter: brightness(90%);
+      }
+    }
 
-  &:hover {
-    filter: brightness(90%);
-  }
+    .geradorDePrints-icon-container {
+      background: rgb(255, 94, 99);
+      background: linear-gradient(
+        139deg,
+        rgba(255, 94, 99, 1) 0%,
+        rgba(246, 138, 141, 1) 100%
+      );
+      padding: 10px 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      margin-left: 1rem;
+      &:hover {
+        filter: brightness(90%);
+      }
 
-  p {
-    font-weight: bold;
-    // font-size: 1.4em;
-    color: #ffffff;
-    text-decoration: none;
+      p {
+        font-weight: bold;
+        // font-size: 1.4em;
+        color: #ffffff;
+        text-decoration: none;
+      }
+    }
+
+    .applaunchpad-icon-container {
+      background: rgb(255, 94, 99);
+      background: linear-gradient(
+        139deg,
+        rgba(255, 94, 99, 1) 0%,
+        rgba(246, 138, 141, 1) 100%
+      );
+      padding: 10px 15px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      margin-left: 1rem;
+      &:hover {
+        filter: brightness(90%);
+      }
+
+      p {
+        font-weight: bold;
+        // font-size: 1.4em;
+        color: #ffffff;
+        text-decoration: none;
+      }
+    }
   }
 }

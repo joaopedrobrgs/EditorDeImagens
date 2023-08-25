@@ -24,7 +24,7 @@ const MenuAberto = ({}: Props) => {
   );
 
   return (
-    <div className="tw-my-5 tw-mr-2">
+    <div className="screen-menu-aberto-container">
       <div className="screen-container">
         <div className="tw-grid tw-grid-cols-4 tw-grid-rows-1 tw-h-9/10">
           <div className="menu-container tw-col-span-3">

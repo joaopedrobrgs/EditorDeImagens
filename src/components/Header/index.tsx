@@ -10,17 +10,17 @@ type Props = {
 
 const Header = ({ text }: Props) => {
   return (
-    <div className={`tw-flex tw-justify-between tw-items-center tw-bg-blue-200 tw-p-5`}>
-      <div className="tw-bg-white tw-px-3 tw-py-1 tw-rounded-sm">
-        <p className="tw-text-blue-200 tw-font-bold tw-text-[18px]">{text}</p>
+    <div className="header-container">
+      <div className="header-left-container">
+        <p>{text}</p>
       </div>
-      <div className="tw-flex tw-flex-row">
+      <div className="header-right-container">
         <a
           href="https://github.com/joaopedrobrgs/editor-de-imagens"
           target="_blank"
           title="Repositório no Github"
         >
-          <div className="header-icon-container">
+          <div className="icon-container">
             <FiGithub color="#2892CE" size={22} />
           </div>
         </a>
@@ -29,7 +29,7 @@ const Header = ({ text }: Props) => {
           target="_blank"
           title="Pasta de arquivos no Drive"
         >
-          <div className="header-icon-container tw-ml-4">
+          <div className="icon-container">
             <MdOutlineAddToDrive color="#2892CE" size={22} />
           </div>
         </a>
@@ -38,7 +38,7 @@ const Header = ({ text }: Props) => {
           target="_blank"
           title="Gerador de Prints"
         >
-          <div className="geradorDePrints-icon-container tw-ml-4">
+          <div className="geradorDePrints-icon-container">
             <p>GP</p>
           </div>
         </a>
@@ -47,7 +47,7 @@ const Header = ({ text }: Props) => {
           target="_blank"
           title="https://theapplaunchpad.com/"
         >
-          <div className="applaunchpad-icon-container tw-ml-4">
+          <div className="applaunchpad-icon-container">
             <p>A</p>
           </div>
         </a>

@@ -1,4 +1,19 @@
-// .container{
-//   padding: 10px 10px;
-//   margin: 10px 10px
-// }
+.image-visualization-container{
+
+  margin: 1.25rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p{
+    font-weight: bold;
+  }
+
+  .screens-container{
+    display: flex;
+    justify-content: start;
+  }
+
+}
+
+

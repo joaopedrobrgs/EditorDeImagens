@@ -10,7 +10,19 @@
   margin: 0;
 }
 
+/* 
+//Y X 
+*/
+
 :root {
+
+  --blue-1:#1fb6ff;
+  --blue-2: #2892CE;
+  --blue-3: #0B608F;
+  --orange-1: #CE7828;
+  --gray-1: #E9E9E9;
+  --gray-2: #D9D9D9;
+
   --btn-text-color: #FFFFFE;
   --btn-bg-color: #ed3237;
   --boxes-opacity: 60%;
