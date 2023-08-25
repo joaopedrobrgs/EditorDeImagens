@@ -48,16 +48,34 @@
       filter: brightness(90%);
     }
   }
-  
-
-  
-  
-  
-
-  
-
 }
 
+@media screen and (max-width: 480px) {
+  .btn-download {
+    padding: 5px !important;
+    font-size: 0.7em !important;
+  }
+  .btn-visualize {
+    padding: 5px !important;
+    font-size: 0.7em !important;
+  }
+  .btn-upload {
+    padding: 5px !important;
+    font-size: 0.7em !important;
+  }
+  h1{
+    font-size: 0.7em !important;
+  }
+  p{
+    font-size: 0.7em !important;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  .tab {
+    font-size: 10px !important;
+  }
+}
 
 
 

@@ -11,7 +11,7 @@ type Props = {
 const ImageVisualization = ({ className }: Props) => {
   return (
     <div className={`image-visualization-container ${className}`}>
-      <p>Pré-visualização:</p>
+      <p className="pre-visualization-text">Pré-visualização:</p>
       <div className="screens-container">
         <ScreenLogin />
         <ScreenMenuAberto />

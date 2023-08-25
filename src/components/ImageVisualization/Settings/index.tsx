@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Slider from "@mui/material/Slider";
@@ -14,6 +14,7 @@ import {
 } from "../../../store";
 import { changeRootVarAtribute, valueLabelFormat } from "../../../utils/utils";
 import "./styles.scss";
+import { useAppContext } from "../../../context";
 
 // function valueLabelFormat(value: number) {
 //   const units = ['KB', 'MB', 'GB', 'TB'];
@@ -42,6 +43,12 @@ export default function Settings() {
   const [btnBgColor, setBtnBgColor] = useAtom(AtomBtnBgColor);
   const [btnTextColor, setBtnTextColor] = useAtom(AtomBtnTextColor);
 
+  const {windowWidth} = useAppContext();
+
+  useEffect(()=>{
+    console.log(windowWidth);
+  }, [windowWidth])
+
   return (
     <>
       <Box className="tw-grid tw-grid-cols-2 tw-grid-rows-4 settings-container">
@@ -68,6 +75,7 @@ export default function Settings() {
             }}
             valueLabelDisplay="auto"
             aria-labelledby="non-linear-slider"
+            size= {windowWidth >= 440 ? "medium" : "small"}
           />
         </Box>
         {/* fundo-app-blur */}
@@ -93,6 +101,7 @@ export default function Settings() {
             }}
             valueLabelDisplay="auto"
             aria-labelledby="non-linear-slider"
+            size= {windowWidth >= 440 ? "medium" : "small"}
           />
         </Box>
         {/* fundo-menu-opacity: */}
@@ -118,6 +127,7 @@ export default function Settings() {
             }}
             valueLabelDisplay="auto"
             aria-labelledby="non-linear-slider"
+            size= {windowWidth >= 440 ? "medium" : "small"}
           />
         </Box>
         {/* fundo-menu-blur */}
@@ -143,6 +153,7 @@ export default function Settings() {
             }}
             valueLabelDisplay="auto"
             aria-labelledby="non-linear-slider"
+            size= {windowWidth >= 440 ? "medium" : "small"}
           />
         </Box>
         {/* boxes-opacity: */}
@@ -173,6 +184,7 @@ export default function Settings() {
             }}
             valueLabelDisplay="auto"
             aria-labelledby="non-linear-slider"
+            size= {windowWidth >= 440 ? "medium" : "small"}
           />
         </Box>
         <div className="settings-input-box">

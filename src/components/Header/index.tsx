@@ -2,6 +2,7 @@ import { FiGithub } from "react-icons/fi";
 import { MdOutlineAddToDrive } from "react-icons/md";
 import "./styles.scss";
 import React from "react";
+import { useAppContext } from "../../context";
 
 type Props = {
   text: string;
@@ -9,6 +10,9 @@ type Props = {
 };
 
 const Header = ({ text }: Props) => {
+
+  const {windowWidth} = useAppContext();
+
   return (
     <div className="header-container">
       <div className="header-left-container">
@@ -21,7 +25,7 @@ const Header = ({ text }: Props) => {
           title="Repositório no Github"
         >
           <div className="icon-container">
-            <FiGithub color="#2892CE" size={22} />
+            <FiGithub color="#2892CE" size={windowWidth >= 333 ? 22 : 17} />
           </div>
         </a>
         <a
@@ -30,7 +34,7 @@ const Header = ({ text }: Props) => {
           title="Pasta de arquivos no Drive"
         >
           <div className="icon-container">
-            <MdOutlineAddToDrive color="#2892CE" size={22} />
+            <MdOutlineAddToDrive color="#2892CE" size={windowWidth >= 333 ? 22 : 17} />
           </div>
         </a>
         <a

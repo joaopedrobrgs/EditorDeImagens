@@ -1,5 +1,10 @@
-// @media screen and (max-width: 960px) {
-//   .header-container{
-//     background: gray;
-// }
-// }
+@media screen and (max-width: 1024px) {
+  .home-container {
+    // background-color: gray;
+    display: flex;
+    flex-direction: column;
+    // p {
+    //   font-size: 5vw;
+    // }
+  }
+}

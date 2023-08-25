@@ -1,3 +1,7 @@
+.MuiTabs-scrollButtons.Mui-disabled {
+  opacity: 0.3;
+}
+
 .image-editor-container {
   .tabs-container {
     margin: 1.25rem 1rem;
@@ -33,3 +37,49 @@
     }
   }
 }
+
+@media screen and (max-width: 480px) {
+  .tab {
+    font-size: 12px !important;
+    margin: 0px 1px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .tab {
+    font-size: 10px !important;
+  }
+}
+
+@media screen and (max-width: 405px) {
+  .tab {
+    padding: 6px 12px !important;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .tab {
+    font-size: 8px !important;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .tab {
+    padding: 4px 8px !important;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .tab {
+    font-size: 7px !important;
+  }
+}
+
+@media screen and (max-width: 281px) {
+  .tab {
+    padding: 2px 4px !important;
+    margin: 0 0;
+    font-size: 6px !important;
+  }
+}
+

@@ -31,7 +31,7 @@
       justify-content: center;
       align-items: center;
       border-radius: 100%;
-      margin-left: 1rem;
+      margin-right: 1rem;
       &:hover {
         filter: brightness(90%);
       }
@@ -50,7 +50,7 @@
       justify-content: center;
       align-items: center;
       border-radius: 100%;
-      margin-left: 1rem;
+      margin-right: 1rem;
       &:hover {
         filter: brightness(90%);
       }
@@ -76,7 +76,7 @@
       justify-content: center;
       align-items: center;
       border-radius: 100%;
-      margin-left: 1rem;
+      // margin-left: 1rem;
       &:hover {
         filter: brightness(90%);
       }
@@ -87,6 +87,68 @@
         color: #ffffff;
         text-decoration: none;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 565px) {
+  .header-container {
+    flex-direction: column;
+    padding: 1rem;
+    .header-left-container {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 333px) {
+  .header-left-container {
+    p {
+      font-size: 12px !important;
+    }
+  }
+  .header-right-container {
+    .icon-container {
+      padding: 5px !important;
+    }
+    .geradorDePrints-icon-container {
+      padding: 5px 5px !important;
+      p {
+        font-size: 0.8em;
+      }
+    }
+
+    .applaunchpad-icon-container {
+      padding: 5px 10px !important;
+      p {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 244px) {
+  .header-left-container {
+    p {
+      font-size: 8px !important;
+    }
+  }
+  .header-right-container {
+    .icon-container {
+      padding: 3px !important;
+    }
+    .geradorDePrints-icon-container {
+      padding: 3px 3px !important;
+      // p {
+      //   font-size: 1.0em;
+      // }
+    }
+
+    .applaunchpad-icon-container {
+      padding: 3px 7px !important;
+      // p {
+        // font-size: 1.4em;
+      // }
     }
   }
 }

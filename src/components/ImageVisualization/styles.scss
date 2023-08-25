@@ -5,22 +5,37 @@
   // align-items: center;
   // width: 100%;
 
-  p {
+  .pre-visualization-text {
     font-weight: bold;
+    padding-left: 1em;
   }
 
   .screens-container {
     display: flex;
     justify-content: center;
+    // padding-left: 200px;
     // max-width: 750px;
     overflow-x: scroll;
   }
 }
 
 @media screen and (max-width: 1650px) {
-
     .screens-container {
       justify-content:start !important;
     }
+}
 
+@media screen and (max-width: 1024px) {
+  .pre-visualization-text {
+    text-align: center;
+  }
+  .screens-container {
+    justify-content:center !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .screens-container {
+    justify-content:start !important;
+  }
 }

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, createRef } from "react";
+import React, { createContext, useContext, useRef, createRef, useState, useEffect } from "react";
 import { ReactCropperElement } from "react-cropper";
 
 //Context typing with all references and states that will be stored
@@ -7,6 +7,7 @@ type AppContextType = {
   refFundoMenuCropper: any;
   refLogoAppCropper: any;
   refLogoCabCropper: any;
+  windowWidth: number
 };
 
 //Creating the context:
@@ -22,6 +23,24 @@ const AppContextProvider: React.FC<{
   const refLogoAppCropper = createRef<ReactCropperElement>();
   const refLogoCabCropper = createRef<ReactCropperElement>();
 
+  const [windowWidth, setWindowWidth] = useState<number>(getWindowWidth());
+
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowWidth(getWindowWidth());
+    }
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
+  function getWindowWidth(){
+    return window.innerWidth;
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -29,6 +48,7 @@ const AppContextProvider: React.FC<{
         refFundoMenuCropper,
         refLogoAppCropper,
         refLogoCabCropper,
+        windowWidth,
       }}
     >
       {children}
