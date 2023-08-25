@@ -1,5 +1,5 @@
 import React, { createRef, useEffect, useRef, useState } from "react";
-import Cropper, { ReactCropperElement } from "react-cropper";
+import CropperWithDefaultOptions from "../../../CropperWithDefaultOptions";
 import "cropperjs/dist/cropper.css";
 import "../styles.scss";
 import { Button } from "@mui/material";
@@ -10,7 +10,7 @@ import { useAtom } from "jotai/react";
 import { AtomLogoCabOriginalSize, AtomLogoCabCropped } from "../../../../store";
 import { useAppContext } from "../../../../context";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.min.css';
+import "react-toastify/dist/ReactToastify.min.css";
 
 type Props = {};
 
@@ -23,7 +23,7 @@ const LogoCab = (props: Props) => {
 
   const [cropData, setCropData] = useAtom(AtomLogoCabCropped);
 
-  const {refLogoCabCropper: cropperRef} = useAppContext();
+  const { refLogoCabCropper: cropperRef } = useAppContext();
 
   const aspectRatio = 130 / 130;
 
@@ -46,7 +46,7 @@ const LogoCab = (props: Props) => {
     if (!files[0].type.includes("image")) {
       toast.error("Deve ser carregado um arquivo de imagem!", {
         position: toast.POSITION.BOTTOM_CENTER,
-        theme: "colored"
+        theme: "colored",
       });
       return;
     }
@@ -96,27 +96,11 @@ const LogoCab = (props: Props) => {
         Carregar lobo_cab
       </Button>
       <p>Recortar lobo_cab:</p>
-
-      <Cropper
-        ref={cropperRef}
-        style={{ height: 400, width: "100%" }}
-        // zoomTo={0.5}
+      <CropperWithDefaultOptions
+        reference={cropperRef}
         aspectRatio={aspectRatio}
-        // initialAspectRatio={1}
-        preview=".img-preview"
         src={image ?? defaultSrc}
-        viewMode={1}
-        minCropBoxHeight={10}
-        minCropBoxWidth={10}
-        background={true}
-        responsive={true}
-        // autoCropArea={1}
-        checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
-        guides={true}
-        //Verificando se imagem já esta carregada, pois isso estava ocasionando um erro:
         onLoad={handleLoaded}
-        autoCrop
-        //Passando o ultimo recorte para a imagem assim que renderizar novamente o componente:
         data={cropperRef.current?.cropper.getData()}
       />
       <h1>Prévia:</h1>

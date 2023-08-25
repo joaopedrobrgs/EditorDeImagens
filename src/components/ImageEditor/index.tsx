@@ -13,7 +13,7 @@ type Props = {
 
 const ImageEditor = ({ className }: Props) => {
   return (
-    <div className={`${className}`}>
+    <div className={`${className} image-editor-container`}>
       <Tabs className="tabs-container">
         <TabList className="tab-list">
           <Tab className="tab" selectedClassName="selected-tab">

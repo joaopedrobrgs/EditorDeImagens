@@ -1,19 +1,26 @@
-.image-visualization-container{
+.image-visualization-container {
+  margin: 1.25rem 0;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // width: 100%;
 
-  margin: 1.25rem auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  p{
+  p {
     font-weight: bold;
   }
 
-  .screens-container{
+  .screens-container {
     display: flex;
-    justify-content: start;
+    justify-content: center;
+    // max-width: 750px;
+    overflow-x: scroll;
   }
-
 }
 
+@media screen and (max-width: 1650px) {
 
+    .screens-container {
+      justify-content:start !important;
+    }
+
+}
