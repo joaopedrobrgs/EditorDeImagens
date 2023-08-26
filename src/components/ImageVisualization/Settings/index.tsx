@@ -75,7 +75,7 @@ export default function Settings() {
             }}
             valueLabelDisplay="auto"
             aria-labelledby="non-linear-slider"
-            size= {windowWidth >= 440 ? "medium" : "small"}
+            size= {windowWidth > 440 ? "medium" : "small"}
           />
         </Box>
         {/* fundo-app-blur */}
@@ -101,7 +101,7 @@ export default function Settings() {
             }}
             valueLabelDisplay="auto"
             aria-labelledby="non-linear-slider"
-            size= {windowWidth >= 440 ? "medium" : "small"}
+            size= {windowWidth > 440 ? "medium" : "small"}
           />
         </Box>
         {/* fundo-menu-opacity: */}
@@ -127,7 +127,7 @@ export default function Settings() {
             }}
             valueLabelDisplay="auto"
             aria-labelledby="non-linear-slider"
-            size= {windowWidth >= 440 ? "medium" : "small"}
+            size= {windowWidth > 440 ? "medium" : "small"}
           />
         </Box>
         {/* fundo-menu-blur */}
@@ -153,7 +153,7 @@ export default function Settings() {
             }}
             valueLabelDisplay="auto"
             aria-labelledby="non-linear-slider"
-            size= {windowWidth >= 440 ? "medium" : "small"}
+            size= {windowWidth > 440 ? "medium" : "small"}
           />
         </Box>
         {/* boxes-opacity: */}
@@ -184,7 +184,7 @@ export default function Settings() {
             }}
             valueLabelDisplay="auto"
             aria-labelledby="non-linear-slider"
-            size= {windowWidth >= 440 ? "medium" : "small"}
+            size= {windowWidth > 440 ? "medium" : "small"}
           />
         </Box>
         <div className="settings-input-box">

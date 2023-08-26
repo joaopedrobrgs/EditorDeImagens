@@ -25,7 +25,7 @@ const Header = ({ text }: Props) => {
           title="Repositório no Github"
         >
           <div className="icon-container">
-            <FiGithub color="#2892CE" size={windowWidth >= 334 ? 22 : 17} />
+            <FiGithub color="#2892CE" size={windowWidth > 333 ? 22 : 17} />
           </div>
         </a>
         <a
@@ -34,7 +34,7 @@ const Header = ({ text }: Props) => {
           title="Pasta de arquivos no Drive"
         >
           <div className="icon-container">
-            <MdOutlineAddToDrive color="#2892CE" size={windowWidth >= 334 ? 22 : 17} />
+            <MdOutlineAddToDrive color="#2892CE" size={windowWidth > 333 ? 22 : 17} />
           </div>
         </a>
         <a

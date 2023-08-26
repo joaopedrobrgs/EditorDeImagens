@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import "./styles.scss";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-// import {
-//   Tabs as TabsMaterialUI,
-//   Tab as TabMaterialUI,
-//   Box as BoxMaterialUI,
-// } from "@mui/material";
 import "react-tabs/style/react-tabs.css";
 import FundoApp from "./Tabs/FundoApp";
 import LogoApp from "./Tabs/LogoApp";
 import LogoCab from "./Tabs/LogoCab";
 import FundoMenu from "./Tabs/FundoMenu";
-import { useAppContext } from "../../context";
 
 type Props = {
   className: string;
@@ -24,7 +18,6 @@ interface TabPanelProps {
 }
 
 const ImageEditor = ({ className }: Props) => {
-  const { windowWidth } = useAppContext();
 
   return (
     <div className={`${className} image-editor-container`}>
