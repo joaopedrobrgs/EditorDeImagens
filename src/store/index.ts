@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+import { atomWithStorage, createJSONStorage } from "jotai/utils"
 
 //Image Atoms:
 const AtomFundoAppOriginalSize = atom<string | null>(null);
@@ -19,6 +20,11 @@ const AtomFundoAppBlur = atom<number>(2);
 const AtomFundoMenuOpacity = atom<number>(80);
 const AtomFundoMenuBlur = atom<number>(2);
 
+//Switch Atoms
+const AtomSliderChecked = atomWithStorage<boolean>("@issliderChecked", true);
+const AtomOnTouchChecked = atomWithStorage<boolean>("@isonTouchChecked", true);
+const AtomOnWheelChecked = atomWithStorage<boolean>("@isonWheelChecked", true);
+
 export {
   AtomFundoAppOriginalSize,
   AtomFundoAppCropped,
@@ -35,4 +41,7 @@ export {
   AtomFundoAppBlur,
   AtomFundoMenuOpacity,
   AtomFundoMenuBlur,
+  AtomSliderChecked,
+  AtomOnTouchChecked,
+  AtomOnWheelChecked,
 };

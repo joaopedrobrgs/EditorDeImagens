@@ -2,18 +2,43 @@ import React, { createRef, useEffect, useRef, useState } from "react";
 import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import "../styles.scss";
-import { Button } from "@mui/material";
+import { Button, Switch } from "@mui/material";
 import imageCompression from "browser-image-compression";
 // import { ImageCompressionOptions } from "../../../../types/ImageCompression";
 import { saveAs } from "file-saver";
 import { useAtom } from "jotai/react";
-import { AtomFundoAppCropped, AtomFundoAppOriginalSize } from "../../../../store";
-import { useAppContext } from "../../../../context";
+import {
+  AtomFundoAppCropped,
+  AtomFundoAppOriginalSize,
+  AtomSliderChecked,
+  AtomOnTouchChecked,
+  AtomOnWheelChecked,
+} from "../../../../store";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.min.css';
+import "react-toastify/dist/ReactToastify.min.css";
 import CropperWithDefaultOptions from "../../../CropperWithDefaultOptions";
+import Slider from "@mui/material/Slider";
+import { valueLabelFormat } from "../../../../utils/utils";
+import { useAppContext } from "../../../../context";
 
 type Props = {};
+type ZoomType = {
+  oldRatio: number;
+  ratio: number;
+  originalEvent: ZoomEventType;
+};
+type ZoomEventType = {
+  clientX: number;
+  clientY: number;
+  layerX: number;
+  layerY: number;
+  offsetX: number;
+  offsetY: number;
+  pageX: number;
+  pageY: number;
+  screenX: number;
+  screenY: number;
+};
 
 const FundoApp = (props: Props) => {
   const defaultSrc: string = `${process.env.PUBLIC_URL}foto-exemplo.png`;
@@ -24,7 +49,28 @@ const FundoApp = (props: Props) => {
 
   const [image, setImage] = useAtom(AtomFundoAppOriginalSize);
 
-  const {refFundoAppCropper: cropperRef} = useAppContext();
+  const { refFundoAppCropper: cropperRef } = useAppContext();
+
+  // const [getZoomInitialValue, setGetZoomInitialValue] = useState<number>(0)
+  // const [zoomInitialValue, setZoomInitialValue] = useState<number>(0)
+  const [zoomValue, setZoomValue] = useState<number>(0);
+  const sliderRef = useRef<any>();
+
+  const [sliderChecked, setSliderChecked] = useAtom(AtomSliderChecked);
+  const [onTouchChecked, setOnTouchChecked] = useAtom(AtomOnTouchChecked);
+  const [onWheelChecked, setOnWheelChecked] = useAtom(AtomOnWheelChecked);
+
+  // useEffect(()=>{
+  //   setTimeout(()=>{
+  //     setZoomInitialValue(zoomValue)
+  //   }, 1000)
+  // }, [])
+
+  useEffect(() => {
+    console.log(zoomValue);
+  }, [zoomValue]);
+
+  const { windowWidth } = useAppContext();
 
   const aspectRatio = 500 / 889;
 
@@ -44,16 +90,17 @@ const FundoApp = (props: Props) => {
     } else if (e.target) {
       files = e.target.files;
     }
-    if (!files[0].type.includes("image")) {
+    if (!!files[0] && !files[0].type.includes("image")) {
       toast.error("Deve ser carregado um arquivo de imagem!", {
         position: toast.POSITION.BOTTOM_CENTER,
-        theme: "colored"
+        theme: "colored",
       });
       return;
     }
     const reader = new FileReader();
     reader.onload = () => {
       setImage(reader.result as any);
+      setZoomValue(0);
     };
     if (!!files[0]) {
       reader.readAsDataURL(files[0]);
@@ -102,7 +149,32 @@ const FundoApp = (props: Props) => {
         aspectRatio={aspectRatio}
         src={image ?? defaultSrc}
         onLoad={handleLoaded}
+        ready={(e) => {
+          console.log(e);
+        }}
         data={cropperRef.current?.cropper.getData()}
+        // zoom={(e) => {
+        //   setZoomValue(e.detail.ratio);
+        // }}
+        zoomTo={zoomValue}
+      />
+      <Slider
+        ref={sliderRef as any}
+        value={zoomValue}
+        style={{ maxWidth: 750 }}
+        min={0}
+        max={5}
+        step={0.001}
+        valueLabelFormat={`${zoomValue}`}
+        onChange={(event: Event, newValue: number | number[]) => {
+          if (typeof newValue === "number") {
+            setZoomValue(newValue);
+          }
+        }}
+        valueLabelDisplay="auto"
+        aria-labelledby="non-linear-slider"
+        size={windowWidth > 440 ? "medium" : "small"}
+        disabled={!sliderChecked}
       />
       <h1>Prévia:</h1>
       <div className="box">
