@@ -8,6 +8,7 @@
   .pre-visualization-text {
     font-weight: bold;
     padding-left: 1em;
+    text-align: center;
   }
 
   .screens-container {
@@ -20,22 +21,28 @@
 }
 
 @media screen and (max-width: 1650px) {
-    .screens-container {
-      justify-content:start !important;
-    }
+  .screens-container {
+    justify-content: start !important;
+  }
+  .pre-visualization-text {
+    text-align: start !important;
+  }
 }
 
 @media screen and (max-width: 1024px) {
-  .pre-visualization-text {
-    text-align: center;
-  }
   .screens-container {
-    justify-content:center !important;
+    justify-content: center !important;
+  }
+  .pre-visualization-text {
+    text-align: center !important;
   }
 }
 
 @media screen and (max-width: 800px) {
   .screens-container {
-    justify-content:start !important;
+    justify-content: start !important;
+  }
+  .pre-visualization-text {
+    text-align: start !important;
   }
 }

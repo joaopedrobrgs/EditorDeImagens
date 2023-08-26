@@ -2,26 +2,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #2892CE;
+  border: 1px solid #2892ce;
   border-radius: 10px;
   padding: 10px 10px;
   text-align: center;
   .btn-upload {
-    background-color: #1fb6ff  !important;
+    background-color: #1fb6ff !important;
     margin-top: 5px !important;
     margin-bottom: 10px !important;
     &:hover {
       filter: brightness(90%);
     }
   }
-  input{
+  input {
     display: none;
   }
-  p{
+  p {
     font-weight: bold;
     margin-bottom: 0.5rem;
   }
-  h1{
+  h1 {
     margin: 0.5rem 0;
     font-weight: bold;
   }
@@ -51,23 +51,25 @@
 }
 
 @media screen and (max-width: 480px) {
-  .btn-download {
-    padding: 5px !important;
-    font-size: 0.7em !important;
-  }
-  .btn-visualize {
-    padding: 5px !important;
-    font-size: 0.7em !important;
-  }
-  .btn-upload {
-    padding: 5px !important;
-    font-size: 0.7em !important;
-  }
-  h1{
-    font-size: 0.7em !important;
-  }
-  p{
-    font-size: 0.7em !important;
+  .tab-container {
+    .btn-download {
+      padding: 5px !important;
+      font-size: 0.7em !important;
+    }
+    .btn-visualize {
+      padding: 5px !important;
+      font-size: 0.7em !important;
+    }
+    .btn-upload {
+      padding: 5px !important;
+      font-size: 0.7em !important;
+    }
+    h1 {
+      font-size: 0.7em !important;
+    }
+    p {
+      font-size: 0.7em !important;
+    }
   }
 }
 
@@ -76,6 +78,3 @@
     font-size: 10px !important;
   }
 }
-
-
-
