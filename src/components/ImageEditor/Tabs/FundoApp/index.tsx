@@ -157,6 +157,8 @@ const FundoApp = (props: Props) => {
         //   setZoomValue(e.detail.ratio);
         // }}
         zoomTo={zoomValue}
+        zoomOnTouch={onTouchChecked}
+        zoomOnWheel={onWheelChecked}
       />
       <Slider
         ref={sliderRef as any}

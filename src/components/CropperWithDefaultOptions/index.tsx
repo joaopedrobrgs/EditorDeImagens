@@ -13,9 +13,6 @@ interface Props extends ReactCropperProps {
 
 const CropperWithDefaultOptions = (props: Props) => {
 
-  const [onTouchChecked] = useAtom(AtomOnTouchChecked);
-  const [onWheelChecked] = useAtom(AtomOnWheelChecked);
-
   return (
     <Cropper
       // zoomTo={0.5}
@@ -41,8 +38,8 @@ const CropperWithDefaultOptions = (props: Props) => {
       aspectRatio={props.aspectRatio}
       //Passando o ultimo recorte para a imagem assim que renderizar novamente o componente:
       data={props.data}
-      zoomOnTouch={onTouchChecked}
-      zoomOnWheel={onWheelChecked}
+      zoomOnTouch={props.zoomOnTouch}
+      zoomOnWheel={props.zoomOnWheel}
       zoomTo={props.zoomTo}
       //Verificando se imagem já esta carregada, pois isso estava ocasionando um erro:
       onLoad={props.onLoad}

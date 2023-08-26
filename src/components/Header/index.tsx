@@ -1,8 +1,11 @@
 import { FiGithub } from "react-icons/fi";
 import { MdOutlineAddToDrive } from "react-icons/md";
+import { IoSettingsOutline } from "react-icons/io5";
 import "./styles.scss";
 import React from "react";
 import { useAppContext } from "../../context";
+import { useAtom } from "jotai";
+import { AtomShowSettingsModal } from "../../store";
 
 type Props = {
   text: string;
@@ -10,8 +13,8 @@ type Props = {
 };
 
 const Header = ({ text }: Props) => {
-
-  const {windowWidth} = useAppContext();
+  const { windowWidth } = useAppContext();
+  const [showSettingsModal, setShowSettingsModal] = useAtom(AtomShowSettingsModal);
 
   return (
     <div className="header-container">
@@ -19,6 +22,12 @@ const Header = ({ text }: Props) => {
         <p>{text}</p>
       </div>
       <div className="header-right-container">
+        <div className="icon-container" onClick={()=>{setShowSettingsModal(true)}}>
+          <IoSettingsOutline
+            color="#2892CE"
+            size={windowWidth > 333 ? 22 : 17}
+          />
+        </div>
         <a
           href="https://github.com/joaopedrobrgs/editor-de-imagens"
           target="_blank"
@@ -34,7 +43,10 @@ const Header = ({ text }: Props) => {
           title="Pasta de arquivos no Drive"
         >
           <div className="icon-container">
-            <MdOutlineAddToDrive color="#2892CE" size={windowWidth > 333 ? 22 : 17} />
+            <MdOutlineAddToDrive
+              color="#2892CE"
+              size={windowWidth > 333 ? 22 : 17}
+            />
           </div>
         </a>
         <a
