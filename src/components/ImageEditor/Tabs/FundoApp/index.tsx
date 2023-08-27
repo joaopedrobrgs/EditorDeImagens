@@ -57,8 +57,14 @@ const FundoApp = (props: Props) => {
   const sliderRef = useRef<any>();
 
   const [sliderChecked, setSliderChecked] = useAtom(AtomSliderChecked);
-  const [onTouchChecked, setOnTouchChecked] = useAtom(AtomOnTouchChecked);
-  const [onWheelChecked, setOnWheelChecked] = useAtom(AtomOnWheelChecked);
+
+  // useEffect(()=>{
+  //   console.log("onWheelState first render: ", onWheelChecked)
+  // }, [])
+
+  // useEffect(()=>{
+  //   console.log("onWheelState on change: ", onWheelChecked)
+  // }, [onWheelChecked])
 
   // useEffect(()=>{
   //   setTimeout(()=>{
@@ -157,8 +163,8 @@ const FundoApp = (props: Props) => {
         //   setZoomValue(e.detail.ratio);
         // }}
         zoomTo={zoomValue}
-        zoomOnTouch={onTouchChecked}
-        zoomOnWheel={onWheelChecked}
+        // zoomOnTouch={onTouchChecked}
+        // zoomOnWheel={onWheelChecked}
       />
       <Slider
         ref={sliderRef as any}

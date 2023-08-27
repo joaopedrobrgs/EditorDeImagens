@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { atomWithStorage, createJSONStorage } from "jotai/utils"
+import { atomWithStorage, createJSONStorage } from "jotai/utils";
 
 //Components Atoms:
 const AtomShowSettingsModal = atom<boolean>(false);
@@ -23,10 +23,33 @@ const AtomFundoAppBlur = atom<number>(2);
 const AtomFundoMenuOpacity = atom<number>(80);
 const AtomFundoMenuBlur = atom<number>(2);
 
-//Switch Atoms
-const AtomSliderChecked = atomWithStorage<boolean>("@issliderChecked", true);
-const AtomOnTouchChecked = atomWithStorage<boolean>("@isonTouchChecked", true);
-const AtomOnWheelChecked = atomWithStorage<boolean>("@isonWheelChecked", true);
+//Stored Atoms
+const getSliderChecked = (): boolean => {
+  const storedState = localStorage.getItem("@sliderChecked");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return true;
+};
+const AtomSliderChecked = atomWithStorage<boolean>("@sliderChecked", getSliderChecked());
+
+const getOnTouchChecked = (): boolean => {
+  const storedState = localStorage.getItem("@onTouchChecked");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return true;
+};
+const AtomOnTouchChecked = atomWithStorage<boolean>("@onTouchChecked", getOnTouchChecked());
+
+const getOnWheelChecked = (): boolean => {
+  const storedState = localStorage.getItem("@onWheelChecked");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return true;
+};
+const AtomOnWheelChecked = atomWithStorage<boolean>("@onWheelChecked", getOnWheelChecked());
 
 export {
   AtomShowSettingsModal,
