@@ -58,6 +58,7 @@ const LogoCab = (props: Props) => {
       toast.error("Deve ser carregado um arquivo de imagem!", {
         position: toast.POSITION.BOTTOM_CENTER,
         theme: "colored",
+        className: "toast"
       });
       return;
     }

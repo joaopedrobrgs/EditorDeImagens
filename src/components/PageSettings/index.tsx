@@ -34,18 +34,20 @@ const PageSettings = (props: Props) => {
     window.location.reload();
   }
 
-  function handleCancelChanges(){
-    setSliderCheckedTemporaryState(sliderChecked)
-    setOnWheelCheckedTemporaryState(onWheelChecked)
-    setOnTouchCheckedTemporaryState(onTouchChecked)
-    setShowSettingsModal(false);
+  function handleCancelChanges(e: any){
+    if(e.target.className.includes("page-settings-modal") || e.target.className.includes("page-settings-cancel-btn")){
+      setSliderCheckedTemporaryState(sliderChecked)
+      setOnWheelCheckedTemporaryState(onWheelChecked)
+      setOnTouchCheckedTemporaryState(onTouchChecked)
+      setShowSettingsModal(false);
+    }
   }
 
   return (
-    <div className="page-settings-modal">
+    <div className="page-settings-modal" onClick={handleCancelChanges}>
       <div className="page-settings-container">
         <div className="option-container">
-          <p>Zoom options:</p>
+          <p>Opções de Zoom:</p>
           <div className="option-content">
             <label>
               <input
@@ -55,7 +57,7 @@ const PageSettings = (props: Props) => {
                   setSliderCheckedTemporaryState(!sliderCheckedTemporaryState);
                 }}
               />
-              Zoom on slider
+              Controle Deslizante
             </label>
             <label>
               <input
@@ -67,7 +69,7 @@ const PageSettings = (props: Props) => {
                   );
                 }}
               />
-              Zoom on wheel
+              Roda do Mouse
             </label>
             <label>
               <input
@@ -79,7 +81,7 @@ const PageSettings = (props: Props) => {
                   );
                 }}
               />
-              Zoom on touch
+              Touch (Celulares)
             </label>
           </div>
         </div>
@@ -89,14 +91,14 @@ const PageSettings = (props: Props) => {
             className="page-settings-confirm-btn"
             onClick={handleSaveChanges}
           >
-            Confirm
+            Confirmar
           </Button>
           <Button
             variant="contained"
             className="page-settings-cancel-btn"
             onClick={handleCancelChanges}
           >
-            Cancel
+            Cancelar
           </Button>
         </div>
       </div>
