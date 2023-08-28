@@ -20,7 +20,7 @@ import Slider from "@mui/material/Slider";
 type Props = {};
 
 const FundoMenu = (props: Props) => {
-  const defaultSrc: string = `${process.env.PUBLIC_URL}foto-exemplo.png`;
+  const defaultSrc: string = `${process.env.PUBLIC_URL}fundo_menu_sample.png`;
 
   const inputRef = useRef<any>();
 

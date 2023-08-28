@@ -21,7 +21,7 @@ import {
 type Props = {};
 
 const FundoApp = (props: Props) => {
-  const defaultSrc: string = `${process.env.PUBLIC_URL}foto-exemplo.png`;
+  const defaultSrc: string = `${process.env.PUBLIC_URL}fundo_app_sample.png`;
 
   const inputRef = useRef<any>();
 

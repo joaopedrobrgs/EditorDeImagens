@@ -11,12 +11,6 @@ type Props = {
   className: string;
 };
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
 const ImageEditor = ({ className }: Props) => {
 
   return (

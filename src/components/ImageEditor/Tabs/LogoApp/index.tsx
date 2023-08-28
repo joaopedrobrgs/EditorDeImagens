@@ -20,7 +20,7 @@ import {
 type Props = {};
 
 const LogoApp = (props: Props) => {
-  const defaultSrc: string = `${process.env.PUBLIC_URL}foto-exemplo.png`;
+  const defaultSrc: string = `${process.env.PUBLIC_URL}logo_app_sample.png`;
 
   const inputRef = useRef<any>();
 

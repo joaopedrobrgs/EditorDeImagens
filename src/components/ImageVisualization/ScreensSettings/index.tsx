@@ -16,24 +16,6 @@ import { changeRootVarAtribute, valueLabelFormat } from "../../../utils/utils";
 import "./styles.scss";
 import { useAppContext } from "../../../context";
 
-// function valueLabelFormat(value: number) {
-//   const units = ['KB', 'MB', 'GB', 'TB'];
-
-//   let unitIndex = 0;
-//   let scaledValue = value;
-
-//   while (scaledValue >= 1024 && unitIndex < units.length - 1) {
-//     unitIndex += 1;
-//     scaledValue /= 1024;
-//   }
-
-//   return `${scaledValue} ${units[unitIndex]}`;
-// }
-
-// function calculateValue(value: number) {
-//   return 2 ** value;
-// }
-
 export default function ScreensSettings() {
   const [boxesOpacity, setBoxesOpacity] = useAtom(AtomBoxesOpacity);
   const [fundoAppOpacity, setFundoAppOpacity] = useAtom(AtomFundoAppOpacity);
