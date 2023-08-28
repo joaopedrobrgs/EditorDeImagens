@@ -14,18 +14,27 @@ type Props = {
 
 const Header = ({ text }: Props) => {
   const { windowWidth } = useAppContext();
-  const [showSettingsModal, setShowSettingsModal] = useAtom(AtomShowSettingsModal);
+  const [showSettingsModal, setShowSettingsModal] = useAtom(
+    AtomShowSettingsModal
+  );
 
   return (
     <div className="header-container">
       <div className="header-left-container">
-        <p>{text}</p>
+        <a href="./">
+          <p>{text}</p>
+        </a>
       </div>
       <div className="header-right-container">
-        <div className="icon-container" onClick={()=>{setShowSettingsModal(true)}}>
+        <div
+          className="icon-container"
+          onClick={() => {
+            setShowSettingsModal(true);
+          }}
+        >
           <IoSettingsOutline
             color="#2892CE"
-            size={windowWidth > 333 ? 22 : 17}
+            size={windowWidth > 360 ? 22 : 17}
           />
         </div>
         <a
@@ -34,7 +43,7 @@ const Header = ({ text }: Props) => {
           title="Repositório no Github"
         >
           <div className="icon-container">
-            <FiGithub color="#2892CE" size={windowWidth > 333 ? 22 : 17} />
+            <FiGithub color="#2892CE" size={windowWidth > 360 ? 22 : 17} />
           </div>
         </a>
         <a
@@ -45,7 +54,7 @@ const Header = ({ text }: Props) => {
           <div className="icon-container">
             <MdOutlineAddToDrive
               color="#2892CE"
-              size={windowWidth > 333 ? 22 : 17}
+              size={windowWidth > 360 ? 22 : 17}
             />
           </div>
         </a>

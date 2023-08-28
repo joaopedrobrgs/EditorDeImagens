@@ -18,7 +18,7 @@ const Home = ({}: Props) => {
 
   return (
     <div className="">
-      <Header text="EDITOR IMAGENS APP SÓCIO" />
+      <Header text="EDITOR DE IMAGENS APP SÓCIO" />
       <div className="tw-grid tw-grid-cols-2 tw-grid-rows-1 home-container">
         <ImageEditor className="tw-col-span-1" />
         <ImageVisualization className="tw-col-span-1" />

@@ -2,8 +2,6 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  // background-color: rgba(0, 0, 0, 0.9);
-  // font-size: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,5 +53,12 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .page-settings-container{
+    min-height: 0px !important;
+    min-width: 0px !important; 
   }
 }
