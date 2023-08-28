@@ -1,44 +1,24 @@
 import React, { createRef, useEffect, useRef, useState } from "react";
-import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import "../styles.scss";
-import { Button, Switch } from "@mui/material";
+import { Button } from "@mui/material";
 import imageCompression from "browser-image-compression";
 // import { ImageCompressionOptions } from "../../../../types/ImageCompression";
 import { saveAs } from "file-saver";
 import { useAtom } from "jotai/react";
-import {
-  AtomFundoAppCropped,
-  AtomFundoAppOriginalSize,
-  AtomSliderChecked,
-  AtomOnTouchChecked,
-  AtomOnWheelChecked,
-} from "../../../../store";
+import { useAppContext } from "../../../../context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import CropperWithDefaultOptions from "../../../CropperWithDefaultOptions";
 import Slider from "@mui/material/Slider";
-import { valueLabelFormat } from "../../../../utils/utils";
-import { useAppContext } from "../../../../context";
+import {
+  AtomFundoAppCropped,
+  AtomFundoAppOriginalSize,
+  AtomSliderChecked,
+} from "../../../../store";
+
 
 type Props = {};
-type ZoomType = {
-  oldRatio: number;
-  ratio: number;
-  originalEvent: ZoomEventType;
-};
-type ZoomEventType = {
-  clientX: number;
-  clientY: number;
-  layerX: number;
-  layerY: number;
-  offsetX: number;
-  offsetY: number;
-  pageX: number;
-  pageY: number;
-  screenX: number;
-  screenY: number;
-};
 
 const FundoApp = (props: Props) => {
   const defaultSrc: string = `${process.env.PUBLIC_URL}foto-exemplo.png`;
@@ -51,30 +31,9 @@ const FundoApp = (props: Props) => {
 
   const { refFundoAppCropper: cropperRef } = useAppContext();
 
-  // const [getZoomInitialValue, setGetZoomInitialValue] = useState<number>(0)
-  // const [zoomInitialValue, setZoomInitialValue] = useState<number>(0)
   const [zoomValue, setZoomValue] = useState<number>(0);
   const sliderRef = useRef<any>();
-
   const [sliderChecked, setSliderChecked] = useAtom(AtomSliderChecked);
-
-  // useEffect(()=>{
-  //   console.log("onWheelState first render: ", onWheelChecked)
-  // }, [])
-
-  // useEffect(()=>{
-  //   console.log("onWheelState on change: ", onWheelChecked)
-  // }, [onWheelChecked])
-
-  // useEffect(()=>{
-  //   setTimeout(()=>{
-  //     setZoomInitialValue(zoomValue)
-  //   }, 1000)
-  // }, [])
-
-  useEffect(() => {
-    console.log(zoomValue);
-  }, [zoomValue]);
 
   const { windowWidth } = useAppContext();
 
@@ -155,16 +114,8 @@ const FundoApp = (props: Props) => {
         aspectRatio={aspectRatio}
         src={image ?? defaultSrc}
         onLoad={handleLoaded}
-        ready={(e) => {
-          console.log(e);
-        }}
         data={cropperRef.current?.cropper.getData()}
-        // zoom={(e) => {
-        //   setZoomValue(e.detail.ratio);
-        // }}
         zoomTo={zoomValue}
-        // zoomOnTouch={onTouchChecked}
-        // zoomOnWheel={onWheelChecked}
       />
       <Slider
         ref={sliderRef as any}

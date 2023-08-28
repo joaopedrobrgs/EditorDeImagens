@@ -1,5 +1,4 @@
 import React, { createRef, useEffect, useRef, useState } from "react";
-import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import "../styles.scss";
 import { Button } from "@mui/material";
@@ -10,11 +9,13 @@ import { useAtom } from "jotai/react";
 import {
   AtomFundoMenuOriginalSize,
   AtomFundoMenuCropped,
+  AtomSliderChecked,
 } from "../../../../store";
 import { useAppContext } from "../../../../context";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.min.css';
+import "react-toastify/dist/ReactToastify.min.css";
 import CropperWithDefaultOptions from "../../../CropperWithDefaultOptions";
+import Slider from "@mui/material/Slider";
 
 type Props = {};
 
@@ -28,6 +29,12 @@ const FundoMenu = (props: Props) => {
   const [cropData, setCropData] = useAtom(AtomFundoMenuCropped);
 
   const { refFundoMenuCropper: cropperRef } = useAppContext();
+
+  const [zoomValue, setZoomValue] = useState<number>(0);
+  const sliderRef = useRef<any>();
+  const [sliderChecked, setSliderChecked] = useAtom(AtomSliderChecked);
+
+  const { windowWidth } = useAppContext();
 
   const aspectRatio = 400 / 200;
 
@@ -50,7 +57,7 @@ const FundoMenu = (props: Props) => {
     if (!files[0].type.includes("image")) {
       toast.error("Deve ser carregado um arquivo de imagem!", {
         position: toast.POSITION.BOTTOM_CENTER,
-        theme: "colored"
+        theme: "colored",
       });
       return;
     }
@@ -106,6 +113,25 @@ const FundoMenu = (props: Props) => {
         src={image ?? defaultSrc}
         onLoad={handleLoaded}
         data={cropperRef.current?.cropper.getData()}
+        zoomTo={zoomValue}
+      />
+      <Slider
+        ref={sliderRef as any}
+        value={zoomValue}
+        style={{ maxWidth: 750 }}
+        min={0}
+        max={5}
+        step={0.001}
+        valueLabelFormat={`${zoomValue}`}
+        onChange={(event: Event, newValue: number | number[]) => {
+          if (typeof newValue === "number") {
+            setZoomValue(newValue);
+          }
+        }}
+        valueLabelDisplay="auto"
+        aria-labelledby="non-linear-slider"
+        size={windowWidth > 440 ? "medium" : "small"}
+        disabled={!sliderChecked}
       />
       <h1>Prévia:</h1>
       <div className="box">

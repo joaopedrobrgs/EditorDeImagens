@@ -34,7 +34,7 @@ import { useAppContext } from "../../../context";
 //   return 2 ** value;
 // }
 
-export default function Settings() {
+export default function ScreensSettings() {
   const [boxesOpacity, setBoxesOpacity] = useAtom(AtomBoxesOpacity);
   const [fundoAppOpacity, setFundoAppOpacity] = useAtom(AtomFundoAppOpacity);
   const [fundoAppBlur, setFundoAppBlur] = useAtom(AtomFundoAppBlur);
@@ -45,9 +45,9 @@ export default function Settings() {
 
   const {windowWidth} = useAppContext();
 
-  useEffect(()=>{
-    console.log(windowWidth);
-  }, [windowWidth])
+  // useEffect(()=>{
+  //   console.log(windowWidth);
+  // }, [windowWidth])
 
   return (
     <>

@@ -16,29 +16,6 @@ const CropperWithDefaultOptions = (props: Props) => {
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
 
-  // const [onTouchChecked] = useState<boolean>(() => {
-  //   const storedState = localStorage.getItem("@onTouchChecked");
-  //   if (storedState) {
-  //     return JSON.parse(storedState);
-  //   }
-  //   return true;
-  // });
-  // const [onWheelChecked] = useState<boolean>(() => {
-  //   const storedState = localStorage.getItem("@onWheelChecked");
-  //   if (storedState) {
-  //     return JSON.parse(storedState);
-  //   }
-  //   return true;
-  // });
-
-  useEffect(()=>{
-    console.log("onWheelState first render: ", onWheelChecked)
-  }, [])
-
-  useEffect(()=>{
-    console.log("onWheelState on change: ", onWheelChecked)
-  }, [onWheelChecked])
-
   return (
     <Cropper
       // zoomTo={0.5}
@@ -58,14 +35,14 @@ const CropperWithDefaultOptions = (props: Props) => {
       autoCrop
       movable
       dragMode="move"
+      zoomOnTouch={onTouchChecked}
+      zoomOnWheel={onWheelChecked}
       // ready={props.ready}
       // zoom={props.zoom}
       ref={props.reference}
       aspectRatio={props.aspectRatio}
       //Passando o ultimo recorte para a imagem assim que renderizar novamente o componente:
       data={props.data}
-      zoomOnTouch={onTouchChecked}
-      zoomOnWheel={onWheelChecked}
       zoomTo={props.zoomTo}
       //Verificando se imagem já esta carregada, pois isso estava ocasionando um erro:
       onLoad={props.onLoad}
