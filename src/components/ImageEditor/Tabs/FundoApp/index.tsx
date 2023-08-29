@@ -107,7 +107,7 @@ const FundoApp = (props: Props) => {
         className="btn-upload"
         onClick={triggerFileSelectPopup}
       >
-        Carregar fundo_app
+        Upload fundo_app
       </Button>
       <p>Recortar fundo_app:</p>
       <CropperWithDefaultOptions
