@@ -26,6 +26,7 @@ import DownloadIcon from "../../../assets/svgComponents/DownloadIconSvg";
 interface Props extends ReactCropperProps {
   cropperReference?: any;
   nameOfTab: string;
+  previewClass: string;
   // inputRef: any;
   // onSelectFile: ChangeEventHandler<HTMLInputElement>;
   // defaultSrc: string
@@ -59,6 +60,9 @@ const TabComponent = (props: Props) => {
   }
 
   function calcFontSize() {
+    if (windowWidth > 1850){
+      return "17px"
+    }
     if (windowWidth > 1014) {
       return windowWidth * 0.01;
     }
@@ -94,7 +98,7 @@ const TabComponent = (props: Props) => {
         // zoomTo={0.5}
         // initialAspectRatio={1}
         style={{ height: 400, width: "100%", maxWidth: 750 }}
-        preview=".img-preview"
+        preview={`.${props.previewClass}`}
         viewMode={1}
         minCropBoxHeight={10}
         minCropBoxWidth={10}
@@ -138,13 +142,13 @@ const TabComponent = (props: Props) => {
         size={windowWidth > 440 ? "medium" : "small"}
         disabled={!sliderChecked}
       />
-      <h1>Prévia:</h1>
+      {/* <h1>Prévia:</h1>
       <div className="box">
         <div
           className="img-preview"
           style={{ width: "125px", height: "225.25px" }}
         />
-      </div>
+      </div> */}
       <Button
         variant="contained"
         className="btn-visualize"
@@ -155,8 +159,9 @@ const TabComponent = (props: Props) => {
       </Button>
       <div
         className="btn btn-download"
-        onClick={triggerFileSelectPopup}
         style={{ fontSize: calcFontSize() }}
+        onClick={imageFullyLoaded ? props.handleDownload : ()=>{return}}
+        // disabled={imageFullyLoaded ? false : true}
       >
         <div className="text-container">
           <span>Baixar {props.nameOfTab}</span>

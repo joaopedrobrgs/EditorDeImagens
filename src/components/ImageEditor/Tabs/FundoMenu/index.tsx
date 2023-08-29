@@ -17,7 +17,6 @@ import {
 type Props = {};
 
 const FundoMenu = (props: Props) => {
-
   const defaultSrc: string = `${process.env.PUBLIC_URL}fundo_menu_sample.png`;
 
   const [zoomValue, setZoomValue] = useState<number>(0);
@@ -75,20 +74,27 @@ const FundoMenu = (props: Props) => {
 
   return (
     <>
-      <TabComponent 
-          nameOfTab = "Fundo Menu"
-          src={image ?? defaultSrc}
-          cropperReference={cropperRef}
-          aspectRatio={aspectRatio}
-          data={cropperRef.current?.cropper.getData()}
-          zoomTo={zoomValue}
-          zoomValue={zoomValue}
-          setZoomValue={setZoomValue}
-          onSelectFile={onSelectFile}
-          getCropData={getCropData}
-          handleDownload={handleDownload}
+      <TabComponent
+        nameOfTab="Fundo Menu"
+        src={image ?? defaultSrc}
+        cropperReference={cropperRef}
+        aspectRatio={aspectRatio}
+        data={cropperRef.current?.cropper.getData()}
+        zoomTo={zoomValue}
+        zoomValue={zoomValue}
+        setZoomValue={setZoomValue}
+        onSelectFile={onSelectFile}
+        getCropData={getCropData}
+        handleDownload={handleDownload}
+        previewClass="fundo-menu-preview"
       />
-    
+      <h1>Prévia:</h1>
+      <div className="box">
+        <div
+          className="fundo-menu-preview"
+          style={{ width: "250px", height: "125px" }}
+        />
+      </div>
     </>
   );
 };

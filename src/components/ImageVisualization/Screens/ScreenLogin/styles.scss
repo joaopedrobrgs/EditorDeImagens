@@ -2,7 +2,7 @@
   margin: 1.25rem 0.5rem;
   position: relative;
   width: 375px;
-  .background-image {
+  .fundo-app-box {
     left: 0;
     right: 0;
     z-index: 0;
@@ -10,15 +10,33 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    -o-filter: blur(3px);
-    -ms-filter: blur(3px);
     filter: blur(var(--fundo-app-blur)) opacity(var(--fundo-app-opacity));
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    -webkit-filter: blur(var(--fundo-app-blur)) opacity(var(--fundo-app-opacity));
+    -moz-filter: blur(var(--fundo-app-blur)) opacity(var(--fundo-app-opacity));
+    -o-filter: blur(var(--fundo-app-blur)) opacity(var(--fundo-app-opacity));
+    -ms-filter: blur(var(--fundo-app-blur)) opacity(var(--fundo-app-opacity));
+    .fundo-app-preview {
+      overflow: hidden;
+    }
   }
+
+  // .background-image {
+  //   left: 0;
+  //   right: 0;
+  //   z-index: 0;
+  //   display: block;
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 100%;
+  //   -webkit-filter: blur(3px);
+  //   -moz-filter: blur(3px);
+  //   -o-filter: blur(3px);
+  //   -ms-filter: blur(3px);
+  //   filter: blur(var(--fundo-app-blur)) opacity(var(--fundo-app-opacity));
+  //   background-size: cover;
+  //   background-repeat: no-repeat;
+  //   background-position: center;
+  // }
 
   .screen-container {
     position: relative;
@@ -26,18 +44,30 @@
     height: 666.75px;
     width: 375px;
 
-    .logo {
+    // .logo {
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+
+    //   width: 75%;
+    //   margin: 10% auto;
+
+    //   img {
+    //     width: 100%;
+    //     max-height: 300px;
+    //     // object-fit: contain;
+    //   }
+    // }
+
+    .logo-app-box {
       display: flex;
       justify-content: center;
       align-items: center;
-
-      width: 75%;
+      width: 270px;
+      height: 150px;
       margin: 10% auto;
-
-      img {
-        width: 100%;
-        max-height: 300px;
-        // object-fit: contain;
+      .logo-app-preview{
+        overflow: hidden;
       }
     }
 

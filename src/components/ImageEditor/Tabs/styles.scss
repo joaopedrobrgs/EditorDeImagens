@@ -80,21 +80,30 @@
     margin: 0.5rem 0;
     font-weight: bold;
   }
-  .box {
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    .img-preview {
-      overflow: hidden;
-    }
-  }
+}
 
+.box {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  .fundo-app-preview {
+    overflow: hidden;
+  }
+  .fundo-menu-preview {
+    overflow: hidden;
+  }
+  .logo-app-preview {
+    overflow: hidden;
+  }
+  .logo-cab-preview {
+    overflow: hidden;
+  }
 }
 
 @media screen and (max-width: 483px) {
   .tab-container {
-    .btn{
+    .btn {
       width: 50%;
     }
   }

@@ -9,15 +9,11 @@ import { useAppContext } from "../../../../context";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import TabComponent from "..";
-import {
-  AtomLogoCabCropped,
-  AtomLogoCabOriginalSize,
-} from "../../../../store";
+import { AtomLogoCabCropped, AtomLogoCabOriginalSize } from "../../../../store";
 
 type Props = {};
 
 const LogoCab = (props: Props) => {
-
   const defaultSrc: string = `${process.env.PUBLIC_URL}logo_cab_sample.png`;
 
   const [zoomValue, setZoomValue] = useState<number>(0);
@@ -75,20 +71,27 @@ const LogoCab = (props: Props) => {
 
   return (
     <>
-      <TabComponent 
-          nameOfTab = "Logo Cab"
-          src={image ?? defaultSrc}
-          cropperReference={cropperRef}
-          aspectRatio={aspectRatio}
-          data={cropperRef.current?.cropper.getData()}
-          zoomTo={zoomValue}
-          zoomValue={zoomValue}
-          setZoomValue={setZoomValue}
-          onSelectFile={onSelectFile}
-          getCropData={getCropData}
-          handleDownload={handleDownload}
+      <TabComponent
+        nameOfTab="Logo Cab"
+        src={image ?? defaultSrc}
+        cropperReference={cropperRef}
+        aspectRatio={aspectRatio}
+        data={cropperRef.current?.cropper.getData()}
+        zoomTo={zoomValue}
+        zoomValue={zoomValue}
+        setZoomValue={setZoomValue}
+        onSelectFile={onSelectFile}
+        getCropData={getCropData}
+        handleDownload={handleDownload}
+        previewClass="logo-cab-preview"
       />
-    
+      <h1>Prévia:</h1>
+      <div className="box">
+        <div
+          className="logo-cab-preview"
+          style={{ width: "200px", height: "200px" }}
+        />
+      </div>
     </>
   );
 };

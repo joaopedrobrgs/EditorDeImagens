@@ -14,7 +14,26 @@
       .menu-header-container {
         position: relative;
 
-        .menu-header-background-image {
+        // .menu-header-background-image {
+        //   left: 0;
+        //   right: 0;
+        //   z-index: 0;
+        //   display: block;
+        //   position: absolute;
+        //   width: 100%;
+        //   height: 100%;
+        //   -webkit-filter: blur(3px);
+        //   -moz-filter: blur(3px);
+        //   -o-filter: blur(3px);
+        //   -ms-filter: blur(3px);
+        //   filter: blur(var(--fundo-menu-blur))
+        //     opacity(var(--fundo-menu-opacity));
+        //   background-size: cover;
+        //   background-repeat: no-repeat;
+        //   background-position: center;
+        // }
+
+        .fundo-menu-box {
           left: 0;
           right: 0;
           z-index: 0;
@@ -22,15 +41,15 @@
           position: absolute;
           width: 100%;
           height: 100%;
-          -webkit-filter: blur(3px);
-          -moz-filter: blur(3px);
-          -o-filter: blur(3px);
-          -ms-filter: blur(3px);
-          filter: blur(var(--fundo-menu-blur))
-            opacity(var(--fundo-menu-opacity));
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;
+          overflow: hidden;
+          filter: blur(var(--fundo-menu-blur)) opacity(var(--fundo-menu-opacity));
+          -webkit-filter: blur(var(--fundo-menu-blur)) opacity(var(--fundo-menu-opacity));
+          -moz-filter: blur(var(--fundo-menu-blur)) opacity(var(--fundo-menu-opacity));
+          -o-filter: blur(var(--fundo-menu-blur)) opacity(var(--fundo-menu-opacity));
+          -ms-filter: blur(var(--fundo-menu-blur)) opacity(var(--fundo-menu-opacity));
+          .fundo-menu-preview {
+            overflow: hidden;
+          }
         }
 
         .menu-header-content {
@@ -128,9 +147,17 @@
             rgba($color: #ffffff, $alpha: 1) 0%,
             rgba($color: #dfdfdf, $alpha: 1) 100%
           );
-          img {
+          overflow: hidden;
+          // img {
+          //   width: 2.3em;
+          //   border-radius: 50%;
+          // }
+          .logo-cab-box {
             width: 2.3em;
-            border-radius: 50%;
+            height: 2.3em;
+            .logo-cab-preview{
+              overflow: hidden;
+            }
           }
         }
       }

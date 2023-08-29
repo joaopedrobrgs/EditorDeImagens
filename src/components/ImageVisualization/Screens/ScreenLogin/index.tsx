@@ -23,21 +23,33 @@ const TelaInicial = ({}: Props) => {
   // }, [fundoAppImg]);
 
   return (
-    <div className='screen-login-container'>
-      <div
-        className="background-image"
+    <div className="screen-login-container">
+      {/* <div
+        className="background-image fundo-app-preview"
         // ref={screenRef}
         style={{
           backgroundImage: `url(${
             fundoAppImg ?? `${process.env.PUBLIC_URL}fundo_app_sample.png`
           })`,
         }}
-      ></div>
+      ></div> */}
+      <div className="fundo-app-box">
+        <div
+          className="fundo-app-preview"
+          style={{ width: "100%", height: "100%" }}
+        />
+      </div>
       <div className="screen-container">
         <div className="logo">
-          <img
+          {/* <img
             src={logoAppImg ?? `${process.env.PUBLIC_URL}logo_app_sample.png`}
-          />
+          /> */}
+          <div className="logo-app-box">
+            <div
+              className="logo-app-preview"
+              style={{ width: "100%", height: "100%" }}
+            />
+          </div>
         </div>
         <div className="center-box">
           <div className="login-box">

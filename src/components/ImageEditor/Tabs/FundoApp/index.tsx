@@ -17,7 +17,6 @@ import {
 type Props = {};
 
 const FundoApp = (props: Props) => {
-
   const defaultSrc: string = `${process.env.PUBLIC_URL}fundo_app_sample.png`;
 
   const [zoomValue, setZoomValue] = useState<number>(0);
@@ -75,20 +74,27 @@ const FundoApp = (props: Props) => {
 
   return (
     <>
-      <TabComponent 
-          nameOfTab = "Fundo App"
-          src={image ?? defaultSrc}
-          cropperReference={cropperRef}
-          aspectRatio={aspectRatio}
-          data={cropperRef.current?.cropper.getData()}
-          zoomTo={zoomValue}
-          zoomValue={zoomValue}
-          setZoomValue={setZoomValue}
-          onSelectFile={onSelectFile}
-          getCropData={getCropData}
-          handleDownload={handleDownload}
+      <TabComponent
+        nameOfTab="Fundo App"
+        src={image ?? defaultSrc}
+        cropperReference={cropperRef}
+        aspectRatio={aspectRatio}
+        data={cropperRef.current?.cropper.getData()}
+        zoomTo={zoomValue}
+        zoomValue={zoomValue}
+        setZoomValue={setZoomValue}
+        onSelectFile={onSelectFile}
+        getCropData={getCropData}
+        handleDownload={handleDownload}
+        previewClass="fundo-app-preview"
       />
-    
+      <h1>Prévia:</h1>
+      <div className="box">
+        <div
+          className="fundo-app-preview"
+          style={{ width: "125px", height: "225.25px" }}
+        />
+      </div>
     </>
   );
 };

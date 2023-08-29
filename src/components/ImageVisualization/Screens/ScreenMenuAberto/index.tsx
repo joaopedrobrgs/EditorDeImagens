@@ -29,7 +29,7 @@ const MenuAberto = ({}: Props) => {
         <div className="tw-grid tw-grid-cols-4 tw-grid-rows-1 tw-h-9/10">
           <div className="menu-container tw-col-span-3">
             <div className="menu-header-container">
-              <div
+              {/* <div
                 className="menu-header-background-image"
                 style={{
                   backgroundImage: `url(${
@@ -37,7 +37,13 @@ const MenuAberto = ({}: Props) => {
                     `${process.env.PUBLIC_URL}fundo_menu_sample.png`
                   })`,
                 }}
-              />
+              /> */}
+              <div className="fundo-menu-box">
+                <div
+                  className="fundo-menu-preview"
+                  style={{ width: "400px", height: "200px" }}
+                />
+              </div>
               <div className="menu-header-content">
                 <span className="time">{actualTime ?? ""}</span>
                 <div className="user-photo-container">
@@ -70,11 +76,17 @@ const MenuAberto = ({}: Props) => {
             </div>
             <div className="app-header">
               <div className="img-container">
-                <img
+                {/* <img
                   src={
                     logoCabImg ?? `${process.env.PUBLIC_URL}logo_cab_sample.png`
                   }
-                />
+                /> */}
+                <div className="logo-cab-box">
+                  <div
+                    className="logo-cab-preview"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </div>
               </div>
             </div>
           </div>
