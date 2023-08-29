@@ -19,7 +19,7 @@
     border-radius: 7px;
     .icon-container {
       width: 20%;
-      padding: 0.7em 0;
+      padding: 0.6em 0;
       // height: 100%;
       background-color: rgba($color: #000000, $alpha: 0.09);
       display: flex;
@@ -32,7 +32,7 @@
       }
     }
     .text-container {
-      padding: 0.7em 0.4em;
+      padding: 0.6em 0.4em;
       width: 80%;
       // height: 100%;
       display: flex;
@@ -52,9 +52,9 @@
   .btn-upload {
     background-color: var(--blue-2);
   }
-  // .btn-download {
-  //   background-color: var(--orange-1) !important;
-  // }
+  .btn-download {
+    background-color: var(--orange-1) !important;
+  }
   .btn-visualize {
     background-color: purple !important;
     margin-top: 10px !important;
@@ -62,13 +62,13 @@
       filter: brightness(90%);
     }
   }
-  .btn-download {
-    background-color: var(--orange-1) !important;
-    margin-top: 10px !important;
-    &:hover {
-      filter: brightness(90%);
-    }
-  }
+  // .btn-download {
+  //   background-color: var(--orange-1) !important;
+  //   margin-top: 10px !important;
+  //   &:hover {
+  //     filter: brightness(90%);
+  //   }
+  // }
   input[type="file"] {
     display: none;
   }
@@ -92,7 +92,7 @@
 
 }
 
-@media screen and (max-width: 435px) {
+@media screen and (max-width: 483px) {
   .tab-container {
     .btn{
       width: 50%;
@@ -108,38 +108,38 @@
   }
 }
 
-@media screen and (max-width: 480px) {
-  .tab-container {
-    .btn-download {
-      padding: 5px !important;
-      font-size: 0.7em !important;
-    }
-    .btn-visualize {
-      padding: 5px !important;
-      font-size: 0.7em !important;
-    }
-    .btn-upload {
-      max-width: 112, 5px;
-      font-size: 14px;
-      // height: 24px;
-    }
-    h1 {
-      font-size: 0.7em !important;
-    }
-    p {
-      font-size: 0.7em !important;
-    }
-  }
-}
+// @media screen and (max-width: 480px) {
+//   .tab-container {
+//     .btn-download {
+//       padding: 5px !important;
+//       font-size: 0.7em !important;
+//     }
+//     .btn-visualize {
+//       padding: 5px !important;
+//       font-size: 0.7em !important;
+//     }
+//     .btn-upload {
+//       max-width: 112, 5px;
+//       font-size: 14px;
+//       // height: 24px;
+//     }
+//     h1 {
+//       font-size: 0.7em !important;
+//     }
+//     p {
+//       font-size: 0.7em !important;
+//     }
+//   }
+// }
 
-@media screen and (max-width: 435px) {
-  .tab {
-    font-size: 10px !important;
-  }
-  .toast {
-    // min-width: 25vw;
-    width: 100vw;
-    font-size: 3vw;
-    // margin: auto !important;
-  }
-}
+// @media screen and (max-width: 435px) {
+//   .tab {
+//     font-size: 10px !important;
+//   }
+//   .toast {
+//     // min-width: 25vw;
+//     width: 100vw;
+//     font-size: 3vw;
+//     // margin: auto !important;
+//   }
+// }

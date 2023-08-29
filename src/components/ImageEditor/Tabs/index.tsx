@@ -21,6 +21,7 @@ import {
 } from "../../../store";
 import { Cropper, ReactCropperProps } from "react-cropper";
 import UploadIcon from "../../../assets/svgComponents/UploadIconSvg";
+import DownloadIcon from "../../../assets/svgComponents/DownloadIconSvg";
 
 interface Props extends ReactCropperProps {
   cropperReference?: any;
@@ -57,15 +58,14 @@ const TabComponent = (props: Props) => {
     setImageFullyLoaded(true);
   }
 
-  function calcFontSize(){
-    if(windowWidth > 1014){
-      return windowWidth * 0.01
+  function calcFontSize() {
+    if (windowWidth > 1014) {
+      return windowWidth * 0.01;
     }
-    if(windowWidth > 434){
-      return windowWidth * 0.018
-    }
-    else{
-      return windowWidth * 0.03
+    if (windowWidth > 483) {
+      return windowWidth * 0.018;
+    } else {
+      return windowWidth * 0.03;
     }
   }
 
@@ -78,16 +78,15 @@ const TabComponent = (props: Props) => {
         ref={inputRef as any}
       />
       <div
-        // variant="contained"
         className="btn btn-upload"
         onClick={triggerFileSelectPopup}
-        style={{fontSize: calcFontSize()}}
+        style={{ fontSize: calcFontSize() }}
       >
         <div className="text-container">
           <span>Upload {props.nameOfTab}</span>
         </div>
         <div className="icon-container">
-          <UploadIcon className="icon"/>
+          <UploadIcon className="icon" />
         </div>
       </div>
       <p>Recortar fundo_app:</p>
@@ -154,14 +153,18 @@ const TabComponent = (props: Props) => {
       >
         Visualizar na tela
       </Button>
-      <Button
-        variant="contained"
-        className="btn-download"
-        onClick={props.handleDownload}
-        disabled={imageFullyLoaded ? false : true}
+      <div
+        className="btn btn-download"
+        onClick={triggerFileSelectPopup}
+        style={{ fontSize: calcFontSize() }}
       >
-        Baixar {props.nameOfTab}
-      </Button>
+        <div className="text-container">
+          <span>Baixar {props.nameOfTab}</span>
+        </div>
+        <div className="icon-container">
+          <DownloadIcon className="icon" />
+        </div>
+      </div>
       <ToastContainer />
     </div>
   );

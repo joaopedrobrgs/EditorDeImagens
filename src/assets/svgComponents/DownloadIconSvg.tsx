@@ -6,7 +6,7 @@ type Props = {
   className?: string;
 };
 
-const DownloadIcon: React.FC = ({
+const DownloadIcon = ({
   color = "#FFFFFF",
   size = "24px",
   className = ""
