@@ -1,4 +1,9 @@
-import React, { ChangeEventHandler, MouseEventHandler, useRef, useState } from "react";
+import React, {
+  ChangeEventHandler,
+  MouseEventHandler,
+  useRef,
+  useState,
+} from "react";
 import "cropperjs/dist/cropper.css";
 import "../styles.scss";
 import { Button } from "@mui/material";
@@ -15,6 +20,7 @@ import {
   AtomOnWheelChecked,
 } from "../../../store";
 import { Cropper, ReactCropperProps } from "react-cropper";
+import UploadIcon from "../../../assets/svgComponents/UploadIconSvg";
 
 interface Props extends ReactCropperProps {
   cropperReference?: any;
@@ -22,15 +28,14 @@ interface Props extends ReactCropperProps {
   // inputRef: any;
   // onSelectFile: ChangeEventHandler<HTMLInputElement>;
   // defaultSrc: string
-  onSelectFile: ChangeEventHandler<HTMLInputElement>
-  getCropData: MouseEventHandler<any>
-  handleDownload: MouseEventHandler<any>
-  zoomValue: number,
-  setZoomValue: Function
+  onSelectFile: ChangeEventHandler<HTMLInputElement>;
+  getCropData: MouseEventHandler<any>;
+  handleDownload: MouseEventHandler<any>;
+  zoomValue: number;
+  setZoomValue: Function;
 }
 
 const TabComponent = (props: Props) => {
-
   const inputRef = useRef<any>();
   const sliderRef = useRef<any>();
 
@@ -52,6 +57,18 @@ const TabComponent = (props: Props) => {
     setImageFullyLoaded(true);
   }
 
+  function calcFontSize(){
+    if(windowWidth > 1014){
+      return windowWidth * 0.01
+    }
+    if(windowWidth > 434){
+      return windowWidth * 0.018
+    }
+    else{
+      return windowWidth * 0.03
+    }
+  }
+
   return (
     <div className="tab-container">
       <input
@@ -60,13 +77,19 @@ const TabComponent = (props: Props) => {
         accept="image/*"
         ref={inputRef as any}
       />
-      <Button
-        variant="contained"
-        className="btn-upload"
+      <div
+        // variant="contained"
+        className="btn btn-upload"
         onClick={triggerFileSelectPopup}
+        style={{fontSize: calcFontSize()}}
       >
-        Upload {props.nameOfTab}
-      </Button>
+        <div className="text-container">
+          <span>Upload {props.nameOfTab}</span>
+        </div>
+        <div className="icon-container">
+          <UploadIcon className="icon"/>
+        </div>
+      </div>
       <p>Recortar fundo_app:</p>
       <Cropper
         // zoomTo={0.5}
