@@ -7,7 +7,7 @@
 
   .pre-visualization-text {
     font-weight: bold;
-    padding-left: 1em;
+    padding-left: 0.5em;
     text-align: center;
   }
 
@@ -24,9 +24,9 @@
   .screens-container {
     justify-content: start !important;
   }
-  // .pre-visualization-text {
-  //   text-align: start !important;
-  // }
+  .pre-visualization-text {
+    text-align: start !important;
+  }
 }
 
 @media screen and (max-width: 976px) {
