@@ -10,9 +10,16 @@
     // border: 1px solid var(--blue-2);
     max-width: 750px;
     margin: auto;
-
     padding: 10px 20px;
     text-align: center;
+    .cropper{
+      margin: auto;
+      box-sizing: border-box;
+      resize: horizontal;
+    }
+    .zoom-slider{
+      width: 100%;
+    }
     .tab-first-box {
       width: 100%;
       display: flex;

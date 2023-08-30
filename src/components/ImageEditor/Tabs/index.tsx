@@ -88,7 +88,7 @@ const TabComponent = (props: Props) => {
     }
     if (windowWidth <= 486) {
       return windowWidth * 0.03 * multiplicator;
-    } 
+    }
     if (windowWidth <= 549) {
       return windowWidth * 0.025 * multiplicator;
     }
@@ -106,8 +106,7 @@ const TabComponent = (props: Props) => {
     }
     if (windowWidth <= 1849) {
       return windowWidth * 0.008 * multiplicator;
-    }
-    else {
+    } else {
       return 14 * multiplicator;
     }
   }
@@ -123,7 +122,9 @@ const TabComponent = (props: Props) => {
         />
 
         <div className="tab-first-box">
-          <p style={{fontSize: calcFontSizeAccordingToWidth(1.4)}}>Recortar fundo_app:</p>
+          <p style={{ fontSize: calcFontSizeAccordingToWidth(1.3) }}>
+            Recortar fundo_app:
+          </p>
           <div
             className="btn btn-upload"
             onClick={triggerFileSelectPopup}
@@ -138,16 +139,17 @@ const TabComponent = (props: Props) => {
           </div>
         </div>
         <Cropper
+          className="cropper"
           // zoomTo={0.5}
           // initialAspectRatio={1}
-          style={{ height: 330, width: "100%", maxWidth: 750 }}
+          style={{ height: 280, width: 280 }}
           preview={`.${props.previewClass}`}
           viewMode={1}
           minCropBoxHeight={10}
           minCropBoxWidth={10}
-          restore
+          restore={false}
           background={true}
-          responsive={true}
+          responsive={false}
           autoCropArea={1}
           checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
           guides={false}
@@ -185,6 +187,7 @@ const TabComponent = (props: Props) => {
           aria-labelledby="non-linear-slider"
           size={windowWidth > 440 ? "medium" : "small"}
           disabled={!sliderChecked}
+          className="zoom-slider"
         />
         {/* <h1>Prévia:</h1>
       <div className="box">
