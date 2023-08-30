@@ -7,7 +7,7 @@ type AppContextType = {
   refFundoMenuCropper: any;
   refLogoAppCropper: any;
   refLogoCabCropper: any;
-  windowWidth: number
+  // windowWidth: number
 };
 
 //Creating the context:
@@ -23,23 +23,23 @@ const AppContextProvider: React.FC<{
   const refLogoAppCropper = createRef<ReactCropperElement>();
   const refLogoCabCropper = createRef<ReactCropperElement>();
 
-  const [windowWidth, setWindowWidth] = useState<number>(getWindowWidth());
+  // const [windowWidth, setWindowWidth] = useState<number>(getWindowWidth());
 
-  useEffect(() => {
-    function handleWindowResize() {
-      setWindowWidth(getWindowWidth());
-    }
+  // // useEffect(() => {
+  // //   function handleWindowResize() {
+  // //     setWindowWidth(getWindowWidth());
+  // //   }
 
-    window.addEventListener('resize', handleWindowResize);
+  // //   window.addEventListener('resize', handleWindowResize);
 
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, []);
+  // //   return () => {
+  // //     window.removeEventListener('resize', handleWindowResize);
+  // //   };
+  // // }, []);
 
-  function getWindowWidth(){
-    return window.innerWidth;
-  }
+  // function getWindowWidth(){
+  //   return window.innerWidth;
+  // }
 
   return (
     <AppContext.Provider
@@ -48,7 +48,7 @@ const AppContextProvider: React.FC<{
         refFundoMenuCropper,
         refLogoAppCropper,
         refLogoCabCropper,
-        windowWidth,
+        // windowWidth,
       }}
     >
       {children}

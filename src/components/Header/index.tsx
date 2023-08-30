@@ -5,7 +5,7 @@ import "./styles.scss";
 import React from "react";
 import { useAppContext } from "../../context";
 import { useAtom } from "jotai";
-import { AtomShowSettingsModal } from "../../store";
+import { AtomShowSettingsModal, AtomWindowWidth } from "../../store";
 
 type Props = {
   text: string;
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const Header = ({ text }: Props) => {
-  const { windowWidth } = useAppContext();
+  const [windowWidth] = useAtom(AtomWindowWidth);
   const [showSettingsModal, setShowSettingsModal] = useAtom(
     AtomShowSettingsModal
   );

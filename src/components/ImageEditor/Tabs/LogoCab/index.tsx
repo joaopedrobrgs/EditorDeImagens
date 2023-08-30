@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "cropperjs/dist/cropper.css";
 import "../styles.scss";
 // import imageCompression from "browser-image-compression";
@@ -6,25 +6,57 @@ import "../styles.scss";
 import { saveAs } from "file-saver";
 import { useAtom } from "jotai/react";
 import { useAppContext } from "../../../../context";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import TabComponent from "..";
-import { AtomLogoCabCropped, AtomLogoCabOriginalSize } from "../../../../store";
+import {
+  AtomLogoCabCropped,
+  AtomLogoCabOriginalSize,
+  AtomOnTouchChecked,
+  AtomOnWheelChecked,
+  AtomSliderChecked,
+  AtomWindowWidth,
+} from "../../../../store";
+import { Cropper } from "react-cropper";
+import DownloadIcon from "../../../../assets/svgComponents/DownloadIconSvg";
+import { Slider } from "@mui/material";
+import UploadIcon from "../../../../assets/svgComponents/UploadIconSvg";
+import { calcFontSizeAccordingToWidth } from "../../../../utils/utils";
+import CropperDefault from "../../DefaultComponents/CropperDefault";
+import SliderDefault from "../../DefaultComponents/SliderDefault";
+import ButtonDefault from "../../DefaultComponents/ButtonDefault";
 
 type Props = {};
 
 const LogoCab = (props: Props) => {
+  //Especific attributtes:
   const defaultSrc: string = `${process.env.PUBLIC_URL}logo_cab_sample.png`;
-
-  const [zoomValue, setZoomValue] = useState<number>(0);
-
+  const nameOfTab: string = "Logo Cab";
+  const previewClass: string = "logo-cab-preview";
+  const outputFileName: string = "logo-cab.png";
   const [cropData, setCropData] = useAtom(AtomLogoCabCropped);
-
   const [image, setImage] = useAtom(AtomLogoCabOriginalSize);
-
   const { refLogoCabCropper: cropperRef } = useAppContext();
-
   const aspectRatio = 130 / 130;
+
+  //Generic stuff:
+  const [zoomValue, setZoomValue] = useState<number>(0);
+  const inputRef = useRef<any>();
+  const sliderRef = useRef<any>();
+  const [sliderChecked, setSliderChecked] = useAtom(AtomSliderChecked);
+  const [onTouchChecked] = useAtom(AtomOnTouchChecked);
+  const [onWheelChecked] = useAtom(AtomOnWheelChecked);
+  const [windowWidth] = useAtom(AtomWindowWidth);
+  const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
+
+  const triggerFileSelectPopup = () => {
+    if (!!inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
+  function handleLoaded() {
+    setImageFullyLoaded(true);
+  }
 
   const onSelectFile = (e: any) => {
     e.preventDefault();
@@ -64,35 +96,71 @@ const LogoCab = (props: Props) => {
   async function handleDownload() {
     cropperRef.current?.cropper?.getCroppedCanvas().toBlob((blob: any) => {
       if (!!blob) {
-        saveAs(blob, "logo_cab.png");
+        saveAs(blob, outputFileName);
       }
     });
   }
 
   return (
-    <>
-      <TabComponent
-        nameOfTab="Logo Cab"
-        src={image ?? defaultSrc}
-        cropperReference={cropperRef}
-        aspectRatio={aspectRatio}
-        data={cropperRef.current?.cropper.getData()}
-        zoomTo={zoomValue}
-        zoomValue={zoomValue}
-        setZoomValue={setZoomValue}
-        onSelectFile={onSelectFile}
-        getCropData={getCropData}
-        handleDownload={handleDownload}
-        previewClass="logo-cab-preview"
-      />
-      {/* <h1>Prévia:</h1>
-      <div className="box">
-        <div
-          className="logo-cab-preview"
-          style={{ width: "200px", height: "200px" }}
+    <div className="tab-extern-container">
+      <div className="tab-intern-container">
+        <input
+          type="file"
+          onChange={onSelectFile}
+          accept="image/*"
+          ref={inputRef as any}
         />
-      </div> */}
-    </>
+
+        <div className="tab-first-box">
+          <p
+            style={{ fontSize: calcFontSizeAccordingToWidth(windowWidth, 1.3) }}
+          >
+            Recortar {nameOfTab}:
+          </p>
+          <ButtonDefault
+            text={`Upload ${nameOfTab}`}
+            bgColor="#2892CE"
+            onClick={triggerFileSelectPopup}
+          >
+            <UploadIcon className="icon" />
+          </ButtonDefault>
+        </div>
+        <CropperDefault
+          preview={previewClass}
+          cropperReference={cropperRef}
+          aspectRatio={aspectRatio}
+          data={cropperRef.current?.cropper.getData()}
+          zoomTo={zoomValue}
+          onLoad={handleLoaded}
+          src={image ?? defaultSrc}
+        />
+        <SliderDefault
+          sliderRef={sliderRef}
+          value={zoomValue}
+          valueLabelFormat={`${zoomValue}`}
+          onChange={(event: Event, newValue: number | number[]) => {
+            if (typeof newValue === "number") {
+              setZoomValue(newValue);
+            }
+          }}
+        />
+        <ButtonDefault
+          text={`Baixar ${nameOfTab}`}
+          bgColor="#CE7828"
+          alignSelf="self-start"
+          onClick={
+            imageFullyLoaded
+              ? handleDownload
+              : () => {
+                  return;
+                }
+          }
+        >
+          <DownloadIcon className="icon" />
+        </ButtonDefault>
+        <ToastContainer />
+      </div>
+    </div>
   );
 };
 

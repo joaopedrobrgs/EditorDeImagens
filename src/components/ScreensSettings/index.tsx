@@ -11,6 +11,7 @@ import {
   AtomFundoAppBlur,
   AtomFundoMenuOpacity,
   AtomFundoMenuBlur,
+  AtomWindowWidth
 } from "../../store";
 import { changeRootVarAtribute, valueLabelFormat } from "../../utils/utils";
 import "./styles.scss";
@@ -29,7 +30,7 @@ export default function ScreensSettings({ className }: Props) {
   const [btnBgColor, setBtnBgColor] = useAtom(AtomBtnBgColor);
   const [btnTextColor, setBtnTextColor] = useAtom(AtomBtnTextColor);
 
-  const { windowWidth } = useAppContext();
+  const [ windowWidth ] = useAtom(AtomWindowWidth);
 
   // useEffect(()=>{
   //   console.log(windowWidth);

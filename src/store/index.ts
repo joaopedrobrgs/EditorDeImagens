@@ -1,5 +1,10 @@
 import { atom } from "jotai";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
+import { getWindowWidth } from "../utils/utils";
+
+
+//WindowWidth Atom:
+const AtomWindowWidth = atom<number>(getWindowWidth());
 
 //Components Atoms:
 const AtomShowSettingsModal = atom<boolean>(false);
@@ -71,4 +76,5 @@ export {
   AtomSliderChecked,
   AtomOnTouchChecked,
   AtomOnWheelChecked,
+  AtomWindowWidth
 };
