@@ -41,3 +41,21 @@
     cursor: pointer;
   }
 }
+
+@media screen and (max-width: 1385px) {
+  .btn {
+    width: 40% !important;
+  }
+}
+
+@media screen and (max-width: 487px) {
+  .btn {
+    width: 75% !important;
+  }
+}
+
+@media screen and (max-width: 307px) {
+  .btn {
+    width: 80% !important;
+  }
+}
