@@ -85,13 +85,13 @@ const LogoApp = (props: Props) => {
         handleDownload={handleDownload}
         previewClass="logo-app-preview"
       />
-      <h1>Prévia:</h1>
+      {/* <h1>Prévia:</h1>
       <div className="box">
         <div
           className="logo-app-preview"
           style={{ width: "225px", height: "125px" }}
         />
-      </div>
+      </div> */}
     </>
   );
 };

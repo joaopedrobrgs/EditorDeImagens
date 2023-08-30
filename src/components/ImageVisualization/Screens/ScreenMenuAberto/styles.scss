@@ -1,15 +1,16 @@
 .screen-menu-aberto-container {
   margin: 1.25rem 0.5rem;
-  width: 375px;
+  width: 250px;
+  // font-size: 16px;
   .screen-container {
     position: relative;
     border: 0.5px dashed black;
-    height: 666.75px;
-    width: 375px;
+    height: 450px;
+    width: 250px;
     .menu-container {
       width: 100%;
       position: relative;
-      box-shadow: 13px 0px 10px -5px #00000040;
+      box-shadow: 11px 0px 10px -5px #00000040;
 
       .menu-header-container {
         position: relative;
@@ -54,19 +55,19 @@
 
         .menu-header-content {
           position: relative;
-          padding: 10px;
+          padding: 6.6px;
           .time {
-            padding: 10px;
+            padding: 6.6px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 9.24px;
           }
           .user-photo-container {
             width: 100%;
             display: flex;
             justify-content: center;
-            margin: 10px 0px;
+            margin: 6.6px 0px;
             img {
-              width: 90px;
+              width: 59.4px;
               border-radius: 50%;
               box-shadow: 0px 2px 5px 2px #00000020;
             }
@@ -75,13 +76,14 @@
           .user-name-container {
             width: 100%;
             background-color: rgba($color: #ffffffff, $alpha: 0.9);
-            padding: 8px 0px;
+            padding: 5.28px 0px;
             text-align: center;
-            margin: 5px 0px;
-            border-radius: 4px;
-            box-shadow: 0px 2px 5px 2px #00000020;
+            margin: 3.3px 0px;
+            border-radius: 2.64px;
+            box-shadow: 0px 1.5px 3.5px 1.5px #00000020;
             span {
               font-weight: 700;
+              font-size: 10.56px;
             }
           }
         }
@@ -89,7 +91,7 @@
     }
 
     .menu-items-container {
-      padding: 5px;
+      padding: 3.3px;
       .selected-item {
         background-color: #fef2f2;
       }
@@ -97,9 +99,9 @@
         width: 100%;
         display: flex;
         align-items: center;
-        padding: 8px;
-        border-radius: 5px;
-        margin: 5px 0px;
+        padding: 5.28px;
+        border-radius: 3.3px;
+        margin: 3.3px 0px;
       }
       .icon-container {
         .icon {
@@ -107,8 +109,8 @@
         }
       }
       span {
-        margin-left: 15px;
-        font-size: 12px;
+        margin-left: 10px;
+        font-size: 7.92px;
       }
       .selected-item {
       }
@@ -117,16 +119,16 @@
     .outside-container {
       width: 100%;
       .notification-bar {
-        padding-right: 10px;
+        padding-right: 6.6px;
         display: flex;
         justify-content: end;
         align-items: center;
         .icon {
-          margin-left: 5px;
+          margin-left: 3.3px;
         }
         span {
           color: #747474;
-          font-size: 1.1em;
+          font-size: 0.7em;
           opacity: 0.5;
         }
       }
@@ -134,10 +136,10 @@
         display: flex;
         justify-content: end;
         align-items: center;
-        padding: 8px 10px;
+        padding: 5.28px 6.6px;
         box-shadow: 0px 5px 6px #00000020;
         .img-container {
-          border: 1px solid rgba($color: #dfdfdf, $alpha: 1);
+          border: 0.66px solid rgba($color: #dfdfdf, $alpha: 1);
           border-radius: 50%;
           /* offset-x (positive: rigth; negative: left) | offset-y (positive: bootom; negative: top) | blur-radius | spread-radius | color */
           box-shadow: 0px 5px 7px -2px #00000040;
@@ -153,8 +155,8 @@
           //   border-radius: 50%;
           // }
           .logo-cab-box {
-            width: 2.3em;
-            height: 2.3em;
+            width: 1.6em;
+            height: 1.6em;
             .logo-cab-preview{
               overflow: hidden;
             }
@@ -168,8 +170,8 @@
       align-items: center;
       justify-content: space-between;
       // width: 100%;
-      border-top: 2px solid rgba($color: #cdcdcd, $alpha: 0.2);
-      padding: 3px;
+      border-top: 1.2px solid rgba($color: #cdcdcd, $alpha: 0.2);
+      padding: 2px;
       .footer-top {
         width: 100%;
         display: flex;
@@ -180,7 +182,7 @@
           flex-direction: column;
           align-items: center;
           span {
-            font-size: 10px;
+            font-size: 0.5em;
             color: #747474;
             font-weight: 500;
           }

@@ -85,13 +85,13 @@ const LogoCab = (props: Props) => {
         handleDownload={handleDownload}
         previewClass="logo-cab-preview"
       />
-      <h1>Prévia:</h1>
+      {/* <h1>Prévia:</h1>
       <div className="box">
         <div
           className="logo-cab-preview"
           style={{ width: "200px", height: "200px" }}
         />
-      </div>
+      </div> */}
     </>
   );
 };

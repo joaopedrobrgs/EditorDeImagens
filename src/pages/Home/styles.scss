@@ -1,8 +1,16 @@
-@media screen and (max-width: 1024px) {
+.home-container {
+  max-width: 3820px;
+  margin: auto;
+  // padding: 0 10px;
+}
+
+@media screen and (max-width: 976px) {
   .home-container {
     // background-color: gray;
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
     // p {
     //   font-size: 5vw;
     // }

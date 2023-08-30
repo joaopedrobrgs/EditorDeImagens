@@ -41,7 +41,7 @@ const MenuAberto = ({}: Props) => {
               <div className="fundo-menu-box">
                 <div
                   className="fundo-menu-preview"
-                  style={{ width: "400px", height: "200px" }}
+                  style={{ width: "300px", height: "150px" }}
                 />
               </div>
               <div className="menu-header-content">
@@ -71,8 +71,8 @@ const MenuAberto = ({}: Props) => {
           <div className="outside-container tw-col-span-1">
             <div className="notification-bar">
               <span>....</span>
-              <IoIosWifi color="black" className="icon" size={15} />
-              <IoIosBatteryFull color="black" size={20} className="icon" />
+              <IoIosWifi color="black" className="icon" size={10} />
+              <IoIosBatteryFull color="black" size={13} className="icon" />
             </div>
             <div className="app-header">
               <div className="img-container">
@@ -94,11 +94,11 @@ const MenuAberto = ({}: Props) => {
         <div className="screen-footer tw-h-1/10">
           <div className="footer-top">
             <div className="items-container">
-              <TbGridDots size="1.7em" color="#747474" />
+              <TbGridDots size="1.2em" color="#747474" />
               <span>Meus Dados</span>
             </div>
             <div className="items-container">
-              <QrCodeSvg size="1.7em" />
+              <QrCodeSvg size="1.2em" />
               <span>Carteirinha Digital</span>
             </div>
           </div>

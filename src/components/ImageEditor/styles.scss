@@ -5,6 +5,7 @@
 .image-editor-container {
   .tabs-container {
     margin: 1.25rem 1rem;
+
     .tab-list {
       display: flex;
       flex-direction: row;
@@ -35,6 +36,25 @@
       border: #2892ce 1px solid;
       border-radius: 5px;
     }
+  }
+}
+
+@media screen and (max-width: 1148px) {
+  .tab {
+    font-size: 12px !important;
+    margin: 0px 1px !important;
+  }
+}
+
+@media screen and (max-width: 1045px) {
+  .tab {
+    font-size: 10px !important;
+  }
+}
+
+@media screen and (max-width: 976px) {
+  .tab {
+    font-size: 14px !important;
   }
 }
 

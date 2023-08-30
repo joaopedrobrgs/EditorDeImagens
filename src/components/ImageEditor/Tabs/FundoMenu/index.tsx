@@ -88,13 +88,13 @@ const FundoMenu = (props: Props) => {
         handleDownload={handleDownload}
         previewClass="fundo-menu-preview"
       />
-      <h1>Prévia:</h1>
+      {/* <h1>Prévia:</h1>
       <div className="box">
         <div
           className="fundo-menu-preview"
           style={{ width: "250px", height: "125px" }}
         />
-      </div>
+      </div> */}
     </>
   );
 };

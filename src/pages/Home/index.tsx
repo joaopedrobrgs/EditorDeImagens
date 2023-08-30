@@ -8,6 +8,7 @@ import ImageVisualization from "../../components/ImageVisualization";
 import PageSettings from "../../components/PageSettings";
 import { useAtom } from "jotai";
 import { AtomShowSettingsModal } from "../../store";
+import ScreensSettings from "../../components/ScreensSettings";
 
 type Props = {
   // children: JSX.Element;
@@ -17,14 +18,17 @@ const Home = ({}: Props) => {
   const [showSettingsModal] = useAtom(AtomShowSettingsModal);
 
   return (
-    <div className="">
+    // <div className="">
+    <>
       <Header text="EDITOR DE IMAGENS APP SÓCIO" />
-      <div className="tw-grid tw-grid-cols-2 tw-grid-rows-1 home-container">
-        <ImageEditor className="tw-col-span-1" />
-        <ImageVisualization className="tw-col-span-1" />
+      <div className="tw-grid tw-grid-cols-5 tw-grid-rows-1 home-container">
+        <ImageEditor className="tw-col-span-2" />
+        <ImageVisualization className="tw-col-span-2" />
+        <ScreensSettings className="tw-col-span-1" />
       </div>
       {showSettingsModal ? <PageSettings /> : <></>}
-    </div>
+    </>
+    // </div>
   );
 };
 

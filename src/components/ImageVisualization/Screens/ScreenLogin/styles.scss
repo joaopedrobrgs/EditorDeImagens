@@ -1,7 +1,8 @@
 .screen-login-container {
   margin: 1.25rem 0.5rem;
   position: relative;
-  width: 375px;
+  width: 250px;
+  // font-size: 16px;
   .fundo-app-box {
     left: 0;
     right: 0;
@@ -41,8 +42,8 @@
   .screen-container {
     position: relative;
     border: 0.5px dashed black;
-    height: 666.75px;
-    width: 375px;
+    height: 450px;
+    width: 250px;
 
     // .logo {
     //   display: flex;
@@ -63,8 +64,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 270px;
-      height: 150px;
+      width: 180px;
+      height: 100px;
       margin: 10% auto;
       .logo-app-preview{
         overflow: hidden;
@@ -77,27 +78,27 @@
 
       .login-box {
         background-color: rgba($color: #ffffffff, $alpha: var(--boxes-opacity));
-        border-radius: 7px;
+        border-radius: 4.62px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 1.5em;
+        padding: 14.4px;
 
         .input {
           background-color: rgba($color: #ffffffff, $alpha: 0.7);
           width: 100%;
-          border: 1.7px solid #d3d3d3;
-          border-radius: 5px;
-          height: 50px;
-          padding: 10px 0px;
-          margin-bottom: 12px;
+          border: 1.12px solid #d3d3d3;
+          border-radius: 3.3px;
+          height: 33px;
+          padding: 6.66px 0px;
+          margin-bottom: 7.2px;
           .input-label {
-            font-size: 14px;
+            font-size: 9.24px;
             font-weight: 500;
             text-align: center;
           }
           .input-content {
-            border-left: 1.7px solid #d3d3d3;
+            border-left: 1.12px solid #d3d3d3;
             height: 100%;
             width: 100%;
           }
@@ -107,28 +108,29 @@
           display: flex;
           align-items: center;
           .checkbox-square {
-            border: 1.5px solid var(--btn-bg-color);
-            border-radius: 5px;
-            width: 20px;
-            height: 20px;
+            border: 1px solid var(--btn-bg-color);
+            border-radius: 3.3px;
+            width: 13.2px;
+            height: 13.2px;
             display: inline-block;
-            margin-right: 10px;
+            margin-right: 6.6px;
           }
           .checkbox-text {
             font-weight: 500;
-            font-size: 14px;
+            font-size: 9.24px;
           }
         }
         .button {
-          margin-top: 22px;
+          margin-top: 14.5px;
           width: 100%;
-          height: 50px;
+          height: 33px;
           background-color: var(--btn-bg-color);
-          border-radius: 8px;
+          border-radius: 5.28px;
           display: flex;
           justify-content: center;
           align-items: center;
           box-shadow: 0px 5px 10px 0px rgb(0 0 0 / 40%);
+          font-size: 0.66em;
           .button-text {
             color: var(--btn-text-color);
           }
@@ -136,21 +138,22 @@
       }
 
       .forgot-password-box {
-        margin-top: 10px;
+        margin-top: 6.6px;
         background-color: rgba($color: #ffffffff, $alpha: 1);
         opacity: var(--boxes-opacity);
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 7px;
-        padding: 13px;
+        border-radius: 4.62px;
+        padding: 7.8px;
         box-sizing: border-box;
+        font-size: 0.66em;
       }
     }
 
     .credits-container {
-      padding-bottom: 7%;
-      padding-top: 8%;
+      padding-bottom: 9%;
+      padding-top: 9%;
       position: absolute;
       bottom: 0;
       width: 100%;
@@ -170,7 +173,7 @@
         span {
           color: #030303;
           opacity: 0.7;
-          font-size: 13px;
+          font-size: 8.58px;
           font-weight: 500;
         }
       }

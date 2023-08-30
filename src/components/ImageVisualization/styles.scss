@@ -20,16 +20,19 @@
   }
 }
 
-@media screen and (max-width: 1650px) {
+@media screen and (max-width: 1330px) {
   .screens-container {
     justify-content: start !important;
   }
-  .pre-visualization-text {
-    text-align: start !important;
-  }
+  // .pre-visualization-text {
+  //   text-align: start !important;
+  // }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 976px) {
+  .image-visualization-container {
+    margin: 0 0 !important;
+  }
   .screens-container {
     justify-content: center !important;
   }
@@ -38,7 +41,7 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 555px) {
   .screens-container {
     justify-content: start !important;
   }

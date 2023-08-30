@@ -15,7 +15,7 @@ const ImageEditor = ({ className }: Props) => {
 
   return (
     <div className={`${className} image-editor-container`}>
-      <Tabs className="tabs-container">
+      <Tabs className="tabs-container" forceRenderTabPanel={false}>
         <TabList className="tab-list">
           <Tab className="tab" selectedClassName="selected-tab">
             fundo_app

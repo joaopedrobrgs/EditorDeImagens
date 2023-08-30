@@ -88,13 +88,13 @@ const FundoApp = (props: Props) => {
         handleDownload={handleDownload}
         previewClass="fundo-app-preview"
       />
-      <h1>Prévia:</h1>
+      {/* <h1>Prévia:</h1>
       <div className="box">
         <div
           className="fundo-app-preview"
           style={{ width: "125px", height: "225.25px" }}
         />
-      </div>
+      </div> */}
     </>
   );
 };
