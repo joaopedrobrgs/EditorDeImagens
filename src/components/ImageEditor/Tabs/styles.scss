@@ -67,6 +67,16 @@
   }
 }
 
+@media screen and (max-width: 380px) {
+  .tab-intern-container{
+    padding: 10px 0 !important;
+  }
+  // .cropper{
+  //   margin: 0 !important;
+
+  // }
+}
+
 @media screen and (max-width: 307px) {
   .btn {
     width: 100% !important;
