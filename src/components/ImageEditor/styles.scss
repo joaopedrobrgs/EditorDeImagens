@@ -29,6 +29,7 @@
       .selected-tab {
         background-color: #2892ce;
         color: white;
+        // font-size: 16px;
       }
     }
 
@@ -61,7 +62,6 @@
 @media screen and (max-width: 480px) {
   .tab {
     font-size: 12px !important;
-    margin: 0px 1px;
   }
 }
 

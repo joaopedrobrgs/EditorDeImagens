@@ -48,6 +48,12 @@
   }
 }
 
+@media screen and (max-width: 1330px) {
+  .btn {
+    width: 50% !important;
+  }
+}
+
 @media screen and (max-width: 487px) {
   .btn {
     width: 75% !important;

@@ -147,7 +147,7 @@ const LogoApp = (props: Props) => {
         <ButtonDefault
           text={`Baixar ${nameOfTab}`}
           bgColor="#CE7828"
-          alignSelf={windowWidth > 550 ? "self-start" : "center"}
+          alignSelf={windowWidth >= 1330 ? "self-start" : "center"}
           onClick={
             imageFullyLoaded
               ? handleDownload

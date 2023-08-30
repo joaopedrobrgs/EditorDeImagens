@@ -37,9 +37,9 @@ export default function ScreensSettings({ className }: Props) {
   // }, [windowWidth])
 
   return (
-    <div className="settings-extern-container">
+    <div className={`${className} settings-extern-container`}>
       <div className="settings-intern-container">
-        <Box className={`${className} settings-box-container`}>
+        <Box className={`settings-box-container`}>
           {/* fundo-app-opacity: */}
           <Box className="settings-input-box">
             <Typography

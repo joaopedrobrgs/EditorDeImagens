@@ -36,10 +36,10 @@ const Home = ({}: Props) => {
     // <div className="">
     <>
       <Header text="EDITOR DE IMAGENS APP SÓCIO" />
-      <div className="tw-grid tw-grid-cols-5 tw-grid-rows-1 home-container">
-        <ImageEditor className="tw-col-span-2" />
-        <ImageVisualization className="tw-col-span-2" />
-        <ScreensSettings className="tw-col-span-1" />
+      <div className={`tw-grid ${windowWidth >= 1330 ? "tw-grid-cols-5" : "tw-grid-cols-8"} tw-grid-rows-1 home-container`}>
+        <ImageEditor className={windowWidth >= 1330 ? "tw-col-span-2" : "tw-col-span-3"} />
+        <ImageVisualization className={windowWidth >= 1330 ? "tw-col-span-2" : "tw-col-span-3"} />
+        <ScreensSettings className={windowWidth >= 1330 ? "tw-col-span-1" : "tw-col-span-2"}  />
       </div>
       {showSettingsModal ? <PageSettings /> : <></>}
     </>

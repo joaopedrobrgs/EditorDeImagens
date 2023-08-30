@@ -3,10 +3,11 @@
   .settings-intern-container {
     border: #2892ce 1px solid;
     border-radius: 5px;
+    box-shadow: 0px 7px 5px -4px rgba($color: #000000, $alpha: 0.4);
     .settings-box-container {
       width: 100%;
       max-width: 500px;
-      height: 488px;
+      height: 550px;
       margin: 1.25rem auto;
       display: flex;
       flex-direction: column;
@@ -38,6 +39,12 @@
   }
 }
 
+// @media screen and (max-width: 1384px) {
+//   // .settings-box-container {
+//   //   height: 500px !important;
+//   // }
+// }
+
 @media screen and (max-width: 1330px) {
   .settings-color-box {
     flex-direction: column !important;
@@ -46,19 +53,23 @@
       width: 100% !important;
     }
   }
+  // .settings-box-container {
+  //   height: 535px !important;
+  // }
 }
 
-@media screen and (max-width: 1330px) {
-  .settings-input-label {
-    font-size: 0.73em !important;
-  }
-}
+// @media screen and (max-width: 1330px) {
+//   .settings-input-label {
+//     font-size: 0.73em !important;
+//   }
+// }
 
 @media screen and (max-width: 976px) {
   .settings-extern-container {
     padding: 0 1rem !important;
     .settings-intern-container {
       border: none !important;
+      box-shadow: none !important;
       .settings-box-container {
         height: 100% !important;
         .settings-color-box {
