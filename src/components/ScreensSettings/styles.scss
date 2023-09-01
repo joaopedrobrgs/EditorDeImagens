@@ -7,7 +7,7 @@
     .settings-box-container {
       width: 100%;
       max-width: 500px;
-      height: 550px;
+      height: 547px;
       margin: 1.25rem auto;
       display: flex;
       flex-direction: column;
@@ -64,6 +64,18 @@
 //   }
 // }
 
+@media screen and (max-width: 1148px) {
+  .settings-box-container {
+    height: 544px !important;
+  }
+}
+
+@media screen and (max-width: 1045px) {
+  .settings-box-container {
+    height: 540px !important;
+  }
+}
+
 @media screen and (max-width: 976px) {
   .settings-extern-container {
     padding: 0 1rem !important;
@@ -92,9 +104,6 @@
 }
 
 @media screen and (max-width: 440px) {
-  .settings-input-label {
-    font-size: 0.6em !important;
-  }
   .color-container {
     input {
       height: 20px !important;
@@ -109,5 +118,17 @@
     .settings-input-box {
       padding: 2px 12px;
     }
+  }
+}
+
+@media screen and (max-width: 250px) {
+  .settings-input-label {
+    font-size: 0.6em !important;
+  }
+}
+
+@media screen and (max-width: 203px) {
+  .settings-input-label {
+    font-size: 0.5em !important;
   }
 }

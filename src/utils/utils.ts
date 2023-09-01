@@ -31,9 +31,14 @@ export function changeRootVarAtribute(
 }
 
 export function calcFontSizeAccordingToWidth(windowWidth: number ,multiplicator: number = 1) {
-
+  if (windowWidth <= 275) {
+    return windowWidth * 0.035 * multiplicator;
+  }
   if (windowWidth <= 306) {
     return windowWidth * 0.04 * multiplicator;
+  }
+  if (windowWidth <= 379) {
+    return windowWidth * 0.035 * multiplicator;
   }
   if (windowWidth <= 486) {
     return windowWidth * 0.03 * multiplicator;
