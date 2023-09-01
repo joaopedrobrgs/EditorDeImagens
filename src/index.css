@@ -8,15 +8,73 @@
   font-family: 'Inter', sans-serif;
   padding: 0;
   margin: 0;
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
 }
 
-/* 
-//Y X 
-*/
+*::-webkit-scrollbar {
+  width: 1.8vh;
+  height: 1.8vh;
+}
+
+*::-webkit-scrollbar-track {
+  background: #F1F1F1;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--blue-2);
+  border-radius: 10px;
+  border: 0.3vmin solid #F1F1F1;
+}
+
+::-webkit-scrollbar-button {
+  display: block;
+  background-color: #F1F1F1;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+::-webkit-scrollbar-button:vertical:start:increment {
+  display: none;
+}
+
+::-webkit-scrollbar-button:vertical:start:decrement {
+  background-image: url('./assets/svgComponents/arrowUp.svg');
+  background-size: 90%;
+}
+
+::-webkit-scrollbar-button:vertical:end:increment {
+  background-image: url('./assets/svgComponents/arrowDown.svg');
+  background-size: 90%;
+
+}
+
+::-webkit-scrollbar-button:vertical:end:decrement {
+  display: none;
+}
+
+::-webkit-scrollbar-button:horizontal:start:increment {
+  display: none;
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement {
+  background-image: url('./assets/svgComponents/arrowLeft.svg');
+  background-size: 50%;
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment {
+  background-image: url('./assets/svgComponents/arrowRight.svg');
+  background-size: 50%;
+
+}
+
+::-webkit-scrollbar-button:horizontal:end:decrement {
+  display: none;
+}
 
 :root {
 
-  --blue-1:#2B7ECB;
+  --blue-1: #2B7ECB;
   --blue-2: #2892CE;
   --blue-3: #0B608F;
   --orange-1: #CE7828;
