@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 import {
   AtomOnTouchChecked,
   AtomOnWheelChecked,
+  AtomWindowWidth
 } from "../../../store";
 
 interface Props extends ReactCropperProps {
@@ -15,6 +16,16 @@ const CropperDefault = (props: Props) => {
 
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
+  const [windowWidth] = useAtom(AtomWindowWidth)
+
+  // function cropperSizeAcorddingToScreen(windowWidth: number): any{
+  //   if(windowWidth >= 340){
+  //     return { height: 320, width: 280 };
+  //   }
+  //   else{
+  //     return { height: 150, width: 131.25 };
+  //   }
+  // }
 
   return (
     <Cropper
