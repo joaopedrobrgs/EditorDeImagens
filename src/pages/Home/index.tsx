@@ -7,9 +7,9 @@ import ImageEditor from "../../components/ImageEditor";
 import ImageVisualization from "../../components/ImageVisualization";
 import PageSettings from "../../components/PageSettings";
 import { useAtom } from "jotai";
-import { AtomShowSettingsModal, AtomWindowWidth } from "../../store";
+import { AtomShowSettingsModal, AtomWindowWidth, AtomActualTime } from "../../store";
 import ScreensSettings from "../../components/ScreensSettings";
-import { getWindowWidth } from "../../utils/utils";
+import { getWindowWidth, hoursMinutesToString } from "../../utils/utils";
 
 type Props = {
   // children: JSX.Element;
@@ -19,6 +19,7 @@ const Home = ({}: Props) => {
 
   const [showSettingsModal] = useAtom(AtomShowSettingsModal);
   const [windowWidth, setWindowWidth] = useAtom(AtomWindowWidth)
+  const [actualTime, setActualTime] = useAtom(AtomActualTime)
 
   useEffect(() => {
     function handleWindowResize() {
@@ -29,6 +30,15 @@ const Home = ({}: Props) => {
   
     return () => {
       window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const getActualTime = setInterval(() => {
+      setActualTime(hoursMinutesToString(new Date()))
+    }, 1000)
+    return () => {
+      clearInterval(getActualTime);
     };
   }, []);
 

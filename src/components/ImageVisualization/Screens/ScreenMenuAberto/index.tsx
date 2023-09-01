@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.scss";
 import { useAtom } from "jotai";
-import { AtomFundoMenuCropped, AtomLogoCabCropped } from "../../../../store";
+import { AtomFundoMenuCropped, AtomLogoCabCropped, AtomActualTime } from "../../../../store";
 import { hoursMinutesToString } from "../../../../utils/utils";
 // import { IoWifi, IoBatteryFullOutline } from "react-icons/io5";
 import { IoIosWifi, IoIosBatteryFull } from "react-icons/io";
@@ -19,9 +19,11 @@ const MenuAberto = ({}: Props) => {
   const [fundoMenuImg] = useAtom(AtomFundoMenuCropped);
   const [logoCabImg] = useAtom(AtomLogoCabCropped);
 
-  const [actualTime, setActualTime] = useState<string>(
-    hoursMinutesToString(new Date())
-  );
+  // const [actualTime, setActualTime] = useState<string>(
+  //   hoursMinutesToString(new Date())
+  // );
+
+  const [actualTime] = useAtom(AtomActualTime)
 
   return (
     <div className="screen-menu-aberto-container">

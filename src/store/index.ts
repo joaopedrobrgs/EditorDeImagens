@@ -1,7 +1,10 @@
 import { atom } from "jotai";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
-import { getWindowWidth } from "../utils/utils";
+import { getWindowWidth, hoursMinutesToString } from "../utils/utils";
 
+//ActualTime Atom:
+const AtomActualTime = atom<string>(hoursMinutesToString(new Date()));
+// const AtomActualTime = atom<Date>(new Date());
 
 //WindowWidth Atom:
 const AtomWindowWidth = atom<number>(getWindowWidth());
@@ -76,5 +79,6 @@ export {
   AtomSliderChecked,
   AtomOnTouchChecked,
   AtomOnWheelChecked,
-  AtomWindowWidth
+  AtomWindowWidth,
+  AtomActualTime
 };
