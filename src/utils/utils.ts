@@ -1,3 +1,7 @@
+import JSZip from "jszip";
+import { ReactCropperElement } from "react-cropper";
+import { saveAs } from "file-saver";
+
 export function hoursMinutesToString(date: Date): string {
   // return `${date.getHours()}:${date.getMinutes()}`
   const str = date.toLocaleTimeString();
@@ -30,7 +34,10 @@ export function changeRootVarAtribute(
   );
 }
 
-export function calcFontSizeAccordingToWidth(windowWidth: number ,multiplicator: number = 1) {
+export function calcFontSizeAccordingToWidth(
+  windowWidth: number,
+  multiplicator: number = 1
+) {
   if (windowWidth <= 275) {
     return windowWidth * 0.035 * multiplicator;
   }
@@ -65,6 +72,30 @@ export function calcFontSizeAccordingToWidth(windowWidth: number ,multiplicator:
   }
 }
 
-export function getWindowWidth(){
+export function getWindowWidth() {
   return window.innerWidth;
+}
+
+export function downloadZip(data: Array<ReactCropperElement>): void {
+  //Criando o arquivo zip:
+  var zip = new JSZip();
+
+  //Fazendo um map no nosso array com as imagens cortadas e atribuindo a uma constante:
+  const downloadZips = data.map(async (croppedImage, index) => {
+    //Pegando as imagens em formato BLOB:
+    const blob: any = await new Promise((resolve) =>
+      croppedImage.cropper?.getCroppedCanvas().toBlob(resolve)
+    );
+    //Adicionando os BLOBs no nosso arquivo zip:
+    zip.file(`${croppedImage?.name}.png`, blob);
+  });
+
+  //Pegando as promisses que a nossa constante retorna e fazendo algo a partir disso:
+  Promise.all(downloadZips).then(() => {
+    //Pegando o resultado do nosso arquivo zipado:
+    zip.generateAsync({ type: "blob" }).then((content) => {
+      //Salvando o arquivo zipado no dispositivo do usuário:
+      saveAs(content, "cropped-images.zip");
+    });
+  });
 }

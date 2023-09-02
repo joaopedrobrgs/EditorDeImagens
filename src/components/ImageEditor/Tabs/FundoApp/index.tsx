@@ -15,6 +15,7 @@ import {
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomWindowWidth,
+  AtomFirstImageFullyLoaded
 } from "../../../../store";
 import { Cropper } from "react-cropper";
 import DownloadIcon from "../../../../assets/svgComponents/DownloadIconSvg";
@@ -46,7 +47,8 @@ const FundoApp = (props: Props) => {
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
   const [windowWidth] = useAtom(AtomWindowWidth);
-  const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
+
+  const [imageFullyLoaded, setImageFullyLoaded] = useAtom(AtomFirstImageFullyLoaded);
 
   const triggerFileSelectPopup = () => {
     if (!!inputRef.current) {

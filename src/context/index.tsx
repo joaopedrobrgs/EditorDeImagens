@@ -23,24 +23,6 @@ const AppContextProvider: React.FC<{
   const refLogoAppCropper = createRef<ReactCropperElement>();
   const refLogoCabCropper = createRef<ReactCropperElement>();
 
-  // const [windowWidth, setWindowWidth] = useState<number>(getWindowWidth());
-
-  // // useEffect(() => {
-  // //   function handleWindowResize() {
-  // //     setWindowWidth(getWindowWidth());
-  // //   }
-
-  // //   window.addEventListener('resize', handleWindowResize);
-
-  // //   return () => {
-  // //     window.removeEventListener('resize', handleWindowResize);
-  // //   };
-  // // }, []);
-
-  // function getWindowWidth(){
-  //   return window.innerWidth;
-  // }
-
   return (
     <AppContext.Provider
       value={{

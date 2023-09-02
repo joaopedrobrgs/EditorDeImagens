@@ -2,6 +2,8 @@ import { atom } from "jotai";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
 import { getWindowWidth, hoursMinutesToString } from "../utils/utils";
 
+const AtomFirstImageFullyLoaded = atom<boolean>(false);
+
 //ActualTime Atom:
 const AtomActualTime = atom<string>(hoursMinutesToString(new Date()));
 // const AtomActualTime = atom<Date>(new Date());
@@ -80,5 +82,6 @@ export {
   AtomOnTouchChecked,
   AtomOnWheelChecked,
   AtomWindowWidth,
-  AtomActualTime
+  AtomActualTime,
+  AtomFirstImageFullyLoaded
 };

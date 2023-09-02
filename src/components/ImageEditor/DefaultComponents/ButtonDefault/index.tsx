@@ -10,13 +10,14 @@ interface Props {
   children?: ReactNode;
   bgColor?: string;
   alignSelf?: string;
+  className?: string;
 }
 
 const ButtonDefault = (props: Props) => {
   const [windowWidth] = useAtom(AtomWindowWidth);
   return (
     <div
-      className="btn"
+      className={`btn ${props.className}`}
       onClick={props.onClick}
       style={{
         fontSize: calcFontSizeAccordingToWidth(windowWidth),
