@@ -1,5 +1,5 @@
 import { FiGithub } from "react-icons/fi";
-import { MdOutlineAddToDrive } from "react-icons/md";
+import { MdOutlineAddToDrive, MdOutlineSettings } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import "./styles.scss";
 import React from "react";
