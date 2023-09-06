@@ -9,8 +9,8 @@ import { useAppContext } from "../../../../context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import {
-  AtomFundoMenuCropped,
-  AtomFundoMenuOriginalSize,
+  AtomLogoAppCropped,
+  AtomLogoAppOriginalSize,
   AtomOnTouchChecked,
   AtomOnWheelChecked,
   AtomSliderChecked,
@@ -22,22 +22,22 @@ import DownloadIcon from "../../../../assets/svgComponents/DownloadIconSvg";
 import { Slider } from "@mui/material";
 import UploadIcon from "../../../../assets/svgComponents/UploadIconSvg";
 import { calcFontSizeAccordingToWidth, downloadImage } from "../../../../utils/utils";
-import CropperDefault from "../../DefaultComponents/CropperDefault";
-import SliderDefault from "../../DefaultComponents/SliderDefault";
-import ButtonDefault from "../../DefaultComponents/ButtonDefault";
+import CropperDefault from "../../../../components/Cropper";
+import SliderDefault from "../../../../components/Slider";
+import ButtonDefault from "../../../../components/Button";
 
 type Props = {};
 
-const FundoMenu = (props: Props) => {
+const LogoApp = (props: Props) => {
   //Especific attributtes:
-  const defaultSrc: string = `${process.env.PUBLIC_URL}fundo_menu_sample.png`;
-  const nameOfTab: string = "Fundo Menu";
-  const previewClass: string = "fundo-menu-preview";
-  const outputFileName: string = "fundo_menu.png";
-  const [cropData, setCropData] = useAtom(AtomFundoMenuCropped);
-  const [image, setImage] = useAtom(AtomFundoMenuOriginalSize);
-  const { refFundoMenuCropper: cropperRef } = useAppContext();
-  const aspectRatio = 400 / 200;
+  const defaultSrc: string = `${process.env.PUBLIC_URL}logo_app_sample.png`;
+  const nameOfTab: string = "Logo App";
+  const previewClass: string = "logo-app-preview";
+  const outputFileName: string = "logo-app.png";
+  const [cropData, setCropData] = useAtom(AtomLogoAppCropped);
+  const [image, setImage] = useAtom(AtomLogoAppOriginalSize);
+  const { refLogoAppCropper: cropperRef } = useAppContext();
+  const aspectRatio = 450 / 250;
 
   //Generic stuff:
   const [zoomValue, setZoomValue] = useState<number>(0);
@@ -163,4 +163,4 @@ const FundoMenu = (props: Props) => {
   );
 };
 
-export default FundoMenu;
+export default LogoApp;

@@ -2,7 +2,7 @@ import React, { MutableRefObject, RefObject, useEffect, useRef } from "react";
 import "./styles.scss";
 import { useAtom } from "jotai/react";
 import { AtomFundoAppCropped, AtomLogoAppCropped } from "../../../../store";
-import IphoneBottomLine from "../../../IphoneBottomLine";
+import IphoneBottomLine from "../../../../components/IphoneBottomLine";
 
 type Props = {
   // className: string

@@ -22,9 +22,9 @@ import DownloadIcon from "../../../../assets/svgComponents/DownloadIconSvg";
 import { Slider } from "@mui/material";
 import UploadIcon from "../../../../assets/svgComponents/UploadIconSvg";
 import { calcFontSizeAccordingToWidth, downloadImage } from "../../../../utils/utils";
-import CropperDefault from "../../DefaultComponents/CropperDefault";
-import SliderDefault from "../../DefaultComponents/SliderDefault";
-import ButtonDefault from "../../DefaultComponents/ButtonDefault";
+import CropperDefault from "../../../../components/Cropper";
+import SliderDefault from "../../../../components/Slider";
+import ButtonDefault from "../../../../components/Button";
 
 type Props = {};
 

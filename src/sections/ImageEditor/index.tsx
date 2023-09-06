@@ -6,7 +6,7 @@ import FundoApp from "./Tabs/FundoApp";
 import LogoApp from "./Tabs/LogoApp";
 import LogoCab from "./Tabs/LogoCab";
 import FundoMenu from "./Tabs/FundoMenu";
-import ButtonDefault from "./DefaultComponents/ButtonDefault";
+import ButtonDefault from "../../components/Button";
 import DownloadIcon from "../../assets/svgComponents/DownloadIconSvg";
 import { useAtom } from "jotai";
 import {

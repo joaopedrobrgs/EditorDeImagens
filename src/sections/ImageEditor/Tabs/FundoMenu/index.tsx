@@ -9,43 +9,35 @@ import { useAppContext } from "../../../../context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import {
-  AtomFundoAppCropped,
-  AtomFundoAppOriginalSize,
+  AtomFundoMenuCropped,
+  AtomFundoMenuOriginalSize,
   AtomOnTouchChecked,
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomWindowWidth,
-  AtomFirstImageFullyLoaded,
   AtomCompressChecked
 } from "../../../../store";
 import { Cropper } from "react-cropper";
 import DownloadIcon from "../../../../assets/svgComponents/DownloadIconSvg";
 import { Slider } from "@mui/material";
 import UploadIcon from "../../../../assets/svgComponents/UploadIconSvg";
-import {
-  calcFontSizeAccordingToWidth,
-  compressImage,
-  downloadImage,
-} from "../../../../utils/utils";
-import CropperDefault from "../../DefaultComponents/CropperDefault";
-import SliderDefault from "../../DefaultComponents/SliderDefault";
-import ButtonDefault from "../../DefaultComponents/ButtonDefault";
-import { CompressionService } from "../../../../services/useCompression";
-import { ImageCompressionOptions } from "../../../../types/ImageCompression";
-import imageCompression from "browser-image-compression";
+import { calcFontSizeAccordingToWidth, downloadImage } from "../../../../utils/utils";
+import CropperDefault from "../../../../components/Cropper";
+import SliderDefault from "../../../../components/Slider";
+import ButtonDefault from "../../../../components/Button";
 
 type Props = {};
 
-const FundoApp = (props: Props) => {
+const FundoMenu = (props: Props) => {
   //Especific attributtes:
-  const defaultSrc: string = `${process.env.PUBLIC_URL}fundo_app_sample.png`;
-  const nameOfTab: string = "Fundo App";
-  const previewClass: string = "fundo-app-preview";
-  const outputFileName: string = "fundo_app.png";
-  const aspectRatio = 500 / 889;
-  const [cropData, setCropData] = useAtom(AtomFundoAppCropped);
-  const [image, setImage] = useAtom(AtomFundoAppOriginalSize);
-  const { refFundoAppCropper: cropperRef } = useAppContext();
+  const defaultSrc: string = `${process.env.PUBLIC_URL}fundo_menu_sample.png`;
+  const nameOfTab: string = "Fundo Menu";
+  const previewClass: string = "fundo-menu-preview";
+  const outputFileName: string = "fundo_menu.png";
+  const [cropData, setCropData] = useAtom(AtomFundoMenuCropped);
+  const [image, setImage] = useAtom(AtomFundoMenuOriginalSize);
+  const { refFundoMenuCropper: cropperRef } = useAppContext();
+  const aspectRatio = 400 / 200;
 
   //Generic stuff:
   const [zoomValue, setZoomValue] = useState<number>(0);
@@ -56,10 +48,7 @@ const FundoApp = (props: Props) => {
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
   const [compressChecked] = useAtom(AtomCompressChecked);
   const [windowWidth] = useAtom(AtomWindowWidth);
-
-  const [imageFullyLoaded, setImageFullyLoaded] = useAtom(
-    AtomFirstImageFullyLoaded
-  );
+  const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
 
   const triggerFileSelectPopup = () => {
     if (!!inputRef.current) {
@@ -108,7 +97,7 @@ const FundoApp = (props: Props) => {
 
   async function handleDownload() {
     cropperRef.current.name = outputFileName;
-    downloadImage(cropperRef.current, compressChecked)
+    downloadImage(cropperRef.current, compressChecked);
   }
 
   return (
@@ -174,4 +163,4 @@ const FundoApp = (props: Props) => {
   );
 };
 
-export default FundoApp;
+export default FundoMenu;

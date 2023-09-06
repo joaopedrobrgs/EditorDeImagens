@@ -6,7 +6,7 @@ import {
   AtomOnTouchChecked,
   AtomOnWheelChecked,
   AtomWindowWidth
-} from "../../../store";
+} from "../../store";
 
 interface Props extends ReactCropperProps {
   cropperReference?: any;

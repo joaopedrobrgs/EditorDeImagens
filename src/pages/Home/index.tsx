@@ -3,12 +3,12 @@ import { MdOutlineAddToDrive } from "react-icons/md";
 import "./styles.scss";
 import Header from "../../components/Header";
 import React, { useEffect } from "react";
-import ImageEditor from "../../components/ImageEditor";
-import ImageVisualization from "../../components/ImageVisualization";
-import PageSettings from "../../components/PageSettings";
+import ImageEditor from "../../sections/ImageEditor";
+import ImageVisualization from "../../sections/ImageVisualization";
+import PageSettings from "../../sections/PageSettings";
 import { useAtom } from "jotai";
 import { AtomShowSettingsModal, AtomWindowWidth, AtomActualTime } from "../../store";
-import ScreensSettings from "../../components/ScreensSettings";
+import ScreensSettings from "../../sections/ScreensSettings";
 import { getWindowWidth, hoursMinutesToString } from "../../utils/utils";
 
 type Props = {

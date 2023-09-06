@@ -9,7 +9,7 @@ import { TbGridDots } from "react-icons/tb";
 import QrCodeSvg from "../../../../assets/svgComponents/QrCodeSvg";
 
 import { exampleMenuItems as menuItems } from "../../../../utils/exampleMenuItems";
-import IphoneBottomLine from "../../../IphoneBottomLine";
+import IphoneBottomLine from "../../../../components/IphoneBottomLine";
 
 type Props = {
   // className: string
