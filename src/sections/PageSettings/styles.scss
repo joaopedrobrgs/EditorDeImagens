@@ -26,6 +26,22 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      .zoom-options-title{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 5px 10px;
+        p {
+          font-weight: bold;
+          margin: 0 !important;
+        }
+        .observation-text{
+          font-weight: 400;
+          font-style: italic;
+          color: red;
+          font-size: 0.9em;
+        }
+      }
       p {
         font-weight: bold;
         margin: 5px 10px;

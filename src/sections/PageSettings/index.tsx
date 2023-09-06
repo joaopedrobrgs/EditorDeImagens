@@ -14,7 +14,7 @@ import { Button } from "@mui/material";
 type Props = {};
 
 const PageSettings = (props: Props) => {
-  const [sliderChecked, setOnSliderChecked] = useAtom(AtomSliderChecked);
+  const [sliderChecked, setSliderChecked] = useAtom(AtomSliderChecked);
   const [onWheelChecked, setOnWheelChecked] = useAtom(AtomOnWheelChecked);
   const [onTouchChecked, setOnTouchChecked] = useAtom(AtomOnTouchChecked);
   const [compressChecked, setCompressChecked] = useAtom(AtomCompressChecked);
@@ -37,13 +37,19 @@ const PageSettings = (props: Props) => {
   );
 
   function handleSaveChanges() {
-    setOnSliderChecked(sliderCheckedTemporaryState);
-    setOnWheelChecked(onWheelCheckedTemporaryState);
-    setOnTouchChecked(onTouchCheckedTemporaryState);
     setCompressChecked(compressCheckedTemporaryState);
     setMaxSizeOfImage(maxSizeOfImageTemporaryState);
     setShowSettingsModal(false);
-    window.location.reload();
+    if (
+      sliderCheckedTemporaryState !== sliderChecked ||
+      onWheelCheckedTemporaryState !== onWheelChecked ||
+      onTouchCheckedTemporaryState !== onTouchChecked
+    ) {
+      setSliderChecked(sliderCheckedTemporaryState);
+      setOnWheelChecked(onWheelCheckedTemporaryState);
+      setOnTouchChecked(onTouchCheckedTemporaryState);
+      window.location.reload();
+    }
   }
 
   function handleCancelChanges(e: any) {
@@ -64,7 +70,10 @@ const PageSettings = (props: Props) => {
     <div className="page-settings-modal" onClick={handleCancelChanges}>
       <div className="page-settings-container">
         <div className="option-container">
-          <p>Opções de Zoom:</p>
+          <div className="zoom-options-title">
+            <p>Opções de Zoom:</p>
+            <p className="observation-text">(alterações aqui irão atualizar a página)</p>
+          </div>
           <div className="option-content">
             <label>
               <input
@@ -121,7 +130,11 @@ const PageSettings = (props: Props) => {
               />
               Comprimir imagens
             </label>
-            <div className={`input-number-container ${compressCheckedTemporaryState ? '' : 'input-number-disabled'}`}>
+            <div
+              className={`input-number-container ${
+                compressCheckedTemporaryState ? "" : "input-number-disabled"
+              }`}
+            >
               <span>Tamanho máximo:</span>
               <input
                 type="number"
