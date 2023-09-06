@@ -20,7 +20,7 @@ import { Cropper } from "react-cropper";
 import DownloadIcon from "../../../../assets/svgComponents/DownloadIconSvg";
 import { Slider } from "@mui/material";
 import UploadIcon from "../../../../assets/svgComponents/UploadIconSvg";
-import { calcFontSizeAccordingToWidth } from "../../../../utils/utils";
+import { calcFontSizeAccordingToWidth, downloadImage } from "../../../../utils/utils";
 import CropperDefault from "../../DefaultComponents/CropperDefault";
 import SliderDefault from "../../DefaultComponents/SliderDefault";
 import ButtonDefault from "../../DefaultComponents/ButtonDefault";
@@ -94,11 +94,8 @@ const FundoMenu = (props: Props) => {
   };
 
   async function handleDownload() {
-    cropperRef.current?.cropper?.getCroppedCanvas().toBlob((blob: any) => {
-      if (!!blob) {
-        saveAs(blob, outputFileName);
-      }
-    });
+    cropperRef.current.name = outputFileName;
+    downloadImage(cropperRef.current);
   }
 
   return (

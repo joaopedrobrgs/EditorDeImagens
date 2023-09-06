@@ -15,16 +15,19 @@ import {
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomWindowWidth,
-  AtomFirstImageFullyLoaded
+  AtomFirstImageFullyLoaded,
 } from "../../../../store";
 import { Cropper } from "react-cropper";
 import DownloadIcon from "../../../../assets/svgComponents/DownloadIconSvg";
 import { Slider } from "@mui/material";
 import UploadIcon from "../../../../assets/svgComponents/UploadIconSvg";
-import { calcFontSizeAccordingToWidth } from "../../../../utils/utils";
+import { calcFontSizeAccordingToWidth, downloadImage } from "../../../../utils/utils";
 import CropperDefault from "../../DefaultComponents/CropperDefault";
 import SliderDefault from "../../DefaultComponents/SliderDefault";
 import ButtonDefault from "../../DefaultComponents/ButtonDefault";
+import { CompressionService } from "../../../../services/useCompression";
+import { ImageCompressionOptions } from "../../../../types/ImageCompression";
+import imageCompression from "browser-image-compression";
 
 type Props = {};
 
@@ -48,7 +51,9 @@ const FundoApp = (props: Props) => {
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
   const [windowWidth] = useAtom(AtomWindowWidth);
 
-  const [imageFullyLoaded, setImageFullyLoaded] = useAtom(AtomFirstImageFullyLoaded);
+  const [imageFullyLoaded, setImageFullyLoaded] = useAtom(
+    AtomFirstImageFullyLoaded
+  );
 
   const triggerFileSelectPopup = () => {
     if (!!inputRef.current) {
@@ -96,11 +101,8 @@ const FundoApp = (props: Props) => {
   };
 
   async function handleDownload() {
-    cropperRef.current?.cropper?.getCroppedCanvas().toBlob((blob: any) => {
-      if (!!blob) {
-        saveAs(blob, outputFileName);
-      }
-    });
+    cropperRef.current.name = outputFileName;
+    downloadImage(cropperRef.current);
   }
 
   return (

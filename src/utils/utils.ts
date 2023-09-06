@@ -1,6 +1,8 @@
 import JSZip from "jszip";
 import { ReactCropperElement } from "react-cropper";
 import { saveAs } from "file-saver";
+import { ImageCompressionOptions } from "../types/ImageCompression";
+import imageCompression from "browser-image-compression";
 
 export function hoursMinutesToString(date: Date): string {
   // return `${date.getHours()}:${date.getMinutes()}`
@@ -98,4 +100,31 @@ export function downloadZip(data: Array<ReactCropperElement>): void {
       saveAs(content, "cropped-images.zip");
     });
   });
+}
+
+export async function downloadImage(imageRef: ReactCropperElement){
+    //Salvando apenas:
+    // const blob: any = await new Promise((resolve) =>
+    //   imageRef.cropper?.getCroppedCanvas().toBlob(resolve)
+    // );
+    // if (!!blob) {
+    //   saveAs(blob, imageRef.name);
+    // }
+
+    //Comprimindo e depois salvando:
+    const blob: any = await new Promise((resolve) =>
+      imageRef.cropper?.getCroppedCanvas().toBlob(resolve)
+    );
+    const file = new File([blob], imageRef.name, {
+      type: "image/png",
+    });
+    const options: ImageCompressionOptions = {
+      maxSizeMB: 0.4,
+      fileType: "image/png",
+    };
+    // const compressedFile = await CompressionService(file);
+    const compressedFile = await imageCompression(file, options);
+    if(!!compressedFile){
+      saveAs(compressedFile, imageRef.name);
+    }
 }
