@@ -30,15 +30,35 @@
         font-weight: bold;
         margin: 5px 10px;
       }
-      .option-content{
+      .option-content {
         display: flex;
         flex-direction: column;
         align-items: start;
         margin: 5px 10px;
-        label{
-          input{
+        label {
+          input {
             margin-right: 5px;
           }
+        }
+        .input-number-container {
+          width: 100%;
+          align-self: center;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          input {
+            width: 15%;
+            text-align: center;
+            padding-left: 8px;
+            background-color: rgba($color: #ffffff, $alpha: 0.5);
+            border-radius: 8px;
+            margin-left: 5px;
+            margin-right: 2px;
+          }
+        }
+        .input-number-disabled{
+          opacity: 0.4 !important;
         }
       }
     }
@@ -65,8 +85,8 @@
 }
 
 @media screen and (max-width: 500px) {
-  .page-settings-container{
+  .page-settings-container {
     min-height: 0px !important;
-    min-width: 0px !important; 
+    min-width: 0px !important;
   }
 }

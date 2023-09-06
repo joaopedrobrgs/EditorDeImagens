@@ -70,6 +70,15 @@ const getCompressChecked = (): boolean => {
 };
 const AtomCompressChecked = atomWithStorage<boolean>("@compressChecked", getCompressChecked());
 
+const getMaxSizeOfImage = (): number => {
+  const storedState = localStorage.getItem("@maxSizeOfImage");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return 400;
+};
+const AtomMaxSizeOfImage = atomWithStorage<number>("@maxSizeOfImage", getMaxSizeOfImage());
+
 export {
   AtomShowSettingsModal,
   AtomFundoAppOriginalSize,
@@ -93,5 +102,6 @@ export {
   AtomWindowWidth,
   AtomActualTime,
   AtomFirstImageFullyLoaded,
-  AtomCompressChecked
+  AtomCompressChecked,
+  AtomMaxSizeOfImage
 };

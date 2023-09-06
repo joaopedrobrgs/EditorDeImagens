@@ -78,7 +78,7 @@ export function getWindowWidth() {
   return window.innerWidth;
 }
 
-export async function compressImage(blob: Blob, outputFileName: string) {
+export async function compressImage(blob: Blob, outputFileName: string, maxSizeOfImage: number) {
   // const blob: any = await new Promise((resolve) =>
   //   imageRef.cropper?.getCroppedCanvas().toBlob(resolve)
   // );
@@ -86,7 +86,7 @@ export async function compressImage(blob: Blob, outputFileName: string) {
     type: "image/png",
   });
   const options: ImageCompressionOptions = {
-    maxSizeMB: 0.4,
+    maxSizeMB: maxSizeOfImage / 1000,
     fileType: "image/png",
   };
   // const compressedImage: any = await new Promise((resolve) =>
@@ -98,7 +98,8 @@ export async function compressImage(blob: Blob, outputFileName: string) {
 
 export async function downloadImage(
   croppedImage: ReactCropperElement,
-  compressChecked: boolean
+  compressChecked: boolean,
+  maxSizeOfImage: number
 ) {
   //Pegando imagem como Blob e atribuindo à variável "blob":
   let blob: any = await new Promise((resolve) =>
@@ -109,7 +110,7 @@ export async function downloadImage(
   if (compressChecked) {
     //Atribuindo resultado da compressão à variável "blob":
     blob = await new Promise((resolve) =>
-      compressImage(blob, croppedImage.name).then(resolve)
+      compressImage(blob, croppedImage.name, maxSizeOfImage).then(resolve)
     );
     console.log("Image to download compressed: ", blob);
   }
@@ -119,7 +120,8 @@ export async function downloadImage(
 
 export function downloadZip(
   data: Array<ReactCropperElement>,
-  compressChecked: boolean
+  compressChecked: boolean,
+  maxSizeOfImage: number
 ) {
   //Criando o arquivo zip:
   var zip = new JSZip();
@@ -135,7 +137,7 @@ export function downloadZip(
     if (compressChecked) {
       //Atribuindo resultado da compressão à variável "blob":
       blob = await new Promise((resolve) =>
-        compressImage(blob, croppedImage.name).then(resolve)
+        compressImage(blob, croppedImage.name, maxSizeOfImage).then(resolve)
       );
       console.log("Image to download compressed: ", blob);
     }

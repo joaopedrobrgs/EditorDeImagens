@@ -7,6 +7,7 @@ import {
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomCompressChecked,
+  AtomMaxSizeOfImage,
 } from "../../store";
 import { Button } from "@mui/material";
 
@@ -17,6 +18,7 @@ const PageSettings = (props: Props) => {
   const [onWheelChecked, setOnWheelChecked] = useAtom(AtomOnWheelChecked);
   const [onTouchChecked, setOnTouchChecked] = useAtom(AtomOnTouchChecked);
   const [compressChecked, setCompressChecked] = useAtom(AtomCompressChecked);
+  const [maxSizeOfImage, setMaxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
 
   const [sliderCheckedTemporaryState, setSliderCheckedTemporaryState] =
     useState(sliderChecked);
@@ -27,6 +29,8 @@ const PageSettings = (props: Props) => {
 
   const [compressCheckedTemporaryState, setCompressCheckedTemporaryState] =
     useState(compressChecked);
+  const [maxSizeOfImageTemporaryState, setMaxSizeOfImageTemporaryState] =
+    useState<number>(maxSizeOfImage);
 
   const [showSettingsModal, setShowSettingsModal] = useAtom(
     AtomShowSettingsModal
@@ -36,7 +40,8 @@ const PageSettings = (props: Props) => {
     setOnSliderChecked(sliderCheckedTemporaryState);
     setOnWheelChecked(onWheelCheckedTemporaryState);
     setOnTouchChecked(onTouchCheckedTemporaryState);
-    setCompressChecked(compressCheckedTemporaryState)
+    setCompressChecked(compressCheckedTemporaryState);
+    setMaxSizeOfImage(maxSizeOfImageTemporaryState);
     setShowSettingsModal(false);
     window.location.reload();
   }
@@ -49,7 +54,8 @@ const PageSettings = (props: Props) => {
       setSliderCheckedTemporaryState(sliderChecked);
       setOnWheelCheckedTemporaryState(onWheelChecked);
       setOnTouchCheckedTemporaryState(onTouchChecked);
-      setCompressCheckedTemporaryState(compressChecked)
+      setCompressCheckedTemporaryState(compressChecked);
+      setMaxSizeOfImageTemporaryState(maxSizeOfImage);
       setShowSettingsModal(false);
     }
   }
@@ -99,16 +105,34 @@ const PageSettings = (props: Props) => {
         <div className="option-container">
           <p>Opções de Compressão:</p>
           <div className="option-content">
-            <label>
+            <label
+              style={{
+                alignSelf: "center",
+              }}
+            >
               <input
                 type="checkbox"
                 checked={compressCheckedTemporaryState}
                 onChange={() => {
-                  setCompressCheckedTemporaryState(!compressCheckedTemporaryState);
+                  setCompressCheckedTemporaryState(
+                    !compressCheckedTemporaryState
+                  );
                 }}
               />
               Comprimir imagens
             </label>
+            <div className={`input-number-container ${compressCheckedTemporaryState ? '' : 'input-number-disabled'}`}>
+              <span>Tamanho máximo:</span>
+              <input
+                type="number"
+                value={maxSizeOfImageTemporaryState}
+                onChange={(e) => {
+                  setMaxSizeOfImageTemporaryState(parseFloat(e.target.value));
+                }}
+                disabled={compressCheckedTemporaryState ? false : true}
+              />
+              <span>kbs</span>
+            </div>
           </div>
         </div>
         <div className="btn-container">

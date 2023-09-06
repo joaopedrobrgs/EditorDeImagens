@@ -13,6 +13,7 @@ import {
   AtomWindowWidth,
   AtomFirstImageFullyLoaded,
   AtomCompressChecked,
+  AtomMaxSizeOfImage
 } from "../../store";
 import { calcFontSizeAccordingToWidth, downloadZip } from "../../utils/utils";
 import { useAppContext } from "../../context";
@@ -29,6 +30,7 @@ const ImageEditor = ({ className }: Props) => {
     AtomFirstImageFullyLoaded
   );
   const [compressChecked] = useAtom(AtomCompressChecked);
+  const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
 
   const {
     refFundoAppCropper,
@@ -56,7 +58,7 @@ const ImageEditor = ({ className }: Props) => {
       refLogoCabCropper.current.name = "logo-cab";
       data.push(refLogoCabCropper.current);
     }
-    downloadZip(data, compressChecked);
+    downloadZip(data, compressChecked, maxSizeOfImage);
   }
 
   return (
