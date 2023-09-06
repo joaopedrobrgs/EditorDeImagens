@@ -7,6 +7,8 @@
   align-items: center;
   top: 0;
   left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
   .page-settings-container {
     display: flex;
     flex-direction: column;
