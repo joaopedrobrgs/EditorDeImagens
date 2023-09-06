@@ -78,7 +78,7 @@ export default function ScreensSettings({ className }: Props) {
             <Slider
               value={fundoAppBlur}
               min={0}
-              step={1}
+              step={0.5}
               max={10}
               valueLabelFormat={valueLabelFormat(fundoAppBlur, "px")}
               onChange={(event: Event, newValue: number | number[]) => {
@@ -130,7 +130,7 @@ export default function ScreensSettings({ className }: Props) {
             <Slider
               value={fundoMenuBlur}
               min={0}
-              step={1}
+              step={0.5}
               max={10}
               valueLabelFormat={valueLabelFormat(fundoMenuBlur, "px")}
               onChange={(event: Event, newValue: number | number[]) => {
