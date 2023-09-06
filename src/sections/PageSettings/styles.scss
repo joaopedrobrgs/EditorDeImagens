@@ -9,6 +9,7 @@
   left: 0;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(3px);
+  font-size: 1em;
   .page-settings-container {
     display: flex;
     flex-direction: column;
@@ -46,6 +47,7 @@
       p {
         font-weight: bold;
         margin: 5px 10px;
+        text-align: center;
       }
       .option-content {
         display: flex;
@@ -64,6 +66,7 @@
           flex-direction: row;
           align-items: center;
           justify-content: center;
+          margin-top: 5px;
           div {
             width: 30%;
             display: flex;
@@ -87,16 +90,17 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      padding: 5px 0;
       .page-settings-confirm-btn {
         background-color: green !important;
-        margin: 10px !important;
+        margin: 5px 10px !important;
         &:hover {
           filter: brightness(90%);
         }
       }
       .page-settings-cancel-btn {
         background-color: red !important;
-        margin: 10px !important;
+        margin: 5px 10px !important;
         &:hover {
           filter: brightness(90%);
         }
@@ -112,8 +116,55 @@
   }
   .input-number-container {
     flex-direction: column !important;
-    div{
+    div {
       width: 50% !important;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .input-number-container {
+    div {
+      width: 60% !important;
+    }
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .page-settings-modal {
+    font-size: 0.8em;
+  }
+  .page-settings-confirm-btn {
+    font-size: 0.8em !important;
+  }
+  .page-settings-cancel-btn {
+    font-size: 0.8em !important;
+  }
+  .input-number-container {
+    div {
+      width: 75% !important;
+    }
+  }
+}
+
+@media screen and (max-width: 270px) {
+  .btn-container {
+    flex-direction: column !important;
+  }
+}
+
+@media screen and (max-width: 230px) {
+  .page-settings-modal {
+    font-size: 0.6em;
+  }
+  .input-number-container {
+    div {
+      width: 100% !important;
+    }
+  }
+  .option-content {
+    label {
+      text-align: center;
     }
   }
 }

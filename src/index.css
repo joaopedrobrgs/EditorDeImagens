@@ -82,18 +82,18 @@
 
 ::-webkit-scrollbar-button:horizontal:start:decrement {
   background-image: url('./assets/svgComponents/arrowLeft.svg');
-  background-size: 35%;
+  background-size: 38%;
 }
 
 ::-webkit-scrollbar-button:horizontal:start:decrement:hover {
   background-image: url('./assets/svgComponents/arrowLeftHover.svg');
-  background-size: 35%;
+  background-size: 38%;
   background-color: var(--blue-2);
 }
 
 ::-webkit-scrollbar-button:horizontal:start:decrement:active {
   background-image: url('./assets/svgComponents/arrowLeftHover.svg');
-  background-size: 35%;
+  background-size: 38%;
   background-color: var(--blue-4);
 }
 
@@ -103,18 +103,18 @@
 
 ::-webkit-scrollbar-button:horizontal:end:increment {
   background-image: url('./assets/svgComponents/arrowRight.svg');
-  background-size: 35%;
+  background-size: 38%;
 }
 
 ::-webkit-scrollbar-button:horizontal:end:increment:hover {
   background-image: url('./assets/svgComponents/arrowRightHover.svg');
-  background-size: 35%;
+  background-size: 38%;
   background-color: var(--blue-2);
 }
 
 ::-webkit-scrollbar-button:horizontal:end:increment:active {
   background-image: url('./assets/svgComponents/arrowRightHover.svg');
-  background-size: 35%;
+  background-size: 38%;
   background-color: var(--blue-4);
 }
 
