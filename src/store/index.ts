@@ -61,6 +61,15 @@ const getOnWheelChecked = (): boolean => {
 };
 const AtomOnWheelChecked = atomWithStorage<boolean>("@onWheelChecked", getOnWheelChecked());
 
+const getCompressChecked = (): boolean => {
+  const storedState = localStorage.getItem("@compressChecked");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return false;
+};
+const AtomCompressChecked = atomWithStorage<boolean>("@compressChecked", getCompressChecked());
+
 export {
   AtomShowSettingsModal,
   AtomFundoAppOriginalSize,
@@ -83,5 +92,6 @@ export {
   AtomOnWheelChecked,
   AtomWindowWidth,
   AtomActualTime,
-  AtomFirstImageFullyLoaded
+  AtomFirstImageFullyLoaded,
+  AtomCompressChecked
 };

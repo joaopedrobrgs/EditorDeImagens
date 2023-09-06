@@ -16,12 +16,17 @@ import {
   AtomSliderChecked,
   AtomWindowWidth,
   AtomFirstImageFullyLoaded,
+  AtomCompressChecked
 } from "../../../../store";
 import { Cropper } from "react-cropper";
 import DownloadIcon from "../../../../assets/svgComponents/DownloadIconSvg";
 import { Slider } from "@mui/material";
 import UploadIcon from "../../../../assets/svgComponents/UploadIconSvg";
-import { calcFontSizeAccordingToWidth, downloadImage } from "../../../../utils/utils";
+import {
+  calcFontSizeAccordingToWidth,
+  compressImage,
+  downloadImage,
+} from "../../../../utils/utils";
 import CropperDefault from "../../DefaultComponents/CropperDefault";
 import SliderDefault from "../../DefaultComponents/SliderDefault";
 import ButtonDefault from "../../DefaultComponents/ButtonDefault";
@@ -49,6 +54,7 @@ const FundoApp = (props: Props) => {
   const [sliderChecked, setSliderChecked] = useAtom(AtomSliderChecked);
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
+  const [compressChecked] = useAtom(AtomCompressChecked);
   const [windowWidth] = useAtom(AtomWindowWidth);
 
   const [imageFullyLoaded, setImageFullyLoaded] = useAtom(
@@ -102,7 +108,7 @@ const FundoApp = (props: Props) => {
 
   async function handleDownload() {
     cropperRef.current.name = outputFileName;
-    downloadImage(cropperRef.current);
+    downloadImage(cropperRef.current, compressChecked)
   }
 
   return (

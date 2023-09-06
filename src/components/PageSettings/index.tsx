@@ -6,16 +6,17 @@ import {
   AtomOnTouchChecked,
   AtomOnWheelChecked,
   AtomSliderChecked,
+  AtomCompressChecked,
 } from "../../store";
 import { Button } from "@mui/material";
 
 type Props = {};
 
 const PageSettings = (props: Props) => {
-
   const [sliderChecked, setOnSliderChecked] = useAtom(AtomSliderChecked);
   const [onWheelChecked, setOnWheelChecked] = useAtom(AtomOnWheelChecked);
   const [onTouchChecked, setOnTouchChecked] = useAtom(AtomOnTouchChecked);
+  const [compressChecked, setCompressChecked] = useAtom(AtomCompressChecked);
 
   const [sliderCheckedTemporaryState, setSliderCheckedTemporaryState] =
     useState(sliderChecked);
@@ -24,21 +25,31 @@ const PageSettings = (props: Props) => {
   const [onTouchCheckedTemporaryState, setOnTouchCheckedTemporaryState] =
     useState(onTouchChecked);
 
-  const [showSettingsModal, setShowSettingsModal] = useAtom(AtomShowSettingsModal);
+  const [compressCheckedTemporaryState, setCompressCheckedTemporaryState] =
+    useState(compressChecked);
+
+  const [showSettingsModal, setShowSettingsModal] = useAtom(
+    AtomShowSettingsModal
+  );
 
   function handleSaveChanges() {
     setOnSliderChecked(sliderCheckedTemporaryState);
     setOnWheelChecked(onWheelCheckedTemporaryState);
     setOnTouchChecked(onTouchCheckedTemporaryState);
+    setCompressChecked(compressCheckedTemporaryState)
     setShowSettingsModal(false);
     window.location.reload();
   }
 
-  function handleCancelChanges(e: any){
-    if(e.target.className.includes("page-settings-modal") || e.target.className.includes("page-settings-cancel-btn")){
-      setSliderCheckedTemporaryState(sliderChecked)
-      setOnWheelCheckedTemporaryState(onWheelChecked)
-      setOnTouchCheckedTemporaryState(onTouchChecked)
+  function handleCancelChanges(e: any) {
+    if (
+      e.target.className.includes("page-settings-modal") ||
+      e.target.className.includes("page-settings-cancel-btn")
+    ) {
+      setSliderCheckedTemporaryState(sliderChecked);
+      setOnWheelCheckedTemporaryState(onWheelChecked);
+      setOnTouchCheckedTemporaryState(onTouchChecked);
+      setCompressCheckedTemporaryState(compressChecked)
       setShowSettingsModal(false);
     }
   }
@@ -82,6 +93,21 @@ const PageSettings = (props: Props) => {
                 }}
               />
               Touch (Celulares)
+            </label>
+          </div>
+        </div>
+        <div className="option-container">
+          <p>Opções de Compressão:</p>
+          <div className="option-content">
+            <label>
+              <input
+                type="checkbox"
+                checked={compressCheckedTemporaryState}
+                onChange={() => {
+                  setCompressCheckedTemporaryState(!compressCheckedTemporaryState);
+                }}
+              />
+              Comprimir imagens
             </label>
           </div>
         </div>

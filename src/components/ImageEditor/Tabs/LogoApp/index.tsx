@@ -15,6 +15,7 @@ import {
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomWindowWidth,
+  AtomCompressChecked
 } from "../../../../store";
 import { Cropper } from "react-cropper";
 import DownloadIcon from "../../../../assets/svgComponents/DownloadIconSvg";
@@ -45,6 +46,7 @@ const LogoApp = (props: Props) => {
   const [sliderChecked, setSliderChecked] = useAtom(AtomSliderChecked);
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
+  const [compressChecked] = useAtom(AtomCompressChecked);
   const [windowWidth] = useAtom(AtomWindowWidth);
   const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
 
@@ -95,7 +97,7 @@ const LogoApp = (props: Props) => {
 
   async function handleDownload() {
     cropperRef.current.name = outputFileName;
-    downloadImage(cropperRef.current);
+    downloadImage(cropperRef.current, compressChecked);
   }
 
   return (

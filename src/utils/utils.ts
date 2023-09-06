@@ -78,16 +78,67 @@ export function getWindowWidth() {
   return window.innerWidth;
 }
 
-export function downloadZip(data: Array<ReactCropperElement>): void {
+export async function compressImage(blob: Blob, outputFileName: string) {
+  // const blob: any = await new Promise((resolve) =>
+  //   imageRef.cropper?.getCroppedCanvas().toBlob(resolve)
+  // );
+  const file = new File([blob], outputFileName, {
+    type: "image/png",
+  });
+  const options: ImageCompressionOptions = {
+    maxSizeMB: 0.4,
+    fileType: "image/png",
+  };
+  // const compressedImage: any = await new Promise((resolve) =>
+  //   imageCompression(file, options).then(resolve)
+  // );
+  const compressedImage: any = await imageCompression(file, options);
+  return compressedImage;
+}
+
+export async function downloadImage(
+  croppedImage: ReactCropperElement,
+  compressChecked: boolean
+) {
+  //Pegando imagem como Blob e atribuindo à variável "blob":
+  let blob: any = await new Promise((resolve) =>
+    croppedImage.cropper?.getCroppedCanvas().toBlob(resolve)
+  );
+  console.log("Image to download: ", blob);
+  //Comprimindo imagem (se a opção de comprimir estiver marcada):
+  if (compressChecked) {
+    //Atribuindo resultado da compressão à variável "blob":
+    blob = await new Promise((resolve) =>
+      compressImage(blob, croppedImage.name).then(resolve)
+    );
+    console.log("Image to download compressed: ", blob);
+  }
+  //Fazendo download da imagem:
+  saveAs(blob, croppedImage.name);
+}
+
+export function downloadZip(
+  data: Array<ReactCropperElement>,
+  compressChecked: boolean
+) {
   //Criando o arquivo zip:
   var zip = new JSZip();
 
   //Fazendo um map no nosso array com as imagens cortadas e atribuindo a uma constante:
   const downloadZips = data.map(async (croppedImage, index) => {
-    //Pegando as imagens em formato BLOB:
-    const blob: any = await new Promise((resolve) =>
+    //Pegando imagens como Blob e atribuindo à variável "blob":
+    let blob: any = await new Promise((resolve) =>
       croppedImage.cropper?.getCroppedCanvas().toBlob(resolve)
     );
+    console.log("Image to download: ", blob);
+    //Comprimindo imagem (se a opção de comprimir estiver marcada):
+    if (compressChecked) {
+      //Atribuindo resultado da compressão à variável "blob":
+      blob = await new Promise((resolve) =>
+        compressImage(blob, croppedImage.name).then(resolve)
+      );
+      console.log("Image to download compressed: ", blob);
+    }
     //Adicionando os BLOBs no nosso arquivo zip:
     zip.file(`${croppedImage?.name}.png`, blob);
   });
@@ -100,31 +151,4 @@ export function downloadZip(data: Array<ReactCropperElement>): void {
       saveAs(content, "cropped-images.zip");
     });
   });
-}
-
-export async function downloadImage(imageRef: ReactCropperElement){
-    //Salvando apenas:
-    // const blob: any = await new Promise((resolve) =>
-    //   imageRef.cropper?.getCroppedCanvas().toBlob(resolve)
-    // );
-    // if (!!blob) {
-    //   saveAs(blob, imageRef.name);
-    // }
-
-    //Comprimindo e depois salvando:
-    const blob: any = await new Promise((resolve) =>
-      imageRef.cropper?.getCroppedCanvas().toBlob(resolve)
-    );
-    const file = new File([blob], imageRef.name, {
-      type: "image/png",
-    });
-    const options: ImageCompressionOptions = {
-      maxSizeMB: 0.4,
-      fileType: "image/png",
-    };
-    // const compressedFile = await CompressionService(file);
-    const compressedFile = await imageCompression(file, options);
-    if(!!compressedFile){
-      saveAs(compressedFile, imageRef.name);
-    }
 }

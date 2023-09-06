@@ -9,7 +9,11 @@ import FundoMenu from "./Tabs/FundoMenu";
 import ButtonDefault from "./DefaultComponents/ButtonDefault";
 import DownloadIcon from "../../assets/svgComponents/DownloadIconSvg";
 import { useAtom } from "jotai";
-import { AtomWindowWidth, AtomFirstImageFullyLoaded } from "../../store";
+import {
+  AtomWindowWidth,
+  AtomFirstImageFullyLoaded,
+  AtomCompressChecked,
+} from "../../store";
 import { calcFontSizeAccordingToWidth, downloadZip } from "../../utils/utils";
 import { useAppContext } from "../../context";
 import { saveAs } from "file-saver";
@@ -24,6 +28,7 @@ const ImageEditor = ({ className }: Props) => {
   const [imageFullyLoaded, setImageFullyLoaded] = useAtom(
     AtomFirstImageFullyLoaded
   );
+  const [compressChecked] = useAtom(AtomCompressChecked);
 
   const {
     refFundoAppCropper,
@@ -51,7 +56,7 @@ const ImageEditor = ({ className }: Props) => {
       refLogoCabCropper.current.name = "logo-cab";
       data.push(refLogoCabCropper.current);
     }
-    downloadZip(data);
+    downloadZip(data, compressChecked);
   }
 
   return (
