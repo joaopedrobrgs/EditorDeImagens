@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
-import { getWindowWidth, hoursMinutesToString } from "../utils/utils";
+import { getWindowHeight, getWindowWidth, hoursMinutesToString } from "../utils/utils";
 
 const AtomFirstImageFullyLoaded = atom<boolean>(false);
 
@@ -8,8 +8,9 @@ const AtomFirstImageFullyLoaded = atom<boolean>(false);
 const AtomActualTime = atom<string>(hoursMinutesToString(new Date()));
 // const AtomActualTime = atom<Date>(new Date());
 
-//WindowWidth Atom:
+//Window Atoms:
 const AtomWindowWidth = atom<number>(getWindowWidth());
+const AtomWindowHeight = atom<number>(getWindowHeight());
 
 //Components Atoms:
 const AtomShowSettingsModal = atom<boolean>(false);
@@ -103,5 +104,6 @@ export {
   AtomActualTime,
   AtomFirstImageFullyLoaded,
   AtomCompressChecked,
-  AtomMaxSizeOfImage
+  AtomMaxSizeOfImage,
+  AtomWindowHeight
 };

@@ -1,3 +1,10 @@
+.page-container{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .home-container {
   max-width: 2560px;
   margin: auto;

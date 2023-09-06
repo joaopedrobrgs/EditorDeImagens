@@ -78,6 +78,10 @@ export function getWindowWidth() {
   return window.innerWidth;
 }
 
+export function getWindowHeight() {
+  return window.innerHeight;
+}
+
 export async function compressImage(blob: Blob, outputFileName: string, maxSizeOfImage: number) {
   // const blob: any = await new Promise((resolve) =>
   //   imageRef.cropper?.getCroppedCanvas().toBlob(resolve)
