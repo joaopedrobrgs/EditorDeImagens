@@ -27,6 +27,12 @@ const CropperDefault = (props: Props) => {
   //   }
   // }
 
+  const [key, setKey] = useState(0)
+
+  useEffect(()=>{
+    setKey(key + 1)
+  }, [onTouchChecked, onWheelChecked])
+
   return (
     <Cropper
       //Default Options:
@@ -46,7 +52,7 @@ const CropperDefault = (props: Props) => {
       dragMode="move"
       zoomOnTouch={onTouchChecked}
       zoomOnWheel={onWheelChecked}
-
+      key={key}
       //Props:
       ref={props.cropperReference}
       aspectRatio={props.aspectRatio}

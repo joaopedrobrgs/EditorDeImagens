@@ -39,17 +39,15 @@ const PageSettings = (props: Props) => {
   function handleSaveChanges() {
     setCompressChecked(compressCheckedTemporaryState);
     setMaxSizeOfImage(maxSizeOfImageTemporaryState);
-    setShowSettingsModal(false);
-    if (
-      sliderCheckedTemporaryState !== sliderChecked ||
-      onWheelCheckedTemporaryState !== onWheelChecked ||
-      onTouchCheckedTemporaryState !== onTouchChecked
-    ) {
-      setSliderChecked(sliderCheckedTemporaryState);
+    setSliderChecked(sliderCheckedTemporaryState);
+    if (onWheelCheckedTemporaryState !== onWheelChecked) {
       setOnWheelChecked(onWheelCheckedTemporaryState);
-      setOnTouchChecked(onTouchCheckedTemporaryState);
-      window.location.reload();
     }
+    if (onTouchCheckedTemporaryState !== onTouchChecked) {
+      setOnTouchChecked(onTouchCheckedTemporaryState);
+    }
+    setShowSettingsModal(false);
+    // window.location.reload();
   }
 
   function handleCancelChanges(e: any) {
@@ -72,7 +70,9 @@ const PageSettings = (props: Props) => {
         <div className="option-container">
           <div className="zoom-options-title">
             <p>Opções de Zoom:</p>
-            <p className="observation-text">(alterações aqui irão atualizar a página)</p>
+            <p className="observation-text">
+              (alterações aqui podem causar mudanças no recorte)
+            </p>
           </div>
           <div className="option-content">
             <label>
@@ -136,15 +136,17 @@ const PageSettings = (props: Props) => {
               }`}
             >
               <span>Tamanho máximo:</span>
-              <input
-                type="number"
-                value={maxSizeOfImageTemporaryState}
-                onChange={(e) => {
-                  setMaxSizeOfImageTemporaryState(parseFloat(e.target.value));
-                }}
-                disabled={compressCheckedTemporaryState ? false : true}
-              />
-              <span>kbs</span>
+              <div>
+                <input
+                  type="number"
+                  value={maxSizeOfImageTemporaryState}
+                  onChange={(e) => {
+                    setMaxSizeOfImageTemporaryState(parseFloat(e.target.value));
+                  }}
+                  disabled={compressCheckedTemporaryState ? false : true}
+                />
+                <span>kbs</span>
+              </div>
             </div>
           </div>
         </div>
