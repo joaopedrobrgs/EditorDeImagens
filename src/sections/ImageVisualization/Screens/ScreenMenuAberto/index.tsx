@@ -16,12 +16,6 @@ type Props = {
 };
 
 const MenuAberto = ({}: Props) => {
-  const [fundoMenuImg] = useAtom(AtomFundoMenuCropped);
-  const [logoCabImg] = useAtom(AtomLogoCabCropped);
-
-  // const [actualTime, setActualTime] = useState<string>(
-  //   hoursMinutesToString(new Date())
-  // );
 
   const [actualTime] = useAtom(AtomActualTime)
 
@@ -31,15 +25,6 @@ const MenuAberto = ({}: Props) => {
         <div className="tw-grid tw-grid-cols-4 tw-grid-rows-1 tw-h-9/10">
           <div className="menu-container tw-col-span-3">
             <div className="menu-header-container">
-              {/* <div
-                className="menu-header-background-image"
-                style={{
-                  backgroundImage: `url(${
-                    fundoMenuImg ??
-                    `${process.env.PUBLIC_URL}fundo_menu_sample.png`
-                  })`,
-                }}
-              /> */}
               <div className="fundo-menu-box">
                 <div
                   className="fundo-menu-preview"
@@ -78,11 +63,6 @@ const MenuAberto = ({}: Props) => {
             </div>
             <div className="app-header">
               <div className="img-container">
-                {/* <img
-                  src={
-                    logoCabImg ?? `${process.env.PUBLIC_URL}logo_cab_sample.png`
-                  }
-                /> */}
                 <div className="logo-cab-box">
                   <div
                     className="logo-cab-preview"

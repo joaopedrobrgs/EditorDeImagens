@@ -9,30 +9,8 @@ type Props = {
 };
 
 const TelaInicial = ({}: Props) => {
-  const [fundoAppImg] = useAtom(AtomFundoAppCropped);
-  const [logoAppImg] = useAtom(AtomLogoAppCropped);
-
-  // const screenRef = useRef<HTMLDivElement | null>(null);
-
-  // useEffect(() => {
-  //   if (!!fundoAppImg) {
-  //     if (!!screenRef.current) {
-  //       screenRef.current.style.backgroundImage = `url(${fundoAppImg})`;
-  //     }
-  //   }
-  // }, [fundoAppImg]);
-
   return (
     <div className="screen-login-container">
-      {/* <div
-        className="background-image fundo-app-preview"
-        // ref={screenRef}
-        style={{
-          backgroundImage: `url(${
-            fundoAppImg ?? `${process.env.PUBLIC_URL}fundo_app_sample.png`
-          })`,
-        }}
-      ></div> */}
       <div className="fundo-app-box">
         <div
           className="fundo-app-preview"
@@ -41,9 +19,6 @@ const TelaInicial = ({}: Props) => {
       </div>
       <div className="screen-container">
         <div className="logo">
-          {/* <img
-            src={logoAppImg ?? `${process.env.PUBLIC_URL}logo_app_sample.png`}
-          /> */}
           <div className="logo-app-box">
             <div
               className="logo-app-preview"
