@@ -81,6 +81,27 @@
 }
 
 ::-webkit-scrollbar-button:horizontal:start:decrement {
+  display: none;
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment {
+  display: none;
+}
+
+::-webkit-scrollbar-button:horizontal:end:decrement {
+  display: none;
+}
+/* 
+::-webkit-scrollbar-button:horizontal:start:increment {
+  display: none;
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment {
+  background-image: url('./assets/svgComponents/arrowRight.svg');
+  background-size: 38%;
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement {
   background-image: url('./assets/svgComponents/arrowLeft.svg');
   background-size: 38%;
 }
@@ -116,7 +137,7 @@
   background-image: url('./assets/svgComponents/arrowRightHover.svg');
   background-size: 38%;
   background-color: var(--blue-4);
-}
+} */
 
 :root {
   --blue-1: #2B7ECB;
