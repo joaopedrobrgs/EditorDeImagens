@@ -1,6 +1,6 @@
 import { Slider, SliderProps } from "@mui/material";
 import { useAtom } from "jotai";
-import { AtomSliderChecked, AtomWindowWidth } from "../../store";
+import { AtomSliderChecked, AtomWindowWidth } from "src/store";
 
 import React from "react";
 

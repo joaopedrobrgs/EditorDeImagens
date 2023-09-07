@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, ReactNode } from "react";
-import { calcFontSizeAccordingToWidth } from "../../utils/utils";
+import { calcFontSizeAccordingToWidth } from "src/utils/utils";
 import { useAtom } from "jotai";
-import { AtomWindowWidth } from "../../store";
+import { AtomWindowWidth } from "src/store";
 import "./styles.scss";
 
 interface Props {

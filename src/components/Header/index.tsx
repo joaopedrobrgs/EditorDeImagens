@@ -3,9 +3,8 @@ import { MdOutlineAddToDrive, MdOutlineSettings } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import "./styles.scss";
 import React from "react";
-import { useAppContext } from "../../context";
 import { useAtom } from "jotai";
-import { AtomShowSettingsModal, AtomWindowWidth } from "../../store";
+import { AtomShowSettingsModal, AtomWindowWidth } from "src/store";
 
 type Props = {
   text: string;
@@ -14,7 +13,7 @@ type Props = {
 
 const Header = ({ text }: Props) => {
   const [windowWidth] = useAtom(AtomWindowWidth);
-  const [showSettingsModal, setShowSettingsModal] = useAtom(
+  const [, setShowSettingsModal] = useAtom(
     AtomShowSettingsModal
   );
 
