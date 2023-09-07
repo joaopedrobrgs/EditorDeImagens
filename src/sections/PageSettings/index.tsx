@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import { useAtom } from "jotai";
 import {
@@ -20,69 +20,35 @@ const PageSettings = (props: Props) => {
   const [compressChecked, setCompressChecked] = useAtom(AtomCompressChecked);
   const [maxSizeOfImage, setMaxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
 
-  const [sliderCheckedTemporaryState, setSliderCheckedTemporaryState] =
-    useState(sliderChecked);
-  const [onWheelCheckedTemporaryState, setOnWheelCheckedTemporaryState] =
-    useState(onWheelChecked);
-  const [onTouchCheckedTemporaryState, setOnTouchCheckedTemporaryState] =
-    useState(onTouchChecked);
-
-  const [compressCheckedTemporaryState, setCompressCheckedTemporaryState] =
-    useState(compressChecked);
-  const [maxSizeOfImageTemporaryState, setMaxSizeOfImageTemporaryState] =
-    useState<number>(maxSizeOfImage);
-
-  const [showSettingsModal, setShowSettingsModal] = useAtom(
+  const [, setShowSettingsModal] = useAtom(
     AtomShowSettingsModal
   );
 
-  function handleSaveChanges() {
-    setCompressChecked(compressCheckedTemporaryState);
-    setMaxSizeOfImage(maxSizeOfImageTemporaryState);
-    if(sliderCheckedTemporaryState !== sliderChecked){
-      setSliderChecked(sliderCheckedTemporaryState);
-    }
-    if (onWheelCheckedTemporaryState !== onWheelChecked) {
-      setOnWheelChecked(onWheelCheckedTemporaryState);
-    }
-    if (onTouchCheckedTemporaryState !== onTouchChecked) {
-      setOnTouchChecked(onTouchCheckedTemporaryState);
-    }
-    setShowSettingsModal(false);
-    // window.location.reload();
-  }
-
-  function handleCancelChanges(e: any) {
+  function handleCloseModal(e: any) {
     if (
-      e.target.className.includes("page-settings-modal") ||
-      e.target.className.includes("page-settings-cancel-btn")
+      e.target.className.includes("page-settings-modal")
     ) {
-      setSliderCheckedTemporaryState(sliderChecked);
-      setOnWheelCheckedTemporaryState(onWheelChecked);
-      setOnTouchCheckedTemporaryState(onTouchChecked);
-      setCompressCheckedTemporaryState(compressChecked);
-      setMaxSizeOfImageTemporaryState(maxSizeOfImage);
       setShowSettingsModal(false);
     }
   }
 
   return (
-    <div className="page-settings-modal" onClick={handleCancelChanges}>
+    <div className="page-settings-modal" onClick={handleCloseModal}>
       <div className="page-settings-container">
         <div className="option-container">
           <div className="zoom-options-title">
             <p>Opções de Zoom:</p>
             <p className="observation-text">
-              (alterações aqui podem ter interferir no zoom atual)
+              (alterações aqui interferem no zoom atual)
             </p>
           </div>
           <div className="option-content">
             <label>
               <input
                 type="checkbox"
-                checked={sliderCheckedTemporaryState}
+                checked={sliderChecked}
                 onChange={() => {
-                  setSliderCheckedTemporaryState(!sliderCheckedTemporaryState);
+                  setSliderChecked(!sliderChecked);
                 }}
               />
               Controle Deslizante
@@ -90,10 +56,10 @@ const PageSettings = (props: Props) => {
             <label>
               <input
                 type="checkbox"
-                checked={onWheelCheckedTemporaryState}
+                checked={onWheelChecked}
                 onChange={() => {
-                  setOnWheelCheckedTemporaryState(
-                    !onWheelCheckedTemporaryState
+                  setOnWheelChecked(
+                    !onWheelChecked
                   );
                 }}
               />
@@ -102,10 +68,10 @@ const PageSettings = (props: Props) => {
             <label>
               <input
                 type="checkbox"
-                checked={onTouchCheckedTemporaryState}
+                checked={onTouchChecked}
                 onChange={() => {
-                  setOnTouchCheckedTemporaryState(
-                    !onTouchCheckedTemporaryState
+                  setOnTouchChecked(
+                    !onTouchChecked
                   );
                 }}
               />
@@ -123,10 +89,10 @@ const PageSettings = (props: Props) => {
             >
               <input
                 type="checkbox"
-                checked={compressCheckedTemporaryState}
+                checked={compressChecked}
                 onChange={() => {
-                  setCompressCheckedTemporaryState(
-                    !compressCheckedTemporaryState
+                  setCompressChecked(
+                    !compressChecked
                   );
                 }}
               />
@@ -134,39 +100,23 @@ const PageSettings = (props: Props) => {
             </label>
             <div
               className={`input-number-container ${
-                compressCheckedTemporaryState ? "" : "input-number-disabled"
+                compressChecked ? "" : "input-number-disabled"
               }`}
             >
               <span>Tamanho máximo:</span>
               <div>
                 <input
                   type="number"
-                  value={maxSizeOfImageTemporaryState}
+                  value={maxSizeOfImage}
                   onChange={(e) => {
-                    setMaxSizeOfImageTemporaryState(parseFloat(e.target.value));
+                    setMaxSizeOfImage(parseFloat(e.target.value));
                   }}
-                  disabled={compressCheckedTemporaryState ? false : true}
+                  disabled={compressChecked ? false : true}
                 />
                 <span>kbs</span>
               </div>
             </div>
           </div>
-        </div>
-        <div className="btn-container">
-          <Button
-            variant="contained"
-            className="page-settings-confirm-btn"
-            onClick={handleSaveChanges}
-          >
-            Confirmar
-          </Button>
-          <Button
-            variant="contained"
-            className="page-settings-cancel-btn"
-            onClick={handleCancelChanges}
-          >
-            Cancelar
-          </Button>
         </div>
       </div>
     </div>
