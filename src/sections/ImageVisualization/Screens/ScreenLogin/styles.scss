@@ -27,7 +27,10 @@
     height: 450px;
     width: 250px;
     backdrop-filter: blur(var(--fundo-app-blur));
-    // backdrop-filter: opacity(var(--fundo-app-opacity));
+    -webkit-backdrop-filter: blur(var(--fundo-app-blur));
+    -moz-backdrop-filter: blur(var(--fundo-app-blur));
+    -o-backdrop-filter: blur(var(--fundo-app-blur));
+    -ms-backdrop-filter: blur(var(--fundo-app-blur));
 
     .logo-app-box {
       display: flex;
