@@ -1,7 +1,7 @@
 import JSZip from "jszip";
 import { ReactCropperElement } from "react-cropper";
 import { saveAs } from "file-saver";
-import { ImageCompressionOptions } from "../types/ImageCompression";
+import { ImageCompressionOptions } from "src/types/ImageCompression";
 import imageCompression from "browser-image-compression";
 
 export function hoursMinutesToString(date: Date): string {
@@ -83,12 +83,11 @@ export function getWindowHeight() {
 }
 
 export async function compressImage(blob: Blob, outputFileName: string, maxSizeOfImage: number) {
-  // const blob: any = await new Promise((resolve) =>
-  //   imageRef.cropper?.getCroppedCanvas().toBlob(resolve)
-  // );
+  //Transforming Blob into File:
   const file = new File([blob], outputFileName, {
     type: "image/png",
   });
+  //Options that will be passed in the requisition:
   const options: ImageCompressionOptions = {
     maxSizeMB: maxSizeOfImage / 1000,
     fileType: "image/png",
@@ -96,7 +95,9 @@ export async function compressImage(blob: Blob, outputFileName: string, maxSizeO
   // const compressedImage: any = await new Promise((resolve) =>
   //   imageCompression(file, options).then(resolve)
   // );
+  //Making a requisition to the API:
   const compressedImage: any = await imageCompression(file, options);
+  //Returning the response of the requisition:
   return compressedImage;
 }
 
@@ -105,20 +106,20 @@ export async function downloadImage(
   compressChecked: boolean,
   maxSizeOfImage: number
 ) {
-  //Pegando imagem como Blob e atribuindo à variável "blob":
+  //Getting image in Blob format and assigning it to a variable:
   let blob: any = await new Promise((resolve) =>
     croppedImage.cropper?.getCroppedCanvas().toBlob(resolve)
   );
   console.log("Image to download: ", blob);
-  //Comprimindo imagem (se a opção de comprimir estiver marcada):
+  //Compressing the image (if the "compress" option is checked):
   if (compressChecked) {
-    //Atribuindo resultado da compressão à variável "blob":
+    //Assigning compression result to the "blob" variable:
     blob = await new Promise((resolve) =>
       compressImage(blob, croppedImage.name, maxSizeOfImage).then(resolve)
     );
     console.log("Image to download compressed: ", blob);
   }
-  //Fazendo download da imagem:
+  //Downloading the image:
   saveAs(blob, croppedImage.name);
 }
 
@@ -127,33 +128,33 @@ export function downloadZip(
   compressChecked: boolean,
   maxSizeOfImage: number
 ) {
-  //Criando o arquivo zip:
+  //Creating zip file:
   var zip = new JSZip();
 
-  //Fazendo um map no nosso array com as imagens cortadas e atribuindo a uma constante:
+  //Making a map in our array that contains the cropped images and assigning it to a constant variable:
   const downloadZips = data.map(async (croppedImage, index) => {
-    //Pegando imagens como Blob e atribuindo à variável "blob":
+    //Getting image in Blob format and assigning it to a variable:
     let blob: any = await new Promise((resolve) =>
       croppedImage.cropper?.getCroppedCanvas().toBlob(resolve)
     );
     console.log("Image to download: ", blob);
-    //Comprimindo imagem (se a opção de comprimir estiver marcada):
+    //Compressing the image (if the "compress" option is checked):
     if (compressChecked) {
-      //Atribuindo resultado da compressão à variável "blob":
+      //Assigning compression result to the "blob" variable:
       blob = await new Promise((resolve) =>
         compressImage(blob, croppedImage.name, maxSizeOfImage).then(resolve)
       );
       console.log("Image to download compressed: ", blob);
     }
-    //Adicionando os BLOBs no nosso arquivo zip:
+    //Adding Blobs to the zip file:
     zip.file(`${croppedImage?.name}.png`, blob);
   });
 
-  //Pegando as promisses que a nossa constante retorna e fazendo algo a partir disso:
+  //Taking the promises that our constant returns and doing something:
   Promise.all(downloadZips).then(() => {
-    //Pegando o resultado do nosso arquivo zipado:
+    //Getting zip file result:
     zip.generateAsync({ type: "blob" }).then((content) => {
-      //Salvando o arquivo zipado no dispositivo do usuário:
+      //Saving zip file on user device:
       saveAs(content, "cropped-images.zip");
     });
   });

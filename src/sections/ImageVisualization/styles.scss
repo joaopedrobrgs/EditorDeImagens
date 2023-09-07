@@ -1,9 +1,5 @@
 .image-visualization-container {
   margin: 1.25rem 0;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // width: 100%;
 
   .pre-visualization-text {
     font-weight: bold;
@@ -14,8 +10,6 @@
   .screens-container {
     display: flex;
     justify-content: center;
-    // padding-left: 200px;
-    // max-width: 750px;
     overflow-x: scroll;
   }
 }

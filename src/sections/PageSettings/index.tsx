@@ -8,7 +8,7 @@ import {
   AtomSliderChecked,
   AtomCompressChecked,
   AtomMaxSizeOfImage,
-} from "../../store";
+} from "src/store";
 import { Button } from "@mui/material";
 
 type Props = {};

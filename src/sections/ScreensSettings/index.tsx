@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Slider from "@mui/material/Slider";
@@ -12,10 +12,9 @@ import {
   AtomFundoMenuOpacity,
   AtomFundoMenuBlur,
   AtomWindowWidth
-} from "../../store";
-import { changeRootVarAtribute, valueLabelFormat } from "../../utils/utils";
+} from "src/store";
+import { changeRootVarAtribute, valueLabelFormat } from "src/utils/utils";
 import "./styles.scss";
-import { useAppContext } from "../../context";
 
 type Props = {
   className: string;

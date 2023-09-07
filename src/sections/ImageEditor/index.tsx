@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./styles.scss";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -6,18 +6,17 @@ import FundoApp from "./Tabs/FundoApp";
 import LogoApp from "./Tabs/LogoApp";
 import LogoCab from "./Tabs/LogoCab";
 import FundoMenu from "./Tabs/FundoMenu";
-import ButtonDefault from "../../components/Button";
-import DownloadIcon from "../../assets/svgComponents/DownloadIconSvg";
+import ButtonDefault from "src/components/Button";
+import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import { useAtom } from "jotai";
 import {
   AtomWindowWidth,
   AtomFirstImageFullyLoaded,
   AtomCompressChecked,
   AtomMaxSizeOfImage
-} from "../../store";
-import { calcFontSizeAccordingToWidth, downloadZip } from "../../utils/utils";
-import { useAppContext } from "../../context";
-import { saveAs } from "file-saver";
+} from "src/store";
+import { calcFontSizeAccordingToWidth, downloadZip } from "src/utils/utils";
+import { useAppContext } from "src/context";
 import { ReactCropperElement } from "react-cropper";
 
 type Props = {

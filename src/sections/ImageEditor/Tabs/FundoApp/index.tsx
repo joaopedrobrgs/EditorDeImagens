@@ -1,39 +1,27 @@
 import React, { useState, useRef } from "react";
 import "cropperjs/dist/cropper.css";
 import "../styles.scss";
-// import imageCompression from "browser-image-compression";
-// import { ImageCompressionOptions } from "../../../../types/ImageCompression";
-import { saveAs } from "file-saver";
 import { useAtom } from "jotai/react";
-import { useAppContext } from "../../../../context";
+import { useAppContext } from "src/context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import {
   AtomFundoAppCropped,
   AtomFundoAppOriginalSize,
-  AtomOnTouchChecked,
-  AtomOnWheelChecked,
-  AtomSliderChecked,
   AtomWindowWidth,
   AtomFirstImageFullyLoaded,
   AtomCompressChecked,
   AtomMaxSizeOfImage
-} from "../../../../store";
-import { Cropper } from "react-cropper";
-import DownloadIcon from "../../../../assets/svgComponents/DownloadIconSvg";
-import { Slider } from "@mui/material";
-import UploadIcon from "../../../../assets/svgComponents/UploadIconSvg";
+} from "src/store";
+import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
+import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
 import {
   calcFontSizeAccordingToWidth,
-  compressImage,
   downloadImage,
-} from "../../../../utils/utils";
-import CropperDefault from "../../../../components/Cropper";
-import SliderDefault from "../../../../components/Slider";
-import ButtonDefault from "../../../../components/Button";
-import { CompressionService } from "../../../../services/useCompression";
-import { ImageCompressionOptions } from "../../../../types/ImageCompression";
-import imageCompression from "browser-image-compression";
+} from "src/utils/utils";
+import CropperDefault from "src/components/Cropper";
+import SliderDefault from "src/components/Slider";
+import ButtonDefault from "src/components/Button";
 
 type Props = {};
 
@@ -44,7 +32,7 @@ const FundoApp = (props: Props) => {
   const previewClass: string = "fundo-app-preview";
   const outputFileName: string = "fundo_app.png";
   const aspectRatio = 500 / 889;
-  const [cropData, setCropData] = useAtom(AtomFundoAppCropped);
+  const [, setCropData] = useAtom(AtomFundoAppCropped);
   const [image, setImage] = useAtom(AtomFundoAppOriginalSize);
   const { refFundoAppCropper: cropperRef } = useAppContext();
 
@@ -52,9 +40,6 @@ const FundoApp = (props: Props) => {
   const [zoomValue, setZoomValue] = useState<number>(0);
   const inputRef = useRef<any>();
   const sliderRef = useRef<any>();
-  const [sliderChecked, setSliderChecked] = useAtom(AtomSliderChecked);
-  const [onTouchChecked] = useAtom(AtomOnTouchChecked);
-  const [onWheelChecked] = useAtom(AtomOnWheelChecked);
   const [compressChecked] = useAtom(AtomCompressChecked);
   const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
   const [windowWidth] = useAtom(AtomWindowWidth);

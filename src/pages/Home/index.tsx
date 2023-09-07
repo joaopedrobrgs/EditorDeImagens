@@ -1,21 +1,19 @@
-import { FiGithub } from "react-icons/fi";
-import { MdOutlineAddToDrive } from "react-icons/md";
-import "./styles.scss";
-import Header from "../../components/Header";
 import React, { useEffect } from "react";
-import ImageEditor from "../../sections/ImageEditor";
-import ImageVisualization from "../../sections/ImageVisualization";
-import PageSettings from "../../sections/PageSettings";
+import "./styles.scss";
+import Header from "src/components/Header";
+import ImageEditor from "src/sections/ImageEditor";
+import ImageVisualization from "src/sections/ImageVisualization";
+import PageSettings from "src/sections/PageSettings";
 import { useAtom } from "jotai";
 import {
   AtomShowSettingsModal,
   AtomWindowWidth,
   AtomActualTime,
   AtomWindowHeight
-} from "../../store";
-import ScreensSettings from "../../sections/ScreensSettings";
-import { getWindowHeight, getWindowWidth, hoursMinutesToString } from "../../utils/utils";
-import BottomLine from "../../components/BottomLine";
+} from "src/store";
+import ScreensSettings from "src/sections/ScreensSettings";
+import { getWindowHeight, getWindowWidth, hoursMinutesToString } from "src/utils/utils";
+import BottomLine from "src/components/BottomLine";
 
 type Props = {
   // children: JSX.Element;
@@ -24,8 +22,8 @@ type Props = {
 const Home = ({}: Props) => {
   const [showSettingsModal] = useAtom(AtomShowSettingsModal);
   const [windowWidth, setWindowWidth] = useAtom(AtomWindowWidth);
-  const [windowHeight, setWindowHeight] = useAtom(AtomWindowHeight);
-  const [actualTime, setActualTime] = useAtom(AtomActualTime);
+  const [, setWindowHeight] = useAtom(AtomWindowHeight);
+  const [, setActualTime] = useAtom(AtomActualTime);
 
   useEffect(() => {
     function handleWindowResize() {

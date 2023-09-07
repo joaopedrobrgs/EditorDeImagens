@@ -1,6 +1,6 @@
 import { atom } from "jotai";
-import { atomWithStorage, createJSONStorage } from "jotai/utils";
-import { getWindowHeight, getWindowWidth, hoursMinutesToString } from "../utils/utils";
+import { atomWithStorage } from "jotai/utils";
+import { getWindowHeight, getWindowWidth, hoursMinutesToString } from "src/utils/utils";
 
 const AtomFirstImageFullyLoaded = atom<boolean>(false);
 

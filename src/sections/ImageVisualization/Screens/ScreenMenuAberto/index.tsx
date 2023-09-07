@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "./styles.scss";
 import { useAtom } from "jotai";
-import { AtomFundoMenuCropped, AtomLogoCabCropped, AtomActualTime } from "../../../../store";
-import { hoursMinutesToString } from "../../../../utils/utils";
-// import { IoWifi, IoBatteryFullOutline } from "react-icons/io5";
+import { AtomActualTime } from "src/store";
 import { IoIosWifi, IoIosBatteryFull } from "react-icons/io";
 import { TbGridDots } from "react-icons/tb";
-import QrCodeSvg from "../../../../assets/svgComponents/QrCodeSvg";
+import QrCodeSvg from "src/assets/svgComponents/QrCodeSvg";
 
-import { exampleMenuItems as menuItems } from "../../../../utils/exampleMenuItems";
-import IphoneBottomLine from "../../../../components/IphoneBottomLine";
+import { exampleMenuItems as menuItems } from "src/utils/exampleMenuItems";
+import IphoneBottomLine from "src/components/IphoneBottomLine";
 
 type Props = {
   // className: string

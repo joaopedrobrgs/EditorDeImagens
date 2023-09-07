@@ -2,12 +2,9 @@ import { HiLockClosed, HiOutlineHome, HiUsers } from "react-icons/hi";
 import { BsCashStack } from "react-icons/bs";
 import {
   IoGridOutline,
-  IoWallet,
-  IoCalendar,
   IoLogOut,
-  IoTrophy,
 } from "react-icons/io5";
-import { FaUser, FaDumbbell, FaUserCheck, FaUserFriends } from "react-icons/fa";
+import { FaUser, FaUserFriends } from "react-icons/fa";
 
 type MenuItemProps = {
   id: number,
