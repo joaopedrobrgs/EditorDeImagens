@@ -39,7 +39,9 @@ const PageSettings = (props: Props) => {
   function handleSaveChanges() {
     setCompressChecked(compressCheckedTemporaryState);
     setMaxSizeOfImage(maxSizeOfImageTemporaryState);
-    setSliderChecked(sliderCheckedTemporaryState);
+    if(sliderCheckedTemporaryState !== sliderChecked){
+      setSliderChecked(sliderCheckedTemporaryState);
+    }
     if (onWheelCheckedTemporaryState !== onWheelChecked) {
       setOnWheelChecked(onWheelCheckedTemporaryState);
     }
@@ -71,7 +73,7 @@ const PageSettings = (props: Props) => {
           <div className="zoom-options-title">
             <p>Opções de Zoom:</p>
             <p className="observation-text">
-              (alterações aqui podem causar mudanças no recorte)
+              (alterações aqui podem ter interferir no zoom atual)
             </p>
           </div>
           <div className="option-content">

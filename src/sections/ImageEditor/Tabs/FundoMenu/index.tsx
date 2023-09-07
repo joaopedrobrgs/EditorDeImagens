@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "cropperjs/dist/cropper.css";
 import "../styles.scss";
 import { useAtom } from "jotai/react";
@@ -10,7 +10,10 @@ import {
   AtomFundoMenuOriginalSize,
   AtomWindowWidth,
   AtomCompressChecked,
-  AtomMaxSizeOfImage
+  AtomMaxSizeOfImage,
+  AtomOnTouchChecked,
+  AtomOnWheelChecked,
+  AtomSliderChecked
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -40,6 +43,13 @@ const FundoMenu = (props: Props) => {
   const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
   const [windowWidth] = useAtom(AtomWindowWidth);
   const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
+  const [onTouchChecked] = useAtom(AtomOnTouchChecked);
+  const [onWheelChecked] = useAtom(AtomOnWheelChecked);
+  const [sliderChecked] = useAtom(AtomSliderChecked);
+
+  useEffect(()=>{
+    setZoomValue(0)
+  }, [onTouchChecked, onWheelChecked, sliderChecked])
 
   const triggerFileSelectPopup = () => {
     if (!!inputRef.current) {

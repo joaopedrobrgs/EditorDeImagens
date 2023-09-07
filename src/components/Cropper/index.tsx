@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 import {
   AtomOnTouchChecked,
   AtomOnWheelChecked,
+  AtomSliderChecked,
   AtomWindowWidth
 } from "src/store";
 
@@ -16,6 +17,7 @@ const CropperDefault = (props: Props) => {
 
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
+  const [sliderChecked] = useAtom(AtomSliderChecked);
   const [windowWidth] = useAtom(AtomWindowWidth)
 
   // function cropperSizeAcorddingToScreen(windowWidth: number): any{
@@ -31,7 +33,7 @@ const CropperDefault = (props: Props) => {
 
   useEffect(()=>{
     setKey(key + 1)
-  }, [onTouchChecked, onWheelChecked])
+  }, [onTouchChecked, onWheelChecked, sliderChecked])
 
   return (
     <Cropper
@@ -43,6 +45,7 @@ const CropperDefault = (props: Props) => {
       minCropBoxWidth={10}
       background={true}
       responsive={false}
+      restore={false}
       autoCropArea={1}
       checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
       guides={true}

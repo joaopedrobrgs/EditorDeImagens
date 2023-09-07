@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "cropperjs/dist/cropper.css";
 import "../styles.scss";
 import { useAtom } from "jotai/react";
@@ -11,7 +11,10 @@ import {
   AtomWindowWidth,
   AtomFirstImageFullyLoaded,
   AtomCompressChecked,
-  AtomMaxSizeOfImage
+  AtomMaxSizeOfImage,
+  AtomOnTouchChecked,
+  AtomOnWheelChecked,
+  AtomSliderChecked
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -43,6 +46,13 @@ const FundoApp = (props: Props) => {
   const [compressChecked] = useAtom(AtomCompressChecked);
   const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
   const [windowWidth] = useAtom(AtomWindowWidth);
+  const [onTouchChecked] = useAtom(AtomOnTouchChecked);
+  const [onWheelChecked] = useAtom(AtomOnWheelChecked);
+  const [sliderChecked] = useAtom(AtomSliderChecked)
+
+  useEffect(()=>{
+    setZoomValue(0)
+  }, [onTouchChecked, onWheelChecked, sliderChecked])
 
   const [imageFullyLoaded, setImageFullyLoaded] = useAtom(
     AtomFirstImageFullyLoaded
