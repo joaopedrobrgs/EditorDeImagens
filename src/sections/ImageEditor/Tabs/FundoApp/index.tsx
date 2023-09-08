@@ -14,14 +14,11 @@ import {
   AtomMaxSizeOfImage,
   AtomOnTouchChecked,
   AtomOnWheelChecked,
-  AtomSliderChecked
+  AtomSliderChecked,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
-import {
-  calcFontSizeAccordingToWidth,
-  downloadImage,
-} from "src/utils/utils";
+import { calcFontSizeAccordingToWidth, downloadImage } from "src/utils/utils";
 import CropperDefault from "src/components/Cropper";
 import SliderDefault from "src/components/Slider";
 import ButtonDefault from "src/components/Button";
@@ -48,11 +45,11 @@ const FundoApp = (props: Props) => {
   const [windowWidth] = useAtom(AtomWindowWidth);
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
-  const [sliderChecked] = useAtom(AtomSliderChecked)
+  const [sliderChecked] = useAtom(AtomSliderChecked);
 
-  useEffect(()=>{
-    setZoomValue(0)
-  }, [onTouchChecked, onWheelChecked, sliderChecked])
+  useEffect(() => {
+    setZoomValue(0);
+  }, [onTouchChecked, onWheelChecked, sliderChecked]);
 
   const [imageFullyLoaded, setImageFullyLoaded] = useAtom(
     AtomFirstImageFullyLoaded
@@ -105,7 +102,7 @@ const FundoApp = (props: Props) => {
 
   async function handleDownload() {
     cropperRef.current.name = outputFileName;
-    downloadImage(cropperRef.current, compressChecked, maxSizeOfImage)
+    downloadImage(cropperRef.current, compressChecked, maxSizeOfImage);
   }
 
   return (
@@ -119,11 +116,7 @@ const FundoApp = (props: Props) => {
         />
 
         <div className="tab-first-box">
-          <p
-            style={{ fontSize: calcFontSizeAccordingToWidth(windowWidth, 1.3) }}
-          >
-            Recortar {nameOfTab}:
-          </p>
+          <p>Recortar {nameOfTab}:</p>
           <ButtonDefault
             text={`Upload ${nameOfTab}`}
             bgColor="#2892CE"

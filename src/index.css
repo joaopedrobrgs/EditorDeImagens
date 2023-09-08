@@ -150,9 +150,9 @@
 
   --btn-text-color: #FFFFFE;
   --btn-bg-color: #ed3237;
-  --boxes-opacity: 60%;
-  --fundo-app-opacity: 80%;
-  --fundo-app-blur: 2px;
-  --fundo-menu-opacity: 80%;
-  --fundo-menu-blur: 2px;
+  --boxes-opacity: 70%;
+  --fundo-app-opacity: 90%;
+  --fundo-app-blur: 1px;
+  --fundo-menu-opacity: 90%;
+  --fundo-menu-blur: 1px;
 }

@@ -28,11 +28,11 @@ const AtomFundoMenuCropped = atom<any>(null);
 //Style Atoms:
 const AtomBtnTextColor = atom<string>("#FFFFFE");
 const AtomBtnBgColor = atom<string>("#ED3237");
-const AtomBoxesOpacity = atom<number>(60);
-const AtomFundoAppOpacity = atom<number>(80);
-const AtomFundoAppBlur = atom<number>(2);
-const AtomFundoMenuOpacity = atom<number>(80);
-const AtomFundoMenuBlur = atom<number>(2);
+const AtomBoxesOpacity = atom<number>(70);
+const AtomFundoAppOpacity = atom<number>(90);
+const AtomFundoAppBlur = atom<number>(1);
+const AtomFundoMenuOpacity = atom<number>(90);
+const AtomFundoMenuBlur = atom<number>(1);
 
 //Stored Atoms
 const getSliderChecked = (): boolean => {

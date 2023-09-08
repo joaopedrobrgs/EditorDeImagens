@@ -18,6 +18,10 @@
     -ms-filter: opacity(var(--fundo-app-opacity));
     .fundo-app-preview {
       overflow: hidden;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 
