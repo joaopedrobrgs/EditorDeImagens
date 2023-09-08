@@ -13,7 +13,7 @@ import {
   AtomMaxSizeOfImage,
   AtomOnTouchChecked,
   AtomOnWheelChecked,
-  AtomSliderChecked
+  AtomSliderChecked,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -21,6 +21,9 @@ import { calcFontSizeAccordingToWidth, downloadImage } from "src/utils/utils";
 import CropperDefault from "src/components/Cropper";
 import SliderDefault from "src/components/Slider";
 import ButtonDefault from "src/components/Button";
+import { useCompression } from "src/hooks/useCompression";
+import { ImageCompressionOptions } from "src/types/ImageCompression";
+import { saveAs } from "file-saver";
 
 type Props = {};
 
@@ -47,9 +50,20 @@ const LogoApp = (props: Props) => {
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
   const [sliderChecked] = useAtom(AtomSliderChecked);
 
-  useEffect(()=>{
-    setZoomValue(0)
-  }, [onTouchChecked, onWheelChecked, sliderChecked])
+  //Services:
+  const {
+    response: compressingResponse,
+    setResponse: setCompressingResponse,
+    error: compressingError,
+    setError: setCompressingError,
+    isLoading: compressingIsLoading,
+    setIsLoading: setCompressingIsLoading,
+    fetchNext: fetchCompressing,
+  } = useCompression();
+
+  useEffect(() => {
+    setZoomValue(0);
+  }, [onTouchChecked, onWheelChecked, sliderChecked]);
 
   const triggerFileSelectPopup = () => {
     if (!!inputRef.current) {
@@ -98,8 +112,41 @@ const LogoApp = (props: Props) => {
 
   async function handleDownload() {
     cropperRef.current.name = outputFileName;
-    downloadImage(cropperRef.current, compressChecked, maxSizeOfImage);
+    const options: ImageCompressionOptions = {
+      maxSizeMB: maxSizeOfImage / 1000,
+      fileType: "image/png",
+    };
+    let blob: any = await new Promise((resolve) =>
+      cropperRef.current.cropper?.getCroppedCanvas().toBlob(resolve)
+    );
+    if (compressChecked) {
+      await fetchCompressing(blob, options, cropperRef.current.name);
+      return;
+    }
+    saveAs(blob, cropperRef.current.name);
   }
+
+  useEffect(() => {
+    setCompressingResponse(null);
+    setCompressingError(null);
+    setCompressingIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    if (compressingResponse) {
+      console.log(compressingResponse);
+      saveAs(compressingResponse, cropperRef.current.name);
+      setCompressingResponse(null);
+      setCompressingError(null);
+    }
+  }, [compressingResponse]);
+  useEffect(() => {
+    if (compressingError) {
+      console.log(compressingError);
+      setCompressingResponse(null);
+      setCompressingError(null);
+    }
+  }, [compressingError]);
 
   return (
     <div className="tab-extern-container">
@@ -145,15 +192,18 @@ const LogoApp = (props: Props) => {
           }}
         />
         <ButtonDefault
-          text={`Baixar ${nameOfTab}`}
+          text={compressingIsLoading ? "Comprimindo..." : `Baixar ${nameOfTab}`}
           bgColor="#CE7828"
           alignSelf={windowWidth >= 1330 ? "self-start" : "center"}
           onClick={
-            imageFullyLoaded
-              ? handleDownload
-              : () => {
+            compressingIsLoading || !imageFullyLoaded
+              ? () => {
                   return;
                 }
+              : handleDownload
+          }
+          className={
+            compressingIsLoading || !imageFullyLoaded ? "btn-disabled" : ""
           }
         >
           <DownloadIcon className="icon" />

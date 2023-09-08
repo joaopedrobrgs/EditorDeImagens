@@ -43,6 +43,13 @@
       font-weight: bold;
     }
   }
+  .btn-disabled{
+    filter: brightness(75%);
+    &:hover {
+      filter: brightness(75%);
+      cursor: wait;
+    }
+  }
 }
 
 @media screen and (max-width: 1330px) {
