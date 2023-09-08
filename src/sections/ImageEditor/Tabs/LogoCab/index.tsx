@@ -50,6 +50,7 @@ const LogoCab = (props: Props) => {
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
   const [sliderChecked] = useAtom(AtomSliderChecked);
+  const [cropDataStored, setCropDataStored] = useState(cropperRef.current?.cropper.getData())
   
   //Services:
   const {
@@ -123,6 +124,10 @@ const LogoCab = (props: Props) => {
     setIsCompressing(false);
   }, []);
 
+  function handleCropmoveEvent(event: any){
+    setCropDataStored(cropperRef.current?.cropper.getData())
+  }
+
   return (
     <div className="tab-extern-container">
       <div className="tab-intern-container">
@@ -151,10 +156,11 @@ const LogoCab = (props: Props) => {
           preview={previewClass}
           cropperReference={cropperRef}
           aspectRatio={aspectRatio}
-          data={cropperRef.current?.cropper.getData()}
           zoomTo={zoomValue}
           onLoad={handleLoaded}
           src={image ?? defaultSrc}
+          cropmove={handleCropmoveEvent}
+          data={cropDataStored}
         />
         <SliderDefault
           sliderRef={sliderRef}

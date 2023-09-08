@@ -33,13 +33,13 @@ const CropperDefault = (props: Props) => {
 
   useEffect(()=>{
     setKey(key + 1)
-  }, [onTouchChecked, onWheelChecked, sliderChecked])
+  }, [onTouchChecked, onWheelChecked, sliderChecked, windowWidth])
 
   return (
     <Cropper
       //Default Options:
-      className={"cropper"}
-      style={{ height: 320, width: 280 }}
+      className="cropper"
+      // style={{ height: 320, width: 280 }}
       viewMode={1}
       minCropBoxHeight={10}
       minCropBoxWidth={10}
@@ -66,7 +66,7 @@ const CropperDefault = (props: Props) => {
       onLoad={props.onLoad}
       src={props.src}
       preview={`.${props.preview}`}
-
+      cropmove={props.cropmove}
     />
   );
 };
