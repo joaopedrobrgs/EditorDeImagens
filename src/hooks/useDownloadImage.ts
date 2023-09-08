@@ -32,11 +32,9 @@ export function useDownloadImage() {
         type: "image/png",
       });
       try {
-        console.log(`Comprimindo ${croppedImage?.name}...`);
         //Making fetch to conversion API:
         await imageCompression(file, options)
           .then((response) => {
-            console.log(`${croppedImage?.name} comprimida!`);
             //Assigning compression result to the "blob" variable:
             blob = response;
             setIsCompressing(false);

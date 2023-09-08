@@ -68,10 +68,6 @@ const ImageEditor = ({ className }: Props) => {
     triggerDownloadZip(data, compressChecked, options);
   }
 
-  useEffect(()=>{
-    console.log("Is loading? ", isCompressing)
-  }, [isCompressing])
-
   return (
     <div className={`${className} image-editor-container`}>
       <Tabs className="tabs-container" forceRenderTabPanel={false}>

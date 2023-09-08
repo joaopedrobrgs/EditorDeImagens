@@ -23,13 +23,10 @@ export function useDownloadZip() {
     var zip = new JSZip();
     //Making a map in our array that contains the cropped images and assigning it to a constant variable:
     const downloadZips = data.map(async (croppedImage, index) => {
-      console.log("Index: ", index);
-      console.log("Data length: ", data.length)
       //Getting image in Blob format and assigning it to a variable:
       let blob: any = await new Promise((resolve) =>
         croppedImage.cropper?.getCroppedCanvas().toBlob(resolve)
       );
-      console.log("Image to download: ", blob);
       //Compressing the image (if the "compress" option is checked):
       if (compressChecked) {
         setIsCompressing(true);
@@ -38,10 +35,8 @@ export function useDownloadZip() {
           type: "image/png",
         });
         try {
-          console.log(`Comprimindo ${croppedImage?.name}...`);
           await imageCompression(file, options)
             .then((response) => {
-              console.log(`${croppedImage?.name} comprimida!`);
               blob = response;
               if(loopCounter === data.length){
                 setIsCompressing(false);
