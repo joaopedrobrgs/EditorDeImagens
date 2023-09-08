@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./styles.scss";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -13,11 +13,13 @@ import {
   AtomWindowWidth,
   AtomFirstImageFullyLoaded,
   AtomCompressChecked,
-  AtomMaxSizeOfImage
+  AtomMaxSizeOfImage,
 } from "src/store";
 import { calcFontSizeAccordingToWidth, downloadZip } from "src/utils/utils";
 import { useAppContext } from "src/context";
 import { ReactCropperElement } from "react-cropper";
+import { useDownloadZip } from "src/hooks/useDownloadZip";
+import { ImageCompressionOptions } from "src/types/ImageCompression";
 
 type Props = {
   className: string;
@@ -30,6 +32,8 @@ const ImageEditor = ({ className }: Props) => {
   );
   const [compressChecked] = useAtom(AtomCompressChecked);
   const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
+  const { isCompressing, setIsCompressing ,trigger: triggerDownloadZip } =
+    useDownloadZip();
 
   const {
     refFundoAppCropper,
@@ -57,8 +61,16 @@ const ImageEditor = ({ className }: Props) => {
       refLogoCabCropper.current.name = "logo-cab";
       data.push(refLogoCabCropper.current);
     }
-    downloadZip(data, compressChecked, maxSizeOfImage);
+    const options: ImageCompressionOptions = {
+      maxSizeMB: maxSizeOfImage / 1000,
+      fileType: "image/png",
+    };
+    triggerDownloadZip(data, compressChecked, options);
   }
+
+  useEffect(()=>{
+    console.log("Is loading? ", isCompressing)
+  }, [isCompressing])
 
   return (
     <div className={`${className} image-editor-container`}>
@@ -95,17 +107,18 @@ const ImageEditor = ({ className }: Props) => {
         style={{ fontSize: calcFontSizeAccordingToWidth(windowWidth) }}
       >
         <ButtonDefault
-          text="Baixar Todos .zip"
+          // text="Baixar Todos .zip"
+          text={isCompressing ? "Comprimindo..." : `Baixar Todos .zip`}
           bgColor="#0B608F"
           // alignSelf={windowWidth >= 1330 ? "self-start" : "center"}
           onClick={
-            imageFullyLoaded
-              ? handleDownloadZip
-              : () => {
+            isCompressing || !imageFullyLoaded
+              ? () => {
                   return;
                 }
+              : handleDownloadZip
           }
-          className="btn-download-zip"
+          className={`btn-download-zip ${isCompressing || !imageFullyLoaded ? "btn-disabled" : ""}` }
         >
           <DownloadIcon className="icon" />
         </ButtonDefault>

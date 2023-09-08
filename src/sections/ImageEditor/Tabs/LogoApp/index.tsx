@@ -24,6 +24,7 @@ import ButtonDefault from "src/components/Button";
 import { useCompression } from "src/hooks/useCompression";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
 import { saveAs } from "file-saver";
+import { useDownloadImage } from "src/hooks/useDownloadImage";
 
 type Props = {};
 
@@ -52,14 +53,12 @@ const LogoApp = (props: Props) => {
 
   //Services:
   const {
-    response: compressingResponse,
-    setResponse: setCompressingResponse,
-    error: compressingError,
-    setError: setCompressingError,
-    isLoading: compressingIsLoading,
-    setIsLoading: setCompressingIsLoading,
-    fetchNext: fetchCompressing,
-  } = useCompression();
+    compressionError,
+    setCompressionError,
+    isCompressing,
+    setIsCompressing,
+    trigger: triggerDownloadImage,
+  } = useDownloadImage();
 
   useEffect(() => {
     setZoomValue(0);
@@ -116,37 +115,13 @@ const LogoApp = (props: Props) => {
       maxSizeMB: maxSizeOfImage / 1000,
       fileType: "image/png",
     };
-    let blob: any = await new Promise((resolve) =>
-      cropperRef.current.cropper?.getCroppedCanvas().toBlob(resolve)
-    );
-    if (compressChecked) {
-      await fetchCompressing(blob, options, cropperRef.current.name);
-      return;
-    }
-    saveAs(blob, cropperRef.current.name);
+    triggerDownloadImage(cropperRef.current, compressChecked, options);
   }
 
   useEffect(() => {
-    setCompressingResponse(null);
-    setCompressingError(null);
-    setCompressingIsLoading(false);
+    setCompressionError(null);
+    setIsCompressing(false);
   }, []);
-
-  useEffect(() => {
-    if (compressingResponse) {
-      console.log(compressingResponse);
-      saveAs(compressingResponse, cropperRef.current.name);
-      setCompressingResponse(null);
-      setCompressingError(null);
-    }
-  }, [compressingResponse]);
-  useEffect(() => {
-    if (compressingError) {
-      console.log(compressingError);
-      setCompressingResponse(null);
-      setCompressingError(null);
-    }
-  }, [compressingError]);
 
   return (
     <div className="tab-extern-container">
@@ -192,18 +167,18 @@ const LogoApp = (props: Props) => {
           }}
         />
         <ButtonDefault
-          text={compressingIsLoading ? "Comprimindo..." : `Baixar ${nameOfTab}`}
+          text={isCompressing ? "Comprimindo..." : `Baixar ${nameOfTab}`}
           bgColor="#CE7828"
           alignSelf={windowWidth >= 1330 ? "self-start" : "center"}
           onClick={
-            compressingIsLoading || !imageFullyLoaded
+            isCompressing || !imageFullyLoaded
               ? () => {
                   return;
                 }
               : handleDownload
           }
           className={
-            compressingIsLoading || !imageFullyLoaded ? "btn-disabled" : ""
+            isCompressing || !imageFullyLoaded ? "btn-disabled" : ""
           }
         >
           <DownloadIcon className="icon" />

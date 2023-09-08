@@ -82,7 +82,11 @@ export function getWindowHeight() {
   return window.innerHeight;
 }
 
-export async function compressImage(blob: Blob, outputFileName: string, maxSizeOfImage: number) {
+export async function compressImage(
+  blob: Blob,
+  outputFileName: string,
+  maxSizeOfImage: number
+) {
   //Transforming Blob into File:
   const file = new File([blob], outputFileName, {
     type: "image/png",

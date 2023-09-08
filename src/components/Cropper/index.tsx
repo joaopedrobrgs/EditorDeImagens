@@ -39,7 +39,7 @@ const CropperDefault = (props: Props) => {
     <Cropper
       //Default Options:
       className={"cropper"}
-      style={{ height: 320, width: 280 }}
+      style={{ height: 320, width: 320 }}
       viewMode={1}
       minCropBoxHeight={10}
       minCropBoxWidth={10}
