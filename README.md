@@ -13,7 +13,7 @@ Editor de imagens desenvolvido para empresa de software, para acelerar o process
 -   [x] React.js
 -   [x] Typescript
 -   [x] SASS
--   [x] TailwindCss
+-   [x] TailwindCSS
 -   [x] Jotai
 -   [x] Material-ui
 -   [x] file-saver
