@@ -7,7 +7,7 @@ Ferramenta desenvolvida para empresa de software visando centralizar as funciona
 ### Ver projeto: 
 [<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white">](https://editordeimagens-joaopedrobrgs.vercel.app/)
 
-## Screenshots
+## Screenshot
 ![App Screenshot](.github/print.gif)
 <!-- <p align="center">
   <img alt="Print do projeto" src=".github/print.gif" width="100%">
