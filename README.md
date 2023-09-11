@@ -10,12 +10,12 @@ Editor de imagens desenvolvido para empresa de software, para acelerar o process
 [<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white">](https://editordeimagens-joaopedrobrgs.vercel.app/)
 
 ## 🚀 Tecnologias utilizadas:
--   [x] react.js
--   [x] typescript
+-   [x] React.js
+-   [x] Typescript
 -   [x] SASS
--   [x] tailwindCss
--   [x] jotai
--   [x] material-ui
+-   [x] TailwindCss
+-   [x] Jotai
+-   [x] Material-ui
 -   [x] file-saver
 -   [x] react-cropper
 -   [x] jszip
