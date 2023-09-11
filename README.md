@@ -1,7 +1,9 @@
-# Editor de imagens
+![Logo](./public/logo512.png)
+
+<!-- # Editor de imagens
 <p align="center">
   <img alt="Print do projeto" src=".github/print.gif" width="100%">
-</p>
+</p> -->
 
 # ➡️ Sobre
 Editor de imagens desenvolvido para empresa de software visando centralizar as funcionalidades de recorte e compressão destas, eliminando a necessidade de utilizar outras ferramentas.
