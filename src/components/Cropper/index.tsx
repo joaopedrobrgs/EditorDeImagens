@@ -55,8 +55,9 @@ const CropperDefault = (props: Props) => {
       dragMode="move"
       zoomOnTouch={onTouchChecked}
       zoomOnWheel={onWheelChecked}
-      key={key}
       //Props:
+      key={`${props.preview}-${key}`}
+      ready={props.ready}
       ref={props.cropperReference}
       aspectRatio={props.aspectRatio}
       //Passando o ultimo recorte para a imagem assim que renderizar novamente o componente:
@@ -67,6 +68,7 @@ const CropperDefault = (props: Props) => {
       src={props.src}
       preview={`.${props.preview}`}
       cropmove={props.cropmove}
+      zoom={props.zoom}
     />
   );
 };

@@ -46,11 +46,13 @@ const FundoMenu = (props: Props) => {
   const [compressChecked] = useAtom(AtomCompressChecked);
   const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
   const [windowWidth] = useAtom(AtomWindowWidth);
-  const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
   const [sliderChecked] = useAtom(AtomSliderChecked);
-  const [cropDataStored, setCropDataStored] = useState(cropperRef.current?.cropper.getData())
+  const [cropDataStored, setCropDataStored] = useState(
+    cropperRef.current?.cropper.getData()
+  );
+  const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
 
   //Services:
   const {
@@ -124,8 +126,16 @@ const FundoMenu = (props: Props) => {
     setIsCompressing(false);
   }, []);
 
-  function handleCropmoveEvent(event: any){
-    setCropDataStored(cropperRef.current?.cropper.getData())
+  function handleCropmoveEvent(event: any) {
+    setTimeout(() => {
+      setCropDataStored(cropperRef.current?.cropper.getData());
+    }, 200);
+  }
+
+  function handleZoomEvent(event: any) {
+    setTimeout(() => {
+      setCropDataStored(cropperRef.current?.cropper.getData());
+    }, 200);
   }
 
   return (
@@ -157,9 +167,11 @@ const FundoMenu = (props: Props) => {
           cropperReference={cropperRef}
           aspectRatio={aspectRatio}
           zoomTo={zoomValue}
-          onLoad={handleLoaded}
+          // onLoad={handleLoaded}
+          ready={handleLoaded}
           src={image ?? defaultSrc}
           cropmove={handleCropmoveEvent}
+          zoom={handleZoomEvent}
           data={cropDataStored}
         />
         <SliderDefault
@@ -183,9 +195,7 @@ const FundoMenu = (props: Props) => {
                 }
               : handleDownload
           }
-          className={
-            isCompressing || !imageFullyLoaded ? "btn-disabled" : ""
-          }
+          className={isCompressing || !imageFullyLoaded ? "btn-disabled" : ""}
         >
           <DownloadIcon className="icon" />
         </ButtonDefault>

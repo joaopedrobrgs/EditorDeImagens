@@ -50,7 +50,12 @@ const FundoApp = (props: Props) => {
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
   const [sliderChecked] = useAtom(AtomSliderChecked);
-  const [cropDataStored, setCropDataStored] = useState(cropperRef.current?.cropper.getData())
+  const [cropDataStored, setCropDataStored] = useState(
+    cropperRef.current?.cropper.getData()
+  );
+  const [imageFullyLoaded, setImageFullyLoaded] = useAtom(
+    AtomFirstImageFullyLoaded
+  );
 
   //Services:
   const {
@@ -64,10 +69,6 @@ const FundoApp = (props: Props) => {
   useEffect(() => {
     setZoomValue(0);
   }, [onTouchChecked, onWheelChecked, sliderChecked]);
-
-  const [imageFullyLoaded, setImageFullyLoaded] = useAtom(
-    AtomFirstImageFullyLoaded
-  );
 
   const triggerFileSelectPopup = () => {
     if (!!inputRef.current) {
@@ -128,9 +129,16 @@ const FundoApp = (props: Props) => {
     setIsCompressing(false);
   }, []);
 
+  function handleCropmoveEvent(event: any) {
+    setTimeout(() => {
+      setCropDataStored(cropperRef.current?.cropper.getData());
+    }, 200);
+  }
 
-  function handleCropmoveEvent(event: any){
-    setCropDataStored(cropperRef.current?.cropper.getData())
+  function handleZoomEvent(event: any) {
+    setTimeout(() => {
+      setCropDataStored(cropperRef.current?.cropper.getData());
+    }, 200);
   }
 
   return (
@@ -158,9 +166,11 @@ const FundoApp = (props: Props) => {
           cropperReference={cropperRef}
           aspectRatio={aspectRatio}
           zoomTo={zoomValue}
-          onLoad={handleLoaded}
+          // onLoad={handleLoaded}
+          ready={handleLoaded}
           src={image ?? defaultSrc}
           cropmove={handleCropmoveEvent}
+          zoom={handleZoomEvent}
           data={cropDataStored}
         />
         <SliderDefault
@@ -184,9 +194,7 @@ const FundoApp = (props: Props) => {
                 }
               : handleDownload
           }
-          className={
-            isCompressing || !imageFullyLoaded ? "btn-disabled" : ""
-          }
+          className={isCompressing || !imageFullyLoaded ? "btn-disabled" : ""}
         >
           <DownloadIcon className="icon" />
         </ButtonDefault>

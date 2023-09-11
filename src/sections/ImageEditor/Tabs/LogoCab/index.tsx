@@ -124,8 +124,16 @@ const LogoCab = (props: Props) => {
     setIsCompressing(false);
   }, []);
 
-  function handleCropmoveEvent(event: any){
-    setCropDataStored(cropperRef.current?.cropper.getData())
+  function handleCropmoveEvent(event: any) {
+    setTimeout(() => {
+      setCropDataStored(cropperRef.current?.cropper.getData());
+    }, 200);
+  }
+
+  function handleZoomEvent(event: any) {
+    setTimeout(() => {
+      setCropDataStored(cropperRef.current?.cropper.getData());
+    }, 200);
   }
 
   return (
@@ -157,9 +165,11 @@ const LogoCab = (props: Props) => {
           cropperReference={cropperRef}
           aspectRatio={aspectRatio}
           zoomTo={zoomValue}
-          onLoad={handleLoaded}
+          // onLoad={handleLoaded}
+          ready={handleLoaded}
           src={image ?? defaultSrc}
           cropmove={handleCropmoveEvent}
+          zoom={handleZoomEvent}
           data={cropDataStored}
         />
         <SliderDefault
