@@ -1,19 +1,17 @@
-![Logo](./public/logo512.png)
+# Editor de imagens
+Ferramenta desenvolvida para empresa de software visando centralizar as funcionalidades de recorte e compressão destas, eliminando a necessidade de utilizar outras ferramentas.
 
-<!-- # Editor de imagens
-<p align="center">
-  <img alt="Print do projeto" src=".github/print.gif" width="100%">
-</p> -->
-
-# ➡️ Sobre
-Editor de imagens desenvolvido para empresa de software visando centralizar as funcionalidades de recorte e compressão destas, eliminando a necessidade de utilizar outras ferramentas.
-
-## Screenshots
-
-![App Screenshot](.github/print.gif)
+<!-- # ➡️ Sobre
+Ferramenta desenvolvida para empresa de software visando centralizar as funcionalidades de recorte e compressão destas, eliminando a necessidade de utilizar outras ferramentas. -->
 
 ### Ver projeto: 
 [<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white">](https://editordeimagens-joaopedrobrgs.vercel.app/)
+
+## Screenshots
+![App Screenshot](.github/print.gif)
+<!-- <p align="center">
+  <img alt="Print do projeto" src=".github/print.gif" width="100%">
+</p> -->
 
 ## 🚀 Tecnologias utilizadas:
 -   [x] React.js
