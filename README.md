@@ -4,7 +4,7 @@
 </p>
 
 # ➡️ Sobre
-Editor de imagens desenvolvido para empresa de software, para acelerar o processo de criação das imagens, visando centralizar funcionalidade de recorte e compressão das mesmas, eliminando necessidade de utilizar outras ferramentas.
+Editor de imagens desenvolvido para empresa de software, visando centralizar as funcionalidades de recorte e compressão destas, eliminando necessidade de utilizar outras ferramentas.
 
 ### Ver projeto: 
 [<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white">](https://editordeimagens-joaopedrobrgs.vercel.app/)
