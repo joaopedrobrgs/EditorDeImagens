@@ -13,7 +13,7 @@ type MenuItemProps = {
   isSelected: boolean
 }
 
-const ICON_MENU_SIZE = 18;
+const ICON_MENU_SIZE = 36;
 
 export const exampleMenuItems: Array<MenuItemProps> = [
   {

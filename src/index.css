@@ -155,4 +155,7 @@
   --fundo-app-blur: 1px;
   --fundo-menu-opacity: 90%;
   --fundo-menu-blur: 1px;
+
+  /* --screens-group-row-iphone-margin-desktop: calc(1553px * -0.37)
+  calc(((90vw - 320px) * 3.15) * -0.37); */
 }

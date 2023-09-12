@@ -163,7 +163,8 @@ const LogoCab = (props: Props) => {
         <CropperDefault
           preview={previewClass}
           cropperReference={cropperRef}
-          aspectRatio={aspectRatio}
+          // aspectRatio={aspectRatio}
+          initialAspectRatio={aspectRatio}
           zoomTo={zoomValue}
           // onLoad={handleLoaded}
           ready={handleLoaded}

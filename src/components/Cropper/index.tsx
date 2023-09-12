@@ -60,6 +60,7 @@ const CropperDefault = (props: Props) => {
       ready={props.ready}
       ref={props.cropperReference}
       aspectRatio={props.aspectRatio}
+      initialAspectRatio={props.initialAspectRatio}
       //Passando o ultimo recorte para a imagem assim que renderizar novamente o componente:
       data={props.data}
       zoomTo={props.zoomTo}
