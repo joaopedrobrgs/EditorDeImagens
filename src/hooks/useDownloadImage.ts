@@ -14,31 +14,34 @@ export function useDownloadImage() {
   >(null);
 
   const trigger = async (
-    cropperRef: ReactCropperElement,
+    // cropperRef: ReactCropperElement,
+    domElementRef: Node,
+    domElementOptions: Options,
     compressChecked: boolean,
     compressionOptions: ImageCompressionOptions,
-    outputFileName: string,
-    domElementRef?: Node,
-    domElementOptions?: Options
+    outputFileName: string
   ) => {
     let blob: any;
 
     //Dom to Image:
-    if (domElementRef) {
-      blob = await new Promise((resolve) =>
-        domtoimage.toBlob(domElementRef, domElementOptions).then(resolve)
-      );
-    //Cropper to image:
-    } else {
-      //Getting image in Blob format and assigning it to a variable:
-      blob = await new Promise((resolve) =>
-        cropperRef.cropper?.getCroppedCanvas().toBlob(resolve)
-      );
-      // documentName = cropperRef?.name;
-    }
+    blob = await new Promise((resolve) =>
+      domtoimage.toBlob(domElementRef, domElementOptions).then(resolve)
+    );
 
-    //Compressing the image (if the "compress" option is checked):
-    if (compressChecked) {
+    // console.log("Blob size: ", blob.size);
+    // console.log("Compression size: ", compressionOptions.maxSizeMB * 1000000)
+
+    //Cropper to image:
+    // else {
+    //   //Getting image in Blob format and assigning it to a variable:
+    //   blob = await new Promise((resolve) =>
+    //     cropperRef.cropper?.getCroppedCanvas().toBlob(resolve)
+    //   );
+    //   // documentName = cropperRef?.name;
+    // }
+
+    //Compressing the image (if the "compress" option is checked and the size is bigger than 200kbs):
+    if (compressChecked && (blob.size >= compressionOptions.maxSizeMB * 1000000)) {
       setIsCompressing(true);
       //Transforming Blob into File:
       const file = new File([blob], outputFileName, {

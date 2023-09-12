@@ -1,5 +1,5 @@
 export type ImageCompressionOptions = { 
-  maxSizeMB?: number,        
+  maxSizeMB: number,        
   maxWidthOrHeight?: number,
   // onProgress?: Function, 
   useWebWorker?: boolean,
@@ -8,7 +8,7 @@ export type ImageCompressionOptions = {
   signal?: AbortSignal, 
   maxIteration?: number,
   exifOrientation?: number,
-  fileType?: string,
+  fileType: string,
   initialQuality?: number,
   alwaysKeepResolution?: boolean
 }

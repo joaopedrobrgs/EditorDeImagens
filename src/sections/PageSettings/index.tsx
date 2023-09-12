@@ -107,7 +107,7 @@ const PageSettings = (props: Props) => {
               <div>
                 <input
                   type="number"
-                  value={maxSizeOfImage}
+                  value={maxSizeOfImage ?? 0}
                   onChange={(e) => {
                     setMaxSizeOfImage(parseFloat(e.target.value));
                   }}

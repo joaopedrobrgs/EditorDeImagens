@@ -129,19 +129,12 @@ const FundoMenu = (props: Props) => {
       width: 400,
       height: 200,
       style: {
-        filter: "opacity(1)",
         margin: 0,
-        transform: "none"
+        transform: "none",
+        filter: "opacity(1)",
       },
     };
-    triggerDownloadImage(
-      cropperRef.current,
-      compressChecked,
-      compressionOptions,
-      outputFileName,
-      domElementRef.current,
-      domElementOptions
-    );
+    triggerDownloadImage(domElementRef.current, domElementOptions, compressChecked, compressionOptions, outputFileName);
   }
 
   useEffect(() => {

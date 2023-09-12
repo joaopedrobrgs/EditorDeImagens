@@ -127,7 +127,7 @@ const LogoCab = (props: Props) => {
         transform: "none"
       }
     }
-    triggerDownloadImage(cropperRef.current, compressChecked, compressionOptions, outputFileName, domElementRef.current, domElementOptions);
+    triggerDownloadImage(domElementRef.current, domElementOptions, compressChecked, compressionOptions, outputFileName);
   }
 
   useEffect(() => {

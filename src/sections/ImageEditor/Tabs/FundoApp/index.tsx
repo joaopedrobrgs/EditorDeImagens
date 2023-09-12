@@ -133,7 +133,7 @@ const FundoApp = (props: Props) => {
         filter: "opacity(1)"
       }
     }
-    triggerDownloadImage(cropperRef.current, compressChecked, compressionOptions, outputFileName, domElementRef.current, domElementOptions);
+    triggerDownloadImage(domElementRef.current, domElementOptions, compressChecked, compressionOptions, outputFileName);
   }
 
   useEffect(() => {
