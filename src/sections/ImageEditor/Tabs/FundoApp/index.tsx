@@ -129,10 +129,10 @@ const FundoApp = (props: Props) => {
       height: 900,
       style: {
         margin: 0,
-        transform: "none"
+        // transform: "none"
       }
     }
-    triggerDownloadImage(cropperRef.current, compressChecked, compressionOptions, outputFileName);
+    triggerDownloadImage(cropperRef.current, compressChecked, compressionOptions, outputFileName, domElementRef.current, domElementOptions);
   }
 
   useEffect(() => {
