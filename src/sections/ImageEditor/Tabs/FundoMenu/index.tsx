@@ -25,6 +25,7 @@ import { useCompression } from "src/hooks/useCompression";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
 import { saveAs } from "file-saver";
 import { useDownloadImage } from "src/hooks/useDownloadImage";
+import { Options } from "dom-to-image";
 
 type Props = {};
 
@@ -36,7 +37,10 @@ const FundoMenu = (props: Props) => {
   const outputFileName: string = "fundo_menu.png";
   const [, setCropData] = useAtom(AtomFundoMenuCropped);
   const [image, setImage] = useAtom(AtomFundoMenuOriginalSize);
-  const { refFundoMenuCropper: cropperRef } = useAppContext();
+  const {
+    refFundoMenuCropper: cropperRef,
+    refFundoMenuDomElement: domElementRef,
+  } = useAppContext();
   const aspectRatio = 400 / 200;
 
   //Generic stuff:
@@ -114,17 +118,37 @@ const FundoMenu = (props: Props) => {
 
   async function handleDownload() {
     // cropperRef.current.name = outputFileName;
+    // domElementRef.current.name = outputFileName;
     const compressionOptions: ImageCompressionOptions = {
       maxSizeMB: maxSizeOfImage / 1000,
       fileType: "image/png",
-      alwaysKeepResolution: true
+      alwaysKeepResolution: true,
     };
-    triggerDownloadImage(cropperRef.current, compressChecked, compressionOptions, outputFileName);
+    domElementRef.current.style.overflow = "visible";
+    const domElementOptions: Options = {
+      width: 400,
+      height: 200,
+      style: {
+        filter: "opacity(1)",
+        margin: 0,
+        transform: "none"
+      },
+    };
+    triggerDownloadImage(
+      cropperRef.current,
+      compressChecked,
+      compressionOptions,
+      outputFileName,
+      domElementRef.current,
+      domElementOptions
+    );
   }
 
   useEffect(() => {
     setCompressionError(null);
     setIsCompressing(false);
+    console.log(cropperRef.current.cropper?.getCroppedCanvas());
+    console.log(cropperRef.current.cropper?.getImageData());
   }, []);
 
   function handleCropmoveEvent(event: any) {

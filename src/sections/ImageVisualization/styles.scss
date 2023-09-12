@@ -13,7 +13,7 @@
   .screens-container {
     display: flex;
     justify-content: start;
-    overflow-x: scroll;
+    overflow-x: auto;
     margin: calc(900px * -0.26);
     transform: scale(0.5);
   }

@@ -17,7 +17,7 @@
       .menu-header-container {
         position: relative;
 
-        .fundo-menu-box {
+        .fundo-menu-container {
           left: 0;
           right: 0;
           z-index: 0;
@@ -26,17 +26,27 @@
           width: 100%;
           height: 100%;
           overflow: hidden;
-          filter: opacity(var(--fundo-menu-opacity));
-          -webkit-filter: opacity(var(--fundo-menu-opacity));
-          -moz-filter: opacity(var(--fundo-menu-opacity));
-          -o-filter: opacity(var(--fundo-menu-opacity));
-          -ms-filter: opacity(var(--fundo-menu-opacity));
-          .fundo-menu-preview {
-            overflow: hidden;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+          // background-color: green;
+          .fundo-menu-box {
+            width: 400px;
+            height: 200px;
+            transform: scaleX(1.29) scaleY(1.29);
+            margin-left: calc(500px * -0.029);
+            margin-top: calc(900px * 0.032);
+            // position: absolute;
+            // top: 50%;
+            // left: 50%;
+            // transform: translate(-50%, -50%);
+            // background-color: red;
+            filter: opacity(var(--fundo-menu-opacity));
+            -webkit-filter: opacity(var(--fundo-menu-opacity));
+            -moz-filter: opacity(var(--fundo-menu-opacity));
+            -o-filter: opacity(var(--fundo-menu-opacity));
+            -ms-filter: opacity(var(--fundo-menu-opacity));
+            .fundo-menu-preview {
+              overflow: hidden;
+              // background-color: blue;
+            }
           }
         }
 
@@ -150,7 +160,7 @@
             height: 130px;
             transform: scale(0.39);
             margin: calc(130px * -0.3);
-            overflow:auto;
+            overflow: auto;
             // background-color: red;
             .logo-cab-preview {
               overflow: hidden;

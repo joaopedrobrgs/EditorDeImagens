@@ -15,10 +15,9 @@ type Props = {
 };
 
 const MenuAberto = ({}: Props) => {
+  const { refLogoCabDomElement, refFundoMenuDomElement } = useAppContext();
 
-  const {refLogoCabDomElement} = useAppContext();
-
-  const [actualTime] = useAtom(AtomActualTime)
+  const [actualTime] = useAtom(AtomActualTime);
 
   return (
     <div className="screen-menu-aberto-container">
@@ -26,11 +25,13 @@ const MenuAberto = ({}: Props) => {
         <div className="tw-grid tw-grid-cols-4 tw-grid-rows-1 tw-h-9/10">
           <div className="menu-container tw-col-span-3">
             <div className="menu-header-container">
-              <div className="fundo-menu-box">
-                <div
-                  className="fundo-menu-preview"
-                  style={{ width: "600px", height: "300px" }}
-                />
+              <div className="fundo-menu-container">
+                <div className="fundo-menu-box" ref={refFundoMenuDomElement}>
+                  <div
+                    className="fundo-menu-preview"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </div>
               </div>
               <div className="menu-header-content">
                 <span className="time">{actualTime ?? ""}</span>
