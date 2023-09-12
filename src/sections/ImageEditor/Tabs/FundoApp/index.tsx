@@ -26,6 +26,7 @@ import { useCompression } from "src/hooks/useCompression";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
 import { saveAs } from "file-saver";
 import { useDownloadImage } from "src/hooks/useDownloadImage";
+import { Options } from "dom-to-image";
 
 type Props = {};
 
@@ -38,7 +39,7 @@ const FundoApp = (props: Props) => {
   const aspectRatio = 500 / 889;
   const [, setCropData] = useAtom(AtomFundoAppCropped);
   const [image, setImage] = useAtom(AtomFundoAppOriginalSize);
-  const { refFundoAppCropper: cropperRef } = useAppContext();
+  const { refFundoAppCropper: cropperRef, refFundoAppDomElement: domElementRef } = useAppContext();
 
   //Generic stuff:
   const [zoomValue, setZoomValue] = useState<number>(0);
@@ -116,12 +117,22 @@ const FundoApp = (props: Props) => {
   };
 
   async function handleDownload() {
-    cropperRef.current.name = outputFileName;
-    const options: ImageCompressionOptions = {
+    // cropperRef.current.name = outputFileName;
+    // domElementRef.current.name = outputFileName;
+    const compressionOptions: ImageCompressionOptions = {
       maxSizeMB: maxSizeOfImage / 1000,
       fileType: "image/png",
+      alwaysKeepResolution: true
     };
-    triggerDownloadImage(cropperRef.current, compressChecked, options);
+    const domElementOptions: Options = {
+      width: 500,
+      height: 900,
+      style: {
+        margin: 0,
+        transform: "none"
+      }
+    }
+    triggerDownloadImage(cropperRef.current, compressChecked, compressionOptions, outputFileName);
   }
 
   useEffect(() => {

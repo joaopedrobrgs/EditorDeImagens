@@ -12,9 +12,9 @@
 
   .screens-container {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     overflow-x: scroll;
-    margin: calc(1553px * -0.15);
+    margin: calc(900px * -0.26);
     transform: scale(0.5);
   }
 }

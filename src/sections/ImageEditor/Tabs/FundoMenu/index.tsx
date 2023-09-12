@@ -113,12 +113,13 @@ const FundoMenu = (props: Props) => {
   };
 
   async function handleDownload() {
-    cropperRef.current.name = outputFileName;
-    const options: ImageCompressionOptions = {
+    // cropperRef.current.name = outputFileName;
+    const compressionOptions: ImageCompressionOptions = {
       maxSizeMB: maxSizeOfImage / 1000,
       fileType: "image/png",
+      alwaysKeepResolution: true
     };
-    triggerDownloadImage(cropperRef.current, compressChecked, options);
+    triggerDownloadImage(cropperRef.current, compressChecked, compressionOptions, outputFileName);
   }
 
   useEffect(() => {

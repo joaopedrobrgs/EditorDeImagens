@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, createRef, useState, useEffect } from "react";
+import React, { createContext, useContext, useRef, createRef, useState, useEffect, ReactNode } from "react";
 import { ReactCropperElement } from "react-cropper";
 
 //Context typing with all references and states that will be stored
@@ -7,6 +7,10 @@ type AppContextType = {
   refFundoMenuCropper: any;
   refLogoAppCropper: any;
   refLogoCabCropper: any;
+  refLogoAppDomElement: any;
+  refLogoCabDomElement: any;
+  refFundoAppDomElement: any;
+  refFundoMenuDomElement: any;
   // windowWidth: number
 };
 
@@ -18,10 +22,18 @@ const AppContextProvider: React.FC<{
   //Typing the prop "children":
   children: React.ReactElement;
 }> = ({ children }) => {
+
+  //Referências aos recortes (croppers):
   const refFundoAppCropper = createRef<ReactCropperElement>();
   const refFundoMenuCropper = createRef<ReactCropperElement>();
   const refLogoAppCropper = createRef<ReactCropperElement>();
   const refLogoCabCropper = createRef<ReactCropperElement>();
+  
+  //Referências aos elementos DOM:
+  const refFundoAppDomElement = createRef<Node>();
+  const refFundoMenuDomElement = createRef<Node>();
+  const refLogoAppDomElement = createRef<Node>();
+  const refLogoCabDomElement = createRef<Node>();
 
   return (
     <AppContext.Provider
@@ -30,7 +42,10 @@ const AppContextProvider: React.FC<{
         refFundoMenuCropper,
         refLogoAppCropper,
         refLogoCabCropper,
-        // windowWidth,
+        refLogoAppDomElement,
+        refLogoCabDomElement,
+        refFundoAppDomElement,
+        refFundoMenuDomElement
       }}
     >
       {children}

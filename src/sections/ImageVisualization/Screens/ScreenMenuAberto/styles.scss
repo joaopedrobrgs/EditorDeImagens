@@ -146,11 +146,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 3.2em;
-            height: 3.2em;
-            // margin: 10% auto;
-            .logo-cab-preview{
+            width: 130px;
+            height: 130px;
+            transform: scale(0.39);
+            margin: calc(130px * -0.3);
+            overflow:auto;
+            // background-color: red;
+            .logo-cab-preview {
               overflow: hidden;
+              background-color: blue;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
             }
           }
         }

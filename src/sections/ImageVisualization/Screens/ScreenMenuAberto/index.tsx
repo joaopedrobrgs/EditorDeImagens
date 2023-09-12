@@ -8,12 +8,15 @@ import QrCodeSvg from "src/assets/svgComponents/QrCodeSvg";
 
 import { exampleMenuItems as menuItems } from "src/utils/exampleMenuItems";
 import IphoneBottomLine from "src/components/IphoneBottomLine";
+import { useAppContext } from "src/context";
 
 type Props = {
   // className: string
 };
 
 const MenuAberto = ({}: Props) => {
+
+  const {refLogoCabDomElement} = useAppContext();
 
   const [actualTime] = useAtom(AtomActualTime)
 
@@ -61,7 +64,7 @@ const MenuAberto = ({}: Props) => {
             </div>
             <div className="app-header">
               <div className="img-container">
-                <div className="logo-cab-box">
+                <div className="logo-cab-box" ref={refLogoCabDomElement}>
                   <div
                     className="logo-cab-preview"
                     style={{ width: "100%", height: "100%" }}

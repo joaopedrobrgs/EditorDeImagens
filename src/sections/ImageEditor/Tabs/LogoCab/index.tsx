@@ -25,6 +25,7 @@ import { useCompression } from "src/hooks/useCompression";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
 import { saveAs } from "file-saver";
 import { useDownloadImage } from "src/hooks/useDownloadImage";
+import { Options } from "dom-to-image";
 
 type Props = {};
 
@@ -36,7 +37,7 @@ const LogoCab = (props: Props) => {
   const outputFileName: string = "logo-cab.png";
   const [, setCropData] = useAtom(AtomLogoCabCropped);
   const [image, setImage] = useAtom(AtomLogoCabOriginalSize);
-  const { refLogoCabCropper: cropperRef } = useAppContext();
+  const { refLogoCabCropper: cropperRef, refLogoCabDomElement: domElementRef } = useAppContext();
   const aspectRatio = 130 / 130;
 
   //Generic stuff:
@@ -111,12 +112,22 @@ const LogoCab = (props: Props) => {
   };
 
   async function handleDownload() {
-    cropperRef.current.name = outputFileName;
-    const options: ImageCompressionOptions = {
+    // cropperRef.current.name = outputFileName;
+    // domElementRef.current.name = outputFileName;
+    const compressionOptions: ImageCompressionOptions = {
       maxSizeMB: maxSizeOfImage / 1000,
       fileType: "image/png",
+      alwaysKeepResolution: true
     };
-    triggerDownloadImage(cropperRef.current, compressChecked, options);
+    const domElementOptions: Options = {
+      width: 130,
+      height: 130,
+      style: {
+        margin: 0,
+        transform: "none"
+      }
+    }
+    triggerDownloadImage(cropperRef.current, compressChecked, compressionOptions, outputFileName, domElementRef.current, domElementOptions);
   }
 
   useEffect(() => {
