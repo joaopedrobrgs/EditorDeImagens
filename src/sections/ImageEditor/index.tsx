@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "./styles.scss";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -14,12 +14,19 @@ import {
   AtomFirstImageFullyLoaded,
   AtomCompressChecked,
   AtomMaxSizeOfImage,
+  AtomCompressionOptions,
+  AtomFundoAppDomElementOptions,
+  AtomFundoMenuDomElementOptions,
+  AtomLogoAppDomElementOptions,
+  AtomLogoCabDomElementOptions,
 } from "src/store";
 import { calcFontSizeAccordingToWidth, downloadZip } from "src/utils/utils";
 import { useAppContext } from "src/context";
 import { ReactCropperElement } from "react-cropper";
 import { useDownloadZip } from "src/hooks/useDownloadZip";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
+import { Options } from "dom-to-image";
+import { DomElementReferenceOptionsType } from "src/types/DomElement";
 
 type Props = {
   className: string;
@@ -32,40 +39,69 @@ const ImageEditor = ({ className }: Props) => {
   );
   const [compressChecked] = useAtom(AtomCompressChecked);
   const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
-  const { isCompressing, setIsCompressing ,trigger: triggerDownloadZip } =
-    useDownloadZip();
+  const {
+    isCompressing,
+    setIsCompressing,
+    trigger: triggerDownloadZip,
+  } = useDownloadZip();
+
+  // const {
+  //   refFundoAppCropper,
+  //   refFundoMenuCropper,
+  //   refLogoAppCropper,
+  //   refLogoCabCropper,
+  // } = useAppContext();
 
   const {
-    refFundoAppCropper,
-    refFundoMenuCropper,
-    refLogoAppCropper,
-    refLogoCabCropper,
+    refFundoAppDomElement,
+    refFundoMenuDomElement,
+    refLogoAppDomElement,
+    refLogoCabDomElement,
   } = useAppContext();
+
+  const [compressionOptions] = useAtom(AtomCompressionOptions);
+
+  const [fundoAppOptions] = useAtom(AtomFundoAppDomElementOptions);
+  const [fundoMenuOptions] = useAtom(AtomFundoMenuDomElementOptions);
+  const [logoAppOptions] = useAtom(AtomLogoAppDomElementOptions);
+  const [logoCabOptions] = useAtom(AtomLogoCabDomElementOptions);
 
   async function handleDownloadZip() {
     //Verificando se existem os arquivos cortados e colocando dentro de um array:
-    const data: Array<ReactCropperElement> = [];
-    if (!!refFundoAppCropper.current) {
-      refFundoAppCropper.current.name = "fundo-app";
-      data.push(refFundoAppCropper.current);
+    const data: Array<DomElementReferenceOptionsType> = [];
+    if (!!refFundoAppDomElement.current) {
+      // refFundoAppDomElement.current.name = "fundo-app";
+      data.push({
+        elementReference: refFundoAppDomElement.current,
+        elementOptions: fundoAppOptions,
+        elementOutputFileName: "fundo-app.png"
+      });
     }
-    if (!!refFundoMenuCropper.current) {
-      refFundoMenuCropper.current.name = "fundo-menu";
-      data.push(refFundoMenuCropper.current);
+    if (!!refFundoMenuDomElement.current) {
+      // refFundoMenuDomElement.current.name = "fundo-menu";
+      data.push({
+        elementReference: refFundoMenuDomElement.current,
+        elementOptions: fundoMenuOptions,
+        elementOutputFileName: "fundo-menu.png"
+      });
     }
-    if (!!refLogoAppCropper.current) {
-      refLogoAppCropper.current.name = "logo-app";
-      data.push(refLogoAppCropper.current);
+    if (!!refLogoAppDomElement.current) {
+      // refLogoAppDomElement.current.name = "logo-app";
+      data.push({
+        elementReference: refLogoAppDomElement.current,
+        elementOptions: logoAppOptions,
+        elementOutputFileName: "logo-app.png"
+      });
     }
-    if (!!refLogoCabCropper.current) {
-      refLogoCabCropper.current.name = "logo-cab";
-      data.push(refLogoCabCropper.current);
+    if (!!refLogoCabDomElement.current) {
+      // refLogoCabDomElement.current.name = "logo-cab";
+      data.push({
+        elementReference: refLogoCabDomElement.current,
+        elementOptions: logoCabOptions,
+        elementOutputFileName: "logo-cab.png"
+      });
     }
-    const options: ImageCompressionOptions = {
-      maxSizeMB: maxSizeOfImage / 1000,
-      fileType: "image/png",
-    };
-    triggerDownloadZip(data, compressChecked, options);
+    triggerDownloadZip(data, compressChecked, compressionOptions);
   }
 
   return (
@@ -114,7 +150,9 @@ const ImageEditor = ({ className }: Props) => {
                 }
               : handleDownloadZip
           }
-          className={`btn-download-zip ${isCompressing || !imageFullyLoaded ? "btn-disabled" : ""}` }
+          className={`btn-download-zip ${
+            isCompressing || !imageFullyLoaded ? "btn-disabled" : ""
+          }`}
         >
           <DownloadIcon className="icon" />
         </ButtonDefault>

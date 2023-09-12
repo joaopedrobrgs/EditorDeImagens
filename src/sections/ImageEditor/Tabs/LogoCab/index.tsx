@@ -13,7 +13,9 @@ import {
   AtomMaxSizeOfImage,
   AtomOnTouchChecked,
   AtomOnWheelChecked,
-  AtomSliderChecked
+  AtomSliderChecked,
+  AtomLogoCabDomElementOptions,
+  AtomCompressionOptions,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -37,8 +39,11 @@ const LogoCab = (props: Props) => {
   const outputFileName: string = "logo-cab.png";
   const [, setCropData] = useAtom(AtomLogoCabCropped);
   const [image, setImage] = useAtom(AtomLogoCabOriginalSize);
-  const { refLogoCabCropper: cropperRef, refLogoCabDomElement: domElementRef } = useAppContext();
   const aspectRatio = 130 / 130;
+  const { refLogoCabCropper: cropperRef, refLogoCabDomElement: domElementRef } =
+    useAppContext();
+  const [domElementOptions] = useAtom(AtomLogoCabDomElementOptions);
+  const [compressionOptions] = useAtom(AtomCompressionOptions);
 
   //Generic stuff:
   const [zoomValue, setZoomValue] = useState<number>(0);
@@ -51,8 +56,10 @@ const LogoCab = (props: Props) => {
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);
   const [sliderChecked] = useAtom(AtomSliderChecked);
-  const [cropDataStored, setCropDataStored] = useState(cropperRef.current?.cropper.getData())
-  
+  const [cropDataStored, setCropDataStored] = useState(
+    cropperRef.current?.cropper.getData()
+  );
+
   //Services:
   const {
     compressionError,
@@ -62,9 +69,9 @@ const LogoCab = (props: Props) => {
     trigger: triggerDownloadImage,
   } = useDownloadImage();
 
-  useEffect(()=>{
-    setZoomValue(0)
-  }, [onTouchChecked, onWheelChecked, sliderChecked])
+  useEffect(() => {
+    setZoomValue(0);
+  }, [onTouchChecked, onWheelChecked, sliderChecked]);
 
   const triggerFileSelectPopup = () => {
     if (!!inputRef.current) {
@@ -114,20 +121,13 @@ const LogoCab = (props: Props) => {
   async function handleDownload() {
     // cropperRef.current.name = outputFileName;
     // domElementRef.current.name = outputFileName;
-    const compressionOptions: ImageCompressionOptions = {
-      maxSizeMB: maxSizeOfImage / 1000,
-      fileType: "image/png",
-      alwaysKeepResolution: true
-    };
-    const domElementOptions: Options = {
-      width: 130,
-      height: 130,
-      style: {
-        margin: 0,
-        transform: "none"
-      }
-    }
-    triggerDownloadImage(domElementRef.current, domElementOptions, compressChecked, compressionOptions, outputFileName);
+    triggerDownloadImage(
+      domElementRef.current,
+      domElementOptions,
+      compressChecked,
+      compressionOptions,
+      outputFileName
+    );
   }
 
   useEffect(() => {
@@ -205,9 +205,7 @@ const LogoCab = (props: Props) => {
                 }
               : handleDownload
           }
-          className={
-            isCompressing || !imageFullyLoaded ? "btn-disabled" : ""
-          }
+          className={isCompressing || !imageFullyLoaded ? "btn-disabled" : ""}
         >
           <DownloadIcon className="icon" />
         </ButtonDefault>

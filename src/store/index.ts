@@ -1,6 +1,12 @@
+import { Options } from "dom-to-image";
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
-import { getWindowHeight, getWindowWidth, hoursMinutesToString } from "src/utils/utils";
+import { ImageCompressionOptions } from "src/types/ImageCompression";
+import {
+  getWindowHeight,
+  getWindowWidth,
+  hoursMinutesToString,
+} from "src/utils/utils";
 
 const AtomFirstImageFullyLoaded = atom<boolean>(false);
 
@@ -42,7 +48,10 @@ const getSliderChecked = (): boolean => {
   }
   return true;
 };
-const AtomSliderChecked = atomWithStorage<boolean>("@sliderChecked", getSliderChecked());
+const AtomSliderChecked = atomWithStorage<boolean>(
+  "@sliderChecked",
+  getSliderChecked()
+);
 
 const getOnTouchChecked = (): boolean => {
   const storedState = localStorage.getItem("@onTouchChecked");
@@ -51,7 +60,10 @@ const getOnTouchChecked = (): boolean => {
   }
   return true;
 };
-const AtomOnTouchChecked = atomWithStorage<boolean>("@onTouchChecked", getOnTouchChecked());
+const AtomOnTouchChecked = atomWithStorage<boolean>(
+  "@onTouchChecked",
+  getOnTouchChecked()
+);
 
 const getOnWheelChecked = (): boolean => {
   const storedState = localStorage.getItem("@onWheelChecked");
@@ -60,7 +72,10 @@ const getOnWheelChecked = (): boolean => {
   }
   return true;
 };
-const AtomOnWheelChecked = atomWithStorage<boolean>("@onWheelChecked", getOnWheelChecked());
+const AtomOnWheelChecked = atomWithStorage<boolean>(
+  "@onWheelChecked",
+  getOnWheelChecked()
+);
 
 const getCompressChecked = (): boolean => {
   const storedState = localStorage.getItem("@compressChecked");
@@ -69,7 +84,10 @@ const getCompressChecked = (): boolean => {
   }
   return false;
 };
-const AtomCompressChecked = atomWithStorage<boolean>("@compressChecked", getCompressChecked());
+const AtomCompressChecked = atomWithStorage<boolean>(
+  "@compressChecked",
+  getCompressChecked()
+);
 
 const getMaxSizeOfImage = (): number => {
   const storedState = localStorage.getItem("@maxSizeOfImage");
@@ -78,7 +96,53 @@ const getMaxSizeOfImage = (): number => {
   }
   return 400;
 };
-const AtomMaxSizeOfImage = atomWithStorage<number>("@maxSizeOfImage", getMaxSizeOfImage());
+const AtomMaxSizeOfImage = atomWithStorage<number>(
+  "@maxSizeOfImage",
+  getMaxSizeOfImage()
+);
+
+//Compression Options Atom:
+const AtomCompressionOptions = atom<ImageCompressionOptions>({
+  maxSizeMB: getMaxSizeOfImage() / 1000,
+  fileType: "image/png",
+  alwaysKeepResolution: true,
+});
+
+//Dom Element Options Atoms:
+const AtomFundoAppDomElementOptions = atom<Options>({
+  width: 500,
+  height: 900,
+  style: {
+    margin: 0,
+    transform: "none",
+    filter: "opacity(1)",
+  },
+});
+const AtomFundoMenuDomElementOptions = atom<Options>({
+  width: 400,
+  height: 200,
+  style: {
+    margin: 0,
+    transform: "none",
+    filter: "opacity(1)",
+  },
+});
+const AtomLogoAppDomElementOptions = atom<Options>({
+  width: 450,
+  height: 250,
+  style: {
+    margin: 0,
+    transform: "none",
+  },
+});
+const AtomLogoCabDomElementOptions = atom<Options>({
+  width: 130,
+  height: 130,
+  style: {
+    margin: 0,
+    transform: "none",
+  },
+});
 
 export {
   AtomShowSettingsModal,
@@ -105,5 +169,10 @@ export {
   AtomFirstImageFullyLoaded,
   AtomCompressChecked,
   AtomMaxSizeOfImage,
-  AtomWindowHeight
+  AtomWindowHeight,
+  AtomCompressionOptions,
+  AtomFundoAppDomElementOptions,
+  AtomFundoMenuDomElementOptions,
+  AtomLogoAppDomElementOptions,
+  AtomLogoCabDomElementOptions,
 };

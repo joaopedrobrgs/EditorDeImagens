@@ -15,6 +15,8 @@ import {
   AtomOnTouchChecked,
   AtomOnWheelChecked,
   AtomSliderChecked,
+  AtomFundoAppDomElementOptions,
+  AtomCompressionOptions,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -39,7 +41,12 @@ const FundoApp = (props: Props) => {
   const aspectRatio = 500 / 889;
   const [, setCropData] = useAtom(AtomFundoAppCropped);
   const [image, setImage] = useAtom(AtomFundoAppOriginalSize);
-  const { refFundoAppCropper: cropperRef, refFundoAppDomElement: domElementRef } = useAppContext();
+  const {
+    refFundoAppCropper: cropperRef,
+    refFundoAppDomElement: domElementRef,
+  } = useAppContext();
+  const [domElementOptions] = useAtom(AtomFundoAppDomElementOptions);
+  const [compressionOptions] = useAtom(AtomCompressionOptions);
 
   //Generic stuff:
   const [zoomValue, setZoomValue] = useState<number>(0);
@@ -119,21 +126,13 @@ const FundoApp = (props: Props) => {
   async function handleDownload() {
     // cropperRef.current.name = outputFileName;
     // domElementRef.current.name = outputFileName;
-    const compressionOptions: ImageCompressionOptions = {
-      maxSizeMB: maxSizeOfImage / 1000,
-      fileType: "image/png",
-      alwaysKeepResolution: true
-    };
-    const domElementOptions: Options = {
-      width: 500,
-      height: 900,
-      style: {
-        margin: 0,
-        transform: "none", 
-        filter: "opacity(1)"
-      }
-    }
-    triggerDownloadImage(domElementRef.current, domElementOptions, compressChecked, compressionOptions, outputFileName);
+    triggerDownloadImage(
+      domElementRef.current,
+      domElementOptions,
+      compressChecked,
+      compressionOptions,
+      outputFileName
+    );
   }
 
   useEffect(() => {
