@@ -45,12 +45,12 @@ const ImageEditor = ({ className }: Props) => {
     trigger: triggerDownloadZip,
   } = useDownloadZip();
 
-  // const {
-  //   refFundoAppCropper,
-  //   refFundoMenuCropper,
-  //   refLogoAppCropper,
-  //   refLogoCabCropper,
-  // } = useAppContext();
+  const {
+    refFundoAppCropper,
+    refFundoMenuCropper,
+    refLogoAppCropper,
+    refLogoCabCropper,
+  } = useAppContext();
 
   const {
     refFundoAppDomElement,
@@ -69,7 +69,7 @@ const ImageEditor = ({ className }: Props) => {
   async function handleDownloadZip() {
     //Verificando se existem os arquivos cortados e colocando dentro de um array:
     const data: Array<DomElementReferenceOptionsType> = [];
-    if (!!refFundoAppDomElement.current) {
+    if (!!refFundoAppCropper.current) {
       // refFundoAppDomElement.current.name = "fundo-app";
       data.push({
         elementReference: refFundoAppDomElement.current,
@@ -77,7 +77,7 @@ const ImageEditor = ({ className }: Props) => {
         elementOutputFileName: "fundo-app.png"
       });
     }
-    if (!!refFundoMenuDomElement.current) {
+    if (!!refFundoMenuCropper.current) {
       // refFundoMenuDomElement.current.name = "fundo-menu";
       data.push({
         elementReference: refFundoMenuDomElement.current,
@@ -85,7 +85,7 @@ const ImageEditor = ({ className }: Props) => {
         elementOutputFileName: "fundo-menu.png"
       });
     }
-    if (!!refLogoAppDomElement.current) {
+    if (!!refLogoAppCropper.current) {
       // refLogoAppDomElement.current.name = "logo-app";
       data.push({
         elementReference: refLogoAppDomElement.current,
@@ -93,7 +93,7 @@ const ImageEditor = ({ className }: Props) => {
         elementOutputFileName: "logo-app.png"
       });
     }
-    if (!!refLogoCabDomElement.current) {
+    if (!!refLogoCabCropper.current) {
       // refLogoCabDomElement.current.name = "logo-cab";
       data.push({
         elementReference: refLogoCabDomElement.current,

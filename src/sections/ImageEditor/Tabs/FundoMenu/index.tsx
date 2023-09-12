@@ -130,8 +130,6 @@ const FundoMenu = (props: Props) => {
   useEffect(() => {
     setCompressionError(null);
     setIsCompressing(false);
-    console.log(cropperRef.current.cropper?.getCroppedCanvas());
-    console.log(cropperRef.current.cropper?.getImageData());
   }, []);
 
   function handleCropmoveEvent(event: any) {
