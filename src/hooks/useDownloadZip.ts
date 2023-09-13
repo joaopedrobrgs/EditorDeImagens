@@ -29,9 +29,19 @@ export function useDownloadZip() {
           .toBlob(domElement.elementReference, domElement.elementOptions)
           .then(resolve)
       );
+      // var counter = 1;
       //Compressing the image (if the "compress" option is checked):
-      if (compressChecked  && (blob.size >= compressionOptions.maxSizeMB * 1000000)) {
+      while (
+        compressChecked &&
+        blob.size >= compressionOptions.maxSizeMB * 1000000 &&
+        compressionOptions.initialQuality >= 0.01
+      ) {
         setIsCompressing(true);
+        // console.log(`${counter}ª vez - ${domElement.elementOutputFileName}`);
+        // console.log("Size: ", blob.size);
+        // console.log("Initial quality", compressionOptions.initialQuality);
+        // console.log("Final size reference: ", compressionOptions.maxSizeMB);
+        // counter++;
         //Assigning compression result to the "blob" variable:
         const file = new File([blob], domElement.elementOutputFileName, {
           type: compressionOptions.fileType,
@@ -44,18 +54,21 @@ export function useDownloadZip() {
                 setIsCompressing(false);
                 setCompressionError(null);
               }
-              console.log(domElement.elementOutputFileName, " comprimido")
+              // console.log(domElement.elementOutputFileName, " comprimido");
             })
             .catch((err) => {
               setCompressionError(err);
             })
             .finally(() => {});
+            compressionOptions.initialQuality =
+            compressionOptions.initialQuality - 0.3;
         } catch (err) {
           setCompressionError(err);
           setIsCompressing(false);
         }
       }
       loopCounter++;
+      compressionOptions.initialQuality = 1;
       //Adding Blobs to the zip file:
       zip.file(domElement.elementOutputFileName, blob);
     });

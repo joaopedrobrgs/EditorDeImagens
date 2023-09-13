@@ -39,18 +39,18 @@ export function useDownloadImage() {
     //   // documentName = cropperRef?.name;
     // }
 
-    var counter = 1;
+    // var counter = 1;
     //Compressing the image (if the "compress" option is checked and the size is bigger than 200kbs):
     while (
       compressChecked &&
       blob.size >= compressionOptions.maxSizeMB * 1000000 &&
       compressionOptions.initialQuality >= 0.01
     ) {
-      console.log(`${counter}ª vez`);
-      console.log("Size: ", blob.size);
-      console.log("Initial quality", compressionOptions.initialQuality);
-      console.log("Final size reference: ", compressionOptions.maxSizeMB)
-      counter++;
+      // console.log(`${counter}ª vez`);
+      // console.log("Size: ", blob.size);
+      // console.log("Initial quality", compressionOptions.initialQuality);
+      // console.log("Final size reference: ", compressionOptions.maxSizeMB)
+      // counter++;
       setIsCompressing(true);
       //Transforming Blob into File:
       const file = new File([blob], outputFileName, {
