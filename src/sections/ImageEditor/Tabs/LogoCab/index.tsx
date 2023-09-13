@@ -14,15 +14,16 @@ import {
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomLogoCabDomElementOptions,
-  AtomCompressionOptions,
+  AtomMaxSizeOfImage
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
-import { calcFontSizeAccordingToWidth } from "src/utils/utils";
+import { calcFontSizeAccordingToWidth, maxSizeOfImageValidator } from "src/utils/utils";
 import CropperDefault from "src/components/Cropper";
 import SliderDefault from "src/components/Slider";
 import ButtonDefault from "src/components/Button";
 import { useDownloadImage } from "src/hooks/useDownloadImage";
+import { ImageCompressionOptions } from "src/types/ImageCompression";
 
 type Props = {};
 
@@ -38,7 +39,7 @@ const LogoCab = (props: Props) => {
   const { refLogoCabCropper: cropperRef, refLogoCabDomElement: domElementRef } =
     useAppContext();
   const [domElementOptions] = useAtom(AtomLogoCabDomElementOptions);
-  const [compressionOptions] = useAtom(AtomCompressionOptions);
+  const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
 
   //Generic stuff:
   const [zoomValue, setZoomValue] = useState<number>(0);
@@ -115,6 +116,12 @@ const LogoCab = (props: Props) => {
   async function handleDownload() {
     // cropperRef.current.name = outputFileName;
     // domElementRef.current.name = outputFileName;
+    const compressionOptions: ImageCompressionOptions = {
+      maxSizeMB: maxSizeOfImageValidator(maxSizeOfImage),
+      fileType: "image/png",
+      alwaysKeepResolution: true,
+      initialQuality: 1,
+    };
     triggerDownloadImage(
       domElementRef.current,
       domElementOptions,

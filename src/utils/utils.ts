@@ -81,3 +81,15 @@ export function getWindowWidth() {
 export function getWindowHeight() {
   return window.innerHeight;
 }
+
+export function maxSizeOfImageValidator(maxSizeOfImage: any) {
+  if (!!maxSizeOfImage) {
+    if (maxSizeOfImage >= 100) {
+      return (maxSizeOfImage - 10) / 1000;
+    } else {
+      return maxSizeOfImage / 1000;
+    }
+  } else {
+    return 0.2;
+  }
+}

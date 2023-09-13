@@ -27,6 +27,14 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      .observation-text {
+        font-weight: 400;
+        font-style: italic;
+        color: red;
+        font-size: 0.9em;
+        text-align: justify;
+        align-self: center;
+      }
       .zoom-options-title {
         display: flex;
         flex-direction: column;
@@ -108,6 +116,8 @@
     }
   }
 }
+
+
 
 @media screen and (max-width: 500px) {
   .page-settings-container {

@@ -8,7 +8,7 @@ import {
   AtomSliderChecked,
   AtomCompressChecked,
   AtomMaxSizeOfImage,
-  AtomCompressionOptions,
+  // AtomCompressionOptions,
 } from "src/store";
 
 type Props = {};
@@ -19,26 +19,26 @@ const PageSettings = (props: Props) => {
   const [onTouchChecked, setOnTouchChecked] = useAtom(AtomOnTouchChecked);
   const [compressChecked, setCompressChecked] = useAtom(AtomCompressChecked);
   const [maxSizeOfImage, setMaxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
-  const [, setCompressionOptions] = useAtom(
-    AtomCompressionOptions
-  );
+  const [maxSizeOfImageTemporaryValue, setMaxSizeOfImageTemporaryValue] =
+    useState<number>(maxSizeOfImage ?? 200);
 
   const [, setShowSettingsModal] = useAtom(AtomShowSettingsModal);
 
   function handleCloseModal(e: any) {
     if (e.target.className.includes("page-settings-modal")) {
       setShowSettingsModal(false);
+      if (!!maxSizeOfImageTemporaryValue || maxSizeOfImageTemporaryValue === 0) {
+        if (maxSizeOfImageTemporaryValue >= 100000) {
+          setMaxSizeOfImage(99999);
+        } else if (maxSizeOfImageTemporaryValue >= 1) {
+          setMaxSizeOfImage(maxSizeOfImageTemporaryValue);
+        } else {
+          setMaxSizeOfImage(1);
+        }
+      }
+      setMaxSizeOfImageTemporaryValue(maxSizeOfImage);
     }
   }
-
-  useEffect(() => {
-    setCompressionOptions((previousState) => {
-      return {
-        ...previousState,
-        maxSizeMB: (maxSizeOfImage - 10) / 1000,
-      };
-    });
-  }, [maxSizeOfImage]);
 
   return (
     <div className="page-settings-modal" onClick={handleCloseModal}>
@@ -109,15 +109,17 @@ const PageSettings = (props: Props) => {
               <div>
                 <input
                   type="number"
-                  value={maxSizeOfImage ?? 0}
+                  value={maxSizeOfImageTemporaryValue ?? undefined}
                   onChange={(e) => {
-                    setMaxSizeOfImage(parseFloat(e.target.value));
+                    setMaxSizeOfImageTemporaryValue(parseFloat(e.target.value));
                   }}
                   disabled={compressChecked ? false : true}
+                  min={1}
                 />
                 <span>kbs</span>
               </div>
             </div>
+            <p className="observation-text">(valor padrão: 200kbs)</p>
           </div>
         </div>
       </div>

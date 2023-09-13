@@ -13,16 +13,17 @@ import {
   AtomWindowWidth,
   AtomFirstImageFullyLoaded,
   AtomCompressChecked,
-  AtomCompressionOptions,
   AtomFundoAppDomElementOptions,
   AtomFundoMenuDomElementOptions,
   AtomLogoAppDomElementOptions,
   AtomLogoCabDomElementOptions,
+  AtomMaxSizeOfImage,
 } from "src/store";
-import { calcFontSizeAccordingToWidth } from "src/utils/utils";
+import { calcFontSizeAccordingToWidth, maxSizeOfImageValidator } from "src/utils/utils";
 import { useAppContext } from "src/context";
 import { useDownloadZip } from "src/hooks/useDownloadZip";
 import { DomElementReferenceOptionsType } from "src/types/DomElement";
+import { ImageCompressionOptions } from "src/types/ImageCompression";
 
 type Props = {
   className: string;
@@ -34,6 +35,8 @@ const ImageEditor = ({ className }: Props) => {
     AtomFirstImageFullyLoaded
   );
   const [compressChecked] = useAtom(AtomCompressChecked);
+  const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
+
   const {
     isCompressing,
     setIsCompressing,
@@ -53,8 +56,6 @@ const ImageEditor = ({ className }: Props) => {
     refLogoAppDomElement,
     refLogoCabDomElement,
   } = useAppContext();
-
-  const [compressionOptions] = useAtom(AtomCompressionOptions);
 
   const [fundoAppOptions] = useAtom(AtomFundoAppDomElementOptions);
   const [fundoMenuOptions] = useAtom(AtomFundoMenuDomElementOptions);
@@ -96,6 +97,12 @@ const ImageEditor = ({ className }: Props) => {
         elementOutputFileName: "logo-cab.png"
       });
     }
+    const compressionOptions: ImageCompressionOptions = {
+      maxSizeMB: maxSizeOfImageValidator(maxSizeOfImage),
+      fileType: "image/png",
+      alwaysKeepResolution: true,
+      initialQuality: 1,
+    };
     triggerDownloadZip(data, compressChecked, compressionOptions);
   }
 
