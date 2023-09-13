@@ -1,17 +1,18 @@
 .screen-login-container {
   margin: 1.25rem 0.5rem;
   position: relative;
-  width: 500px;
+  width: 250px;
   // font-size: 16px;
-  // transform: scale(0.5);
   .fundo-app-box {
     left: 0;
     right: 0;
     z-index: 0;
     display: block;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 500px;
+    height: 900px;
+    transform: scale(0.499);
+    margin: calc(900px * -0.25) calc(500px * -0.25);
     filter: opacity(var(--fundo-app-opacity));
     -webkit-filter: opacity(var(--fundo-app-opacity));
     -moz-filter: opacity(var(--fundo-app-opacity));
@@ -29,9 +30,8 @@
   .screen-container {
     position: relative;
     border: 0.5px dashed black;
-    height: 900px;
-    width: 500px;
-    // transform: scale(0.5);
+    height: 450px;
+    width: 250px;
     backdrop-filter: blur(var(--fundo-app-blur));
     -webkit-backdrop-filter: blur(var(--fundo-app-blur));
     -moz-backdrop-filter: blur(var(--fundo-app-blur));
@@ -44,8 +44,8 @@
       justify-content: center;
       width: 450px;
       height: 250px;
-      margin: 7% auto;
-      transform: scale(0.8);
+      margin: calc(250px * -0.195) calc(450px * -0.225);
+      transform: scale(0.4);
       // background-color: red;
       .logo-app-preview{
         overflow: hidden;
@@ -53,60 +53,33 @@
       }
     }
 
-    // .logo {
-    //   background-color: red;
-    //   width: 450px;
-    //   height: 250px;
-    //   margin: 10% auto;
-    //   display: flex;
-    //   align-items: center;
-    //   justify-content: center;
-    //   .logo-app-box {
-    //     // position: relative;
-    //     // display: flex;
-    //     // justify-content: center;
-    //     // align-items: center;
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-    //     width: 100%;
-    //     height: 100%;
-    //     // margin: 10% auto;
-    //     background-color: gray;
-    //     .logo-app-preview {
-    //       overflow: hidden;
-    //       background-color: blue;
-    //     }
-    //   }
-    // }
-
     .center-box {
       width: 80%;
       margin: auto;
 
       .login-box {
         background-color: rgba($color: #ffffffff, $alpha: var(--boxes-opacity));
-        border-radius: 9.24px;
+        border-radius: 4.62px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 28.8px;
+        padding: 14.4px;
 
         .input {
           background-color: rgba($color: #ffffffff, $alpha: 0.7);
           width: 100%;
-          border: 2.24px solid #d3d3d3;
-          border-radius: 6.6px;
-          height: 66px;
-          padding: 13.32px 0px;
-          margin-bottom: 14.4px;
+          border: 1.12px solid #d3d3d3;
+          border-radius: 3.3px;
+          height: 33px;
+          padding: 6.66px 0px;
+          margin-bottom: 7.2px;
           .input-label {
-            font-size: 18.48px;
+            font-size: 9.24px;
             font-weight: 500;
             text-align: center;
           }
           .input-content {
-            border-left: 2.24px solid #d3d3d3;
+            border-left: 1.12px solid #d3d3d3;
             height: 100%;
             width: 100%;
           }
@@ -116,29 +89,29 @@
           display: flex;
           align-items: center;
           .checkbox-square {
-            border: 2px solid var(--btn-bg-color);
-            border-radius: 6.6px;
-            width: 26.4px;
-            height: 26.4px;
+            border: 1px solid var(--btn-bg-color);
+            border-radius: 3.3px;
+            width: 13.2px;
+            height: 13.2px;
             display: inline-block;
-            margin-right: 13.2px;
+            margin-right: 6.6px;
           }
           .checkbox-text {
             font-weight: 500;
-            font-size: 18.48px;
+            font-size: 9.24px;
           }
         }
         .button {
-          margin-top: 29px;
+          margin-top: 14.5px;
           width: 100%;
-          height: 66px;
+          height: 33px;
           background-color: var(--btn-bg-color);
-          border-radius: 10.56px;
+          border-radius: 5.28px;
           display: flex;
           justify-content: center;
           align-items: center;
           box-shadow: 0px 5px 10px 0px rgb(0 0 0 / 40%);
-          font-size: 1.32em;
+          font-size: 0.66em;
           font-weight: 600;
           .button-text {
             color: var(--btn-text-color);
@@ -147,16 +120,16 @@
       }
 
       .forgot-password-box {
-        margin-top: 13.2px;
+        margin-top: 6.6px;
         background-color: rgba($color: #ffffffff, $alpha: 1);
         opacity: var(--boxes-opacity);
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 9.24px;
-        padding: 15.6px;
+        border-radius: 4.62px;
+        padding: 7.8px;
         box-sizing: border-box;
-        font-size: 1.32em;
+        font-size: 0.66em;
       }
     }
 
@@ -182,7 +155,7 @@
         span {
           color: #030303;
           opacity: 0.7;
-          font-size: 17.16px;
+          font-size: 8.58px;
           font-weight: 500;
         }
       }

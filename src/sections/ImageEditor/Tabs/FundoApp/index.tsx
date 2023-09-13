@@ -38,7 +38,7 @@ const FundoApp = (props: Props) => {
   const nameOfTab: string = "Fundo App";
   const previewClass: string = "fundo-app-preview";
   const outputFileName: string = "fundo_app.png";
-  const aspectRatio = 500 / 889;
+  const aspectRatio = 500 / 900;
   const [, setCropData] = useAtom(AtomFundoAppCropped);
   const [image, setImage] = useAtom(AtomFundoAppOriginalSize);
   const {
