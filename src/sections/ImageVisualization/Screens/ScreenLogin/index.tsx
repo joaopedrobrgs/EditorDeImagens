@@ -11,11 +11,6 @@ const TelaInicial = ({}: Props) => {
 
   const {refLogoAppDomElement, refFundoAppDomElement} = useAppContext();
 
-
-  // useEffect(()=>{
-  //   console.log(refLogoAppContainer.current)
-  // }, [])
-
   return (
     <div className="screen-login-container">
       <div className="fundo-app-box" ref={refFundoAppDomElement}>

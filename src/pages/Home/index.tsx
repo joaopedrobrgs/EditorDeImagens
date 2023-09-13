@@ -38,11 +38,6 @@ const Home = ({}: Props) => {
     };
   }, []);
 
-  // useEffect(()=>{
-  //   console.log("Window width: ", windowWidth)
-  //   console.log("Window height: ", windowHeight)
-  // }, [windowWidth, windowHeight])
-
   useEffect(() => {
     const getActualTime = setInterval(() => {
       setActualTime(hoursMinutesToString(new Date()));

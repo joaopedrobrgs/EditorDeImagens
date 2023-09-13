@@ -10,8 +10,7 @@ import {
   AtomFundoAppOpacity,
   AtomFundoAppBlur,
   AtomFundoMenuOpacity,
-  AtomFundoMenuBlur,
-  AtomWindowWidth
+  AtomFundoMenuBlur
 } from "src/store";
 import { changeRootVarAtribute, valueLabelFormat } from "src/utils/utils";
 import "./styles.scss";
@@ -28,12 +27,6 @@ export default function ScreensSettings({ className }: Props) {
   const [fundoMenuBlur, setFundoMenuBlur] = useAtom(AtomFundoMenuBlur);
   const [btnBgColor, setBtnBgColor] = useAtom(AtomBtnBgColor);
   const [btnTextColor, setBtnTextColor] = useAtom(AtomBtnTextColor);
-
-  const [ windowWidth ] = useAtom(AtomWindowWidth);
-
-  // useEffect(()=>{
-  //   console.log(windowWidth);
-  // }, [windowWidth])
 
   return (
     <div className={`${className} settings-extern-container`}>
