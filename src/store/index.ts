@@ -89,17 +89,20 @@ const AtomCompressChecked = atomWithStorage<boolean>(
   getCompressChecked()
 );
 
-const getMaxSizeOfImage = (): number => {
-  const storedState = localStorage.getItem("@maxSizeOfImage");
-  if (storedState) {
-    return JSON.parse(storedState);
-  }
-  return 400;
-};
-const AtomMaxSizeOfImage = atomWithStorage<number>(
-  "@maxSizeOfImage",
-  getMaxSizeOfImage()
-);
+//Max size of image:
+// const getMaxSizeOfImage = (): number => {
+//   const storedState = localStorage.getItem("@maxSizeOfImage");
+//   if (storedState) {
+//     return JSON.parse(storedState);
+//   }
+//   return 400;
+// };
+// const AtomMaxSizeOfImage = atomWithStorage<number>(
+//   "@maxSizeOfImage",
+//   getMaxSizeOfImage()
+// );
+const getMaxSizeOfImage = (): number => {return 200};
+const AtomMaxSizeOfImage = atom<number>(getMaxSizeOfImage());
 
 //Compression Options Atom:
 const AtomCompressionOptions = atom<ImageCompressionOptions>({

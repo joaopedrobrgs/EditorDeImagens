@@ -79,7 +79,7 @@ const PageSettings = (props: Props) => {
             </label>
           </div>
         </div>
-        <div className="option-container">
+        {/* <div className="option-container">
           <p>Opções de Compressão:</p>
           <div className="option-content">
             <label
@@ -117,7 +117,7 @@ const PageSettings = (props: Props) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
