@@ -77,19 +77,21 @@ const AtomOnWheelChecked = atomWithStorage<boolean>(
   getOnWheelChecked()
 );
 
-const getCompressChecked = (): boolean => {
-  const storedState = localStorage.getItem("@compressChecked");
-  if (storedState) {
-    return JSON.parse(storedState);
-  }
-  return false;
-};
-const AtomCompressChecked = atomWithStorage<boolean>(
-  "@compressChecked",
-  getCompressChecked()
-);
+//*Compress Checked:
+// const getCompressChecked = (): boolean => {
+//   const storedState = localStorage.getItem("@compressChecked");
+//   if (storedState) {
+//     return JSON.parse(storedState);
+//   }
+//   return false;
+// };
+// const AtomCompressChecked = atomWithStorage<boolean>(
+//   "@compressChecked",
+//   getCompressChecked()
+// );
+const AtomCompressChecked = atom<boolean>(true);
 
-//Max size of image:
+//*Max size of image:
 // const getMaxSizeOfImage = (): number => {
 //   const storedState = localStorage.getItem("@maxSizeOfImage");
 //   if (storedState) {
