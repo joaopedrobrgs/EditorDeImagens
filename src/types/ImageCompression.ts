@@ -11,4 +11,4 @@ export type ImageCompressionOptions = {
   fileType: string,
   initialQuality: number,
   alwaysKeepResolution?: boolean
-}
+} 
