@@ -18,7 +18,7 @@ import {
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
-import { calcFontSizeAccordingToWidth, downloadImage } from "src/utils/utils";
+import { calcFontSizeAccordingToWidth } from "src/utils/utils";
 import CropperDefault from "src/components/Cropper";
 import SliderDefault from "src/components/Slider";
 import ButtonDefault from "src/components/Button";

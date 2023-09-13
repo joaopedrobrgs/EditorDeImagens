@@ -78,40 +78,38 @@ const AtomOnWheelChecked = atomWithStorage<boolean>(
 );
 
 //*Compress Checked:
-// const getCompressChecked = (): boolean => {
-//   const storedState = localStorage.getItem("@compressChecked");
-//   if (storedState) {
-//     return JSON.parse(storedState);
-//   }
-//   return false;
-// };
-// const AtomCompressChecked = atomWithStorage<boolean>(
-//   "@compressChecked",
-//   getCompressChecked()
-// );
-const AtomCompressChecked = atom<boolean>(true);
+const getCompressChecked = (): boolean => {
+  const storedState = localStorage.getItem("@compressChecked");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return true;
+};
+const AtomCompressChecked = atomWithStorage<boolean>(
+  "@compressChecked",
+  getCompressChecked()
+);
+// const AtomCompressChecked = atom<boolean>(true);
 
 //*Max size of image:
-// const getMaxSizeOfImage = (): number => {
-//   const storedState = localStorage.getItem("@maxSizeOfImage");
-//   if (storedState) {
-//     return JSON.parse(storedState);
-//   }
-//   return 400;
-// };
-// const AtomMaxSizeOfImage = atomWithStorage<number>(
-//   "@maxSizeOfImage",
-//   getMaxSizeOfImage()
-// );
-// const getMaxSizeOfImage = (): number => {return 200};
-// const AtomMaxSizeOfImage = atom<number>(getMaxSizeOfImage());
+const getMaxSizeOfImage = (): number => {
+  const storedState = localStorage.getItem("@maxSizeOfImage");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return 200;
+};
+const AtomMaxSizeOfImage = atomWithStorage<number>(
+  "@maxSizeOfImage",
+  getMaxSizeOfImage()
+);
 
 //Compression Options Atom:
 const AtomCompressionOptions = atom<ImageCompressionOptions>({
-  maxSizeMB: 0.2,
+  maxSizeMB: (getMaxSizeOfImage() - 10) / 1000,
   fileType: "image/png",
   alwaysKeepResolution: true,
-  initialQuality: 0.1
+  initialQuality: 1,
 });
 
 //Dom Element Options Atoms:
@@ -180,4 +178,5 @@ export {
   AtomFundoMenuDomElementOptions,
   AtomLogoAppDomElementOptions,
   AtomLogoCabDomElementOptions,
+  AtomMaxSizeOfImage,
 };

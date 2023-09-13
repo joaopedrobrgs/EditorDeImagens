@@ -1,7 +1,6 @@
 import { ReactCropperElement } from "react-cropper";
 import React, { useState, ReactNode } from "react";
 import JSZip from "jszip";
-import { compressImage, downloadImage } from "src/utils/utils";
 import { saveAs } from "file-saver";
 import imageCompression from "browser-image-compression";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
@@ -40,8 +39,18 @@ export function useDownloadImage() {
     //   // documentName = cropperRef?.name;
     // }
 
+    var counter = 1;
     //Compressing the image (if the "compress" option is checked and the size is bigger than 200kbs):
-    if (compressChecked && (blob.size >= compressionOptions.maxSizeMB * 1000000)) {
+    while (
+      compressChecked &&
+      blob.size >= compressionOptions.maxSizeMB * 1000000 &&
+      compressionOptions.initialQuality >= 0.01
+    ) {
+      console.log(`${counter}ª vez`);
+      console.log("Size: ", blob.size);
+      console.log("Initial quality", compressionOptions.initialQuality);
+      console.log("Final size reference: ", compressionOptions.maxSizeMB)
+      counter++;
       setIsCompressing(true);
       //Transforming Blob into File:
       const file = new File([blob], outputFileName, {
@@ -63,7 +72,11 @@ export function useDownloadImage() {
         setCompressionError(err);
         setIsCompressing(false);
       }
+      compressionOptions.initialQuality =
+        compressionOptions.initialQuality - 0.3;
     }
+
+    compressionOptions.initialQuality = 1;
 
     //Downloading the image:
     saveAs(blob, outputFileName);

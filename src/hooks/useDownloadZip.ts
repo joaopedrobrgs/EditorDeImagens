@@ -1,7 +1,6 @@
 import { ReactCropperElement } from "react-cropper";
 import React, { useState } from "react";
 import JSZip from "jszip";
-import { compressImage, downloadImage } from "src/utils/utils";
 import { saveAs } from "file-saver";
 import imageCompression from "browser-image-compression";
 import { ImageCompressionOptions } from "src/types/ImageCompression";

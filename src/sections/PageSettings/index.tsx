@@ -7,7 +7,8 @@ import {
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomCompressChecked,
-  // AtomMaxSizeOfImage,
+  AtomMaxSizeOfImage,
+  AtomCompressionOptions,
 } from "src/store";
 import { Button } from "@mui/material";
 
@@ -18,19 +19,27 @@ const PageSettings = (props: Props) => {
   const [onWheelChecked, setOnWheelChecked] = useAtom(AtomOnWheelChecked);
   const [onTouchChecked, setOnTouchChecked] = useAtom(AtomOnTouchChecked);
   const [compressChecked, setCompressChecked] = useAtom(AtomCompressChecked);
-  // const [maxSizeOfImage, setMaxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
-
-  const [, setShowSettingsModal] = useAtom(
-    AtomShowSettingsModal
+  const [maxSizeOfImage, setMaxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
+  const [, setCompressionOptions] = useAtom(
+    AtomCompressionOptions
   );
 
+  const [, setShowSettingsModal] = useAtom(AtomShowSettingsModal);
+
   function handleCloseModal(e: any) {
-    if (
-      e.target.className.includes("page-settings-modal")
-    ) {
+    if (e.target.className.includes("page-settings-modal")) {
       setShowSettingsModal(false);
     }
   }
+
+  useEffect(() => {
+    setCompressionOptions((previousState) => {
+      return {
+        ...previousState,
+        maxSizeMB: (maxSizeOfImage - 10) / 1000,
+      };
+    });
+  }, [maxSizeOfImage]);
 
   return (
     <div className="page-settings-modal" onClick={handleCloseModal}>
@@ -58,9 +67,7 @@ const PageSettings = (props: Props) => {
                 type="checkbox"
                 checked={onWheelChecked}
                 onChange={() => {
-                  setOnWheelChecked(
-                    !onWheelChecked
-                  );
+                  setOnWheelChecked(!onWheelChecked);
                 }}
               />
               Roda do Mouse
@@ -70,16 +77,14 @@ const PageSettings = (props: Props) => {
                 type="checkbox"
                 checked={onTouchChecked}
                 onChange={() => {
-                  setOnTouchChecked(
-                    !onTouchChecked
-                  );
+                  setOnTouchChecked(!onTouchChecked);
                 }}
               />
               Touch (Celulares)
             </label>
           </div>
         </div>
-        {/* <div className="option-container">
+        <div className="option-container">
           <p>Opções de Compressão:</p>
           <div className="option-content">
             <label
@@ -91,9 +96,7 @@ const PageSettings = (props: Props) => {
                 type="checkbox"
                 checked={compressChecked}
                 onChange={() => {
-                  setCompressChecked(
-                    !compressChecked
-                  );
+                  setCompressChecked(!compressChecked);
                 }}
               />
               Comprimir imagens
@@ -117,7 +120,7 @@ const PageSettings = (props: Props) => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

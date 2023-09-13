@@ -9,6 +9,6 @@ export type ImageCompressionOptions = {
   maxIteration?: number,
   exifOrientation?: number,
   fileType: string,
-  initialQuality?: number,
+  initialQuality: number,
   alwaysKeepResolution?: boolean
 }

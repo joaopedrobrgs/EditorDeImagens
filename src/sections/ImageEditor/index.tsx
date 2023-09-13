@@ -19,7 +19,7 @@ import {
   AtomLogoAppDomElementOptions,
   AtomLogoCabDomElementOptions,
 } from "src/store";
-import { calcFontSizeAccordingToWidth, downloadZip } from "src/utils/utils";
+import { calcFontSizeAccordingToWidth } from "src/utils/utils";
 import { useAppContext } from "src/context";
 import { ReactCropperElement } from "react-cropper";
 import { useDownloadZip } from "src/hooks/useDownloadZip";
