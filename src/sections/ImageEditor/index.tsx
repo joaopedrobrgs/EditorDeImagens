@@ -13,7 +13,6 @@ import {
   AtomWindowWidth,
   AtomFirstImageFullyLoaded,
   AtomCompressChecked,
-  AtomMaxSizeOfImage,
   AtomCompressionOptions,
   AtomFundoAppDomElementOptions,
   AtomFundoMenuDomElementOptions,
@@ -38,7 +37,6 @@ const ImageEditor = ({ className }: Props) => {
     AtomFirstImageFullyLoaded
   );
   const [compressChecked] = useAtom(AtomCompressChecked);
-  const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
   const {
     isCompressing,
     setIsCompressing,

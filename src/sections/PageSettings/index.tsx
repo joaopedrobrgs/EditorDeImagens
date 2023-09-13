@@ -7,7 +7,7 @@ import {
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomCompressChecked,
-  AtomMaxSizeOfImage,
+  // AtomMaxSizeOfImage,
 } from "src/store";
 import { Button } from "@mui/material";
 
@@ -18,7 +18,7 @@ const PageSettings = (props: Props) => {
   const [onWheelChecked, setOnWheelChecked] = useAtom(AtomOnWheelChecked);
   const [onTouchChecked, setOnTouchChecked] = useAtom(AtomOnTouchChecked);
   const [compressChecked, setCompressChecked] = useAtom(AtomCompressChecked);
-  const [maxSizeOfImage, setMaxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
+  // const [maxSizeOfImage, setMaxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
 
   const [, setShowSettingsModal] = useAtom(
     AtomShowSettingsModal
