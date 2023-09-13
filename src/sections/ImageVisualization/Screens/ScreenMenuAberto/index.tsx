@@ -36,7 +36,7 @@ const MenuAberto = ({}: Props) => {
               <div className="menu-header-content">
                 <span className="time">{actualTime ?? ""}</span>
                 <div className="user-photo-container">
-                  <img src={`${process.env.PUBLIC_URL}user-female.png`}></img>
+                  <img src={`${process.env.PUBLIC_URL}user-female.png`} alt="UserImage"></img>
                 </div>
                 <div className="user-name-container">
                   <span>LAIS</span>
