@@ -10,7 +10,6 @@ import {
   AtomFundoMenuOriginalSize,
   AtomWindowWidth,
   AtomCompressChecked,
-  AtomMaxSizeOfImage,
   AtomOnTouchChecked,
   AtomOnWheelChecked,
   AtomSliderChecked,
@@ -53,7 +52,6 @@ const FundoMenu = (props: Props) => {
   const inputRef = useRef<any>();
   const sliderRef = useRef<any>();
   const [compressChecked] = useAtom(AtomCompressChecked);
-  const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
   const [windowWidth] = useAtom(AtomWindowWidth);
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);

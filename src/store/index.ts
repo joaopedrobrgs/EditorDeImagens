@@ -103,14 +103,15 @@ const AtomCompressChecked = atom<boolean>(true);
 //   "@maxSizeOfImage",
 //   getMaxSizeOfImage()
 // );
-const getMaxSizeOfImage = (): number => {return 200};
-const AtomMaxSizeOfImage = atom<number>(getMaxSizeOfImage());
+// const getMaxSizeOfImage = (): number => {return 200};
+// const AtomMaxSizeOfImage = atom<number>(getMaxSizeOfImage());
 
 //Compression Options Atom:
 const AtomCompressionOptions = atom<ImageCompressionOptions>({
-  maxSizeMB: getMaxSizeOfImage() / 1000,
+  maxSizeMB: 0.2,
   fileType: "image/png",
   alwaysKeepResolution: true,
+  initialQuality: 0.1
 });
 
 //Dom Element Options Atoms:
@@ -173,7 +174,6 @@ export {
   AtomActualTime,
   AtomFirstImageFullyLoaded,
   AtomCompressChecked,
-  AtomMaxSizeOfImage,
   AtomWindowHeight,
   AtomCompressionOptions,
   AtomFundoAppDomElementOptions,
