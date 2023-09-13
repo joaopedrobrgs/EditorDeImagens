@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./styles.scss";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -21,10 +21,7 @@ import {
 } from "src/store";
 import { calcFontSizeAccordingToWidth } from "src/utils/utils";
 import { useAppContext } from "src/context";
-import { ReactCropperElement } from "react-cropper";
 import { useDownloadZip } from "src/hooks/useDownloadZip";
-import { ImageCompressionOptions } from "src/types/ImageCompression";
-import { Options } from "dom-to-image";
 import { DomElementReferenceOptionsType } from "src/types/DomElement";
 
 type Props = {

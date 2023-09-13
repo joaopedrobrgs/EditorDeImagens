@@ -10,7 +10,6 @@ import {
   AtomMaxSizeOfImage,
   AtomCompressionOptions,
 } from "src/store";
-import { Button } from "@mui/material";
 
 type Props = {};
 

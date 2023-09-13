@@ -1,9 +1,6 @@
 .image-visualization-container {
   margin: 1.25rem 0;
 
-  // margin: calc(1553px * -0.15);
-  // calc(((90vw - 320px) * 3.15) * -0.37);
-
   .pre-visualization-text {
     font-weight: bold;
     padding-left: 0.5em;
@@ -14,8 +11,6 @@
     display: flex;
     justify-content: center;
     overflow-x: auto;
-    // margin: calc(900px * -0.26) calc(900px * -0.3);
-    // transform: scale(0.5);
   }
 }
 

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import "./styles.scss";
 import IphoneBottomLine from "src/components/IphoneBottomLine";
 import { useAppContext } from "src/context";

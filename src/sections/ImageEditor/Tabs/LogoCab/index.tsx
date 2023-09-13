@@ -22,11 +22,7 @@ import { calcFontSizeAccordingToWidth } from "src/utils/utils";
 import CropperDefault from "src/components/Cropper";
 import SliderDefault from "src/components/Slider";
 import ButtonDefault from "src/components/Button";
-import { useCompression } from "src/hooks/useCompression";
-import { ImageCompressionOptions } from "src/types/ImageCompression";
-import { saveAs } from "file-saver";
 import { useDownloadImage } from "src/hooks/useDownloadImage";
-import { Options } from "dom-to-image";
 
 type Props = {};
 

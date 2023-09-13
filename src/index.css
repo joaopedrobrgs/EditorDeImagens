@@ -39,18 +39,18 @@
 }
 
 ::-webkit-scrollbar-button:vertical:start:decrement {
-  background-image: url('./assets/svgComponents/arrowUp.svg');
+  background-image: url('./assets/svgArchives/arrowUp.svg');
   background-size: 50%;
 }
 
 ::-webkit-scrollbar-button:vertical:start:decrement:hover {
-  background-image: url('./assets/svgComponents/arrowUpHover.svg');
+  background-image: url('./assets/svgArchives/arrowUpHover.svg');
   background-size: 50%;
   background-color: var(--blue-2);
 }
 
 ::-webkit-scrollbar-button:vertical:start:decrement:active {
-  background-image: url('./assets/svgComponents/arrowUp.svg');
+  background-image: url('./assets/svgArchives/arrowUp.svg');
   background-size: 50%;
   background-color: var(--blue-4);
 }
@@ -60,18 +60,18 @@
 }
 
 ::-webkit-scrollbar-button:vertical:end:increment {
-  background-image: url('./assets/svgComponents/arrowDown.svg');
+  background-image: url('./assets/svgArchives/arrowDown.svg');
   background-size: 50%;
 }
 
 ::-webkit-scrollbar-button:vertical:end:increment:hover {
-  background-image: url('./assets/svgComponents/arrowDownHover.svg');
+  background-image: url('./assets/svgArchives/arrowDownHover.svg');
   background-size: 50%;
   background-color: var(--blue-2);
 }
 
 ::-webkit-scrollbar-button:vertical:end:increment:active {
-  background-image: url('./assets/svgComponents/arrowDownHover.svg');
+  background-image: url('./assets/svgArchives/arrowDownHover.svg');
   background-size: 50%;
   background-color: var(--blue-4);
 }
@@ -91,53 +91,6 @@
 ::-webkit-scrollbar-button:horizontal:end:decrement {
   display: none;
 }
-/* 
-::-webkit-scrollbar-button:horizontal:start:increment {
-  display: none;
-}
-
-::-webkit-scrollbar-button:horizontal:end:increment {
-  background-image: url('./assets/svgComponents/arrowRight.svg');
-  background-size: 38%;
-}
-
-::-webkit-scrollbar-button:horizontal:start:decrement {
-  background-image: url('./assets/svgComponents/arrowLeft.svg');
-  background-size: 38%;
-}
-
-::-webkit-scrollbar-button:horizontal:start:decrement:hover {
-  background-image: url('./assets/svgComponents/arrowLeftHover.svg');
-  background-size: 38%;
-  background-color: var(--blue-2);
-}
-
-::-webkit-scrollbar-button:horizontal:start:decrement:active {
-  background-image: url('./assets/svgComponents/arrowLeftHover.svg');
-  background-size: 38%;
-  background-color: var(--blue-4);
-}
-
-::-webkit-scrollbar-button:horizontal:end:decrement {
-  display: none;
-}
-
-::-webkit-scrollbar-button:horizontal:end:increment {
-  background-image: url('./assets/svgComponents/arrowRight.svg');
-  background-size: 38%;
-}
-
-::-webkit-scrollbar-button:horizontal:end:increment:hover {
-  background-image: url('./assets/svgComponents/arrowRightHover.svg');
-  background-size: 38%;
-  background-color: var(--blue-2);
-}
-
-::-webkit-scrollbar-button:horizontal:end:increment:active {
-  background-image: url('./assets/svgComponents/arrowRightHover.svg');
-  background-size: 38%;
-  background-color: var(--blue-4);
-} */
 
 :root {
   --blue-1: #2B7ECB;
@@ -155,7 +108,4 @@
   --fundo-app-blur: 1px;
   --fundo-menu-opacity: 90%;
   --fundo-menu-blur: 1px;
-
-  /* --screens-group-row-iphone-margin-desktop: calc(1553px * -0.37)
-  calc(((90vw - 320px) * 3.15) * -0.37); */
 }

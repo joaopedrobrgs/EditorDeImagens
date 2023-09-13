@@ -2,7 +2,6 @@ import React from "react";
 import "./styles.scss";
 import ScreenLogin from "./Screens/ScreenLogin";
 import ScreenMenuAberto from "./Screens/ScreenMenuAberto";
-import ScreensSettings from "../ScreensSettings";
 
 type Props = {
   className: string;

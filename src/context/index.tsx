@@ -23,13 +23,13 @@ const AppContextProvider: React.FC<{
   children: React.ReactElement;
 }> = ({ children }) => {
 
-  //Referências aos recortes (croppers):
+  //Cropper references (croppers):
   const refFundoAppCropper = createRef<ReactCropperElement>();
   const refFundoMenuCropper = createRef<ReactCropperElement>();
   const refLogoAppCropper = createRef<ReactCropperElement>();
   const refLogoCabCropper = createRef<ReactCropperElement>();
   
-  //Referências aos elementos DOM:
+  //DOM Elements References:
   const refFundoAppDomElement = createRef<Node>();
   const refFundoMenuDomElement = createRef<Node>();
   const refLogoAppDomElement = createRef<Node>();

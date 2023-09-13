@@ -21,46 +21,26 @@ export function useDownloadImage() {
     outputFileName: string
   ) => {
     let blob: any;
-
-    //Dom to Image:
+    //Pegando elemento do DOM, transformando em imagem no formato BLOB e atribuindo a uma variável:
     blob = await new Promise((resolve) =>
       domtoimage.toBlob(domElementRef, domElementOptions).then(resolve)
     );
-
-    // console.log("Blob size: ", blob.size);
-    // console.log("Compression size: ", compressionOptions.maxSizeMB * 1000000)
-
-    //Cropper to image:
-    // else {
-    //   //Getting image in Blob format and assigning it to a variable:
-    //   blob = await new Promise((resolve) =>
-    //     cropperRef.cropper?.getCroppedCanvas().toBlob(resolve)
-    //   );
-    //   // documentName = cropperRef?.name;
-    // }
-
-    // var counter = 1;
-    //Compressing the image (if the "compress" option is checked and the size is bigger than 200kbs):
+    //Comprimindo imagem (se a opção de comprimir estiver marcada e o arquivo for menor do que a quantidade de kbs que o usuário determinou):
     while (
       compressChecked &&
       blob.size >= compressionOptions.maxSizeMB * 1000000 &&
       compressionOptions.initialQuality >= 0.01
     ) {
-      // console.log(`${counter}ª vez`);
-      // console.log("Size: ", blob.size);
-      // console.log("Initial quality", compressionOptions.initialQuality);
-      // console.log("Final size reference: ", compressionOptions.maxSizeMB)
-      // counter++;
       setIsCompressing(true);
-      //Transforming Blob into File:
+      //Transformando BLOB em arquivo (file):
       const file = new File([blob], outputFileName, {
         type: "image/png",
       });
       try {
-        //Making fetch to conversion API:
+        //Utilizando a API de compressão de arquivos:
         await imageCompression(file, compressionOptions)
           .then((response) => {
-            //Assigning compression result to the "blob" variable:
+            //Atribuindo o resultado da compressão à variável "blob":
             blob = response;
             setIsCompressing(false);
           })
@@ -78,7 +58,7 @@ export function useDownloadImage() {
 
     compressionOptions.initialQuality = 1;
 
-    //Downloading the image:
+    //Fazendo download da imagem
     saveAs(blob, outputFileName);
   };
 

@@ -19,48 +19,43 @@ export function useDownloadZip() {
     compressionOptions: ImageCompressionOptions
   ) => {
     var loopCounter = 1;
-    //Creating zip file:
+    //Criando um arquivo zip:
     var zip = new JSZip();
-    //Making a map in our array that contains the cropped images and assigning it to a constant variable:
+    //Fazendo um map no array de DOM Elements que nós montamos para trabalhar com imagem por imagem:
     const downloadZips = data.map(async (domElement, index) => {
-      //Getting image in Blob format and assigning it to a variable:
+      //Pegando elemento do DOM, transformando em imagem no formato BLOB e atribuindo a uma variável:
       let blob: any = await new Promise((resolve) =>
         domtoimage
           .toBlob(domElement.elementReference, domElement.elementOptions)
           .then(resolve)
       );
-      // var counter = 1;
-      //Compressing the image (if the "compress" option is checked):
+      //Comprimindo imagem (se a opção de comprimir estiver marcada e o arquivo for menor do que a quantidade de kbs que o usuário determinou):
       while (
         compressChecked &&
         blob.size >= compressionOptions.maxSizeMB * 1000000 &&
         compressionOptions.initialQuality >= 0.01
       ) {
         setIsCompressing(true);
-        // console.log(`${counter}ª vez - ${domElement.elementOutputFileName}`);
-        // console.log("Size: ", blob.size);
-        // console.log("Initial quality", compressionOptions.initialQuality);
-        // console.log("Final size reference: ", compressionOptions.maxSizeMB);
-        // counter++;
-        //Assigning compression result to the "blob" variable:
+        //Transformando BLOB em arquivo (file):
         const file = new File([blob], domElement.elementOutputFileName, {
           type: compressionOptions.fileType,
         });
         try {
+          //Utilizando a API de compressão de arquivos:
           await imageCompression(file, compressionOptions)
             .then((response) => {
+              //Atribuindo o resultado da compressão à variável "blob":
               blob = response;
               if (loopCounter === data.length) {
                 setIsCompressing(false);
                 setCompressionError(null);
               }
-              // console.log(domElement.elementOutputFileName, " comprimido");
             })
             .catch((err) => {
               setCompressionError(err);
             })
             .finally(() => {});
-            compressionOptions.initialQuality =
+          compressionOptions.initialQuality =
             compressionOptions.initialQuality - 0.3;
         } catch (err) {
           setCompressionError(err);
@@ -69,14 +64,14 @@ export function useDownloadZip() {
       }
       loopCounter++;
       compressionOptions.initialQuality = 1;
-      //Adding Blobs to the zip file:
+      //Adicionando os arquivos BLOBs ao arquivo zip:
       zip.file(domElement.elementOutputFileName, blob);
     });
-    //Taking the promises that our constant returns and doing something:
+    //Pegando a promise que o nosso arquivo zip retorna e fazendo algo a partir disso:
     Promise.all(downloadZips).then(() => {
-      //Getting zip file result:
+      //Pegando o resultado desse zip:
       zip.generateAsync({ type: "blob" }).then((content) => {
-        //Saving zip file on user device:
+        //Fazendo download do arquivo zip:
         saveAs(content, "cropped-images.zip");
       });
     });
