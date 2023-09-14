@@ -14,11 +14,17 @@ import {
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomLogoCabDomElementOptions,
-  AtomMaxSizeOfImage
+  AtomLogoCabInitialFileSize,
+  AtomLogoCabCompressionRate,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
-import { calcFontSizeAccordingToWidth, maxSizeOfImageValidator } from "src/utils/utils";
+import {
+  bytesToMbs,
+  calcFontSizeAccordingToWidth,
+  maxSizeOfImageValidator,
+  percentageToDecimal,
+} from "src/utils/utils";
 import CropperDefault from "src/components/Cropper";
 import SliderDefault from "src/components/Slider";
 import ButtonDefault from "src/components/Button";
@@ -39,7 +45,8 @@ const LogoCab = (props: Props) => {
   const { refLogoCabCropper: cropperRef, refLogoCabDomElement: domElementRef } =
     useAppContext();
   const [domElementOptions] = useAtom(AtomLogoCabDomElementOptions);
-  const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
+  const [fileInitialSize, setFileInitialSize] = useAtom(AtomLogoCabInitialFileSize);
+  const [compressionRate] = useAtom(AtomLogoCabCompressionRate);
 
   //Generic stuff:
   const [zoomValue, setZoomValue] = useState<number>(0);
@@ -101,6 +108,7 @@ const LogoCab = (props: Props) => {
     };
     if (!!files[0]) {
       reader.readAsDataURL(files[0]);
+      setFileInitialSize(files[0].size)
     }
   };
 
@@ -117,7 +125,7 @@ const LogoCab = (props: Props) => {
     // cropperRef.current.name = outputFileName;
     // domElementRef.current.name = outputFileName;
     const compressionOptions: ImageCompressionOptions = {
-      maxSizeMB: maxSizeOfImageValidator(maxSizeOfImage),
+      maxSizeMB: fileInitialSize ? bytesToMbs(fileInitialSize) - bytesToMbs(fileInitialSize) * percentageToDecimal(compressionRate) : 0.002,
       fileType: "image/png",
       alwaysKeepResolution: true,
       initialQuality: 1,

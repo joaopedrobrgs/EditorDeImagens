@@ -5,6 +5,7 @@ import { saveAs } from "file-saver";
 import imageCompression from "browser-image-compression";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
 import domtoimage, { Options } from "dom-to-image";
+import { mbsToBytes } from "src/utils/utils";
 
 export function useDownloadImage() {
   const [isCompressing, setIsCompressing] = useState<boolean>(false);
@@ -26,34 +27,59 @@ export function useDownloadImage() {
       domtoimage.toBlob(domElementRef, domElementOptions).then(resolve)
     );
     //Comprimindo imagem (se a opção de comprimir estiver marcada e o arquivo for menor do que a quantidade de kbs que o usuário determinou):
-    while (
-      compressChecked &&
-      blob.size >= compressionOptions.maxSizeMB * 1000000 &&
-      compressionOptions.initialQuality >= 0.01
-    ) {
-      setIsCompressing(true);
-      //Transformando BLOB em arquivo (file):
-      const file = new File([blob], outputFileName, {
-        type: "image/png",
-      });
-      try {
-        //Utilizando a API de compressão de arquivos:
-        await imageCompression(file, compressionOptions)
-          .then((response) => {
-            //Atribuindo o resultado da compressão à variável "blob":
-            blob = response;
-            setIsCompressing(false);
-          })
-          .catch((err) => {
+    console.log(outputFileName, ": ",  compressionOptions.maxSizeMB);
+    if (compressChecked) {
+      if (blob.size >= mbsToBytes(compressionOptions.maxSizeMB)) {
+        while (
+          blob.size >= mbsToBytes(compressionOptions.maxSizeMB) &&
+          compressionOptions.initialQuality >= 0.01
+        ) {
+          setIsCompressing(true);
+          //Transformando BLOB em arquivo (file):
+          const file = new File([blob], outputFileName, {
+            type: "image/png",
+          });
+          try {
+            //Utilizando a API de compressão de arquivos:
+            await imageCompression(file, compressionOptions)
+              .then((response) => {
+                //Atribuindo o resultado da compressão à variável "blob":
+                blob = response;
+                setIsCompressing(false);
+              })
+              .catch((err) => {
+                setCompressionError(err);
+              })
+              .finally(() => {});
+          } catch (err) {
             setCompressionError(err);
-          })
-          .finally(() => {});
-      } catch (err) {
-        setCompressionError(err);
-        setIsCompressing(false);
+            setIsCompressing(false);
+          }
+          compressionOptions.initialQuality =
+            compressionOptions.initialQuality - 0.3;
+        }
+      } else {
+        setIsCompressing(true);
+        //Transformando BLOB em arquivo (file):
+        const file = new File([blob], outputFileName, {
+          type: "image/png",
+        });
+        try {
+          //Utilizando a API de compressão de arquivos:
+          await imageCompression(file, compressionOptions)
+            .then((response) => {
+              //Atribuindo o resultado da compressão à variável "blob":
+              blob = response;
+              setIsCompressing(false);
+            })
+            .catch((err) => {
+              setCompressionError(err);
+            })
+        } catch (err) {
+          setCompressionError(err);
+          setIsCompressing(false);
+        }
       }
-      compressionOptions.initialQuality =
-        compressionOptions.initialQuality - 0.3;
     }
 
     compressionOptions.initialQuality = 1;

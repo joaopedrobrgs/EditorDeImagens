@@ -14,7 +14,7 @@ import {
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomFundoMenuDomElementOptions,
-  AtomMaxSizeOfImage,
+  AtomMaxSizeFundoMenu,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -41,7 +41,7 @@ const FundoMenu = (props: Props) => {
     refFundoMenuDomElement: domElementRef,
   } = useAppContext();
   const [domElementOptions] = useAtom(AtomFundoMenuDomElementOptions);
-  const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage)
+  const [maxSizeOfImage] = useAtom(AtomMaxSizeFundoMenu)
 
 
   //Generic stuff:

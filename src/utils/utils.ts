@@ -1,3 +1,23 @@
+//Função que converte bytes em megabytes:
+export function bytesToMbs(value: number){
+  return value / 1000000;
+}
+
+// Função que converte kbs em megabytes:
+export function kbsToMbs(value: number){
+  return value / 1000;
+}
+
+// Função que converte megabytes em bytes:
+export function mbsToBytes(value: number){
+  return value * 1000000;
+}
+
+//Função que converte porcentagem em numero decimal:
+export function percentageToDecimal(value: number){
+  return value / 100;
+}
+
 //Função que retorna as horas e os minutos com base em um dado do tipo "Date" passado como parâmetro:
 export function hoursMinutesToString(date: Date): string {
   // return `${date.getHours()}:${date.getMinutes()}`

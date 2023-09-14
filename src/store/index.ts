@@ -91,17 +91,59 @@ const AtomCompressChecked = atomWithStorage<boolean>(
 );
 // const AtomCompressChecked = atom<boolean>(true);
 
-//Max size of image:
-const getMaxSizeOfImage = (): number => {
-  const storedState = localStorage.getItem("@maxSizeOfImage");
+//Max size of fundo_app image:
+const getMaxSizeOfImageFundoApp = (): number => {
+  const storedState = localStorage.getItem("@maxSizeFundoApp");
   if (storedState) {
     return JSON.parse(storedState);
   }
   return 200;
 };
-const AtomMaxSizeOfImage = atomWithStorage<number>(
-  "@maxSizeOfImage",
-  getMaxSizeOfImage()
+const AtomMaxSizeFundoApp = atomWithStorage<number>(
+  "@maxSizeFundoApp",
+  getMaxSizeOfImageFundoApp()
+);
+
+//Max size of fundo_menu image:
+const getMaxSizeOfImageFundoMenu = (): number => {
+  const storedState = localStorage.getItem("@maxSizeFundoMenu");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return 50;
+};
+const AtomMaxSizeFundoMenu = atomWithStorage<number>(
+  "@maxSizeFundoMenu",
+  getMaxSizeOfImageFundoMenu()
+);
+
+//LogoAppFileInitialSize e LogoCabFileInitialSize:
+const AtomLogoAppInitialFileSize = atom<null|number>(null);
+const AtomLogoCabInitialFileSize = atom<null|number>(null);
+
+//Logo App and Logo Cab Compression Rate:
+const getLogoAppCompressionRate = (): number => {
+  const storedState = localStorage.getItem("@compressionRateLogoApp");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return 50;
+};
+const AtomLogoAppCompressionRate = atomWithStorage<number>(
+  "@compressionRateLogoApp",
+  getLogoAppCompressionRate()
+);
+
+const getLogoCabCompressionRate = (): number => {
+  const storedState = localStorage.getItem("@compressionRateLogoCab");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return 50;
+};
+const AtomLogoCabCompressionRate = atomWithStorage<number>(
+  "@compressionRateLogoCab",
+  getLogoCabCompressionRate()
 );
 
 //Compression Options Atom:
@@ -178,5 +220,10 @@ export {
   AtomFundoMenuDomElementOptions,
   AtomLogoAppDomElementOptions,
   AtomLogoCabDomElementOptions,
-  AtomMaxSizeOfImage,
+  AtomMaxSizeFundoApp,
+  AtomMaxSizeFundoMenu,
+  AtomLogoAppInitialFileSize,
+  AtomLogoCabInitialFileSize,
+  AtomLogoAppCompressionRate,
+  AtomLogoCabCompressionRate
 };

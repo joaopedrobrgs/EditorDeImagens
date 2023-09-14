@@ -17,9 +17,19 @@ import {
   AtomFundoMenuDomElementOptions,
   AtomLogoAppDomElementOptions,
   AtomLogoCabDomElementOptions,
-  AtomMaxSizeOfImage,
+  AtomMaxSizeFundoApp,
+  AtomMaxSizeFundoMenu,
+  AtomLogoAppInitialFileSize,
+  AtomLogoCabInitialFileSize,
+  AtomLogoAppCompressionRate,
+  AtomLogoCabCompressionRate,
 } from "src/store";
-import { calcFontSizeAccordingToWidth, maxSizeOfImageValidator } from "src/utils/utils";
+import {
+  bytesToMbs,
+  calcFontSizeAccordingToWidth,
+  maxSizeOfImageValidator,
+  percentageToDecimal,
+} from "src/utils/utils";
 import { useAppContext } from "src/context";
 import { useDownloadZip } from "src/hooks/useDownloadZip";
 import { DomElementReferenceOptionsType } from "src/types/DomElement";
@@ -35,7 +45,12 @@ const ImageEditor = ({ className }: Props) => {
     AtomFirstImageFullyLoaded
   );
   const [compressChecked] = useAtom(AtomCompressChecked);
-  const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
+  const [maxSizeFundoApp] = useAtom(AtomMaxSizeFundoApp);
+  const [maxSizeFundoMenu] = useAtom(AtomMaxSizeFundoMenu);
+  const [initialFileSizeLogoApp] = useAtom(AtomLogoAppInitialFileSize);
+  const [compressionRateLogoApp] = useAtom(AtomLogoAppCompressionRate);
+  const [initialFileSizeLogoCab] = useAtom(AtomLogoCabInitialFileSize);
+  const [compressionRateLogoCab] = useAtom(AtomLogoCabCompressionRate);
 
   const {
     isCompressing,
@@ -70,7 +85,13 @@ const ImageEditor = ({ className }: Props) => {
       data.push({
         elementReference: refFundoAppDomElement.current,
         elementOptions: fundoAppOptions,
-        elementOutputFileName: "fundo-app.png"
+        elementOutputFileName: "fundo-app.png",
+        compressionOptions: {
+          maxSizeMB: maxSizeOfImageValidator(maxSizeFundoApp),
+          fileType: "image/png",
+          alwaysKeepResolution: true,
+          initialQuality: 1,
+        },
       });
     }
     if (!!refFundoMenuCropper.current) {
@@ -78,7 +99,13 @@ const ImageEditor = ({ className }: Props) => {
       data.push({
         elementReference: refFundoMenuDomElement.current,
         elementOptions: fundoMenuOptions,
-        elementOutputFileName: "fundo-menu.png"
+        elementOutputFileName: "fundo-menu.png",
+        compressionOptions: {
+          maxSizeMB: maxSizeOfImageValidator(maxSizeFundoMenu),
+          fileType: "image/png",
+          alwaysKeepResolution: true,
+          initialQuality: 1,
+        },
       });
     }
     if (!!refLogoAppCropper.current) {
@@ -86,7 +113,18 @@ const ImageEditor = ({ className }: Props) => {
       data.push({
         elementReference: refLogoAppDomElement.current,
         elementOptions: logoAppOptions,
-        elementOutputFileName: "logo-app.png"
+        elementOutputFileName: "logo-app.png",
+        compressionOptions: {
+          // maxSizeMB: initialFileSizeLogoApp ? bytesToMbs(initialFileSizeLogoApp) / 2 : 0.002,
+          maxSizeMB: initialFileSizeLogoApp
+            ? bytesToMbs(initialFileSizeLogoApp) -
+              bytesToMbs(initialFileSizeLogoApp) *
+                percentageToDecimal(compressionRateLogoApp)
+            : 0.002,
+          fileType: "image/png",
+          alwaysKeepResolution: true,
+          initialQuality: 1,
+        },
       });
     }
     if (!!refLogoCabCropper.current) {
@@ -94,16 +132,29 @@ const ImageEditor = ({ className }: Props) => {
       data.push({
         elementReference: refLogoCabDomElement.current,
         elementOptions: logoCabOptions,
-        elementOutputFileName: "logo-cab.png"
+        elementOutputFileName: "logo-cab.png",
+        compressionOptions: {
+          // maxSizeMB: initialFileSizeLogoCab
+          //   ? bytesToMbs(initialFileSizeLogoCab) / 2
+          //   : 0.002,
+          maxSizeMB: initialFileSizeLogoCab
+          ? bytesToMbs(initialFileSizeLogoCab) -
+            bytesToMbs(initialFileSizeLogoCab) *
+              percentageToDecimal(compressionRateLogoCab)
+          : 0.002,
+          fileType: "image/png",
+          alwaysKeepResolution: true,
+          initialQuality: 1,
+        },
       });
     }
-    const compressionOptions: ImageCompressionOptions = {
-      maxSizeMB: maxSizeOfImageValidator(maxSizeOfImage),
-      fileType: "image/png",
-      alwaysKeepResolution: true,
-      initialQuality: 1,
-    };
-    triggerDownloadZip(data, compressChecked, compressionOptions);
+    // const compressionOptions: ImageCompressionOptions = {
+    //   maxSizeMB: maxSizeOfImageValidator(maxSizeOfImage),
+    //   fileType: "image/png",
+    //   alwaysKeepResolution: true,
+    //   initialQuality: 1,
+    // };
+    triggerDownloadZip(data, compressChecked);
   }
 
   return (

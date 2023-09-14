@@ -15,7 +15,7 @@ import {
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomFundoAppDomElementOptions,
-  AtomMaxSizeOfImage,
+  AtomMaxSizeFundoApp,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -42,7 +42,7 @@ const FundoApp = (props: Props) => {
     refFundoAppDomElement: domElementRef,
   } = useAppContext();
   const [domElementOptions] = useAtom(AtomFundoAppDomElementOptions);
-  const [maxSizeOfImage] = useAtom(AtomMaxSizeOfImage)
+  const [maxSizeOfImage] = useAtom(AtomMaxSizeFundoApp)
   // const [compressionOptions] = useAtom(AtomCompressionOptions);
 
   //Generic stuff:

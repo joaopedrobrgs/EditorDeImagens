@@ -7,9 +7,14 @@ import {
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomCompressChecked,
-  AtomMaxSizeOfImage,
+  AtomMaxSizeFundoApp,
+  AtomMaxSizeFundoMenu,
+  AtomLogoAppCompressionRate,
+  AtomLogoCabCompressionRate,
   // AtomCompressionOptions,
 } from "src/store";
+import { Slider } from "@mui/material";
+import { valueLabelFormat } from "src/utils/utils";
 
 type Props = {};
 
@@ -18,25 +23,50 @@ const PageSettings = (props: Props) => {
   const [onWheelChecked, setOnWheelChecked] = useAtom(AtomOnWheelChecked);
   const [onTouchChecked, setOnTouchChecked] = useAtom(AtomOnTouchChecked);
   const [compressChecked, setCompressChecked] = useAtom(AtomCompressChecked);
-  const [maxSizeOfImage, setMaxSizeOfImage] = useAtom(AtomMaxSizeOfImage);
-  const [maxSizeOfImageTemporaryValue, setMaxSizeOfImageTemporaryValue] =
-    useState<number>(maxSizeOfImage ?? 200);
+  const [maxSizeFundoApp, setMaxSizeFundoApp] = useAtom(AtomMaxSizeFundoApp);
+  const [maxSizeFundoAppTemporaryValue, setMaxSizeFundoAppTemporaryValue] =
+    useState<number>(maxSizeFundoApp ?? 200);
+  const [maxSizeFundoMenu, setMaxSizeFundoMenu] = useAtom(AtomMaxSizeFundoMenu);
+  const [maxSizeFundoMenuTemporaryValue, setMaxSizeFundoMenuTemporaryValue] =
+    useState<number>(maxSizeFundoMenu ?? 200);
+  const [logoAppCompressionRate, setLogoAppCompressionRate] = useAtom(
+    AtomLogoAppCompressionRate
+  );
+  const [logoCabCompressionRate, setLogoCabCompressionRate] = useAtom(
+    AtomLogoCabCompressionRate
+  );
 
   const [, setShowSettingsModal] = useAtom(AtomShowSettingsModal);
 
   function handleCloseModal(e: any) {
     if (e.target.className.includes("page-settings-modal")) {
       setShowSettingsModal(false);
-      if (!!maxSizeOfImageTemporaryValue || maxSizeOfImageTemporaryValue === 0) {
-        if (maxSizeOfImageTemporaryValue >= 100000) {
-          setMaxSizeOfImage(99999);
-        } else if (maxSizeOfImageTemporaryValue >= 1) {
-          setMaxSizeOfImage(maxSizeOfImageTemporaryValue);
+      if (
+        !!maxSizeFundoAppTemporaryValue ||
+        maxSizeFundoAppTemporaryValue === 0
+      ) {
+        if (maxSizeFundoAppTemporaryValue >= 100000) {
+          setMaxSizeFundoApp(99999);
+        } else if (maxSizeFundoAppTemporaryValue >= 1) {
+          setMaxSizeFundoApp(maxSizeFundoAppTemporaryValue);
         } else {
-          setMaxSizeOfImage(1);
+          setMaxSizeFundoApp(1);
         }
       }
-      setMaxSizeOfImageTemporaryValue(maxSizeOfImage);
+      if (
+        !!maxSizeFundoMenuTemporaryValue ||
+        maxSizeFundoMenuTemporaryValue === 0
+      ) {
+        if (maxSizeFundoMenuTemporaryValue >= 100000) {
+          setMaxSizeFundoMenu(99999);
+        } else if (maxSizeFundoMenuTemporaryValue >= 1) {
+          setMaxSizeFundoMenu(maxSizeFundoMenuTemporaryValue);
+        } else {
+          setMaxSizeFundoMenu(1);
+        }
+      }
+      setMaxSizeFundoAppTemporaryValue(maxSizeFundoApp);
+      setMaxSizeFundoMenuTemporaryValue(maxSizeFundoMenu);
     }
   }
 
@@ -105,13 +135,15 @@ const PageSettings = (props: Props) => {
                 compressChecked ? "" : "input-number-disabled"
               }`}
             >
-              <span>Tamanho máximo:</span>
+              <span>Fundo_app (tamanho):</span>
               <div>
                 <input
                   type="number"
-                  value={maxSizeOfImageTemporaryValue ?? undefined}
+                  value={maxSizeFundoAppTemporaryValue ?? undefined}
                   onChange={(e) => {
-                    setMaxSizeOfImageTemporaryValue(parseFloat(e.target.value));
+                    setMaxSizeFundoAppTemporaryValue(
+                      parseFloat(e.target.value)
+                    );
                   }}
                   disabled={compressChecked ? false : true}
                   min={1}
@@ -119,7 +151,82 @@ const PageSettings = (props: Props) => {
                 <span>kbs</span>
               </div>
             </div>
-            <p className="observation-text">(valor padrão: 200kbs)</p>
+            <div
+              className={`input-number-container ${
+                compressChecked ? "" : "input-number-disabled"
+              }`}
+            >
+              <span>Fundo_menu (tamanho):</span>
+              <div>
+                <input
+                  type="number"
+                  value={maxSizeFundoMenuTemporaryValue ?? undefined}
+                  onChange={(e) => {
+                    setMaxSizeFundoMenuTemporaryValue(
+                      parseFloat(e.target.value)
+                    );
+                  }}
+                  disabled={compressChecked ? false : true}
+                  min={1}
+                />
+                <span>kbs</span>
+              </div>
+            </div>
+            <div
+              className={`input-slider-container ${
+                compressChecked ? "" : "input-number-disabled"
+              }`}
+            >
+              <span>Logo_app (taxa de compressão):</span>
+              <Slider
+                //Default Options:
+                style={{ maxWidth: "80%" }}
+                min={1}
+                max={99}
+                step={1}
+                valueLabelDisplay="auto"
+                aria-labelledby="non-linear-slider"
+                size={"small"}
+                disabled={!compressChecked}
+                className="logoapp-compression-slide"
+                //Props:
+                value={logoAppCompressionRate}
+                valueLabelFormat={valueLabelFormat(logoAppCompressionRate, "%")}
+                onChange={(event: Event, newValue: number | number[]) => {
+                  if (typeof newValue === "number") {
+                    setLogoAppCompressionRate(newValue);
+                  }
+                }}
+              />
+            </div>
+            <div
+              className={`input-slider-container ${
+                compressChecked ? "" : "input-number-disabled"
+              }`}
+            >
+              <span>Logo_cab (taxa de compressão):</span>
+              <Slider
+                //Default Options:
+                style={{ maxWidth: "80%" }}
+                min={1}
+                max={99}
+                step={1}
+                valueLabelDisplay="auto"
+                aria-labelledby="non-linear-slider"
+                size={"small"}
+                disabled={!compressChecked}
+                className="logoapp-compression-slide"
+                //Props:
+                value={logoCabCompressionRate}
+                valueLabelFormat={valueLabelFormat(logoCabCompressionRate, "%")}
+                onChange={(event: Event, newValue: number | number[]) => {
+                  if (typeof newValue === "number") {
+                    setLogoCabCompressionRate(newValue);
+                  }
+                }}
+              />
+            </div>
+            {/* <p className="observation-text">(valor padrão: 200kbs)</p> */}
           </div>
         </div>
       </div>
