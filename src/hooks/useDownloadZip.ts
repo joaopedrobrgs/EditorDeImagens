@@ -7,6 +7,7 @@ import { ImageCompressionOptions } from "src/types/ImageCompression";
 import { DomElementReferenceOptionsType } from "src/types/DomElement";
 import domtoimage from "dom-to-image";
 import { mbsToBytes } from "src/utils/utils";
+import { blob } from "stream/consumers";
 
 export function useDownloadZip() {
   const [isCompressing, setIsCompressing] = useState<boolean>(false);
@@ -15,7 +16,7 @@ export function useDownloadZip() {
   >(null);
 
   const trigger = async (
-    data: Array<DomElementReferenceOptionsType>,
+    data: Array<DomElementReferenceOptionsType>
     // compressChecked: boolean,
     // compressionOptions: ImageCompressionOptions
   ) => {
@@ -25,12 +26,12 @@ export function useDownloadZip() {
     //Fazendo um map no array de DOM Elements que nós montamos para trabalhar com imagem por imagem:
     const downloadZips = data.map(async (domElement, index) => {
       //Pegando elemento do DOM, transformando em imagem no formato BLOB e atribuindo a uma variável:
-      let blob: any = await new Promise((resolve) =>
-        domtoimage
-          .toBlob(domElement.elementReference, domElement.elementOptions)
-          .then(resolve)
+      let blob: any = domElement.blob;
+      console.log(
+        domElement.elementOutputFileName,
+        ": ",
+        domElement.compressionOptions.maxSizeMB
       );
-      console.log(domElement.elementOutputFileName, ": ",  domElement.compressionOptions.maxSizeMB);
       //Comprimindo imagem (se a opção de comprimir estiver marcada e o arquivo for menor do que a quantidade de kbs que o usuário determinou):
       if (domElement.compressChecked) {
         if (blob.size >= mbsToBytes(domElement.compressionOptions.maxSizeMB)) {
@@ -57,14 +58,13 @@ export function useDownloadZip() {
                 .catch((err) => {
                   setCompressionError(err);
                 });
-                domElement.compressionOptions.initialQuality =
+              domElement.compressionOptions.initialQuality =
                 domElement.compressionOptions.initialQuality - 0.3;
             } catch (err) {
               setCompressionError(err);
               setIsCompressing(false);
             }
           }
-
         } else {
           setIsCompressing(true);
           //Transformando BLOB em arquivo (file):

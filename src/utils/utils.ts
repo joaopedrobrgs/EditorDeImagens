@@ -18,6 +18,34 @@ export function percentageToDecimal(value: number){
   return value / 100;
 }
 
+//Funções que convertem o numero do slider Logo App compression e Logo Cab compression para porcentagem e para string:
+export function sliderNumberToPercentageInDecimalForm(value: number): number{
+  if(value === 1){
+    return 1 / 100;
+  }else if(value === 2){
+    return 25 / 100;
+  }else if(value === 3){
+    return 50 / 100;
+  }else if(value === 4){
+    return 75 / 100;
+  }else{
+    return 99 / 100;
+  }
+}
+export function sliderNumberToString(value:number): string{
+  if(value === 1){
+    return "MÍNIMA";
+  }else if(value === 2){
+    return "BAIXA";
+  }else if(value === 3){
+    return "MÉDIA";
+  }else if(value === 4){
+    return "ALTA";
+  }else{
+    return "MÁXIMA";
+  }
+}
+
 //Função que retorna as horas e os minutos com base em um dado do tipo "Date" passado como parâmetro:
 export function hoursMinutesToString(date: Date): string {
   // return `${date.getHours()}:${date.getMinutes()}`

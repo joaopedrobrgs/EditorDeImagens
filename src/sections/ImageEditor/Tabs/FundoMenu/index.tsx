@@ -18,12 +18,16 @@ import {
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
-import { calcFontSizeAccordingToWidth, maxSizeOfImageValidator } from "src/utils/utils";
+import {
+  calcFontSizeAccordingToWidth,
+  maxSizeOfImageValidator,
+} from "src/utils/utils";
 import CropperDefault from "src/components/Cropper";
 import SliderDefault from "src/components/Slider";
 import ButtonDefault from "src/components/Button";
 import { useDownloadImage } from "src/hooks/useDownloadImage";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
+import domtoimage from "dom-to-image";
 
 type Props = {};
 
@@ -41,7 +45,7 @@ const FundoMenu = (props: Props) => {
     refFundoMenuDomElement: domElementRef,
   } = useAppContext();
   const [domElementOptions] = useAtom(AtomFundoMenuDomElementOptions);
-  const [maxSizeOfImage] = useAtom(AtomMaxSizeFundoMenu)
+  const [maxSizeOfImage] = useAtom(AtomMaxSizeFundoMenu);
   const [compressChecked] = useAtom(AtomFundoMenuCompressChecked);
 
   //Generic stuff:
@@ -119,13 +123,23 @@ const FundoMenu = (props: Props) => {
   async function handleDownload() {
     // cropperRef.current.name = outputFileName;
     // domElementRef.current.name = outputFileName;
+    let blob: any = await new Promise((resolve) =>
+      domtoimage.toBlob(domElementRef.current, domElementOptions).then(resolve)
+    );
     const compressionOptions: ImageCompressionOptions = {
       maxSizeMB: maxSizeOfImageValidator(maxSizeOfImage),
       fileType: "image/png",
       alwaysKeepResolution: true,
       initialQuality: 1,
     };
-    triggerDownloadImage(domElementRef.current, domElementOptions, compressChecked, compressionOptions, outputFileName);
+    triggerDownloadImage(
+      // domElementRef.current,
+      // domElementOptions,
+      blob,
+      compressChecked,
+      compressionOptions,
+      outputFileName
+    );
   }
 
   useEffect(() => {

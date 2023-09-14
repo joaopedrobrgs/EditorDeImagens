@@ -24,12 +24,14 @@ import {
   calcFontSizeAccordingToWidth,
   maxSizeOfImageValidator,
   percentageToDecimal,
+  sliderNumberToPercentageInDecimalForm,
 } from "src/utils/utils";
 import CropperDefault from "src/components/Cropper";
 import SliderDefault from "src/components/Slider";
 import ButtonDefault from "src/components/Button";
 import { useDownloadImage } from "src/hooks/useDownloadImage";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
+import domtoimage from "dom-to-image";
 
 type Props = {};
 
@@ -45,7 +47,9 @@ const LogoCab = (props: Props) => {
   const { refLogoCabCropper: cropperRef, refLogoCabDomElement: domElementRef } =
     useAppContext();
   const [domElementOptions] = useAtom(AtomLogoCabDomElementOptions);
-  const [fileInitialSize, setFileInitialSize] = useAtom(AtomLogoCabInitialFileSize);
+  const [fileInitialSize, setFileInitialSize] = useAtom(
+    AtomLogoCabInitialFileSize
+  );
   const [compressionRate] = useAtom(AtomLogoCabCompressionRate);
   const [compressChecked] = useAtom(AtomLogoCabCompressChecked);
 
@@ -109,7 +113,7 @@ const LogoCab = (props: Props) => {
     };
     if (!!files[0]) {
       reader.readAsDataURL(files[0]);
-      setFileInitialSize(files[0].size)
+      setFileInitialSize(files[0].size);
     }
   };
 
@@ -122,18 +126,54 @@ const LogoCab = (props: Props) => {
     }
   };
 
-  async function handleDownload() {
+async function handleDownload() {
     // cropperRef.current.name = outputFileName;
     // domElementRef.current.name = outputFileName;
+    let maxSizeMB: number = 0.002;
+    let blob: any = await new Promise((resolve) =>
+      domtoimage.toBlob(domElementRef.current, domElementOptions).then(resolve)
+    );
+    if (compressChecked) {
+      console.log("blob size: ", blob.size);
+      console.log("file initial size: ", fileInitialSize);
+      if (fileInitialSize && fileInitialSize < blob.size) {
+        console.log(
+          "caiu no primeiro laço. Utilizando fileInitialSize como parâmetro"
+        );
+        maxSizeMB =
+          bytesToMbs(fileInitialSize) -
+          bytesToMbs(fileInitialSize) *
+            sliderNumberToPercentageInDecimalForm(compressionRate);
+      } else if (fileInitialSize && fileInitialSize > blob.size) {
+        console.log(
+          "caiu no segundo laço. Utilizando blob.size como parâmetro"
+        );
+        maxSizeMB =
+          bytesToMbs(blob.size) -
+          bytesToMbs(blob.size) *
+            sliderNumberToPercentageInDecimalForm(compressionRate);
+      } else if (!fileInitialSize && blob) {
+        console.log(
+          "caiu no terceiro laço. Utilizando blob.size como parâmetro"
+        );
+        maxSizeMB =
+          bytesToMbs(blob.size) -
+          bytesToMbs(blob.size) *
+            sliderNumberToPercentageInDecimalForm(compressionRate);
+      } else {
+        console.log("caiu no else");
+      }
+    } else {
+      console.log("nem entrou");
+    }
     const compressionOptions: ImageCompressionOptions = {
-      maxSizeMB: fileInitialSize ? bytesToMbs(fileInitialSize) - bytesToMbs(fileInitialSize) * percentageToDecimal(compressionRate) : 0.002,
+      maxSizeMB: maxSizeMB,
       fileType: "image/png",
       alwaysKeepResolution: true,
       initialQuality: 1,
     };
     triggerDownloadImage(
-      domElementRef.current,
-      domElementOptions,
+      blob,
       compressChecked,
       compressionOptions,
       outputFileName

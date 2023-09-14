@@ -25,6 +25,7 @@ import ButtonDefault from "src/components/Button";
 import { useDownloadImage } from "src/hooks/useDownloadImage";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
 import { maxSizeOfImageValidator } from "src/utils/utils";
+import domtoimage from "dom-to-image";
 
 type Props = {};
 
@@ -42,7 +43,7 @@ const FundoApp = (props: Props) => {
     refFundoAppDomElement: domElementRef,
   } = useAppContext();
   const [domElementOptions] = useAtom(AtomFundoAppDomElementOptions);
-  const [maxSizeOfImage] = useAtom(AtomMaxSizeFundoApp)
+  const [maxSizeOfImage] = useAtom(AtomMaxSizeFundoApp);
   // const [compressionOptions] = useAtom(AtomCompressionOptions);
   const [compressChecked] = useAtom(AtomFundoAppCompressChecked);
 
@@ -123,6 +124,9 @@ const FundoApp = (props: Props) => {
   async function handleDownload() {
     // cropperRef.current.name = outputFileName;
     // domElementRef.current.name = outputFileName;
+    let blob: any = await new Promise((resolve) =>
+      domtoimage.toBlob(domElementRef.current, domElementOptions).then(resolve)
+    );
     const compressionOptions: ImageCompressionOptions = {
       maxSizeMB: maxSizeOfImageValidator(maxSizeOfImage),
       fileType: "image/png",
@@ -130,8 +134,9 @@ const FundoApp = (props: Props) => {
       initialQuality: 1,
     };
     triggerDownloadImage(
-      domElementRef.current,
-      domElementOptions,
+      // domElementRef.current,
+      // domElementOptions,
+      blob,
       compressChecked,
       compressionOptions,
       outputFileName

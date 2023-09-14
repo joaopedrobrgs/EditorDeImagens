@@ -18,12 +18,11 @@ import {
   // AtomCompressionOptions,
 } from "src/store";
 import { Slider } from "@mui/material";
-import { valueLabelFormat } from "src/utils/utils";
+import { sliderNumberToString } from "src/utils/utils";
 
 type Props = {};
 
 const PageSettings = (props: Props) => {
-
   //Generic states:
   const [sliderChecked, setSliderChecked] = useAtom(AtomSliderChecked);
   const [onWheelChecked, setOnWheelChecked] = useAtom(AtomOnWheelChecked);
@@ -47,13 +46,17 @@ const PageSettings = (props: Props) => {
     useState<number>(maxSizeFundoMenu ?? 200);
 
   //Logo app states:
-  const [logoAppCompressChecked, setLogoAppCompressChecked] = useAtom(AtomLogoAppCompressChecked);
+  const [logoAppCompressChecked, setLogoAppCompressChecked] = useAtom(
+    AtomLogoAppCompressChecked
+  );
   const [logoAppCompressionRate, setLogoAppCompressionRate] = useAtom(
     AtomLogoAppCompressionRate
   );
 
   //Logo cab states:
-  const [logoCabCompressChecked, setLogoCabCompressChecked] = useAtom(AtomLogoCabCompressChecked);
+  const [logoCabCompressChecked, setLogoCabCompressChecked] = useAtom(
+    AtomLogoCabCompressChecked
+  );
   const [logoCabCompressionRate, setLogoCabCompressionRate] = useAtom(
     AtomLogoCabCompressionRate
   );
@@ -232,7 +235,7 @@ const PageSettings = (props: Props) => {
                 //Default Options:
                 style={{ maxWidth: "50%" }}
                 min={1}
-                max={99}
+                max={5}
                 step={1}
                 valueLabelDisplay="auto"
                 aria-labelledby="non-linear-slider"
@@ -241,7 +244,7 @@ const PageSettings = (props: Props) => {
                 className="logoapp-compression-slide"
                 //Props:
                 value={logoAppCompressionRate}
-                valueLabelFormat={valueLabelFormat(logoAppCompressionRate, "%")}
+                valueLabelFormat={sliderNumberToString(logoAppCompressionRate)}
                 onChange={(event: Event, newValue: number | number[]) => {
                   if (typeof newValue === "number") {
                     setLogoAppCompressionRate(newValue);
@@ -273,7 +276,7 @@ const PageSettings = (props: Props) => {
                 //Default Options:
                 style={{ maxWidth: "50%" }}
                 min={1}
-                max={99}
+                max={5}
                 step={1}
                 valueLabelDisplay="auto"
                 aria-labelledby="non-linear-slider"
@@ -282,7 +285,7 @@ const PageSettings = (props: Props) => {
                 className="logoapp-compression-slide"
                 //Props:
                 value={logoCabCompressionRate}
-                valueLabelFormat={valueLabelFormat(logoCabCompressionRate, "%")}
+                valueLabelFormat={sliderNumberToString(logoCabCompressionRate)}
                 onChange={(event: Event, newValue: number | number[]) => {
                   if (typeof newValue === "number") {
                     setLogoCabCompressionRate(newValue);

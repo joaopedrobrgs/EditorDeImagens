@@ -33,11 +33,13 @@ import {
   calcFontSizeAccordingToWidth,
   maxSizeOfImageValidator,
   percentageToDecimal,
+  sliderNumberToPercentageInDecimalForm,
 } from "src/utils/utils";
 import { useAppContext } from "src/context";
 import { useDownloadZip } from "src/hooks/useDownloadZip";
 import { DomElementReferenceOptionsType } from "src/types/DomElement";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
+import domtoimage from "dom-to-image";
 
 type Props = {
   className: string;
@@ -84,7 +86,6 @@ const ImageEditor = ({ className }: Props) => {
     refLogoCabDomElement,
   } = useAppContext();
 
-
   const {
     isCompressing,
     setIsCompressing,
@@ -96,9 +97,13 @@ const ImageEditor = ({ className }: Props) => {
     const data: Array<DomElementReferenceOptionsType> = [];
     if (!!refFundoAppCropper.current) {
       // refFundoAppDomElement.current.name = "fundo-app";
+      let blob: any = await new Promise((resolve) =>
+        domtoimage
+          .toBlob(refFundoAppDomElement.current, fundoAppOptions)
+          .then(resolve)
+      );
       data.push({
-        elementReference: refFundoAppDomElement.current,
-        elementOptions: fundoAppOptions,
+        blob,
         elementOutputFileName: "fundo-app.png",
         compressChecked: fundoAppCompressChecked,
         compressionOptions: {
@@ -111,9 +116,13 @@ const ImageEditor = ({ className }: Props) => {
     }
     if (!!refFundoMenuCropper.current) {
       // refFundoMenuDomElement.current.name = "fundo-menu";
+      let blob: any = await new Promise((resolve) =>
+        domtoimage
+          .toBlob(refFundoMenuDomElement.current, fundoMenuOptions)
+          .then(resolve)
+      );
       data.push({
-        elementReference: refFundoMenuDomElement.current,
-        elementOptions: fundoMenuOptions,
+        blob,
         elementOutputFileName: "fundo-menu.png",
         compressChecked: fundoMenuCompressChecked,
         compressionOptions: {
@@ -126,18 +135,55 @@ const ImageEditor = ({ className }: Props) => {
     }
     if (!!refLogoAppCropper.current) {
       // refLogoAppDomElement.current.name = "logo-app";
+      let maxSizeMB: number = 0.002;
+      let blob: any = await new Promise((resolve) =>
+        domtoimage
+          .toBlob(refLogoAppDomElement.current, logoAppOptions)
+          .then(resolve)
+      );
+      if (logoAppCompressChecked) {
+        console.log("blob size: ", blob.size);
+        console.log("file initial size: ", initialFileSizeLogoApp);
+        if (initialFileSizeLogoApp && initialFileSizeLogoApp < blob.size) {
+          console.log(
+            "caiu no primeiro laço. Utilizando fileInitialSize como parâmetro"
+          );
+          maxSizeMB =
+            bytesToMbs(initialFileSizeLogoApp) -
+            bytesToMbs(initialFileSizeLogoApp) *
+              sliderNumberToPercentageInDecimalForm(compressionRateLogoApp);
+        } else if (
+          initialFileSizeLogoApp &&
+          initialFileSizeLogoApp > blob.size
+        ) {
+          console.log(
+            "caiu no segundo laço. Utilizando blob.size como parâmetro"
+          );
+          maxSizeMB =
+            bytesToMbs(blob.size) -
+            bytesToMbs(blob.size) *
+              sliderNumberToPercentageInDecimalForm(compressionRateLogoApp);
+        } else if (!initialFileSizeLogoApp && blob) {
+          console.log(
+            "caiu no terceiro laço. Utilizando blob.size como parâmetro"
+          );
+          maxSizeMB =
+            bytesToMbs(blob.size) -
+            bytesToMbs(blob.size) *
+              sliderNumberToPercentageInDecimalForm(compressionRateLogoApp);
+        } else {
+          console.log("caiu no else");
+        }
+      } else {
+        console.log("nem entrou");
+      }
       data.push({
-        elementReference: refLogoAppDomElement.current,
-        elementOptions: logoAppOptions,
+        blob,
         elementOutputFileName: "logo-app.png",
         compressChecked: logoAppCompressChecked,
         compressionOptions: {
           // maxSizeMB: initialFileSizeLogoApp ? bytesToMbs(initialFileSizeLogoApp) / 2 : 0.002,
-          maxSizeMB: initialFileSizeLogoApp
-            ? bytesToMbs(initialFileSizeLogoApp) -
-              bytesToMbs(initialFileSizeLogoApp) *
-                percentageToDecimal(compressionRateLogoApp)
-            : 0.002,
+          maxSizeMB: maxSizeMB,
           fileType: "image/png",
           alwaysKeepResolution: true,
           initialQuality: 1,
@@ -146,20 +192,54 @@ const ImageEditor = ({ className }: Props) => {
     }
     if (!!refLogoCabCropper.current) {
       // refLogoCabDomElement.current.name = "logo-cab";
+      let maxSizeMB: number = 0.002;
+      let blob: any = await new Promise((resolve) =>
+        domtoimage
+          .toBlob(refLogoCabDomElement.current, logoCabOptions)
+          .then(resolve)
+      );
+      if (logoCabCompressChecked) {
+        console.log("blob size: ", blob.size);
+        console.log("file initial size: ", initialFileSizeLogoCab);
+        if (initialFileSizeLogoCab && initialFileSizeLogoCab < blob.size) {
+          console.log(
+            "caiu no primeiro laço. Utilizando fileInitialSize como parâmetro"
+          );
+          maxSizeMB =
+            bytesToMbs(initialFileSizeLogoCab) -
+            bytesToMbs(initialFileSizeLogoCab) *
+              sliderNumberToPercentageInDecimalForm(compressionRateLogoCab);
+        } else if (
+          initialFileSizeLogoCab &&
+          initialFileSizeLogoCab > blob.size
+        ) {
+          console.log(
+            "caiu no segundo laço. Utilizando blob.size como parâmetro"
+          );
+          maxSizeMB =
+            bytesToMbs(blob.size) -
+            bytesToMbs(blob.size) *
+              sliderNumberToPercentageInDecimalForm(compressionRateLogoCab);
+        } else if (!initialFileSizeLogoCab && blob) {
+          console.log(
+            "caiu no terceiro laço. Utilizando blob.size como parâmetro"
+          );
+          maxSizeMB =
+            bytesToMbs(blob.size) -
+            bytesToMbs(blob.size) *
+              sliderNumberToPercentageInDecimalForm(compressionRateLogoCab);
+        } else {
+          console.log("caiu no else");
+        }
+      } else {
+        console.log("nem entrou");
+      }
       data.push({
-        elementReference: refLogoCabDomElement.current,
-        elementOptions: logoCabOptions,
+        blob,
         elementOutputFileName: "logo-cab.png",
         compressChecked: logoCabCompressChecked,
         compressionOptions: {
-          // maxSizeMB: initialFileSizeLogoCab
-          //   ? bytesToMbs(initialFileSizeLogoCab) / 2
-          //   : 0.002,
-          maxSizeMB: initialFileSizeLogoCab
-          ? bytesToMbs(initialFileSizeLogoCab) -
-            bytesToMbs(initialFileSizeLogoCab) *
-              percentageToDecimal(compressionRateLogoCab)
-          : 0.002,
+          maxSizeMB: maxSizeMB,
           fileType: "image/png",
           alwaysKeepResolution: true,
           initialQuality: 1,

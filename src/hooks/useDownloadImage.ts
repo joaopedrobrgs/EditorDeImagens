@@ -15,17 +15,18 @@ export function useDownloadImage() {
 
   const trigger = async (
     // cropperRef: ReactCropperElement,
-    domElementRef: Node,
-    domElementOptions: Options,
+    // domElementRef: Node,
+    // domElementOptions: Options,
+    domElementBlob: any,
     compressChecked: boolean,
     compressionOptions: ImageCompressionOptions,
     outputFileName: string
   ) => {
-    let blob: any;
+    let blob: any = domElementBlob;
     //Pegando elemento do DOM, transformando em imagem no formato BLOB e atribuindo a uma variável:
-    blob = await new Promise((resolve) =>
-      domtoimage.toBlob(domElementRef, domElementOptions).then(resolve)
-    );
+    // blob = await new Promise((resolve) =>
+    //   domtoimage.toBlob(domElementRef, domElementOptions).then(resolve)
+    // );
     //Comprimindo imagem (se a opção de comprimir estiver marcada e o arquivo for menor do que a quantidade de kbs que o usuário determinou):
     console.log(outputFileName, ": ",  compressionOptions.maxSizeMB);
     if (compressChecked) {
