@@ -161,7 +161,7 @@ const getLogoAppCompressionRate = (): number => {
   if (storedState) {
     return JSON.parse(storedState);
   }
-  return 50;
+  return 3;
 };
 const AtomLogoAppCompressionRate = atomWithStorage<number>(
   "@compressionRateLogoApp",
@@ -185,7 +185,7 @@ const getLogoCabCompressionRate = (): number => {
   if (storedState) {
     return JSON.parse(storedState);
   }
-  return 50;
+  return 3;
 };
 const AtomLogoCabCompressionRate = atomWithStorage<number>(
   "@compressionRateLogoCab",

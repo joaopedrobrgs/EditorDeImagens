@@ -17,6 +17,7 @@
     align-items: center;
     background-color: rgba($color: #e9e9e9, $alpha: 0.9);
     padding: 10px;
+    padding-bottom: 5px;
     border-radius: 8px;
     min-height: 200px;
     min-width: 400px;
@@ -35,14 +36,17 @@
         text-align: justify;
         align-self: center;
       }
-      .zoom-options-title {
+      .options-title {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 5px 10px;
+        margin: 10px 10px;
         p {
-          font-weight: bold;
+          font-weight: 800;
+          color: var(--blue-2);
           margin: 0 !important;
+          font-size: 1.2em;
+          // text-decoration: underline;
         }
         .observation-text {
           font-weight: 400;
@@ -50,6 +54,7 @@
           color: red;
           font-size: 0.9em;
           text-align: justify;
+          text-decoration: none;
         }
       }
       p {
@@ -63,6 +68,7 @@
         align-items: start;
         margin: 5px 10px;
         label {
+          font-weight: 600;
           input {
             margin-right: 5px;
           }
@@ -74,7 +80,11 @@
           flex-direction: row;
           align-items: center;
           justify-content: center;
-          margin-top: 5px;
+          margin-top: 2px;
+          margin-bottom: 10px;
+          span{
+            font-size: 0.9em;
+          }
           div {
             width: 30%;
             display: flex;
@@ -86,6 +96,8 @@
               border-radius: 8px;
               margin-left: 5px;
               margin-right: 2px;
+              margin-bottom: 5px;
+              font-size: 0.9em;
             }
           }
         }
@@ -96,19 +108,22 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          margin-top: 5px;
-          div {
-            width: 30%;
-            display: flex;
-            input {
-              width: 70%;
-              text-align: center;
-              padding-left: 8px;
-              background-color: rgba($color: #ffffff, $alpha: 0.5);
-              border-radius: 8px;
-              margin-left: 5px;
-              margin-right: 2px;
-            }
+          // margin-top: 2px;
+          margin-bottom: 10px;
+          span{
+            font-size: 0.9em;
+          }
+          input {
+            width: 70%;
+            text-align: center;
+            padding-left: 8px;
+            background-color: rgba($color: #ffffff, $alpha: 0.5);
+            border-radius: 8px;
+            margin-left: 5px;
+            margin-right: 2px;
+          }
+          .compression-slider {
+            max-width: 60%;
           }
         }
         .input-number-disabled {
@@ -149,6 +164,14 @@
     div {
       width: 50% !important;
     }
+    span{
+      text-align: center;
+    }
+  }
+  .input-slider-container{
+    span{
+      text-align: center;
+    }
   }
 }
 
@@ -175,6 +198,9 @@
       width: 75% !important;
     }
   }
+  .compression-slider {
+    max-width: 80% !important;
+  }
 }
 
 @media screen and (max-width: 270px) {
@@ -183,7 +209,7 @@
   }
 }
 
-@media screen and (max-width: 230px) {
+@media screen and (max-width: 240px) {
   .page-settings-modal {
     font-size: 0.6em;
   }
@@ -198,3 +224,9 @@
     }
   }
 }
+
+// @media screen and (max-width: 200px) {
+//   .page-settings-modal {
+//     font-size: 0.4em;
+//   }
+// }

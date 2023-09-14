@@ -99,7 +99,7 @@ const PageSettings = (props: Props) => {
     <div className="page-settings-modal" onClick={handleCloseModal}>
       <div className="page-settings-container">
         <div className="option-container">
-          <div className="zoom-options-title">
+          <div className="options-title">
             <p>Opções de Zoom:</p>
             <p className="observation-text">
               (alterações aqui interferem no zoom atual)
@@ -139,7 +139,9 @@ const PageSettings = (props: Props) => {
           </div>
         </div>
         <div className="option-container">
-          <p>Opções de Compressão:</p>
+          <div className="options-title">
+            <p>Opções de Compressão:</p>
+          </div>
           <div className="option-content">
             <label
               style={{
@@ -233,7 +235,7 @@ const PageSettings = (props: Props) => {
               <span>Taxa de compressão:</span>
               <Slider
                 //Default Options:
-                style={{ maxWidth: "50%" }}
+                // style={{ maxWidth: "60%" }}
                 min={1}
                 max={5}
                 step={1}
@@ -241,7 +243,7 @@ const PageSettings = (props: Props) => {
                 aria-labelledby="non-linear-slider"
                 size={"small"}
                 disabled={!logoAppCompressChecked}
-                className="logoapp-compression-slide"
+                className="compression-slider"
                 //Props:
                 value={logoAppCompressionRate}
                 valueLabelFormat={sliderNumberToString(logoAppCompressionRate)}
@@ -274,7 +276,7 @@ const PageSettings = (props: Props) => {
               <span>Taxa de compressão:</span>
               <Slider
                 //Default Options:
-                style={{ maxWidth: "50%" }}
+                // style={{ maxWidth: "60%" }}
                 min={1}
                 max={5}
                 step={1}
@@ -282,7 +284,7 @@ const PageSettings = (props: Props) => {
                 aria-labelledby="non-linear-slider"
                 size={"small"}
                 disabled={!logoCabCompressChecked}
-                className="logoapp-compression-slide"
+                className="compression-slider"
                 //Props:
                 value={logoCabCompressionRate}
                 valueLabelFormat={sliderNumberToString(logoCabCompressionRate)}
