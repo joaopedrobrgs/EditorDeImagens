@@ -9,12 +9,12 @@ import {
   AtomFundoMenuCropped,
   AtomFundoMenuOriginalSize,
   AtomWindowWidth,
-  AtomCompressChecked,
   AtomOnTouchChecked,
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomFundoMenuDomElementOptions,
   AtomMaxSizeFundoMenu,
+  AtomFundoMenuCompressChecked,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -42,13 +42,13 @@ const FundoMenu = (props: Props) => {
   } = useAppContext();
   const [domElementOptions] = useAtom(AtomFundoMenuDomElementOptions);
   const [maxSizeOfImage] = useAtom(AtomMaxSizeFundoMenu)
-
+  const [compressChecked] = useAtom(AtomFundoMenuCompressChecked);
 
   //Generic stuff:
   const [zoomValue, setZoomValue] = useState<number>(0);
   const inputRef = useRef<any>();
   const sliderRef = useRef<any>();
-  const [compressChecked] = useAtom(AtomCompressChecked);
+  // const [compressChecked] = useAtom(AtomCompressChecked);
   const [windowWidth] = useAtom(AtomWindowWidth);
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
   const [onWheelChecked] = useAtom(AtomOnWheelChecked);

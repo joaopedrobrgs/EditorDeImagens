@@ -5,5 +5,6 @@ export type DomElementReferenceOptionsType = {
   elementReference: Node;
   elementOptions: Options;
   elementOutputFileName: string;
+  compressChecked: boolean;
   compressionOptions: ImageCompressionOptions
 };

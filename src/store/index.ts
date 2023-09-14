@@ -77,7 +77,6 @@ const AtomOnWheelChecked = atomWithStorage<boolean>(
   getOnWheelChecked()
 );
 
-//Compress Checked:
 const getCompressChecked = (): boolean => {
   const storedState = localStorage.getItem("@compressChecked");
   if (storedState) {
@@ -89,9 +88,20 @@ const AtomCompressChecked = atomWithStorage<boolean>(
   "@compressChecked",
   getCompressChecked()
 );
-// const AtomCompressChecked = atom<boolean>(true);
 
-//Max size of fundo_app image:
+//Fundo app compression atoms:
+const getCompressFundoAppChecked = (): boolean => {
+  const storedState = localStorage.getItem("@compressFundoAppChecked");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return true;
+};
+const AtomFundoAppCompressChecked = atomWithStorage<boolean>(
+  "@compressFundoAppChecked",
+  getCompressFundoAppChecked()
+);
+
 const getMaxSizeOfImageFundoApp = (): number => {
   const storedState = localStorage.getItem("@maxSizeFundoApp");
   if (storedState) {
@@ -104,7 +114,19 @@ const AtomMaxSizeFundoApp = atomWithStorage<number>(
   getMaxSizeOfImageFundoApp()
 );
 
-//Max size of fundo_menu image:
+//Fundo menu compression atoms:
+const getCompressFundoMenuChecked = (): boolean => {
+  const storedState = localStorage.getItem("@compressFundoMenuChecked");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return true;
+};
+const AtomFundoMenuCompressChecked = atomWithStorage<boolean>(
+  "@compressFundoMenuChecked",
+  getCompressFundoMenuChecked()
+);
+
 const getMaxSizeOfImageFundoMenu = (): number => {
   const storedState = localStorage.getItem("@maxSizeFundoMenu");
   if (storedState) {
@@ -118,10 +140,22 @@ const AtomMaxSizeFundoMenu = atomWithStorage<number>(
 );
 
 //LogoAppFileInitialSize e LogoCabFileInitialSize:
-const AtomLogoAppInitialFileSize = atom<null|number>(null);
-const AtomLogoCabInitialFileSize = atom<null|number>(null);
+const AtomLogoAppInitialFileSize = atom<null | number>(null);
+const AtomLogoCabInitialFileSize = atom<null | number>(null);
 
-//Logo App and Logo Cab Compression Rate:
+//Logo App Compression atoms:
+const getCompressLogoAppChecked = (): boolean => {
+  const storedState = localStorage.getItem("@compressLogoAppChecked");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return true;
+};
+const AtomLogoAppCompressChecked = atomWithStorage<boolean>(
+  "@compressLogoAppChecked",
+  getCompressLogoAppChecked()
+);
+
 const getLogoAppCompressionRate = (): number => {
   const storedState = localStorage.getItem("@compressionRateLogoApp");
   if (storedState) {
@@ -134,6 +168,18 @@ const AtomLogoAppCompressionRate = atomWithStorage<number>(
   getLogoAppCompressionRate()
 );
 
+// Logo Cab Compression Atoms:
+const getCompressLogoCabChecked = (): boolean => {
+  const storedState = localStorage.getItem("@compressLogoCabChecked");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return true;
+};
+const AtomLogoCabCompressChecked = atomWithStorage<boolean>(
+  "@compressLogoCabChecked",
+  getCompressLogoCabChecked()
+);
 const getLogoCabCompressionRate = (): number => {
   const storedState = localStorage.getItem("@compressionRateLogoCab");
   if (storedState) {
@@ -225,5 +271,9 @@ export {
   AtomLogoAppInitialFileSize,
   AtomLogoCabInitialFileSize,
   AtomLogoAppCompressionRate,
-  AtomLogoCabCompressionRate
+  AtomLogoCabCompressionRate,
+  AtomFundoAppCompressChecked,
+  AtomFundoMenuCompressChecked,
+  AtomLogoAppCompressChecked,
+  AtomLogoCabCompressChecked
 };

@@ -23,6 +23,10 @@ import {
   AtomLogoCabInitialFileSize,
   AtomLogoAppCompressionRate,
   AtomLogoCabCompressionRate,
+  AtomFundoAppCompressChecked,
+  AtomFundoMenuCompressChecked,
+  AtomLogoAppCompressChecked,
+  AtomLogoCabCompressChecked,
 } from "src/store";
 import {
   bytesToMbs,
@@ -44,38 +48,48 @@ const ImageEditor = ({ className }: Props) => {
   const [imageFullyLoaded, setImageFullyLoaded] = useAtom(
     AtomFirstImageFullyLoaded
   );
-  const [compressChecked] = useAtom(AtomCompressChecked);
+  // const [compressChecked] = useAtom(AtomCompressChecked);
+
+  //Fundo app states:
   const [maxSizeFundoApp] = useAtom(AtomMaxSizeFundoApp);
+  const [fundoAppCompressChecked] = useAtom(AtomFundoAppCompressChecked);
+  const [fundoAppOptions] = useAtom(AtomFundoAppDomElementOptions);
+
+  //Fundo menu states
   const [maxSizeFundoMenu] = useAtom(AtomMaxSizeFundoMenu);
+  const [fundoMenuCompressChecked] = useAtom(AtomFundoMenuCompressChecked);
+  const [fundoMenuOptions] = useAtom(AtomFundoMenuDomElementOptions);
+
+  //Logo app states
   const [initialFileSizeLogoApp] = useAtom(AtomLogoAppInitialFileSize);
+  const [logoAppCompressChecked] = useAtom(AtomLogoAppCompressChecked);
   const [compressionRateLogoApp] = useAtom(AtomLogoAppCompressionRate);
+  const [logoAppOptions] = useAtom(AtomLogoAppDomElementOptions);
+
+  //Logo cab states:
+
   const [initialFileSizeLogoCab] = useAtom(AtomLogoCabInitialFileSize);
   const [compressionRateLogoCab] = useAtom(AtomLogoCabCompressionRate);
-
-  const {
-    isCompressing,
-    setIsCompressing,
-    trigger: triggerDownloadZip,
-  } = useDownloadZip();
+  const [logoCabCompressChecked] = useAtom(AtomLogoCabCompressChecked);
+  const [logoCabOptions] = useAtom(AtomLogoCabDomElementOptions);
 
   const {
     refFundoAppCropper,
     refFundoMenuCropper,
     refLogoAppCropper,
     refLogoCabCropper,
-  } = useAppContext();
-
-  const {
     refFundoAppDomElement,
     refFundoMenuDomElement,
     refLogoAppDomElement,
     refLogoCabDomElement,
   } = useAppContext();
 
-  const [fundoAppOptions] = useAtom(AtomFundoAppDomElementOptions);
-  const [fundoMenuOptions] = useAtom(AtomFundoMenuDomElementOptions);
-  const [logoAppOptions] = useAtom(AtomLogoAppDomElementOptions);
-  const [logoCabOptions] = useAtom(AtomLogoCabDomElementOptions);
+
+  const {
+    isCompressing,
+    setIsCompressing,
+    trigger: triggerDownloadZip,
+  } = useDownloadZip();
 
   async function handleDownloadZip() {
     //Verificando se existem os arquivos cortados e colocando dentro de um array:
@@ -86,6 +100,7 @@ const ImageEditor = ({ className }: Props) => {
         elementReference: refFundoAppDomElement.current,
         elementOptions: fundoAppOptions,
         elementOutputFileName: "fundo-app.png",
+        compressChecked: fundoAppCompressChecked,
         compressionOptions: {
           maxSizeMB: maxSizeOfImageValidator(maxSizeFundoApp),
           fileType: "image/png",
@@ -100,6 +115,7 @@ const ImageEditor = ({ className }: Props) => {
         elementReference: refFundoMenuDomElement.current,
         elementOptions: fundoMenuOptions,
         elementOutputFileName: "fundo-menu.png",
+        compressChecked: fundoMenuCompressChecked,
         compressionOptions: {
           maxSizeMB: maxSizeOfImageValidator(maxSizeFundoMenu),
           fileType: "image/png",
@@ -114,6 +130,7 @@ const ImageEditor = ({ className }: Props) => {
         elementReference: refLogoAppDomElement.current,
         elementOptions: logoAppOptions,
         elementOutputFileName: "logo-app.png",
+        compressChecked: logoAppCompressChecked,
         compressionOptions: {
           // maxSizeMB: initialFileSizeLogoApp ? bytesToMbs(initialFileSizeLogoApp) / 2 : 0.002,
           maxSizeMB: initialFileSizeLogoApp
@@ -133,6 +150,7 @@ const ImageEditor = ({ className }: Props) => {
         elementReference: refLogoCabDomElement.current,
         elementOptions: logoCabOptions,
         elementOutputFileName: "logo-cab.png",
+        compressChecked: logoCabCompressChecked,
         compressionOptions: {
           // maxSizeMB: initialFileSizeLogoCab
           //   ? bytesToMbs(initialFileSizeLogoCab) / 2
@@ -154,7 +172,7 @@ const ImageEditor = ({ className }: Props) => {
     //   alwaysKeepResolution: true,
     //   initialQuality: 1,
     // };
-    triggerDownloadZip(data, compressChecked);
+    triggerDownloadZip(data);
   }
 
   return (

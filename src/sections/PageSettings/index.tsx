@@ -11,6 +11,10 @@ import {
   AtomMaxSizeFundoMenu,
   AtomLogoAppCompressionRate,
   AtomLogoCabCompressionRate,
+  AtomLogoAppCompressChecked,
+  AtomFundoAppCompressChecked,
+  AtomFundoMenuCompressChecked,
+  AtomLogoCabCompressChecked,
   // AtomCompressionOptions,
 } from "src/store";
 import { Slider } from "@mui/material";
@@ -19,19 +23,37 @@ import { valueLabelFormat } from "src/utils/utils";
 type Props = {};
 
 const PageSettings = (props: Props) => {
+
+  //Generic states:
   const [sliderChecked, setSliderChecked] = useAtom(AtomSliderChecked);
   const [onWheelChecked, setOnWheelChecked] = useAtom(AtomOnWheelChecked);
   const [onTouchChecked, setOnTouchChecked] = useAtom(AtomOnTouchChecked);
-  const [compressChecked, setCompressChecked] = useAtom(AtomCompressChecked);
+  // const [compressChecked, setCompressChecked] = useAtom(AtomCompressChecked);
+
+  //Fundo app states:
+  const [fundoAppCompressChecked, setFundoAppCompressChecked] = useAtom(
+    AtomFundoAppCompressChecked
+  );
   const [maxSizeFundoApp, setMaxSizeFundoApp] = useAtom(AtomMaxSizeFundoApp);
   const [maxSizeFundoAppTemporaryValue, setMaxSizeFundoAppTemporaryValue] =
     useState<number>(maxSizeFundoApp ?? 200);
+
+  //Fundo menu states:
+  const [fundoMenuCompressChecked, setFundoMenuCompressChecked] = useAtom(
+    AtomFundoMenuCompressChecked
+  );
   const [maxSizeFundoMenu, setMaxSizeFundoMenu] = useAtom(AtomMaxSizeFundoMenu);
   const [maxSizeFundoMenuTemporaryValue, setMaxSizeFundoMenuTemporaryValue] =
     useState<number>(maxSizeFundoMenu ?? 200);
+
+  //Logo app states:
+  const [logoAppCompressChecked, setLogoAppCompressChecked] = useAtom(AtomLogoAppCompressChecked);
   const [logoAppCompressionRate, setLogoAppCompressionRate] = useAtom(
     AtomLogoAppCompressionRate
   );
+
+  //Logo cab states:
+  const [logoCabCompressChecked, setLogoCabCompressChecked] = useAtom(AtomLogoCabCompressChecked);
   const [logoCabCompressionRate, setLogoCabCompressionRate] = useAtom(
     AtomLogoCabCompressionRate
   );
@@ -123,19 +145,19 @@ const PageSettings = (props: Props) => {
             >
               <input
                 type="checkbox"
-                checked={compressChecked}
+                checked={fundoAppCompressChecked}
                 onChange={() => {
-                  setCompressChecked(!compressChecked);
+                  setFundoAppCompressChecked(!fundoAppCompressChecked);
                 }}
               />
-              Comprimir imagens
+              Comprimir Fundo App
             </label>
             <div
               className={`input-number-container ${
-                compressChecked ? "" : "input-number-disabled"
+                fundoAppCompressChecked ? "" : "input-number-disabled"
               }`}
             >
-              <span>Fundo_app (tamanho):</span>
+              <span>Tamanho esperado:</span>
               <div>
                 <input
                   type="number"
@@ -145,18 +167,32 @@ const PageSettings = (props: Props) => {
                       parseFloat(e.target.value)
                     );
                   }}
-                  disabled={compressChecked ? false : true}
+                  disabled={fundoAppCompressChecked ? false : true}
                   min={1}
                 />
                 <span>kbs</span>
               </div>
             </div>
+            <label
+              style={{
+                alignSelf: "center",
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={fundoMenuCompressChecked}
+                onChange={() => {
+                  setFundoMenuCompressChecked(!fundoMenuCompressChecked);
+                }}
+              />
+              Comprimir Fundo Menu
+            </label>
             <div
               className={`input-number-container ${
-                compressChecked ? "" : "input-number-disabled"
+                fundoMenuCompressChecked ? "" : "input-number-disabled"
               }`}
             >
-              <span>Fundo_menu (tamanho):</span>
+              <span>Tamanho esperado:</span>
               <div>
                 <input
                   type="number"
@@ -166,28 +202,42 @@ const PageSettings = (props: Props) => {
                       parseFloat(e.target.value)
                     );
                   }}
-                  disabled={compressChecked ? false : true}
+                  disabled={fundoMenuCompressChecked ? false : true}
                   min={1}
                 />
                 <span>kbs</span>
               </div>
             </div>
+            <label
+              style={{
+                alignSelf: "center",
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={logoAppCompressChecked}
+                onChange={() => {
+                  setLogoAppCompressChecked(!logoAppCompressChecked);
+                }}
+              />
+              Comprimir Logo App
+            </label>
             <div
               className={`input-slider-container ${
-                compressChecked ? "" : "input-number-disabled"
+                logoAppCompressChecked ? "" : "input-number-disabled"
               }`}
             >
-              <span>Logo_app (taxa de compressão):</span>
+              <span>Taxa de compressão:</span>
               <Slider
                 //Default Options:
-                style={{ maxWidth: "80%" }}
+                style={{ maxWidth: "50%" }}
                 min={1}
                 max={99}
                 step={1}
                 valueLabelDisplay="auto"
                 aria-labelledby="non-linear-slider"
                 size={"small"}
-                disabled={!compressChecked}
+                disabled={!logoAppCompressChecked}
                 className="logoapp-compression-slide"
                 //Props:
                 value={logoAppCompressionRate}
@@ -199,22 +249,36 @@ const PageSettings = (props: Props) => {
                 }}
               />
             </div>
+            <label
+              style={{
+                alignSelf: "center",
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={logoCabCompressChecked}
+                onChange={() => {
+                  setLogoCabCompressChecked(!logoCabCompressChecked);
+                }}
+              />
+              Comprimir Logo Cab
+            </label>
             <div
               className={`input-slider-container ${
-                compressChecked ? "" : "input-number-disabled"
+                logoCabCompressChecked ? "" : "input-number-disabled"
               }`}
             >
-              <span>Logo_cab (taxa de compressão):</span>
+              <span>Taxa de compressão:</span>
               <Slider
                 //Default Options:
-                style={{ maxWidth: "80%" }}
+                style={{ maxWidth: "50%" }}
                 min={1}
                 max={99}
                 step={1}
                 valueLabelDisplay="auto"
                 aria-labelledby="non-linear-slider"
                 size={"small"}
-                disabled={!compressChecked}
+                disabled={!logoCabCompressChecked}
                 className="logoapp-compression-slide"
                 //Props:
                 value={logoCabCompressionRate}

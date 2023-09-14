@@ -16,7 +16,7 @@ export function useDownloadZip() {
 
   const trigger = async (
     data: Array<DomElementReferenceOptionsType>,
-    compressChecked: boolean,
+    // compressChecked: boolean,
     // compressionOptions: ImageCompressionOptions
   ) => {
     var loopCounter = 1;
@@ -32,7 +32,7 @@ export function useDownloadZip() {
       );
       console.log(domElement.elementOutputFileName, ": ",  domElement.compressionOptions.maxSizeMB);
       //Comprimindo imagem (se a opção de comprimir estiver marcada e o arquivo for menor do que a quantidade de kbs que o usuário determinou):
-      if (compressChecked) {
+      if (domElement.compressChecked) {
         if (blob.size >= mbsToBytes(domElement.compressionOptions.maxSizeMB)) {
           while (
             blob.size >= mbsToBytes(domElement.compressionOptions.maxSizeMB) &&

@@ -9,13 +9,13 @@ import {
   AtomLogoCabCropped,
   AtomLogoCabOriginalSize,
   AtomWindowWidth,
-  AtomCompressChecked,
   AtomOnTouchChecked,
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomLogoCabDomElementOptions,
   AtomLogoCabInitialFileSize,
   AtomLogoCabCompressionRate,
+  AtomLogoCabCompressChecked,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -47,12 +47,13 @@ const LogoCab = (props: Props) => {
   const [domElementOptions] = useAtom(AtomLogoCabDomElementOptions);
   const [fileInitialSize, setFileInitialSize] = useAtom(AtomLogoCabInitialFileSize);
   const [compressionRate] = useAtom(AtomLogoCabCompressionRate);
+  const [compressChecked] = useAtom(AtomLogoCabCompressChecked);
 
   //Generic stuff:
   const [zoomValue, setZoomValue] = useState<number>(0);
   const inputRef = useRef<any>();
   const sliderRef = useRef<any>();
-  const [compressChecked] = useAtom(AtomCompressChecked);
+  // const [compressChecked] = useAtom(AtomCompressChecked);
   const [windowWidth] = useAtom(AtomWindowWidth);
   const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
   const [onTouchChecked] = useAtom(AtomOnTouchChecked);
