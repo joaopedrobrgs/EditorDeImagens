@@ -142,12 +142,7 @@ const ImageEditor = ({ className }: Props) => {
           .then(resolve)
       );
       if (logoAppCompressChecked) {
-        console.log("blob size: ", blob.size);
-        console.log("file initial size: ", initialFileSizeLogoApp);
         if (initialFileSizeLogoApp && initialFileSizeLogoApp < blob.size) {
-          console.log(
-            "caiu no primeiro laço. Utilizando fileInitialSize como parâmetro"
-          );
           maxSizeMB =
             bytesToMbs(initialFileSizeLogoApp) -
             bytesToMbs(initialFileSizeLogoApp) *
@@ -156,26 +151,18 @@ const ImageEditor = ({ className }: Props) => {
           initialFileSizeLogoApp &&
           initialFileSizeLogoApp > blob.size
         ) {
-          console.log(
-            "caiu no segundo laço. Utilizando blob.size como parâmetro"
-          );
           maxSizeMB =
             bytesToMbs(blob.size) -
             bytesToMbs(blob.size) *
               sliderNumberToPercentageInDecimalForm(compressionRateLogoApp);
         } else if (!initialFileSizeLogoApp && blob) {
-          console.log(
-            "caiu no terceiro laço. Utilizando blob.size como parâmetro"
-          );
           maxSizeMB =
             bytesToMbs(blob.size) -
             bytesToMbs(blob.size) *
               sliderNumberToPercentageInDecimalForm(compressionRateLogoApp);
         } else {
-          console.log("caiu no else");
         }
       } else {
-        console.log("nem entrou");
       }
       data.push({
         blob,
@@ -199,12 +186,7 @@ const ImageEditor = ({ className }: Props) => {
           .then(resolve)
       );
       if (logoCabCompressChecked) {
-        console.log("blob size: ", blob.size);
-        console.log("file initial size: ", initialFileSizeLogoCab);
         if (initialFileSizeLogoCab && initialFileSizeLogoCab < blob.size) {
-          console.log(
-            "caiu no primeiro laço. Utilizando fileInitialSize como parâmetro"
-          );
           maxSizeMB =
             bytesToMbs(initialFileSizeLogoCab) -
             bytesToMbs(initialFileSizeLogoCab) *
@@ -213,26 +195,18 @@ const ImageEditor = ({ className }: Props) => {
           initialFileSizeLogoCab &&
           initialFileSizeLogoCab > blob.size
         ) {
-          console.log(
-            "caiu no segundo laço. Utilizando blob.size como parâmetro"
-          );
           maxSizeMB =
             bytesToMbs(blob.size) -
             bytesToMbs(blob.size) *
               sliderNumberToPercentageInDecimalForm(compressionRateLogoCab);
         } else if (!initialFileSizeLogoCab && blob) {
-          console.log(
-            "caiu no terceiro laço. Utilizando blob.size como parâmetro"
-          );
           maxSizeMB =
             bytesToMbs(blob.size) -
             bytesToMbs(blob.size) *
               sliderNumberToPercentageInDecimalForm(compressionRateLogoCab);
         } else {
-          console.log("caiu no else");
         }
       } else {
-        console.log("nem entrou");
       }
       data.push({
         blob,

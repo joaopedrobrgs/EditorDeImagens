@@ -134,37 +134,24 @@ async function handleDownload() {
       domtoimage.toBlob(domElementRef.current, domElementOptions).then(resolve)
     );
     if (compressChecked) {
-      console.log("blob size: ", blob.size);
-      console.log("file initial size: ", fileInitialSize);
       if (fileInitialSize && fileInitialSize < blob.size) {
-        console.log(
-          "caiu no primeiro laço. Utilizando fileInitialSize como parâmetro"
-        );
         maxSizeMB =
           bytesToMbs(fileInitialSize) -
           bytesToMbs(fileInitialSize) *
             sliderNumberToPercentageInDecimalForm(compressionRate);
       } else if (fileInitialSize && fileInitialSize > blob.size) {
-        console.log(
-          "caiu no segundo laço. Utilizando blob.size como parâmetro"
-        );
         maxSizeMB =
           bytesToMbs(blob.size) -
           bytesToMbs(blob.size) *
             sliderNumberToPercentageInDecimalForm(compressionRate);
       } else if (!fileInitialSize && blob) {
-        console.log(
-          "caiu no terceiro laço. Utilizando blob.size como parâmetro"
-        );
         maxSizeMB =
           bytesToMbs(blob.size) -
           bytesToMbs(blob.size) *
             sliderNumberToPercentageInDecimalForm(compressionRate);
       } else {
-        console.log("caiu no else");
       }
     } else {
-      console.log("nem entrou");
     }
     const compressionOptions: ImageCompressionOptions = {
       maxSizeMB: maxSizeMB,

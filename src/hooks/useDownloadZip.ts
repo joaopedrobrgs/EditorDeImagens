@@ -27,11 +27,6 @@ export function useDownloadZip() {
     const downloadZips = data.map(async (domElement, index) => {
       //Pegando elemento do DOM, transformando em imagem no formato BLOB e atribuindo a uma variável:
       let blob: any = domElement.blob;
-      console.log(
-        domElement.elementOutputFileName,
-        ": ",
-        domElement.compressionOptions.maxSizeMB
-      );
       //Comprimindo imagem (se a opção de comprimir estiver marcada e o arquivo for menor do que a quantidade de kbs que o usuário determinou):
       if (domElement.compressChecked) {
         if (blob.size >= mbsToBytes(domElement.compressionOptions.maxSizeMB)) {

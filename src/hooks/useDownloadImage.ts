@@ -28,7 +28,7 @@ export function useDownloadImage() {
     //   domtoimage.toBlob(domElementRef, domElementOptions).then(resolve)
     // );
     //Comprimindo imagem (se a opção de comprimir estiver marcada e o arquivo for menor do que a quantidade de kbs que o usuário determinou):
-    console.log(outputFileName, ": ",  compressionOptions.maxSizeMB);
+    // console.log(outputFileName, ": ",  compressionOptions.maxSizeMB);
     if (compressChecked) {
       if (blob.size >= mbsToBytes(compressionOptions.maxSizeMB)) {
         while (
