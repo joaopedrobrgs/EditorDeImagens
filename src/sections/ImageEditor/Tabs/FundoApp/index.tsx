@@ -84,7 +84,7 @@ const FundoApp = (props: Props) => {
 
   useEffect(() => {
     if (compressionError) {
-      console.log(compressionError.response.data.message);
+      console.log(compressionError?.response?.data?.message);
       console.log(compressionError);
     }
   }, [compressionError]);
