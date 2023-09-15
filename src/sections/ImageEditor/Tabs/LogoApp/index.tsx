@@ -16,6 +16,7 @@ import {
   AtomLogoAppInitialFileSize,
   AtomLogoAppCompressionRate,
   AtomLogoAppCompressChecked,
+  AtomCompressorSelected,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -66,6 +67,7 @@ const LogoApp = (props: Props) => {
     cropperRef.current?.cropper.getData()
   );
   const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
+  const [compressorSelected] = useAtom(AtomCompressorSelected);
 
   //Services:
   const {
@@ -161,6 +163,7 @@ const LogoApp = (props: Props) => {
     };
     triggerDownloadImage(
       blob,
+      compressorSelected,
       compressChecked,
       compressionOptions,
       outputFileName

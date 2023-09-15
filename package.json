@@ -13,6 +13,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "axios": "^1.5.0",
     "browser-image-compression": "^2.0.2",
     "dom-to-image": "^2.6.0",
     "jotai": "^2.3.1",

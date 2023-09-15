@@ -27,6 +27,7 @@ import {
   AtomFundoMenuCompressChecked,
   AtomLogoAppCompressChecked,
   AtomLogoCabCompressChecked,
+  AtomCompressorSelected,
 } from "src/store";
 import {
   bytesToMbs,
@@ -50,6 +51,7 @@ const ImageEditor = ({ className }: Props) => {
   const [imageFullyLoaded, setImageFullyLoaded] = useAtom(
     AtomFirstImageFullyLoaded
   );
+  const [compressorSelected] = useAtom(AtomCompressorSelected)
   // const [compressChecked] = useAtom(AtomCompressChecked);
 
   //Fundo app states:
@@ -226,7 +228,7 @@ const ImageEditor = ({ className }: Props) => {
     //   alwaysKeepResolution: true,
     //   initialQuality: 1,
     // };
-    triggerDownloadZip(data);
+    triggerDownloadZip(data, compressorSelected);
   }
 
   return (

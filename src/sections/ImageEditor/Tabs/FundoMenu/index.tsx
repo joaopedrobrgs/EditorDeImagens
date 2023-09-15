@@ -15,6 +15,7 @@ import {
   AtomFundoMenuDomElementOptions,
   AtomMaxSizeFundoMenu,
   AtomFundoMenuCompressChecked,
+  AtomCompressorSelected,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -61,6 +62,7 @@ const FundoMenu = (props: Props) => {
     cropperRef.current?.cropper.getData()
   );
   const [imageFullyLoaded, setImageFullyLoaded] = useState<boolean>(false);
+  const [compressorSelected] = useAtom(AtomCompressorSelected)
 
   //Services:
   const {
@@ -136,6 +138,7 @@ const FundoMenu = (props: Props) => {
       // domElementRef.current,
       // domElementOptions,
       blob,
+      compressorSelected,
       compressChecked,
       compressionOptions,
       outputFileName

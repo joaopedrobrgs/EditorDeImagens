@@ -236,6 +236,19 @@ const AtomLogoCabDomElementOptions = atom<Options>({
   },
 });
 
+//Atom compressor select
+const getCompressorSelected = (): string => {
+  const storedState = localStorage.getItem("@compressorSelected");
+  if (storedState) {
+    return JSON.parse(storedState);
+  }
+  return "tiny-png";
+};
+const AtomCompressorSelected = atomWithStorage<string>(
+  "@compressorSelected",
+  getCompressorSelected()
+);
+
 export {
   AtomShowSettingsModal,
   AtomFundoAppOriginalSize,
@@ -275,5 +288,6 @@ export {
   AtomFundoAppCompressChecked,
   AtomFundoMenuCompressChecked,
   AtomLogoAppCompressChecked,
-  AtomLogoCabCompressChecked
+  AtomLogoCabCompressChecked,
+  AtomCompressorSelected
 };

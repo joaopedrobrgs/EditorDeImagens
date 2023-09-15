@@ -16,9 +16,8 @@ export function useDownloadZip() {
   >(null);
 
   const trigger = async (
-    data: Array<DomElementReferenceOptionsType>
-    // compressChecked: boolean,
-    // compressionOptions: ImageCompressionOptions
+    data: Array<DomElementReferenceOptionsType>,
+    compressorSelected: string
   ) => {
     var loopCounter = 1;
     //Criando um arquivo zip:

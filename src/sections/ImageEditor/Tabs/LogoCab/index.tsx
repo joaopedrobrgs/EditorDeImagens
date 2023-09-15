@@ -16,6 +16,7 @@ import {
   AtomLogoCabInitialFileSize,
   AtomLogoCabCompressionRate,
   AtomLogoCabCompressChecked,
+  AtomCompressorSelected,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -66,6 +67,7 @@ const LogoCab = (props: Props) => {
   const [cropDataStored, setCropDataStored] = useState(
     cropperRef.current?.cropper.getData()
   );
+  const [compressorSelected] = useAtom(AtomCompressorSelected);
 
   //Services:
   const {
@@ -161,6 +163,7 @@ async function handleDownload() {
     };
     triggerDownloadImage(
       blob,
+      compressorSelected,
       compressChecked,
       compressionOptions,
       outputFileName

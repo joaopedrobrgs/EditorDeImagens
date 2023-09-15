@@ -16,6 +16,7 @@ import {
   AtomFundoAppDomElementOptions,
   AtomMaxSizeFundoApp,
   AtomFundoAppCompressChecked,
+  AtomCompressorSelected,
 } from "src/store";
 import DownloadIcon from "src/assets/svgComponents/DownloadIconSvg";
 import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
@@ -62,6 +63,7 @@ const FundoApp = (props: Props) => {
   const [imageFullyLoaded, setImageFullyLoaded] = useAtom(
     AtomFirstImageFullyLoaded
   );
+  const [compressorSelected] = useAtom(AtomCompressorSelected);
 
   //Services:
   const {
@@ -69,8 +71,27 @@ const FundoApp = (props: Props) => {
     setCompressionError,
     isCompressing,
     setIsCompressing,
+    compressionResponse,
+    setCompressionResponse,
     trigger: triggerDownloadImage,
   } = useDownloadImage();
+
+  useEffect(() => {
+    if (compressionResponse) {
+      console.log(compressionResponse);
+    }
+  }, [compressionResponse]);
+
+  useEffect(() => {
+    if (compressionError) {
+      console.log(compressionError.response.data.message);
+      console.log(compressionError);
+    }
+  }, [compressionError]);
+
+  useEffect(() => {
+    console.log(process.env.REACT_APP_TINY_PNG_API_KEY);
+  }, []);
 
   useEffect(() => {
     setZoomValue(0);
@@ -124,9 +145,17 @@ const FundoApp = (props: Props) => {
   async function handleDownload() {
     // cropperRef.current.name = outputFileName;
     // domElementRef.current.name = outputFileName;
+
     let blob: any = await new Promise((resolve) =>
       domtoimage.toBlob(domElementRef.current, domElementOptions).then(resolve)
     );
+    let objectUrl: any = URL.createObjectURL(blob).slice(5);
+    // let png: any = await new Promise((resolve) =>
+    //   domtoimage.toPng(domElementRef.current, domElementOptions).then(resolve)
+    // );
+    console.log(URL.createObjectURL(blob).slice(5));
+    let credential: any = window.btoa(process.env.TINY_PNG_API_KEY as any);
+    console.log(credential);
     const compressionOptions: ImageCompressionOptions = {
       maxSizeMB: maxSizeOfImageValidator(maxSizeOfImage),
       fileType: "image/png",
@@ -137,6 +166,7 @@ const FundoApp = (props: Props) => {
       // domElementRef.current,
       // domElementOptions,
       blob,
+      compressorSelected,
       compressChecked,
       compressionOptions,
       outputFileName
