@@ -12,6 +12,8 @@ export const apiTinyPng = axios.create({
     // Authorization: "Basic " + process.env.REACT_APP_TINY_PNG_API_KEY,
     "Content-Type": "application/json",
     "Access-Control-Allow-Credentials": true,
+    "Referrer-Policy": "no-referrer",
+    "Referrer": "no-referrer",
   },
   auth: {
     username: `api:${process.env.REACT_APP_TINY_PNG_API_KEY}`,

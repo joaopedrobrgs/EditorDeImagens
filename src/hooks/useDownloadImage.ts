@@ -29,28 +29,28 @@ export function useDownloadImage() {
     // let url: string = domElementUrl;
 
     if (compressorSelected === "tiny-png") {
-      const config = {
-        method: "post",
-        baseURL: "https://api.tinify.com/",
-        url: "shrink",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          Accept: "application/json",
-          "Access-Control-Allow-Headers":
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Auth-Token",
-          // 'Access-Control-Allow-Headers': '*',
-          // "Access-Control-Allow-Origin": "http://localhost:3000/",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          // "Access-Control-Allow-Methods": "*",
-          // "Access-Control-Max-Age": 86400,
-          // Authorization: "Basic " + process.env.TINY_PNG_API_KEY,
-          Authorization: "Basic " + process.env.REACT_APP_TINY_PNG_API_KEY,
-          "Content-Type": "application/json",
-        },
-        data: {
-          source: { url: "https://github.com/joaopedrobrgs.png" },
-        },
-      };
+      // const config = {
+      //   method: "post",
+      //   baseURL: "https://api.tinify.com/",
+      //   url: "shrink",
+      //   headers: {
+      //     "Access-Control-Allow-Origin": "*",
+      //     Accept: "application/json",
+      //     "Access-Control-Allow-Headers":
+      //       "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Auth-Token",
+      //     // 'Access-Control-Allow-Headers': '*',
+      //     // "Access-Control-Allow-Origin": "http://localhost:3000/",
+      //     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      //     // "Access-Control-Allow-Methods": "*",
+      //     // "Access-Control-Max-Age": 86400,
+      //     // Authorization: "Basic " + process.env.TINY_PNG_API_KEY,
+      //     Authorization: "Basic " + process.env.REACT_APP_TINY_PNG_API_KEY,
+      //     "Content-Type": "application/json",
+      //   },
+      //   data: {
+      //     source: { url: "https://github.com/joaopedrobrgs.png" },
+      //   },
+      // };
 
       try {
         setIsCompressing(true);
