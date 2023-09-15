@@ -54,11 +54,11 @@ export function useDownloadImage() {
 
       try {
         setIsCompressing(true);
-        // await apiTinyPng
-        //   .post("shrink", {
-        //     blob,
-        //   })
-        await axios(config)
+        await apiTinyPng
+          .post("shrink", {
+            source: { url: "https://github.com/joaopedrobrgs.png" },
+          })
+        // await axios(config)
           .then((response) => {
             setCompressionError(null);
             setCompressionResponse(response);

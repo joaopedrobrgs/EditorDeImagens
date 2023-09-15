@@ -78,7 +78,7 @@ const FundoApp = (props: Props) => {
 
   useEffect(() => {
     if (compressionResponse) {
-      console.log(compressionResponse);
+      console.log("Resposta Requisição: ", compressionResponse);
     }
   }, [compressionResponse]);
 
