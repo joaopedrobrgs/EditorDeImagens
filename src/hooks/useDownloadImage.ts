@@ -8,11 +8,11 @@ import domtoimage, { Options } from "dom-to-image";
 import { mbsToBytes } from "src/utils/utils";
 import { apiTinyPng } from "src/services/APIs";
 import axios, { AxiosResponse } from "axios";
+import { encode } from "base-64";
 
 export function useDownloadImage() {
   const [isCompressing, setIsCompressing] = useState<boolean>(false);
-  const [compressionResponse, setCompressionResponse] =
-    useState<AxiosResponse | null>();
+  const [compressionResponse, setCompressionResponse] = useState<any>();
   const [compressionError, setCompressionError] = useState<any>(null);
 
   const trigger = async (
@@ -28,54 +28,89 @@ export function useDownloadImage() {
     // let png: any = domElementPng;
     // let url: string = domElementUrl;
 
-    if (compressorSelected === "tiny-png") {
-      // const config = {
-      //   method: "post",
-      //   baseURL: "https://api.tinify.com/",
-      //   url: "shrink",
-      //   headers: {
-      //     "Access-Control-Allow-Origin": "*",
-      //     Accept: "application/json",
-      //     "Access-Control-Allow-Headers":
-      //       "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Auth-Token",
-      //     // 'Access-Control-Allow-Headers': '*',
-      //     // "Access-Control-Allow-Origin": "http://localhost:3000/",
-      //     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-      //     // "Access-Control-Allow-Methods": "*",
-      //     // "Access-Control-Max-Age": 86400,
-      //     // Authorization: "Basic " + process.env.TINY_PNG_API_KEY,
-      //     Authorization: "Basic " + process.env.REACT_APP_TINY_PNG_API_KEY,
-      //     "Content-Type": "application/json",
-      //   },
-      //   data: {
-      //     source: { url: "https://github.com/joaopedrobrgs.png" },
-      //   },
-      // };
+    let username: string | undefined = process.env.REACT_APP_TINY_PNG_API_KEY;
+    let password: string = '';
 
+    if (compressorSelected === "tiny-png") {
+      let headers = new Headers()
+      headers.set('Authorization', 'Basic ' + btoa(username + ":" + password));
       try {
         setIsCompressing(true);
-        await apiTinyPng
-          .post("shrink", {
+        await fetch("https://api.tinify.com/shrink", {
+          method: "POST",
+          cache: "no-cache",
+          headers: {
+            "Content-Type": "application/json",
+            // "Access-Control-Allow-Origin": "*",
+            // "Authorization": "Basic RktTcWpaSkh4VDhjSFlka24wUTkwZ05jajZaa2NEOTg=",
+            'Authorization': 'Basic ' + btoa(username + ":" + password),
+            // "Access-Control-Allow-Credentials": "true",
+            // "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+            // "Access-Control-Allow-Headers":
+            //   "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-PINGOTHER",
+            // "Access-Control-Max-Age": "86400",
+          },
+          body: JSON.stringify({
             source: { url: "https://github.com/joaopedrobrgs.png" },
-          })
-        // await axios(config)
+          }),
+          mode: "no-cors",
+        })
           .then((response) => {
+            return response.json();
+          })
+          .then((response) => {
+            console.log(response);
             setCompressionError(null);
             setCompressionResponse(response);
           })
           //Se der algo errado com a requisição, retornar esse erro:
           .catch((err) => {
+            console.log(err);
             setCompressionResponse(null);
             setCompressionError(err);
-          })
-          .finally(() => {
-            setIsCompressing(false);
           });
-      } catch (err) {
-        setCompressionError(err);
-        setCompressionResponse(null);
-        setIsCompressing(false);
-      }
+      } catch (err) {}
+
+      // await fetch(
+      //   "http://api.resmush.it/ws.php?img=https://github.com/joaopedrobrgs.png&qlty=10&percent=100",
+      //   {
+      //     method: "GET",
+      //   }
+      // )
+      //   .then((response) => {
+      //     return response.json();
+      //   })
+      //   .then((response)=>{
+      //     setCompressionResponse(response);
+      //   })
+      //   .catch((response) => {
+      //     console.log("response", response);
+      //   });
+
+      // try {
+      //   setIsCompressing(true);
+      //   await apiTinyPng
+      //     .post("/shrink", {
+      //       source: { url: "https://github.com/joaopedrobrgs.png" },
+      //     })
+      //   // await axios(config)
+      // .then((response) => {
+      //   setCompressionError(null);
+      //   setCompressionResponse(response);
+      // })
+      // //Se der algo errado com a requisição, retornar esse erro:
+      // .catch((err) => {
+      //   setCompressionResponse(null);
+      //   setCompressionError(err);
+      // })
+      //     .finally(() => {
+      //       setIsCompressing(false);
+      //     });
+      // } catch (err) {
+      //   setCompressionError(err);
+      //   setCompressionResponse(null);
+      //   setIsCompressing(false);
+      // }
     } else if (compressorSelected === "browser-image-compression") {
       //Comprimindo imagem (se a opção de comprimir estiver marcada e o arquivo for menor do que a quantidade de kbs que o usuário determinou):
       // console.log(outputFileName, ": ",  compressionOptions.maxSizeMB);
