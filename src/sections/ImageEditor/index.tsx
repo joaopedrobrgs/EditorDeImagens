@@ -19,8 +19,6 @@ import {
   AtomLogoCabDomElementOptions,
   AtomMaxSizeFundoApp,
   AtomMaxSizeFundoMenu,
-  AtomLogoAppInitialFileSize,
-  AtomLogoCabInitialFileSize,
   AtomLogoAppCompressionRate,
   AtomLogoCabCompressionRate,
   AtomFundoAppCompressChecked,
@@ -63,14 +61,12 @@ const ImageEditor = ({ className }: Props) => {
   const [fundoMenuOptions] = useAtom(AtomFundoMenuDomElementOptions);
 
   //Logo app states
-  const [initialFileSizeLogoApp] = useAtom(AtomLogoAppInitialFileSize);
   const [logoAppCompressChecked] = useAtom(AtomLogoAppCompressChecked);
   const [compressionRateLogoApp] = useAtom(AtomLogoAppCompressionRate);
   const [logoAppOptions] = useAtom(AtomLogoAppDomElementOptions);
 
   //Logo cab states:
 
-  const [initialFileSizeLogoCab] = useAtom(AtomLogoCabInitialFileSize);
   const [compressionRateLogoCab] = useAtom(AtomLogoCabCompressionRate);
   const [logoCabCompressChecked] = useAtom(AtomLogoCabCompressChecked);
   const [logoCabOptions] = useAtom(AtomLogoCabDomElementOptions);
@@ -96,7 +92,6 @@ const ImageEditor = ({ className }: Props) => {
     //Verificando se existem os arquivos cortados e colocando dentro de um array:
     const data: Array<DomElementReferenceOptionsType> = [];
     if (!!refFundoAppCropper.current) {
-      // refFundoAppDomElement.current.name = "fundo-app";
       let blob: any = await new Promise((resolve) =>
         domtoimage
           .toBlob(refFundoAppDomElement.current, fundoAppOptions)
@@ -115,7 +110,6 @@ const ImageEditor = ({ className }: Props) => {
       });
     }
     if (!!refFundoMenuCropper.current) {
-      // refFundoMenuDomElement.current.name = "fundo-menu";
       let blob: any = await new Promise((resolve) =>
         domtoimage
           .toBlob(refFundoMenuDomElement.current, fundoMenuOptions)
@@ -134,98 +128,51 @@ const ImageEditor = ({ className }: Props) => {
       });
     }
     if (!!refLogoAppCropper.current) {
-      // refLogoAppDomElement.current.name = "logo-app";
-      let maxSizeMB: number = 0.002;
       let blob: any = await new Promise((resolve) =>
         domtoimage
           .toBlob(refLogoAppDomElement.current, logoAppOptions)
           .then(resolve)
       );
-      if (logoAppCompressChecked) {
-        if (initialFileSizeLogoApp && initialFileSizeLogoApp < blob.size) {
-          maxSizeMB =
-            bytesToMbs(initialFileSizeLogoApp) -
-            bytesToMbs(initialFileSizeLogoApp) *
-              sliderNumberToPercentageInDecimalForm(compressionRateLogoApp);
-        } else if (
-          initialFileSizeLogoApp &&
-          initialFileSizeLogoApp > blob.size
-        ) {
-          maxSizeMB =
-            bytesToMbs(blob.size) -
-            bytesToMbs(blob.size) *
-              sliderNumberToPercentageInDecimalForm(compressionRateLogoApp);
-        } else if (!initialFileSizeLogoApp && blob) {
-          maxSizeMB =
-            bytesToMbs(blob.size) -
-            bytesToMbs(blob.size) *
-              sliderNumberToPercentageInDecimalForm(compressionRateLogoApp);
-        } else {
-        }
-      } else {
-      }
+      let maxSizeMB =
+        bytesToMbs(blob.size) -
+        bytesToMbs(blob.size) *
+          sliderNumberToPercentageInDecimalForm(compressionRateLogoApp);
+      const compressionOptions: ImageCompressionOptions = {
+        maxSizeMB: maxSizeMB,
+        fileType: "image/png",
+        alwaysKeepResolution: true,
+        initialQuality: 1,
+      };
       data.push({
         blob,
         elementOutputFileName: "logo-app.png",
         compressChecked: logoAppCompressChecked,
-        compressionOptions: {
-          // maxSizeMB: initialFileSizeLogoApp ? bytesToMbs(initialFileSizeLogoApp) / 2 : 0.002,
-          maxSizeMB: maxSizeMB,
-          fileType: "image/png",
-          alwaysKeepResolution: true,
-          initialQuality: 1,
-        },
+        compressionOptions: compressionOptions,
       });
     }
     if (!!refLogoCabCropper.current) {
-      // refLogoCabDomElement.current.name = "logo-cab";
-      let maxSizeMB: number = 0.002;
       let blob: any = await new Promise((resolve) =>
         domtoimage
           .toBlob(refLogoCabDomElement.current, logoCabOptions)
           .then(resolve)
       );
-      if (logoCabCompressChecked) {
-        if (initialFileSizeLogoCab && initialFileSizeLogoCab < blob.size) {
-          maxSizeMB =
-            bytesToMbs(initialFileSizeLogoCab) -
-            bytesToMbs(initialFileSizeLogoCab) *
-              sliderNumberToPercentageInDecimalForm(compressionRateLogoCab);
-        } else if (
-          initialFileSizeLogoCab &&
-          initialFileSizeLogoCab > blob.size
-        ) {
-          maxSizeMB =
-            bytesToMbs(blob.size) -
-            bytesToMbs(blob.size) *
-              sliderNumberToPercentageInDecimalForm(compressionRateLogoCab);
-        } else if (!initialFileSizeLogoCab && blob) {
-          maxSizeMB =
-            bytesToMbs(blob.size) -
-            bytesToMbs(blob.size) *
-              sliderNumberToPercentageInDecimalForm(compressionRateLogoCab);
-        } else {
-        }
-      } else {
-      }
+      let maxSizeMB =
+        bytesToMbs(blob.size) -
+        bytesToMbs(blob.size) *
+          sliderNumberToPercentageInDecimalForm(compressionRateLogoCab);
+      const compressionOptions: ImageCompressionOptions = {
+        maxSizeMB: maxSizeMB,
+        fileType: "image/png",
+        alwaysKeepResolution: true,
+        initialQuality: 1,
+      };
       data.push({
         blob,
         elementOutputFileName: "logo-cab.png",
         compressChecked: logoCabCompressChecked,
-        compressionOptions: {
-          maxSizeMB: maxSizeMB,
-          fileType: "image/png",
-          alwaysKeepResolution: true,
-          initialQuality: 1,
-        },
+        compressionOptions: compressionOptions,
       });
     }
-    // const compressionOptions: ImageCompressionOptions = {
-    //   maxSizeMB: maxSizeOfImageValidator(maxSizeOfImage),
-    //   fileType: "image/png",
-    //   alwaysKeepResolution: true,
-    //   initialQuality: 1,
-    // };
     triggerDownloadZip(data);
   }
 

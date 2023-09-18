@@ -121,8 +121,6 @@ const FundoMenu = (props: Props) => {
   };
 
   async function handleDownload() {
-    // cropperRef.current.name = outputFileName;
-    // domElementRef.current.name = outputFileName;
     let blob: any = await new Promise((resolve) =>
       domtoimage.toBlob(domElementRef.current, domElementOptions).then(resolve)
     );
@@ -133,8 +131,6 @@ const FundoMenu = (props: Props) => {
       initialQuality: 1,
     };
     triggerDownloadImage(
-      // domElementRef.current,
-      // domElementOptions,
       blob,
       compressChecked,
       compressionOptions,

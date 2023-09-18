@@ -139,10 +139,6 @@ const AtomMaxSizeFundoMenu = atomWithStorage<number>(
   getMaxSizeOfImageFundoMenu()
 );
 
-//LogoAppFileInitialSize e LogoCabFileInitialSize:
-const AtomLogoAppInitialFileSize = atom<null | number>(null);
-const AtomLogoCabInitialFileSize = atom<null | number>(null);
-
 //Logo App Compression atoms:
 const getCompressLogoAppChecked = (): boolean => {
   const storedState = localStorage.getItem("@compressLogoAppChecked");
@@ -268,8 +264,6 @@ export {
   AtomLogoCabDomElementOptions,
   AtomMaxSizeFundoApp,
   AtomMaxSizeFundoMenu,
-  AtomLogoAppInitialFileSize,
-  AtomLogoCabInitialFileSize,
   AtomLogoAppCompressionRate,
   AtomLogoCabCompressionRate,
   AtomFundoAppCompressChecked,

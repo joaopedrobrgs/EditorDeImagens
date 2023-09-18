@@ -13,7 +13,6 @@ import {
   AtomOnWheelChecked,
   AtomSliderChecked,
   AtomLogoCabDomElementOptions,
-  AtomLogoCabInitialFileSize,
   AtomLogoCabCompressionRate,
   AtomLogoCabCompressChecked,
 } from "src/store";
@@ -22,8 +21,6 @@ import UploadIcon from "src/assets/svgComponents/UploadIconSvg";
 import {
   bytesToMbs,
   calcFontSizeAccordingToWidth,
-  maxSizeOfImageValidator,
-  percentageToDecimal,
   sliderNumberToPercentageInDecimalForm,
 } from "src/utils/utils";
 import CropperDefault from "src/components/Cropper";
@@ -47,9 +44,6 @@ const LogoCab = (props: Props) => {
   const { refLogoCabCropper: cropperRef, refLogoCabDomElement: domElementRef } =
     useAppContext();
   const [domElementOptions] = useAtom(AtomLogoCabDomElementOptions);
-  const [fileInitialSize, setFileInitialSize] = useAtom(
-    AtomLogoCabInitialFileSize
-  );
   const [compressionRate] = useAtom(AtomLogoCabCompressionRate);
   const [compressChecked] = useAtom(AtomLogoCabCompressChecked);
 
@@ -113,7 +107,6 @@ const LogoCab = (props: Props) => {
     };
     if (!!files[0]) {
       reader.readAsDataURL(files[0]);
-      setFileInitialSize(files[0].size);
     }
   };
 
@@ -126,33 +119,14 @@ const LogoCab = (props: Props) => {
     }
   };
 
-async function handleDownload() {
-    // cropperRef.current.name = outputFileName;
-    // domElementRef.current.name = outputFileName;
-    let maxSizeMB: number = 0.002;
+  async function handleDownload() {
     let blob: any = await new Promise((resolve) =>
       domtoimage.toBlob(domElementRef.current, domElementOptions).then(resolve)
     );
-    if (compressChecked) {
-      if (fileInitialSize && fileInitialSize < blob.size) {
-        maxSizeMB =
-          bytesToMbs(fileInitialSize) -
-          bytesToMbs(fileInitialSize) *
-            sliderNumberToPercentageInDecimalForm(compressionRate);
-      } else if (fileInitialSize && fileInitialSize > blob.size) {
-        maxSizeMB =
-          bytesToMbs(blob.size) -
-          bytesToMbs(blob.size) *
-            sliderNumberToPercentageInDecimalForm(compressionRate);
-      } else if (!fileInitialSize && blob) {
-        maxSizeMB =
-          bytesToMbs(blob.size) -
-          bytesToMbs(blob.size) *
-            sliderNumberToPercentageInDecimalForm(compressionRate);
-      } else {
-      }
-    } else {
-    }
+    let maxSizeMB =
+      bytesToMbs(blob.size) -
+      bytesToMbs(blob.size) *
+        sliderNumberToPercentageInDecimalForm(compressionRate);
     const compressionOptions: ImageCompressionOptions = {
       maxSizeMB: maxSizeMB,
       fileType: "image/png",
