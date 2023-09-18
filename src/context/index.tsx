@@ -24,16 +24,16 @@ const AppContextProvider: React.FC<{
 }> = ({ children }) => {
 
   //Cropper references (croppers):
-  const refFundoAppCropper = createRef<ReactCropperElement>();
-  const refFundoMenuCropper = createRef<ReactCropperElement>();
-  const refLogoAppCropper = createRef<ReactCropperElement>();
-  const refLogoCabCropper = createRef<ReactCropperElement>();
+  const refFundoAppCropper = useRef<ReactCropperElement>();
+  const refFundoMenuCropper = useRef<ReactCropperElement>();
+  const refLogoAppCropper = useRef<ReactCropperElement>();
+  const refLogoCabCropper = useRef<ReactCropperElement>();
   
   //DOM Elements References:
-  const refFundoAppDomElement = createRef<Node>();
-  const refFundoMenuDomElement = createRef<Node>();
-  const refLogoAppDomElement = createRef<Node>();
-  const refLogoCabDomElement = createRef<Node>();
+  const refFundoAppDomElement = useRef<Node>();
+  const refFundoMenuDomElement = useRef<Node>();
+  const refLogoAppDomElement = useRef<Node>();
+  const refLogoCabDomElement = useRef<Node>();
 
   return (
     <AppContext.Provider
