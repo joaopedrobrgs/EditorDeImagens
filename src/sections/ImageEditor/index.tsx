@@ -213,8 +213,11 @@ const ImageEditor = ({ className }: Props) => {
         <ButtonDefault
           // text="Baixar Todos .zip"
           text={isCompressing ? "Comprimindo..." : `Baixar Todos .zip`}
-          bgColor="#0B608F"
+          // bgColor="#0B608F"
           // alignSelf={windowWidth >= 1330 ? "self-start" : "center"}
+          style={{
+            backgroundColor: "#0B608F"
+          }}
           onClick={
             isCompressing || !imageFullyLoaded
               ? () => {

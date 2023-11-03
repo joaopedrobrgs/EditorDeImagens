@@ -2,31 +2,62 @@ import React from "react";
 import "./styles.scss";
 import IphoneBottomLine from "src/components/IphoneBottomLine";
 import { useAppContext } from "src/context";
+import Smartphone from "src/components/Smartphone";
+import { useAtom } from "jotai";
+import {
+  AtomFundoAppBlur,
+  AtomFundoAppOpacity,
+  AtomLogoAppIsBorderRounded,
+} from "src/store";
 
 type Props = {
   // className: string
 };
 
 const TelaInicial = ({}: Props) => {
+  const { refLogoAppDomElement, refFundoAppDomElement } = useAppContext();
 
-  const {refLogoAppDomElement, refFundoAppDomElement} = useAppContext();
+  const [fundoAppOpacity] = useAtom(AtomFundoAppOpacity);
+  const [fundoAppBlur] = useAtom(AtomFundoAppBlur);
+
+  const [isLogoAppBorderRounded] = useAtom(AtomLogoAppIsBorderRounded);
 
   return (
     <div className="screen-login-container">
-      <div className="fundo-app-box" ref={refFundoAppDomElement}>
+      <div className="fundo-app-container">
         <div
-          className="fundo-app-preview"
-          style={{ width: "100%", height: "100%" }}
-        />
+          className="fundo-app-box"
+          ref={refFundoAppDomElement}
+          // style={{
+          // opacity: `${fundoAppOpacity}%`,
+          // filter: `opacity(${fundoAppOpacity})%`,
+          // WebkitFilter: `opacity(${Math.floor(decimalToPercentage(watchFundoAppOpacity))})%`,
+          // msFilter: `opacity(${Math.floor(decimalToPercentage(watchFundoAppOpacity))})%`,
+          // }}
+        >
+          <div
+            className="fundo-app-preview"
+            style={{ width: "100%", height: "100%" }}
+          />
+        </div>
       </div>
-      <div className="screen-container">
+      <Smartphone
+        style={{
+          backdropFilter: `blur(${fundoAppBlur}px)`,
+          WebkitBackdropFilter: `blur(${fundoAppBlur}px)`,
+        }}
+      >
         {/* <div className="logo" > */}
-          <div className="logo-app-box" ref={refLogoAppDomElement}>
-            <div
-              className="logo-app-preview"
-              style={{ width: "100%", height: "100%" }}
-            />
-          </div>
+        <div className="logo-app-box" ref={refLogoAppDomElement}>
+          <div
+            className="logo-app-preview"
+            style={{
+              width: "100%",
+              height: "100%",
+              borderRadius: isLogoAppBorderRounded ? "10px" : "",
+            }}
+          />
+        </div>
         {/* </div> */}
         <div className="center-box">
           <div className="login-box">
@@ -55,8 +86,7 @@ const TelaInicial = ({}: Props) => {
             <span>Desenvolvido por Quality Systems</span>
           </div>
         </div>
-        <IphoneBottomLine></IphoneBottomLine>
-      </div>
+      </Smartphone>
     </div>
   );
 };

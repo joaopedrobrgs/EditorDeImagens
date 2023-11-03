@@ -106,7 +106,7 @@ const PageSettings = (props: Props) => {
             </p>
           </div>
           <div className="option-content">
-            <label>
+            {/* <label>
               <input
                 type="checkbox"
                 checked={sliderChecked}
@@ -115,7 +115,7 @@ const PageSettings = (props: Props) => {
                 }}
               />
               Controle Deslizante
-            </label>
+            </label> */}
             <label>
               <input
                 type="checkbox"

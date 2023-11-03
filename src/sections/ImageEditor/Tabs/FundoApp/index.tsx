@@ -26,6 +26,7 @@ import { useDownloadImage } from "src/hooks/useDownloadImage";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
 import { maxSizeOfImageValidator } from "src/utils/utils";
 import domtoimage from "dom-to-image";
+import { useMediaQuery } from "src/hooks/useMediaQuery";
 
 type Props = {};
 
@@ -62,6 +63,8 @@ const FundoApp = (props: Props) => {
   const [imageFullyLoaded, setImageFullyLoaded] = useAtom(
     AtomFirstImageFullyLoaded
   );
+  const largeScreen = useMediaQuery("(max-width: 1330px)");
+  const mdScreen = useMediaQuery("(max-width: 976px)");
 
   //Services:
   const {
@@ -170,7 +173,10 @@ const FundoApp = (props: Props) => {
           <p>Recortar {nameOfTab}:</p>
           <ButtonDefault
             text={`Upload ${nameOfTab}`}
-            bgColor="#2892CE"
+            // bgColor="#2892CE"
+            style={{
+              backgroundColor: "#2892CE"
+            }}
             onClick={triggerFileSelectPopup}
           >
             <UploadIcon className="icon" />
@@ -181,14 +187,18 @@ const FundoApp = (props: Props) => {
           cropperReference={cropperRef}
           aspectRatio={aspectRatio}
           zoomTo={zoomValue}
-          // onLoad={handleLoaded}
-          ready={handleLoaded}
           src={image ?? defaultSrc}
           cropmove={handleCropmoveEvent}
           zoom={handleZoomEvent}
           data={cropDataStored}
+          ready={()=>{
+            setImageFullyLoaded(true);
+          }}
+          unmountEvent={()=>{
+            // setImageFullyLoaded(false);
+          }}
         />
-        <SliderDefault
+        {/* <SliderDefault
           sliderRef={sliderRef}
           value={zoomValue}
           valueLabelFormat={`${zoomValue}`}
@@ -197,11 +207,16 @@ const FundoApp = (props: Props) => {
               setZoomValue(newValue);
             }
           }}
-        />
+        /> */}
         <ButtonDefault
           text={isCompressing ? "Comprimindo..." : `Baixar ${nameOfTab}`}
-          bgColor="#CE7828"
-          alignSelf={windowWidth >= 1330 ? "self-start" : "center"}
+          // bgColor="#CE7828"
+          // alignSelf={largeScreen ? "center" : "self-start"}
+          style={{
+            backgroundColor: "#CE7828",
+            alignSelf: largeScreen ? "center" : "self-start",
+            marginTop: mdScreen ? "10px" : "0"
+          }}
           onClick={
             isCompressing || !imageFullyLoaded
               ? () => {

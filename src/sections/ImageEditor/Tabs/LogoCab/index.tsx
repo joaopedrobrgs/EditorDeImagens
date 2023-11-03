@@ -29,6 +29,8 @@ import ButtonDefault from "src/components/Button";
 import { useDownloadImage } from "src/hooks/useDownloadImage";
 import { ImageCompressionOptions } from "src/types/ImageCompression";
 import domtoimage from "dom-to-image";
+import { useMediaQuery } from "src/hooks/useMediaQuery";
+import { Button, Tooltip } from "@mui/material";
 
 type Props = {};
 
@@ -60,6 +62,9 @@ const LogoCab = (props: Props) => {
   const [cropDataStored, setCropDataStored] = useState(
     cropperRef.current?.cropper.getData()
   );
+  const largeScreen = useMediaQuery("(max-width: 1330px)");
+  const mdScreen = useMediaQuery("(max-width: 976px)");
+  const [isFreeAspectRatio, setIsFreeAspectRatio] = useState<boolean>(true);
 
   //Services:
   const {
@@ -80,9 +85,9 @@ const LogoCab = (props: Props) => {
     }
   };
 
-  function handleLoaded() {
-    setImageFullyLoaded(true);
-  }
+  // function handleLoaded() {
+  //   setImageFullyLoaded(true);
+  // }
 
   const onSelectFile = (e: any) => {
     e.preventDefault();
@@ -176,7 +181,10 @@ const LogoCab = (props: Props) => {
           </p>
           <ButtonDefault
             text={`Upload ${nameOfTab}`}
-            bgColor="#2892CE"
+            // bgColor="#2892CE"
+            style={{
+              backgroundColor: "#2892CE",
+            }}
             onClick={triggerFileSelectPopup}
           >
             <UploadIcon className="icon" />
@@ -188,14 +196,20 @@ const LogoCab = (props: Props) => {
           // aspectRatio={aspectRatio}
           initialAspectRatio={aspectRatio}
           zoomTo={zoomValue}
-          // onLoad={handleLoaded}
-          ready={handleLoaded}
           src={image ?? defaultSrc}
           cropmove={handleCropmoveEvent}
           zoom={handleZoomEvent}
           data={cropDataStored}
+          ready={() => {
+            setImageFullyLoaded(true);
+            // setIsFreeAspectRatio(true);
+          }}
+          unmountEvent={() => {
+            // setImageFullyLoaded(false);
+            setIsFreeAspectRatio(true);
+          }}
         />
-        <SliderDefault
+        {/* <SliderDefault
           sliderRef={sliderRef}
           value={zoomValue}
           valueLabelFormat={`${zoomValue}`}
@@ -204,11 +218,76 @@ const LogoCab = (props: Props) => {
               setZoomValue(newValue);
             }
           }}
-        />
+        /> */}
+        <div
+          style={
+            {
+              // width: smScreen ? "75%" : "40%",
+              // display: "flex",
+              // alignItems: "center",
+              // justifyContent: "center",
+              // padding: smScreen ? "10px 0" : "",
+            }
+          }
+        >
+          {isFreeAspectRatio ? (
+            <Tooltip
+              title="Travar proporção do recorte da imagem. Funciona melhor em fundo sólido."
+              aria-label="travar"
+            >
+              <Button
+                size="small"
+                // className="lock-aspect-ratio-btn"
+                onClick={() => {
+                  cropperRef.current?.cropper?.setAspectRatio(aspectRatio);
+                  setIsFreeAspectRatio(false);
+                }}
+                variant="contained"
+                color="primary"
+                className="lock-aspect-ratio-btn"
+              >
+                Travar Proporção
+              </Button>
+            </Tooltip>
+          ) : (
+            <Tooltip
+              title="Liberar proporção do recorte da imagem. Funciona melhor em fundo transparente."
+              aria-label="liberar"
+            >
+              <Button
+                size="small"
+                className="unlock-aspect-ratio-btn"
+                onClick={() => {
+                  cropperRef.current?.cropper?.setAspectRatio(NaN);
+                  setIsFreeAspectRatio(true);
+                }}
+                variant="outlined"
+                color="primary"
+              >
+                Liberar Proporção
+              </Button>
+            </Tooltip>
+          )}
+        </div>
+        <div className="image-editor-logo-cab-preview-box">
+          <div className="image-editor-wireframe">
+            <div className="image-editor-wireframe-linha-horizontal"></div>
+            <div className="image-editor-wireframe-linha-vertical"></div>
+          </div>
+          <div
+            className={previewClass}
+            style={{ width: "100%", height: "100%" }}
+          />
+        </div>
         <ButtonDefault
           text={isCompressing ? "Comprimindo..." : `Baixar ${nameOfTab}`}
-          bgColor="#CE7828"
-          alignSelf={windowWidth >= 1330 ? "self-start" : "center"}
+          // bgColor="#CE7828"
+          // alignSelf={largeScreen ? "center" : "self-start"}
+          style={{
+            backgroundColor: "#CE7828",
+            alignSelf: largeScreen ? "center" : "self-start",
+            marginTop: mdScreen ? "10px" : "0"
+          }}
           onClick={
             isCompressing || !imageFullyLoaded
               ? () => {

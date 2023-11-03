@@ -1,163 +1,171 @@
 .screen-login-container {
   margin: 1.25rem 0.5rem;
   position: relative;
-  width: 250px;
+  width: 220px;
   // font-size: 16px;
-  .fundo-app-box {
+  .fundo-app-container {
     left: 0;
     right: 0;
     z-index: 0;
     display: block;
     position: absolute;
-    width: 500px;
-    height: 900px;
-    transform: scale(0.499);
-    margin: calc(900px * -0.25) calc(500px * -0.25);
-    filter: opacity(var(--fundo-app-opacity));
-    -webkit-filter: opacity(var(--fundo-app-opacity));
-    -moz-filter: opacity(var(--fundo-app-opacity));
-    -o-filter: opacity(var(--fundo-app-opacity));
-    -ms-filter: opacity(var(--fundo-app-opacity));
-    .fundo-app-preview {
-      overflow: hidden;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+    background-color: rgb(230, 230, 230);
+    overflow: hidden;
+    .fundo-app-box {
+      width: 500px;
+      height: 889px;
+      transform: scale(0.49);
+      margin: calc(889px * -0.25) calc(500px * -0.282);
+      filter: opacity(var(--fundo-app-opacity));
+      -webkit-filter: opacity(var(--fundo-app-opacity));
+      -moz-filter: opacity(var(--fundo-app-opacity));
+      -o-filter: opacity(var(--fundo-app-opacity));
+      -ms-filter: opacity(var(--fundo-app-opacity));
+      .fundo-app-preview {
+        overflow: hidden;
+        // position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%, -50%);
+      }
     }
   }
 
-  .screen-container {
-    position: relative;
-    border: 0.5px dashed black;
-    height: 450px;
-    width: 250px;
-    backdrop-filter: blur(var(--fundo-app-blur));
-    -webkit-backdrop-filter: blur(var(--fundo-app-blur));
-    -moz-backdrop-filter: blur(var(--fundo-app-blur));
-    -o-backdrop-filter: blur(var(--fundo-app-blur));
-    -ms-backdrop-filter: blur(var(--fundo-app-blur));
+  // .screen-container {
+  //   position: relative;
+  //   border: 0.5px dashed black;
+  //   height: 450px;
+  //   width: 250px;
+  //   backdrop-filter: blur(var(--fundo-app-blur));
+  //   -webkit-backdrop-filter: blur(var(--fundo-app-blur));
+  //   -moz-backdrop-filter: blur(var(--fundo-app-blur));
+  //   -o-backdrop-filter: blur(var(--fundo-app-blur));
+  //   -ms-backdrop-filter: blur(var(--fundo-app-blur));
 
-    .logo-app-box {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 450px;
-      height: 250px;
-      margin: calc(250px * -0.195) calc(450px * -0.225);
-      transform: scale(0.4);
-      // background-color: red;
-      .logo-app-preview{
-        overflow: hidden;
-        // background-color: blue;
-      }
+  .logo-app-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    height: 250px;
+    margin: calc(250px * -0.17) calc(450px * -0.275) calc(250px * -0.23) calc(450px * -0.275);
+    transform: scale(0.35);
+    overflow: hidden;
+    // background-color: red;
+    .logo-app-preview {
+      overflow: hidden;
+      // background-color: blue;
     }
+  }
 
-    .center-box {
-      width: 80%;
-      margin: auto;
+  .center-box {
+    width: 80%;
+    margin: auto;
 
-      .login-box {
-        background-color: rgba($color: #ffffffff, $alpha: var(--boxes-opacity));
-        border-radius: 4.62px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 14.4px;
+    .login-box {
+      background-color: rgba($color: #ffffffff, $alpha: var(--boxes-opacity));
+      border-radius: 4.62px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
 
-        .input {
-          background-color: rgba($color: #ffffffff, $alpha: 0.7);
-          width: 100%;
-          border: 1.12px solid #d3d3d3;
-          border-radius: 3.3px;
-          height: 33px;
-          padding: 6.66px 0px;
-          margin-bottom: 7.2px;
-          .input-label {
-            font-size: 9.24px;
-            font-weight: 500;
-            text-align: center;
-          }
-          .input-content {
-            border-left: 1.12px solid #d3d3d3;
-            height: 100%;
-            width: 100%;
-          }
+      .input {
+        background-color: rgba($color: #ffffffff, $alpha: 0.7);
+        width: 100%;
+        border: 1.12px solid #d3d3d3;
+        border-radius: 3.3px;
+        height: 33px;
+        padding: 6.66px 0px;
+        margin-bottom: 5px;
+        .input-label {
+          font-size: 9.24px;
+          font-weight: 500;
+          text-align: center;
+          color: #000000 !important;
         }
-        .checkbox {
-          align-self: flex-start;
-          display: flex;
-          align-items: center;
-          .checkbox-square {
-            border: 1px solid var(--btn-bg-color);
-            border-radius: 3.3px;
-            width: 13.2px;
-            height: 13.2px;
-            display: inline-block;
-            margin-right: 6.6px;
-          }
-          .checkbox-text {
-            font-weight: 500;
-            font-size: 9.24px;
-          }
-        }
-        .button {
-          margin-top: 14.5px;
+        .input-content {
+          border-left: 1.12px solid #d3d3d3;
+          height: 100%;
           width: 100%;
-          height: 33px;
-          background-color: var(--btn-bg-color);
-          border-radius: 5.28px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          box-shadow: 0px 5px 10px 0px rgb(0 0 0 / 40%);
-          font-size: 0.66em;
-          font-weight: 600;
-          .button-text {
-            color: var(--btn-text-color);
-          }
         }
       }
-
-      .forgot-password-box {
-        margin-top: 6.6px;
-        background-color: rgba($color: #ffffffff, $alpha: 1);
-        opacity: var(--boxes-opacity);
+      .checkbox {
+        align-self: flex-start;
+        display: flex;
+        align-items: center;
+        .checkbox-square {
+          border: 1px solid var(--btn-bg-color);
+          border-radius: 3.3px;
+          width: 13.2px;
+          height: 13.2px;
+          display: inline-block;
+          margin-right: 6.6px;
+        }
+        .checkbox-text {
+          font-weight: 500;
+          font-size: 9.24px;
+        }
+      }
+      .button {
+        margin-top: 14.5px;
+        width: 100%;
+        height: 33px;
+        background-color: var(--btn-bg-color);
+        border-radius: 5.28px;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 4.62px;
-        padding: 7.8px;
-        box-sizing: border-box;
+        box-shadow: 0px 5px 10px 0px rgb(0 0 0 / 40%);
         font-size: 0.66em;
+        font-weight: 500;
+        .button-text {
+          color: var(--btn-text-color);
+        }
       }
     }
 
-    .credits-container {
-      padding-bottom: 9%;
-      padding-top: 9%;
-      position: absolute;
-      bottom: 0;
+    .forgot-password-box {
+      margin-top: 6.6px;
+      background-color: rgba($color: #ffffffff, $alpha: var(--boxes-opacity));
+      // opacity: var(--boxes-opacity);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4.62px;
+      padding: 7.8px;
+      box-sizing: border-box;
+      font-size: 0.66em;
+    }
+  }
+
+  .credits-container {
+    padding-bottom: 9%;
+    padding-top: 9%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    .text-container {
       width: 100%;
-      text-align: center;
-      background: rgb(255, 255, 255);
-      background: linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 100%
-      );
-      .text-container {
-        width: 100%;
-        position: absolute;
-        top: 45%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        span {
-          color: #030303;
-          opacity: 0.7;
-          font-size: 8.58px;
-          font-weight: 500;
-        }
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      span {
+        color: #030303;
+        opacity: 0.7;
+        font-size: 8.58px;
+        font-weight: 500;
       }
     }
   }

@@ -11,6 +11,7 @@ import {
 
 interface Props extends ReactCropperProps {
   cropperReference?: any;
+  unmountEvent: Function;
 }
 
 const CropperDefault = (props: Props) => {
@@ -25,6 +26,12 @@ const CropperDefault = (props: Props) => {
   useEffect(()=>{
     setKey(key + 1)
   }, [onTouchChecked, onWheelChecked, sliderChecked, windowWidth])
+
+  useEffect(()=>{
+    return(()=>{
+      props.unmountEvent();
+    })
+  }, [])
 
   return (
     <Cropper
@@ -46,6 +53,8 @@ const CropperDefault = (props: Props) => {
       dragMode="move"
       zoomOnTouch={onTouchChecked}
       zoomOnWheel={onWheelChecked}
+      rotatable={false}
+      scalable={false}
       //Props:
       key={`${props.preview}-${key}`}
       ready={props.ready}

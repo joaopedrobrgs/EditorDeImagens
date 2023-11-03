@@ -1,5 +1,8 @@
+import React from 'react'
 import "./styles.scss";
 
-export default function IphoneBottomLine() {
-  return <div className="iphone-bottom-line"></div>;
+const IphoneBottomLine: React.FC = () => {
+  return <div className="iphone-bottom-line"></div> ;
 }
+
+export default IphoneBottomLine;

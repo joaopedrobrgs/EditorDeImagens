@@ -9,6 +9,7 @@ import QrCodeSvg from "src/assets/svgComponents/QrCodeSvg";
 import { exampleMenuItems as menuItems } from "src/utils/exampleMenuItems";
 import IphoneBottomLine from "src/components/IphoneBottomLine";
 import { useAppContext } from "src/context";
+import Smartphone from "src/components/Smartphone";
 
 type Props = {
   // className: string
@@ -21,22 +22,30 @@ const MenuAberto = ({}: Props) => {
 
   return (
     <div className="screen-menu-aberto-container">
-      <div className="screen-container">
+      {/* <div className="screen-container"> */}
+      <Smartphone style={{ backgroundColor: "white" }}>
         <div className="tw-grid tw-grid-cols-4 tw-grid-rows-1 tw-h-9/10">
           <div className="menu-container tw-col-span-3">
             <div className="menu-header-container">
               <div className="fundo-menu-container">
-                <div className="fundo-menu-box" ref={refFundoMenuDomElement}>
-                  <div
-                    className="fundo-menu-preview"
-                    style={{ width: "100%", height: "100%" }}
-                  />
+                <div className="fundo-menu-bg">
+                  <div className="fundo-menu-box" ref={refFundoMenuDomElement}>
+                    <div
+                      className="fundo-menu-preview"
+                      style={{ width: "100%", height: "100%" }}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="menu-header-content">
                 <span className="time">{actualTime ?? ""}</span>
                 <div className="user-photo-container">
-                  <img src={`${process.env.PUBLIC_URL}user-female.png`} alt="UserImage" width="59.4px" height="59.4px"></img>
+                  <img
+                    src={`${process.env.PUBLIC_URL}user-female.png`}
+                    alt="UserImage"
+                    width="59.4px"
+                    height="59.4px"
+                  ></img>
                 </div>
                 <div className="user-name-container">
                   <span>LAIS</span>
@@ -77,7 +86,7 @@ const MenuAberto = ({}: Props) => {
         </div>
         <div className="screen-footer tw-h-1/10">
           <div className="footer-top">
-          <div className="items-container">
+            <div className="items-container">
               <TbGridDots size="1.2em" color="#747474" />
               <span>Meus Dados</span>
             </div>
@@ -90,7 +99,8 @@ const MenuAberto = ({}: Props) => {
             <IphoneBottomLine />
           </div>
         </div>
-      </div>
+      </Smartphone>
+      {/* </div> */}
     </div>
   );
 };
