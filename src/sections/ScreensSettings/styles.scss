@@ -18,6 +18,10 @@
         display: flex;
         flex-direction: column;
         padding: 5px;
+        .settings-slider{
+          padding: 0;
+          box-sizing: border-box;
+        }
         .settings-input-label {
           font-weight: 600;
           font-size: 0.9em;
@@ -25,12 +29,12 @@
         .settings-color-box {
           width: 100%;
           display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
           input {
-            width: 50%;
-            max-width: 200px;
+            width: 100%;
+            // max-width: 200px;
             margin-top: 1px;
           }
         }
@@ -66,18 +70,20 @@
 
 @media screen and (max-width: 976px) {
   .settings-extern-container {
-    padding: 0 1rem !important;
+    padding: 0 2rem !important;
     .settings-intern-container {
       border: none !important;
       box-shadow: none !important;
       .settings-box-container {
         height: 100% !important;
+        .settings-input-box{
+          .settings-slider{
+            padding: 10px 10px;
+
+          }
+        }
         .settings-color-box {
-          flex-direction: row !important;
-          align-items: center !important;
-          justify-content: space-between !important;
           input {
-            width: 50% !important;
           }
         }
       }

@@ -10,7 +10,9 @@ import {
   AtomFundoAppOpacity,
   AtomFundoAppBlur,
   AtomFundoMenuOpacity,
-  AtomFundoMenuBlur
+  AtomFundoMenuBlur,
+  AtomBoxesBgColor,
+  AtomBoxesTextColor,
 } from "src/store";
 import { changeRootVarAtribute, valueLabelFormat } from "src/utils/utils";
 import "./styles.scss";
@@ -27,11 +29,81 @@ export default function ScreensSettings({ className }: Props) {
   const [fundoMenuBlur, setFundoMenuBlur] = useAtom(AtomFundoMenuBlur);
   const [btnBgColor, setBtnBgColor] = useAtom(AtomBtnBgColor);
   const [btnTextColor, setBtnTextColor] = useAtom(AtomBtnTextColor);
+  const [boxesBgColor, setBoxesBgColor] = useAtom(AtomBoxesBgColor);
+  const [boxesTextColor, setBoxesTextColor] = useAtom(AtomBoxesTextColor);
 
   return (
     <div className={`${className} settings-extern-container`}>
       <div className="settings-intern-container">
         <Box className={`settings-box-container`}>
+          <div className="settings-input-box">
+            {/* btn-bg-color */}
+            <Box className="settings-color-box">
+              <label className="settings-input-label">
+                <span>Botões - Cor de Fundo:</span>
+              </label>
+              <input
+                type="color"
+                onChange={(evt) => {
+                  const { value } = evt.target;
+                  changeRootVarAtribute(value, "--btn-bg-color");
+                  setBtnBgColor(value);
+                }}
+                defaultValue={btnBgColor}
+              />
+            </Box>
+          </div>
+          <div className="settings-input-box">
+            {/* btn-text-color */}
+            <Box className="settings-color-box">
+              <label className="settings-input-label">
+                <span>Botões - Cor de Texto:</span>
+              </label>
+              <input
+                type="color"
+                onChange={(evt) => {
+                  const { value } = evt.target;
+                  changeRootVarAtribute(value, "--btn-text-color");
+                  setBtnTextColor(value);
+                }}
+                defaultValue={btnTextColor}
+              />
+            </Box>
+          </div>
+          <div className="settings-input-box">
+            {/* btn-text-color */}
+            <Box className="settings-color-box">
+              <label className="settings-input-label">
+                <span>Caixa de Login - Cor de Fundo:</span>
+              </label>
+              <input
+                type="color"
+                onChange={(evt) => {
+                  const { value } = evt.target;
+                  changeRootVarAtribute(value, "--boxes-bg-color");
+                  setBoxesBgColor(value);
+                }}
+                defaultValue={boxesBgColor}
+              />
+            </Box>
+          </div>
+          <div className="settings-input-box">
+            {/* btn-text-color */}
+            <Box className="settings-color-box">
+              <label className="settings-input-label">
+                <span>Caixa de Login - Cor de Texto:</span>
+              </label>
+              <input
+                type="color"
+                onChange={(evt) => {
+                  const { value } = evt.target;
+                  changeRootVarAtribute(value, "--boxes-text-color");
+                  setBoxesTextColor(value);
+                }}
+                defaultValue={boxesTextColor}
+              />
+            </Box>
+          </div>
           {/* fundo-app-opacity: */}
           <Box className="settings-input-box">
             <Typography
@@ -39,7 +111,8 @@ export default function ScreensSettings({ className }: Props) {
               gutterBottom
               className="settings-input-label"
             >
-              Fundo-app-opacity: {valueLabelFormat(fundoAppOpacity, "%")}
+              Imagens de Fundo - Opacidade:{" "}
+              {valueLabelFormat(fundoAppOpacity, "%")}
             </Typography>
             <Slider
               value={fundoAppOpacity}
@@ -56,6 +129,7 @@ export default function ScreensSettings({ className }: Props) {
               valueLabelDisplay="auto"
               aria-labelledby="non-linear-slider"
               size="small"
+              className="settings-slider"
             />
           </Box>
           {/* fundo-app-blur */}
@@ -65,7 +139,8 @@ export default function ScreensSettings({ className }: Props) {
               gutterBottom
               className="settings-input-label"
             >
-              Fundo-app-blur: {valueLabelFormat(fundoAppBlur, "px")}
+              Fundo Tela Login - Desfoque:{" "}
+              {valueLabelFormat(fundoAppBlur, "px")}
             </Typography>
             <Slider
               value={fundoAppBlur}
@@ -82,10 +157,11 @@ export default function ScreensSettings({ className }: Props) {
               valueLabelDisplay="auto"
               aria-labelledby="non-linear-slider"
               size="small"
+              className="settings-slider"
             />
           </Box>
           {/* fundo-menu-opacity: */}
-          <Box className="settings-input-box">
+          {/* <Box className="settings-input-box">
             <Typography
               id="non-linear-slider"
               gutterBottom
@@ -109,9 +185,9 @@ export default function ScreensSettings({ className }: Props) {
               aria-labelledby="non-linear-slider"
               size="small"
             />
-          </Box>
+          </Box> */}
           {/* fundo-menu-blur */}
-          <Box className="settings-input-box">
+          {/* <Box className="settings-input-box">
             <Typography
               id="non-linear-slider"
               gutterBottom
@@ -135,9 +211,9 @@ export default function ScreensSettings({ className }: Props) {
               aria-labelledby="non-linear-slider"
               size="small"
             />
-          </Box>
+          </Box> */}
           {/* boxes-opacity: */}
-          <Box className="settings-input-box">
+          {/* <Box className="settings-input-box">
             <Typography
               id="non-linear-slider"
               gutterBottom
@@ -151,10 +227,6 @@ export default function ScreensSettings({ className }: Props) {
               min={0}
               step={1}
               max={100}
-              // scale={calculateValue}
-              // getAriaValueText={(value: number) => {
-              //   return `${value}px`;
-              // }}
               valueLabelFormat={valueLabelFormat(boxesOpacity, "%")}
               onChange={(event: Event, newValue: number | number[]) => {
                 if (typeof newValue === "number") {
@@ -166,41 +238,7 @@ export default function ScreensSettings({ className }: Props) {
               aria-labelledby="non-linear-slider"
               size="small"
             />
-          </Box>
-          <div className="settings-input-box">
-            {/* btn-bg-color */}
-            <Box className="settings-color-box">
-              <label className="settings-input-label">
-                <span>Btn-bg-color:</span>
-              </label>
-              <input
-                type="color"
-                onChange={(evt) => {
-                  const { value } = evt.target;
-                  changeRootVarAtribute(value, "--btn-bg-color");
-                  setBtnBgColor(value);
-                }}
-                defaultValue={btnBgColor}
-              />
-            </Box>
-          </div>
-          <div className="settings-input-box">
-            {/* btn-text-color */}
-            <Box className="settings-color-box">
-              <label className="settings-input-label">
-                <span>Btn-txt-color:</span>
-              </label>
-              <input
-                type="color"
-                onChange={(evt) => {
-                  const { value } = evt.target;
-                  changeRootVarAtribute(value, "--btn-text-color");
-                  setBtnTextColor(value);
-                }}
-                defaultValue={btnTextColor}
-              />
-            </Box>
-          </div>
+          </Box> */}
         </Box>
       </div>
     </div>

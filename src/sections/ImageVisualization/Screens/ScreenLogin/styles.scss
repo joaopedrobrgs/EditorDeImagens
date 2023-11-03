@@ -66,12 +66,13 @@
     margin: auto;
 
     .login-box {
-      background-color: rgba($color: #ffffffff, $alpha: var(--boxes-opacity));
+      // background-color: rgba($color: #ffffffff, $alpha: var(--boxes-opacity));
       border-radius: 4.62px;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 10px;
+      color: var(--boxes-text-color);
 
       .input {
         background-color: rgba($color: #ffffffff, $alpha: 0.7);
@@ -130,7 +131,7 @@
 
     .forgot-password-box {
       margin-top: 6.6px;
-      background-color: rgba($color: #ffffffff, $alpha: var(--boxes-opacity));
+      // background-color: rgba($color: #ffffffff, $alpha: var(--boxes-opacity));
       // opacity: var(--boxes-opacity);
       display: flex;
       justify-content: center;
@@ -139,6 +140,7 @@
       padding: 7.8px;
       box-sizing: border-box;
       font-size: 0.66em;
+      color: var(--boxes-text-color);
     }
   }
 

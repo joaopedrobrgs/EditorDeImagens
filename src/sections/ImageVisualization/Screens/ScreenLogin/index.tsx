@@ -5,6 +5,8 @@ import { useAppContext } from "src/context";
 import Smartphone from "src/components/Smartphone";
 import { useAtom } from "jotai";
 import {
+  AtomBoxesBgColor,
+  AtomBoxesTextColor,
   AtomFundoAppBlur,
   AtomFundoAppOpacity,
   AtomLogoAppIsBorderRounded,
@@ -19,6 +21,9 @@ const TelaInicial = ({}: Props) => {
 
   const [fundoAppOpacity] = useAtom(AtomFundoAppOpacity);
   const [fundoAppBlur] = useAtom(AtomFundoAppBlur);
+  const [boxesBgColor] = useAtom(AtomBoxesBgColor);
+  const [boxesTextColor] = useAtom(AtomBoxesTextColor);
+  
 
   const [isLogoAppBorderRounded] = useAtom(AtomLogoAppIsBorderRounded);
 
@@ -60,7 +65,7 @@ const TelaInicial = ({}: Props) => {
         </div>
         {/* </div> */}
         <div className="center-box">
-          <div className="login-box">
+          <div className="login-box" style={{backgroundColor: `${boxesBgColor}B3`}}>
             <div className="input tw-grid tw-grid-cols-4 tw-grid-rows-1 tw-items-center">
               <span className="input-label tw-col-span-1">CPF</span>
               <div className="input-content tw-col-span-3" />
@@ -77,7 +82,7 @@ const TelaInicial = ({}: Props) => {
               <span className="button-text">ENTRAR</span>
             </div>
           </div>
-          <div className="forgot-password-box">
+          <div className="forgot-password-box" style={{backgroundColor: `${boxesBgColor}B3`}}>
             <span>Esqueceu sua senha?</span>
           </div>
         </div>

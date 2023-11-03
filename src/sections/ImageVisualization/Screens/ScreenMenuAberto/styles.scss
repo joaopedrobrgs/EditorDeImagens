@@ -44,11 +44,11 @@
             transform: scale(0.71);
             margin-left: calc(400px * -0.26);
             margin-top: calc(200px * -0.147);
-            filter: opacity(var(--fundo-menu-opacity));
-            -webkit-filter: opacity(var(--fundo-menu-opacity));
-            -moz-filter: opacity(var(--fundo-menu-opacity));
-            -o-filter: opacity(var(--fundo-menu-opacity));
-            -ms-filter: opacity(var(--fundo-menu-opacity));
+            filter: opacity(var(--fundo-app-opacity));
+            -webkit-filter: opacity(var(--fundo-app-opacity));
+            -moz-filter: opacity(var(--fundo-app-opacity));
+            -o-filter: opacity(var(--fundo-app-opacity));
+            -ms-filter: opacity(var(--fundo-app-opacity));
             .fundo-menu-preview {
               overflow: hidden;
             }
