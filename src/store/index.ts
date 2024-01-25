@@ -202,7 +202,7 @@ export const AtomLogoCabCompressionRate = atomWithStorage<number>(
 //Dom Element Options Atoms:
 export const AtomFundoAppDomElementOptions = atom<Options>({
   width: 500,
-  height: 900,
+  height: 889,
   style: {
     margin: 0,
     transform: "none",

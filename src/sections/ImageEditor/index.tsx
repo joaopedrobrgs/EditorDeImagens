@@ -99,7 +99,7 @@ const ImageEditor = ({ className }: Props) => {
       );
       data.push({
         blob,
-        elementOutputFileName: "fundo-app.png",
+        elementOutputFileName: "fundo_app.png",
         compressChecked: fundoAppCompressChecked,
         compressionOptions: {
           maxSizeMB: maxSizeOfImageValidator(maxSizeFundoApp),
@@ -117,7 +117,7 @@ const ImageEditor = ({ className }: Props) => {
       );
       data.push({
         blob,
-        elementOutputFileName: "fundo-menu.png",
+        elementOutputFileName: "fundo_menu.png",
         compressChecked: fundoMenuCompressChecked,
         compressionOptions: {
           maxSizeMB: maxSizeOfImageValidator(maxSizeFundoMenu),
@@ -145,7 +145,7 @@ const ImageEditor = ({ className }: Props) => {
       };
       data.push({
         blob,
-        elementOutputFileName: "logo-app.png",
+        elementOutputFileName: "logo_app.png",
         compressChecked: logoAppCompressChecked,
         compressionOptions: compressionOptions,
       });
@@ -168,7 +168,7 @@ const ImageEditor = ({ className }: Props) => {
       };
       data.push({
         blob,
-        elementOutputFileName: "logo-cab.png",
+        elementOutputFileName: "logo_cab.png",
         compressChecked: logoCabCompressChecked,
         compressionOptions: compressionOptions,
       });
