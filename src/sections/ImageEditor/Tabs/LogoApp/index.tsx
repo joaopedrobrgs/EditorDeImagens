@@ -40,7 +40,7 @@ const LogoApp = (props: Props) => {
   const defaultSrc: string = `${process.env.PUBLIC_URL}logo_app_sample.png`;
   const nameOfTab: string = "Logo App";
   const previewClass: string = "logo-app-preview";
-  const outputFileName: string = "logo-app.png";
+  const outputFileName: string = "logo_app.png";
   const [, setCropData] = useAtom(AtomLogoAppCropped);
   const [image, setImage] = useAtom(AtomLogoAppOriginalSize);
   const aspectRatio = 450 / 250;
