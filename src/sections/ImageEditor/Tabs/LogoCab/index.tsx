@@ -39,7 +39,7 @@ const LogoCab = (props: Props) => {
   const defaultSrc: string = `${process.env.PUBLIC_URL}logo_cab_sample.png`;
   const nameOfTab: string = "Logo Cab";
   const previewClass: string = "logo-cab-preview";
-  const outputFileName: string = "logo-cab.png";
+  const outputFileName: string = "logo_cab.png";
   const [, setCropData] = useAtom(AtomLogoCabCropped);
   const [image, setImage] = useAtom(AtomLogoCabOriginalSize);
   const aspectRatio = 130 / 130;
